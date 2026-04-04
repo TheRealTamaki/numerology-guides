@@ -191,7 +191,7 @@ const faqSchema = {
           <!-- Life Path -->
           <div class="bg-white rounded-xl overflow-hidden shadow-md text-center">
             <div class="overflow-hidden">
-              <img id="lifePathImg" src="/images/learn/Life Path Number 1 - Hero.webp" alt="Life Path Number" class="w-full h-auto" loading="lazy" />
+              <img id="lifePathImg" src="/images/learn/Life Path Number 1 - The Leader.webp" alt="Life Path Number" class="w-full h-auto" loading="lazy" />
             </div>
             <div class="p-4">
               <p class="text-xs text-muted-text font-semibold uppercase tracking-widest mb-2">Life Path</p>
@@ -701,8 +701,18 @@ const faqSchema = {
         7: 'The Mysterious', 8: 'The Authority', 9: 'The Wise',
       };
 
+      // Life Path title map (card-style images for 1–9, Hero fallback for master numbers)
+      const lifePathTitles = {
+        1: 'The Leader', 2: 'The Peacemaker', 3: 'The Communicator',
+        4: 'The Builder', 5: 'The Adventurer', 6: 'The Nurturer',
+        7: 'The Seeker', 8: 'The Powerhouse', 9: 'The Humanitarian',
+      };
+
       // Update all 5 card images to match the computed numbers
-      document.getElementById('lifePathImg').src = `/images/learn/Life Path Number ${lifePathResult.number} - Hero.webp`;
+      const lpTitle = lifePathTitles[lifePathResult.number];
+      document.getElementById('lifePathImg').src = lpTitle
+        ? `/images/learn/Life Path Number ${lifePathResult.number} - ${lpTitle}.webp`
+        : `/images/learn/Life Path Number ${lifePathResult.number} - Hero.webp`;
 
       const exTitle = expressionTitles[expressionResult.number];
       if (exTitle) document.getElementById('expressionImg').src = `/images/learn/expression-numbers/Expression Number - ${exTitle}.webp`;

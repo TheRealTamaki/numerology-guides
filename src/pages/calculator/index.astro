@@ -191,7 +191,7 @@ const faqSchema = {
           <!-- Life Path -->
           <div class="bg-white rounded-xl overflow-hidden shadow-md text-center">
             <div class="aspect-[16/10] overflow-hidden">
-              <img src="/images/learn/Life Path Number 1 - Hero.webp" alt="Life Path Number" class="w-full h-full object-cover" loading="lazy" />
+              <img id="lifePathImg" src="/images/learn/Life Path Number 1 - Hero.webp" alt="Life Path Number" class="w-full h-full object-cover" loading="lazy" />
             </div>
             <div class="p-4">
               <p class="text-xs text-muted-text font-semibold uppercase tracking-widest mb-2">Life Path</p>
@@ -204,7 +204,7 @@ const faqSchema = {
           <!-- Expression -->
           <div class="bg-white rounded-xl overflow-hidden shadow-md text-center">
             <div class="aspect-[16/10] overflow-hidden">
-              <img src="/images/learn/expression-numbers/Expression Number - The Creative.webp" alt="Expression Number" class="w-full h-full object-cover" loading="lazy" />
+              <img id="expressionImg" src="/images/learn/expression-numbers/Expression Number - The Creative.webp" alt="Expression Number" class="w-full h-full object-cover" loading="lazy" />
             </div>
             <div class="p-4">
               <p class="text-xs text-muted-text font-semibold uppercase tracking-widest mb-2">Expression</p>
@@ -243,7 +243,7 @@ const faqSchema = {
           <!-- Birthday -->
           <div class="bg-white rounded-xl overflow-hidden shadow-md text-center">
             <div class="aspect-[16/10] overflow-hidden">
-              <img src="/images/learn/birthday-numbers/Birthday Number - 1.webp" alt="Birthday Number" class="w-full h-full object-cover" loading="lazy" />
+              <img id="birthdayImg" src="/images/learn/birthday-numbers/Birthday Number - 1.webp" alt="Birthday Number" class="w-full h-full object-cover" loading="lazy" />
             </div>
             <div class="p-4">
               <p class="text-xs text-muted-text font-semibold uppercase tracking-widest mb-2">Birthday</p>
@@ -683,6 +683,12 @@ const faqSchema = {
       const birthdayResult = calculateBirthday(dateInput);
 
       // Image title maps (number → image filename title segment)
+      const expressionTitles = {
+        1: 'The Trailblazer', 2: 'The Diplomat', 3: 'The Creative',
+        4: 'The Builder', 5: 'The Explorer', 6: 'The Caregiver',
+        7: 'The Analyst', 8: 'The Achiever', 9: 'The Humanitarian',
+        11: 'The Visionary', 22: 'The Architect', 33: 'The Teacher',
+      };
       const soulUrgeTitles = {
         1: 'The Independent', 2: 'The Connector', 3: 'The Expressive',
         4: 'The Stabilizer', 5: 'The Seeker', 6: 'The Nurturer',
@@ -695,12 +701,21 @@ const faqSchema = {
         7: 'The Mysterious', 8: 'The Authority', 9: 'The Wise',
       };
 
-      // Update card images to match computed numbers
+      // Update all 5 card images to match the computed numbers
+      document.getElementById('lifePathImg').src = `/images/learn/Life Path Number ${lifePathResult.number} - Hero.webp`;
+
+      const exTitle = expressionTitles[expressionResult.number];
+      if (exTitle) document.getElementById('expressionImg').src = `/images/learn/expression-numbers/Expression Number - ${exTitle}.webp`;
+
       const suTitle = soulUrgeTitles[soulUrgeResult.number];
       if (suTitle) document.getElementById('soulUrgeImg').src = `/images/learn/soul-urge-numbers/Soul Urge Number - ${suTitle}.webp`;
 
       const pTitle = personalityTitles[personalityResult.number];
       if (pTitle) document.getElementById('personalityImg').src = `/images/learn/personality-numbers/Personality Number - ${pTitle}.webp`;
+
+      // Birthday uses raw day (1–31), not reduced number
+      const rawDay = parseInt(dateInput.split('-')[2]);
+      document.getElementById('birthdayImg').src = `/images/learn/birthday-numbers/Birthday Number - ${rawDay}.webp`;
 
       // Display results
       document.getElementById('lifePathNumber').textContent = lifePathResult.number;

@@ -19,31 +19,31 @@ const numbers = [
 const features = [
   {
     href: "/learn/life-path-number/",
-    img: "/images/learn/Life Path Number 1 - Hero.webp",
+    img: "/images/learn/Life Path Numbers - Tile.webp",
     label: "Foundation",
     title: "Life Path Numbers",
     desc: "The single most important number in your chart. It comes from your birth date and describes how you're fundamentally wired.",
   },
   {
     href: "/learn/angel-numbers/",
-    img: "/images/learn/angel-numbers/Angel Number - 111.webp",
+    img: "/images/learn/Angel Numbers - Tile.webp",
     label: "Signs & Patterns",
     title: "Angel Numbers",
-    desc: "Repeating sequences that show up when you're paying attention — 111, 444, 777. What they mean and why you keep seeing them.",
+    desc: "Repeating sequences that show up when you're paying attention, like 111, 444, 777. What they mean and why you keep seeing them.",
   },
   {
     href: "/learn/life-path-compatibility/",
-    img: "/images/learn/Numerology Compatibility.webp",
+    img: "/images/learn/Numerology Compatibility - Tile.webp",
     label: "Relationships",
     title: "Compatibility",
-    desc: "How the nine life path numbers relate to each other — where the chemistry is, where the friction lives, and what to do with both.",
+    desc: "How the nine life path numbers relate to each other, where the chemistry is, where the friction lives, and what to do with both.",
   },
 ];
 
 const readingPoints = [
   {
     heading: "Genuinely personalized",
-    body: "Patented technology generates your reading from your specific name and birthdate — not a template with your name dropped in.",
+    body: "Patented technology generates your reading from your specific name and birthdate, not a template with your name dropped in.",
   },
   {
     heading: "Free to start",
@@ -55,32 +55,32 @@ const readingPoints = [
   },
   {
     heading: "Goes deeper if you want it to",
-    body: "The free reading gives you the foundation. The paid Deluxe Report covers every number in your chart — up to 115 pages.",
+    body: "The free reading gives you the foundation. The paid Deluxe Report covers every number in your chart, up to 115 pages.",
   },
 ];
 
 const faqs = [
   {
     q: "Is numerology real?",
-    a: "That depends what you mean by 'real'. The numbers and calculation methods are real and consistent — anyone calculating your Life Path Number using the same system will get the same result. Whether the meanings attached to those numbers reflect something genuine about you is something you'll have to judge for yourself. Most people who engage with it seriously say it describes them more accurately than they expected.",
+    a: "That depends what you mean by 'real'. The numbers and calculation methods are real and consistent, and anyone calculating your Life Path Number using the same system will get the same result. Whether the meanings attached to those numbers reflect something genuine about you is something you'll have to judge for yourself. Most people who engage with it seriously say it describes them more accurately than they expected.",
   },
   {
     q: "What's the most important number in numerology?",
-    a: "Your Life Path Number. It comes entirely from your birth date, and it's the anchor for everything else in the chart — the equivalent of a sun sign in astrology. Your Expression Number, Soul Urge Number, and Personal Year cycles all add texture. But the Life Path Number is what you start with, and for most people, it's the one that lands hardest.",
+    a: "Your Life Path Number. It comes entirely from your birth date, and it's the anchor for everything else in the chart, the equivalent of a sun sign in astrology. Your Expression Number, Soul Urge Number, and Personal Year cycles all add texture. But the Life Path Number is what you start with, and for most people, it's the one that lands hardest.",
   },
   {
     q: "Why do different sites give me different numbers?",
-    a: "Different systems. Most sites (including this one) use Pythagorean numerology — A=1, B=2, C=3, and so on. Some use the older Chaldean system, which assigns different values to letters. Your Life Path Number comes only from your birth date, so it should match everywhere. Name-based numbers like your Expression Number are where the systems diverge.",
+    a: "Different systems. Most sites (including this one) use Pythagorean numerology, A=1, B=2, C=3, and so on. Some use the older Chaldean system, which assigns different values to letters. Your Life Path Number comes only from your birth date, so it should match everywhere. Name-based numbers like your Expression Number are where the systems diverge.",
   },
   {
     q: "What's the difference between the guides here and a reading at Numerologist.com?",
-    a: "The guides here teach you the system — what the numbers mean, how they're calculated, what they say about personality and relationships. Numerologist.com applies the system to you specifically. You give it your name and birthdate; it gives you a personalized video walking through your actual numbers. The guides are learning the language. The reading is getting a letter written in it, addressed to you.",
+    a: "The guides here teach you the system, what the numbers mean, how they're calculated, what they say about personality and relationships. Numerologist.com applies the system to you specifically. You give it your name and birthdate; it gives you a personalized video walking through your actual numbers. The guides are learning the language. The reading is getting a letter written in it, addressed to you.",
   },
 ];
 ---
 
 <Layout
-  title="Numerology Guides — Learn What Your Numbers Mean"
+  title="Numerology Guides: Learn What Your Numbers Mean"
   description="Free guides to life path numbers, angel numbers, compatibility, and more. Learn numerology from scratch, then get a free personalized reading."
 >
 
@@ -426,7 +426,7 @@ const faqs = [
       transition: box-shadow 0.25s, transform 0.25s;
     }
     .feat-card:hover { box-shadow: 0 12px 40px rgba(26,21,40,0.1); transform: translateY(-3px); }
-    .feat-img-wrap { overflow: hidden; height: 220px; }
+    .feat-img-wrap { overflow: hidden; aspect-ratio: 2/3; }
     .feat-card img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.5s; }
     .feat-card:hover img { transform: scale(1.05); }
     .feat-body { padding: 1.5rem; }
@@ -596,7 +596,7 @@ const faqs = [
       </h1>
 
       <p class="hero-sub">
-        The numbers in your name and birth date describe patterns — personality tendencies, the way you relate to people, how you work. Most people recognise them immediately once they see them. These guides explain how the system works, for free.
+        The numbers in your name and birth date describe patterns, personality tendencies, the way you relate to people, how you work. Most people recognise them immediately once they see them. These guides explain how the system works, for free.
       </p>
 
       <div class="hero-actions">
@@ -659,7 +659,7 @@ const faqs = [
     <div class="numbers-grid">
       {numbers.map(n => (
         <a href={`/learn/life-path-number-${n.n}/`} class="num-tile">
-          <img src={n.img} alt={`Life Path ${n.n} — ${n.title}`} loading="lazy" decoding="async" />
+          <img src={n.img} alt={`Life Path ${n.n}, ${n.title}`} loading="lazy" decoding="async" />
           <div class="num-overlay"></div>
           <div class="num-content">
             <div class:list={["num-n", { master: n.master }]}>{n.n}</div>
@@ -723,16 +723,16 @@ const faqs = [
         <div class="reading-left">
           <p class="p-label">Recommended</p>
           <h2>
-            Once you know your numbers — see what they say about <em>you</em>
+            Once you know your numbers, see what they say about <em>you</em>
           </h2>
           <p>
-            The guides here teach you the system. Numerologist.com makes it personal — enter your name and birthdate and get a free video built around your specific numbers. Running since 1999. Over 2.3 million readings delivered.
+            The guides here teach you the system. Numerologist.com makes it personal. Enter your name and birthdate and get a free video built around your specific numbers. Running since 1999. Over 2.3 million readings delivered.
           </p>
           <a href="https://8904b5z1168aar3k8annz7y61n.hop.clickbank.net" target="_blank" rel="noopener sponsored" class="btn-gold-inline">
             Get your free reading
             <svg xmlns="http://www.w3.org/2000/svg" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="9 18 15 12 9 6"/></svg>
           </a>
-          <p class="reading-disclaimer">Free to use. Affiliate link — we may earn a commission if you purchase a paid report.</p>
+          <p class="reading-disclaimer">Free to use. Affiliate link. We may earn a commission if you purchase a paid report.</p>
         </div>
 
         <div class="reading-right">
@@ -782,7 +782,7 @@ const faqs = [
       <p class="p-label">Numerologist.com</p>
       <div class="p-divider" style="margin:1rem auto;"></div>
       <h2>Ready to see what your numbers actually say?</h2>
-      <p>Enter your name and birthdate. Get a free video reading built around you — not a generic overview with your name dropped in.</p>
+      <p>Enter your name and birthdate. Get a free video reading built around you, not a generic overview with your name dropped in.</p>
       <a href="https://8904b5z1168aar3k8annz7y61n.hop.clickbank.net" target="_blank" rel="noopener sponsored" class="btn-gold-inline" style="margin:0 auto;">
         Get your free reading at Numerologist.com
         <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="9 18 15 12 9 6"/></svg>

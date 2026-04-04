@@ -100,7 +100,7 @@ const breadcrumbSchema = {
       <div style="flex-shrink:0;width:clamp(200px,28vw,300px);filter:drop-shadow(0 8px 40px rgba(196,162,78,0.25)) drop-shadow(0 2px 12px rgba(0,0,0,0.6));">
         <img
           src={`/images/learn/birthday-numbers/Birthday Number - ${bn.day}.webp`}
-          alt={`Birthday Number ${bn.day} — ${bn.title}`}
+          alt={`Birthday Number ${bn.day}, ${bn.title}`}
           fetchpriority="high"
           style="width:100%;border-radius:6px;display:block;"
         />
@@ -187,20 +187,20 @@ const breadcrumbSchema = {
       <h2 class="section-h2">How the birthday number is calculated</h2>
       <div style="display:flex;flex-direction:column;gap:1rem;margin-bottom:1.5rem;">
         <p style="color:var(--color-body-text);line-height:1.8;margin:0;">
-          The birthday number is the simplest calculation in numerology — it's just the day of the month you were born. Single-digit days (1–9) are already your birthday number. For double-digit days, add the two digits together and reduce to a single number. The exceptions are 11 and 22, which are master numbers and stay as they are.
+          The birthday number is the simplest calculation in numerology. It's just the day of the month you were born. Single-digit days (1–9) are already your birthday number. For double-digit days, add the two digits together and reduce to a single number. The exceptions are 11 and 22, which are master numbers and stay as they are.
         </p>
         {bn.reducedTo !== null && (
           <p style="color:var(--color-body-text);line-height:1.8;margin:0;">
-            For birthday {bn.day}: {String(bn.day).split('').join(' + ')} = {bn.reducedTo} — so your birthday number is <strong>{bn.reducedTo}</strong>.
+            For birthday {bn.day}: {String(bn.day).split('').join(' + ')} = {bn.reducedTo}, so your birthday number is <strong>{bn.reducedTo}</strong>.
           </p>
         )}
         {bn.reducedTo === null && bn.day > 9 && (
           <p style="color:var(--color-body-text);line-height:1.8;margin:0;">
-            Birthday {bn.day} is a master number — it carries the energy of {bn.day} without reduction.
+            Birthday {bn.day} is a master number. It carries the energy of {bn.day} without reduction.
           </p>
         )}
       </div>
-      <p style="color:var(--color-muted-text);font-size:0.875rem;line-height:1.7;margin:0 0 1.5rem;">Want the complete picture? A free reading at Numerologist.com calculates your full chart — birthday number, life path, expression, and soul urge together.</p>
+      <p style="color:var(--color-muted-text);font-size:0.875rem;line-height:1.7;margin:0 0 1.5rem;">Want the complete picture? A free reading at Numerologist.com calculates your full chart, including your birthday number, life path, expression, and soul urge together.</p>
       <a href="https://8904b5z1168aar3k8annz7y61n.hop.clickbank.net" target="_blank" rel="noopener sponsored" style="display:inline-block;padding:0.75rem 1.75rem;background:var(--color-soft-gold);color:#1a1200;border-radius:6px;font-size:0.95rem;font-weight:700;text-decoration:none;transition:opacity 0.2s;" onmouseover="this.style.opacity='0.88'" onmouseout="this.style.opacity='1'">Get Your Free Numerology Reading</a>
     </div>
   </section>
@@ -264,21 +264,21 @@ const breadcrumbSchema = {
           <div style="aspect-ratio:2/3;overflow:hidden;"><img src="/images/learn/Life Path Numbers - Tile.webp" alt="Life Path Numbers" style="width:100%;height:100%;object-fit:cover;display:block;" loading="lazy" /></div>
           <div style="padding:0.9rem 1rem;">
             <div style="font-weight:700;color:var(--color-body-text);font-size:0.925rem;margin-bottom:0.3rem;">Life Path Numbers</div>
-            <p style="margin:0;font-size:0.78rem;color:var(--color-muted-text);line-height:1.5;">Your primary chart number — calculated from your full birth date, not just the day.</p>
+            <p style="margin:0;font-size:0.78rem;color:var(--color-muted-text);line-height:1.5;">Your primary chart number, calculated from your full birth date, not just the day.</p>
           </div>
         </a>
         <a href="/learn/expression-number/" style="display:block;text-decoration:none;border-radius:10px;overflow:hidden;border:1.5px solid var(--color-border);background:var(--color-card-bg);transition:all 0.2s;" onmouseover="this.style.borderColor='var(--color-violet)';this.style.transform='translateY(-2px)'" onmouseout="this.style.borderColor='var(--color-border)';this.style.transform='translateY(0)'">
           <div style="aspect-ratio:2/3;overflow:hidden;"><img src="/images/learn/Expression Numbers - Tile.webp" alt="Expression Numbers" style="width:100%;height:100%;object-fit:cover;display:block;" loading="lazy" /></div>
           <div style="padding:0.9rem 1rem;">
             <div style="font-weight:700;color:var(--color-body-text);font-size:0.925rem;margin-bottom:0.3rem;">Expression Numbers</div>
-            <p style="margin:0;font-size:0.78rem;color:var(--color-muted-text);line-height:1.5;">Your destiny direction — from your full birth name.</p>
+            <p style="margin:0;font-size:0.78rem;color:var(--color-muted-text);line-height:1.5;">Your destiny direction, from your full birth name.</p>
           </div>
         </a>
         <a href="/learn/soul-urge-number/" style="display:block;text-decoration:none;border-radius:10px;overflow:hidden;border:1.5px solid var(--color-border);background:var(--color-card-bg);transition:all 0.2s;" onmouseover="this.style.borderColor='var(--color-violet)';this.style.transform='translateY(-2px)'" onmouseout="this.style.borderColor='var(--color-border)';this.style.transform='translateY(0)'">
           <div style="aspect-ratio:2/3;overflow:hidden;"><img src="/images/learn/Soul Urge Numbers - Tile.webp" alt="Soul Urge Numbers" style="width:100%;height:100%;object-fit:cover;display:block;" loading="lazy" /></div>
           <div style="padding:0.9rem 1rem;">
             <div style="font-weight:700;color:var(--color-body-text);font-size:0.925rem;margin-bottom:0.3rem;">Soul Urge Numbers</div>
-            <p style="margin:0;font-size:0.78rem;color:var(--color-muted-text);line-height:1.5;">Your deepest inner motivation — from the vowels in your name.</p>
+            <p style="margin:0;font-size:0.78rem;color:var(--color-muted-text);line-height:1.5;">Your deepest inner motivation, from the vowels in your name.</p>
           </div>
         </a>
       </div>
@@ -292,7 +292,7 @@ const breadcrumbSchema = {
       <div class="p-divider" style="margin-bottom:1.5rem;"></div>
       <h2 style="font-family:var(--font-family-heading);font-size:clamp(1.8rem,4vw,2.5rem);font-weight:700;color:#fff;margin:0 0 1.25rem;line-height:1.2;">See how your numbers fit together</h2>
       <p style="color:rgba(240,235,255,0.65);line-height:1.8;margin:0 0 2rem;">
-        Your birthday number is one piece of the chart — but its meaning deepens when you see it alongside your life path, expression, and soul urge. A free reading from Numerologist.com brings the full picture together.
+        Your birthday number is one piece of the chart. Its meaning deepens when you see it alongside your life path, expression, and soul urge. A free reading from Numerologist.com brings the full picture together.
       </p>
       <a href="https://8904b5z1168aar3k8annz7y61n.hop.clickbank.net" target="_blank" rel="noopener sponsored" style="display:inline-block;padding:0.9rem 2.25rem;background:var(--color-soft-gold);color:#1a1200;border-radius:6px;font-size:1.05rem;font-weight:700;text-decoration:none;transition:opacity 0.2s;" onmouseover="this.style.opacity='0.88'" onmouseout="this.style.opacity='1'">Get Your Free Numerology Reading</a>
     </div>

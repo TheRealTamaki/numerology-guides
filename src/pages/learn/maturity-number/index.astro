@@ -1,0 +1,464 @@
+---
+import Layout from '../../../layouts/Layout.astro';
+import SidebarCTA from '../../../components/SidebarCTA.astro';
+
+const faqSchema = {
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "What is a maturity number in numerology?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Your maturity number is calculated by adding your Life Path Number and your Expression Number, then reducing to a single digit (or master number 11, 22, or 33). It represents the energy that grows strongest in the second half of your life - typically after age 35-40. Think of it as the person you're becoming after enough life experience has merged your innate gifts with your natural direction."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "How do I calculate my maturity number?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Add your Life Path Number to your Expression Number, then reduce the result to a single digit. For example: if your life path is 7 and your expression number is 5, that's 7 + 5 = 12, then 1 + 2 = 3. Your maturity number is 3. If the sum is 11, 22, or 33, don't reduce further - those are master numbers."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "When does the maturity number take effect?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "The maturity number typically activates between ages 35 and 40. Some people feel it earlier, some later, but that mid-life window is when most people notice the shift. It doesn't arrive all at once - it's more like a slow fade-in. You start feeling drawn toward things you never cared about before, or priorities that seemed foreign begin to make sense."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Is the maturity number the same as the life path number?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "No. Your life path number comes from your birth date alone and represents your core energy from birth. Your maturity number combines your life path with your expression number (from your full birth name) and represents who you're growing into. They can be the same number by coincidence, but they're calculated differently and mean different things."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Can you have a master number as your maturity number?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Yes. If your Life Path Number plus your Expression Number adds up to 11, 22, or 33, you have a master maturity number. Don't reduce it further. A master maturity number means the second half of your life carries amplified spiritual energy - higher intensity, bigger purpose, and often a stronger pull toward service or large-scale impact."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "What if my maturity number is the same as my life path number?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "When your maturity number matches your life path, it doubles down on that energy. The second half of life intensifies what was already there from the start. You don't shift direction - you go deeper. A life path 7 with a maturity number 7 becomes even more introspective and wisdom-focused with age. It's like the volume getting turned up on your core nature."
+      }
+    }
+  ]
+};
+
+const breadcrumbSchema = {
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://numerologyguides.blog/" },
+    { "@type": "ListItem", "position": 2, "name": "Learn", "item": "https://numerologyguides.blog/learn/" },
+    { "@type": "ListItem", "position": 3, "name": "Maturity Number" }
+  ]
+};
+
+const maturityNumbers = [
+  {
+    num: "1",
+    title: "Independent Leader",
+    p1: "If your maturity number is 1, the second half of life is where you finally stop asking for permission. Early on, you might have deferred to others, played it safe, or waited for someone else to go first. That changes. Around 35-40, something shifts. You start trusting your own instincts. You take the lead because it feels natural, not because someone told you to.",
+    p2: "This doesn't mean you become aggressive or domineering. It means you become self-directed. Career changes, solo projects, decisions that feel bold but right - that's 1 maturity energy at work. You stop needing external validation and start building from your own vision.",
+    p3: "The thing is, this can surprise the people around you. If you spent decades being agreeable, stepping into leadership might feel foreign to them. But it won't feel foreign to you. It'll feel like coming home.",
+    link: "/learn/life-path-number-1/"
+  },
+  {
+    num: "2",
+    title: "Diplomatic Partner",
+    p1: "A maturity number of 2 means relationships become the real work of your second half. Not in a 'settle down' cliche way - in a genuine, deep way. You start understanding that collaboration isn't weakness. Partnership isn't compromise. It's actually where your best energy lives.",
+    p2: "Earlier in life, you might have competed, pushed, tried to do everything alone. With 2 maturity energy coming in, you find yourself drawn to mediation, diplomacy, and genuine connection. You get better at listening - really listening - and you start seeing how much more gets accomplished when people work together.",
+    p3: "So what does that look like in practice? It could mean a marriage that deepens. A business partnership that finally clicks. Or simply a shift from 'me vs. the world' to 'me and the world.' The edges soften, and the softness becomes your strength.",
+    link: "/learn/life-path-number-2/"
+  },
+  {
+    num: "3",
+    title: "Creative Communicator",
+    p1: "Maturity number 3 is the late bloomer's creative awakening. If you've been holding back what you really think, what you really feel, what you actually want to say - the second half of life opens that up. The filter comes off. Not in a reckless way, but in an honest one.",
+    p2: "This is the maturity number of writers who publish their first book at 50, of people who pick up painting or music after decades of thinking about it. The 3 energy is expressive, joyful, and communicative. And when it arrives as a maturity number, it carries the weight of experience behind it. You're not creating from naivety. You're creating from life.",
+    p3: "Here's what makes this interesting: the things you create in the second half often carry more meaning precisely because you waited. You have something to say now. And the 3 maturity energy gives you the confidence to say it.",
+    link: "/learn/life-path-number-3/"
+  },
+  {
+    num: "4",
+    title: "Grounded Builder",
+    p1: "With a maturity number of 4, the second half of life becomes about building something that lasts. The scattered energy of your earlier years - the experimentation, the false starts, the half-finished projects - all of that consolidates. You get focused. Methodical. Patient in a way you weren't before.",
+    p2: "This might show up as finally buying the house, starting the business with a real plan, or creating systems in your life that actually work. The 4 energy is practical and grounded. It doesn't chase excitement. It builds foundations. And as a maturity number, it arrives right when you have enough experience to know what's worth building.",
+    p3: "The thing is, this shift can feel unglamorous. While other people are having mid-life crises and buying sports cars, you're organizing your finances and thinking about legacy. But that's the whole point. The 4 maturity number isn't flashy. It's solid. And solid lasts.",
+    link: "/learn/life-path-number-4/"
+  },
+  {
+    num: "5",
+    title: "Liberated Adventurer",
+    p1: "A maturity number of 5 loosens every rigid pattern you built in the first half. If you spent decades being responsible, following the rules, sticking to the plan - the 5 energy starts whispering: what if you didn't? What if you traveled? Changed careers? Said yes to something that makes no logical sense but feels absolutely right?",
+    p2: "This isn't about being irresponsible. It's about becoming adaptable. The 5 maturity number brings flexibility, curiosity, and a willingness to take risks you would have avoided at 25. You've earned enough security to be brave. And the 5 energy uses that security as a launching pad, not a cage.",
+    p3: "So what does that mean for you? It might mean moving to a new city at 45. Learning a language. Starting over in a field that excites you. The 5 maturity number says: you've done the sensible thing long enough. Now go live.",
+    link: "/learn/life-path-number-5/"
+  },
+  {
+    num: "6",
+    title: "Devoted Nurturer",
+    p1: "Maturity number 6 pulls your focus toward home, family, and responsibility - but not in the obligatory way you might expect. This is chosen responsibility. The second half of life is where you discover that taking care of what matters is actually what gives you meaning. Not achievement. Not recognition. Care.",
+    p2: "You might find yourself becoming the person everyone turns to. The one who holds the family together, mentors the younger generation, or creates a home that feels like a sanctuary. The 6 energy is warm and protective. And when it arrives as a maturity number, it carries the wisdom to nurture without losing yourself in the process.",
+    p3: "Here's the thing: a lot of people resist the 6 maturity number at first. It feels domestic. Unglamorous. But the people who lean into it find something surprising - it's deeply fulfilling. Being needed, and being good at meeting that need, turns out to be one of life's most satisfying experiences.",
+    link: "/learn/life-path-number-6/"
+  },
+  {
+    num: "7",
+    title: "Reflective Seeker",
+    p1: "If your maturity number is 7, the second half of life turns inward. The ambition that drove your twenties and thirties starts to feel less important. Achievement matters less. Meaning matters more. You become genuinely interested in why things are the way they are - not just how to succeed within them.",
+    p2: "This is the maturity number of people who discover philosophy, meditation, or spiritual practice later in life. Not because it's trendy, but because something inside them demands depth. The 7 energy is analytical, introspective, and truth-seeking. As a maturity number, it gives you permission to slow down and actually think.",
+    p3: "What that means in practice is that you might withdraw a bit from social noise. You'll prefer quality conversations over small talk. You'll read more, reflect more, question more. And the answers you find will be genuinely yours - not borrowed from someone else's playbook.",
+    link: "/learn/life-path-number-7/"
+  },
+  {
+    num: "8",
+    title: "Empowered Authority",
+    p1: "Maturity number 8 brings financial confidence and personal authority into the second half of life. If you struggled with money or power dynamics earlier - underselling yourself, avoiding leadership, letting others control the resources - the 8 energy corrects that. You learn to wield power wisely. Not aggressively. Wisely.",
+    p2: "This might show up as a career peak, a business that finally scales, or simply a relationship with money that stops being anxious and starts being strategic. The 8 energy understands material reality. It's not greedy. It's competent. And as a maturity number, it arrives when you've learned enough lessons to use resources without being used by them.",
+    p3: "The thing is, 8 maturity energy doesn't just affect your bank account. It affects how you carry yourself. You speak with more authority. You negotiate better. You stop apologizing for wanting success. The second half of life is where you step into your power - and actually feel comfortable there.",
+    link: "/learn/life-path-number-8/"
+  },
+  {
+    num: "9",
+    title: "Compassionate Humanitarian",
+    p1: "A maturity number of 9 expands your worldview in the second half. Personal gain starts to matter less. Contribution starts to matter more. You find yourself caring about things beyond your immediate circle - community, causes, the bigger picture. It's not that you stop caring about yourself. It's that yourself gets bigger.",
+    p2: "The 9 energy is about completion, wisdom, and service. As a maturity number, it often shows up as a desire to give back. Volunteering, mentoring, philanthropy, teaching - anything that lets your accumulated experience benefit someone else. You've spent decades learning. Now you want that learning to mean something.",
+    p3: "Here's what makes 9 maturity energy powerful: it comes with genuine detachment. Not coldness - freedom. You stop clinging to outcomes and start trusting the process. Grudges dissolve. Old resentments lose their grip. The second half of life becomes lighter because you're carrying less and giving more.",
+    link: "/learn/life-path-number-9/"
+  },
+  {
+    num: "11",
+    title: "Intuitive Illuminator",
+    p1: "A master maturity number of 11 amplifies your intuitive and spiritual sensitivity in the second half of life. If you always had a 'feeling' about things but never fully trusted it, the 11 energy turns that feeling into knowing. Your psychic awareness sharpens. You start seeing patterns other people miss.",
+    p2: "This doesn't mean you become a fortune teller. It means you become someone others seek out for guidance. The 11 maturity energy makes you a natural counselor, teacher, or healer - not because you studied it, but because you sense what people need before they say it. And by your late thirties, you've lived enough to back up that intuition with real wisdom.",
+    p3: "The challenge with 11 maturity energy is learning to ground it. The sensitivity can feel overwhelming if you don't develop practices to manage it. But when you do, you become a beacon. The kind of person who walks into a room and shifts the energy just by being present.",
+    link: "/learn/life-path-number-11/"
+  },
+  {
+    num: "22",
+    title: "Visionary Architect",
+    p1: "Master maturity number 22 is about building something that outlasts you. The second half of life is where the vision gets real. You stop dreaming about impact and start making it. This is large-scale energy - organizations, movements, structures that serve hundreds or thousands of people.",
+    p2: "Earlier in life, a 22 maturity number might have felt like restlessness. You sensed you were meant for something big but couldn't see the path. After 35-40, the patience arrives. The resources appear. The network builds. And suddenly, that impossible vision starts looking like a project with steps you can actually take.",
+    p3: "Here's what makes this different from regular ambition: 22 maturity energy isn't about personal success. It's about legacy. You want to build something that serves others long after you're done building it. A school, a foundation, a company with real purpose. The second half gives you both the skill and the patience to pull it off.",
+    link: "/learn/life-path-number-22/"
+  },
+  {
+    num: "33",
+    title: "Master Healer",
+    p1: "A master maturity number of 33 deepens your healing and teaching abilities in the second half of life. This is the rarest maturity number, and it carries the most compassionate energy in numerology. You become a source of wisdom for your community - not through credentials, but through presence.",
+    p2: "The 33 maturity energy often shows up as an ability to hold space for others in ways that feel almost effortless. People confide in you. They heal around you. Not because you're fixing them, but because your energy creates safety. By your late thirties and forties, you've developed enough emotional depth to carry this role without burning out.",
+    p3: "The thing is, 33 maturity energy asks a lot. It requires you to have done your own inner work first. The healing you offer others comes from wounds you've already tended in yourself. And that's what makes it authentic. You're not teaching from theory. You're teaching from lived experience - and that's what people actually respond to.",
+    link: "/learn/life-path-number-33/"
+  }
+];
+---
+
+<Layout
+  schema={[faqSchema, breadcrumbSchema]}
+  title="Maturity Number in Numerology: Your Second-Half Blueprint | Numerology Guides"
+  description="Your maturity number reveals who you're growing into after age 35. Learn how to calculate it from your Life Path and Expression Numbers, and what each maturity number means."
+>
+
+  <link slot="head" rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400;1,600&display=swap" />
+  <style>
+    :root { --font-family-heading: 'Cormorant Garamond', Georgia, serif; }
+    .p-label { font-size:0.7rem; letter-spacing:0.18em; text-transform:uppercase; color:var(--color-soft-gold); font-weight:600; }
+    .p-divider { width:48px; height:2px; background:var(--color-soft-gold); margin:0 auto; }
+    .section-h2 { font-family:var(--font-family-heading); font-size:clamp(1.6rem,3.5vw,2.25rem); font-weight:700; color:var(--color-body-text); margin:0 0 1.25rem; }
+    .faq-list details { border-top:1px solid var(--color-border); }
+    .faq-list details:last-child { border-bottom:1px solid var(--color-border); }
+    .faq-list summary { padding:1.3rem 0; cursor:pointer; display:flex; align-items:center; justify-content:space-between; gap:1rem; font-weight:600; font-size:1rem; color:var(--color-body-text); list-style:none; transition:color 0.2s; }
+    .faq-list summary::-webkit-details-marker { display:none; }
+    .faq-list details[open] summary { color:var(--color-violet); }
+    .faq-chevron { flex-shrink:0; transition:transform 0.25s; }
+    .faq-list details[open] .faq-chevron { transform:rotate(180deg); }
+    .faq-answer { padding-bottom:1.3rem; font-size:0.9rem; color:var(--color-muted-text); line-height:1.8; }
+  </style>
+
+  <!-- Breadcrumb -->
+  <nav style="background:var(--color-card-bg);border-bottom:1px solid var(--color-border);padding:0.75rem 1.5rem;" aria-label="Breadcrumb">
+    <div style="max-width:1100px;margin:0 auto;display:flex;align-items:center;gap:0.5rem;font-size:0.75rem;color:var(--color-muted-text);">
+      <a href="/" style="color:var(--color-muted-text);text-decoration:none;transition:color 0.2s;" onmouseover="this.style.color='var(--color-violet)'" onmouseout="this.style.color='var(--color-muted-text)'">Home</a>
+      <svg xmlns="http://www.w3.org/2000/svg" width="8" height="8" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="9 18 15 12 9 6"/></svg>
+      <a href="/learn/" style="color:var(--color-muted-text);text-decoration:none;transition:color 0.2s;" onmouseover="this.style.color='var(--color-violet)'" onmouseout="this.style.color='var(--color-muted-text)'">Learn</a>
+      <svg xmlns="http://www.w3.org/2000/svg" width="8" height="8" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="9 18 15 12 9 6"/></svg>
+      <span style="color:var(--color-body-text);font-weight:600;">Maturity Number</span>
+    </div>
+  </nav>
+
+  <!-- Hero -->
+  <section style="position:relative;overflow:hidden;padding:6rem 1.5rem 5rem;text-align:center;min-height:480px;display:flex;align-items:center;">
+    <div style="position:absolute;inset:0;z-index:0;">
+      <img
+        src="/images/learn/Maturity Numbers Pillar Hero.webp"
+        alt=""
+        aria-hidden="true"
+        fetchpriority="high"
+        style="width:100%;height:100%;object-fit:cover;object-position:center 30%;display:block;"
+      />
+      <div style="position:absolute;inset:0;background:linear-gradient(to bottom, rgba(14,10,26,0.75) 0%, rgba(14,10,26,0.58) 45%, rgba(14,10,26,0.80) 100%);"></div>
+      <div style="position:absolute;inset:0;background-image:radial-gradient(circle,rgba(196,162,78,0.08) 1px,transparent 1px);background-size:28px 28px;pointer-events:none;"></div>
+    </div>
+    <div aria-hidden="true" style="position:absolute;left:-1rem;top:0.5rem;z-index:1;font-family:var(--font-family-heading);font-size:clamp(10rem,20vw,16rem);font-weight:700;line-height:1;color:transparent;-webkit-text-stroke:1px rgba(196,162,78,0.18);pointer-events:none;user-select:none;">M</div>
+    <div aria-hidden="true" style="position:absolute;right:-0.5rem;bottom:-1.5rem;z-index:1;font-family:var(--font-family-heading);font-size:clamp(12rem,24vw,20rem);font-weight:700;line-height:1;color:transparent;-webkit-text-stroke:1px rgba(124,92,191,0.15);pointer-events:none;user-select:none;">N</div>
+    <div style="position:relative;z-index:2;max-width:760px;margin:0 auto;width:100%;">
+      <p class="p-label" style="margin-bottom:1.25rem;color:var(--color-soft-gold);opacity:0.9;">Core Number</p>
+      <div class="p-divider" style="margin-bottom:1.75rem;"></div>
+      <h1 style="font-family:var(--font-family-heading);font-size:clamp(2.6rem,6.5vw,4.75rem);font-weight:700;line-height:1.08;color:#f5f0e8;letter-spacing:-0.02em;margin:0 0 1.5rem;text-shadow:0 2px 20px rgba(14,10,26,0.6);">
+        Maturity Number in<br><em style="color:#c8a8f0;font-style:italic;">Numerology</em>
+      </h1>
+      <p style="font-size:1.05rem;line-height:1.8;color:rgba(240,234,255,0.82);max-width:560px;margin:0 auto 2.5rem;text-shadow:0 1px 8px rgba(14,10,26,0.5);">
+        Your maturity number is who you're becoming. It's the energy that kicks in after 35 — the slow reveal of the person you were always growing into.
+      </p>
+      <div style="display:flex;flex-wrap:wrap;gap:0.875rem;justify-content:center;">
+        <a href="https://8904b5z1168aar3k8annz7y61n.hop.clickbank.net" target="_blank" rel="noopener sponsored" style="display:inline-flex;align-items:center;gap:0.5rem;background:var(--color-violet);color:white;font-weight:700;font-size:1rem;padding:0.875rem 2rem;border-radius:6px;text-decoration:none;transition:background 0.2s,transform 0.15s;box-shadow:0 4px 20px rgba(124,92,191,0.45);" onmouseover="this.style.background='#6a4eab';this.style.transform='translateY(-1px)'" onmouseout="this.style.background='var(--color-violet)';this.style.transform='none'">Get My Free Reading →</a>
+        <a href="#what" style="display:inline-flex;align-items:center;gap:0.5rem;background:rgba(255,255,255,0.08);backdrop-filter:blur(6px);color:#f5f0e8;font-weight:600;font-size:1rem;padding:0.875rem 1.75rem;border-radius:6px;text-decoration:none;border:1.5px solid rgba(255,255,255,0.2);transition:border-color 0.2s,background 0.2s;" onmouseover="this.style.background='rgba(255,255,255,0.15)';this.style.borderColor='rgba(255,255,255,0.4)'" onmouseout="this.style.background='rgba(255,255,255,0.08)';this.style.borderColor='rgba(255,255,255,0.2)'">Explore ↓</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Author byline -->
+  <div style="background:var(--color-light-bg);padding:1.25rem 1.5rem;">
+    <div style="max-width:1100px;margin:0 auto;display:flex;align-items:center;gap:1rem;">
+      <img src="/images/author-maddi-green.webp" alt="Maddie Greene" style="width:2.75rem;height:2.75rem;border-radius:50%;object-fit:cover;flex-shrink:0;border:2px solid rgba(124,92,191,0.2);" />
+      <div>
+        <p style="color:var(--color-body-text);font-size:0.875rem;font-weight:600;margin:0 0 0.1rem;">Written by <strong>Maddie Greene</strong></p>
+        <p style="color:var(--color-muted-text);font-size:0.78rem;margin:0;">Numerology writer &amp; researcher</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- Content + Sticky sidebar wrapper -->
+  <div class="xl:flex xl:gap-6 xl:max-w-[1200px] xl:mx-auto xl:px-4">
+    <!-- Main content column -->
+    <div class="xl:flex-1 xl:min-w-0">
+
+  <!-- Main content -->
+  <article style="padding:2.5rem 1.5rem 3rem;background:white;">
+    <div style="max-width:48rem;margin:0 auto;">
+
+      <!-- What is the maturity number -->
+      <section id="what" style="margin-bottom:3rem;">
+        <h2 class="section-h2">What is the maturity number?</h2>
+
+        <p style="color:var(--color-body-text);line-height:1.8;margin-bottom:1rem;">
+          Most numerology numbers describe who you are right now. Your <a href="/learn/life-path-number/" style="color:var(--color-soft-gold);">life path number</a> is what you came in with. Your <a href="/learn/expression-number/" style="color:var(--color-soft-gold);">expression number</a> is the direction you're moving toward. But the maturity number is different. It describes who you're becoming — specifically, the person who shows up in the second half of your life.
+        </p>
+
+        <p style="color:var(--color-body-text);line-height:1.8;margin-bottom:1rem;">
+          Think of it like a slow reveal. For the first 35–40 years, your life path and expression energies are doing their thing separately. One shapes your instincts. The other shapes your goals. But somewhere around midlife, those two streams merge. And the result is your maturity number — the energy that emerges when your innate nature and your life direction have had enough time to blend together.
+        </p>
+
+        <p style="color:var(--color-body-text);line-height:1.8;margin-bottom:1rem;">
+          It's sometimes called the "True Self" number, and there's a good reason for that. The maturity number isn't who you were told to be. It isn't who you performed as in your twenties. It's who you actually are once the noise quiets down and the real priorities surface.
+        </p>
+
+        <p style="color:var(--color-body-text);line-height:1.8;">
+          Here's the thing: a lot of people experience their maturity number as relief. They describe feeling more comfortable in their own skin after 40. More clear about what matters. Less interested in proving things and more interested in building things. That's the maturity number doing its work.
+        </p>
+      </section>
+
+      <!-- How to calculate -->
+      <section id="calculate" style="margin-bottom:3rem;padding-top:2rem;border-top:1px solid var(--color-border);">
+        <h2 class="section-h2">How to calculate your maturity number</h2>
+
+        <p style="color:var(--color-body-text);line-height:1.8;margin-bottom:1rem;">
+          The formula is straightforward. Take your <a href="/learn/life-path-number/" style="color:var(--color-soft-gold);">Life Path Number</a> and add it to your <a href="/learn/expression-number/" style="color:var(--color-soft-gold);">Expression Number</a>. Then reduce the result to a single digit — unless it's 11, 22, or 33. Those are master numbers and you keep them as-is.
+        </p>
+
+        <p style="color:var(--color-body-text);line-height:1.8;margin-bottom:1.5rem;">
+          That's it. Two numbers you already have, added together.
+        </p>
+
+        <div class="card-light p-6" style="margin-bottom:1rem;">
+          <h3 style="font-family:var(--font-family-heading);font-weight:700;color:var(--color-body-text);margin:0 0 0.75rem;">Example 1</h3>
+          <p style="color:var(--color-body-text);font-size:0.9rem;line-height:1.7;margin:0 0 0.3rem;">Life Path Number: <strong>7</strong></p>
+          <p style="color:var(--color-body-text);font-size:0.9rem;line-height:1.7;margin:0 0 0.3rem;">Expression Number: <strong>5</strong></p>
+          <p style="color:var(--color-body-text);font-size:0.9rem;line-height:1.7;margin:0 0 0.3rem;">7 + 5 = 12</p>
+          <p style="color:var(--color-body-text);font-size:0.9rem;line-height:1.7;margin:0;">1 + 2 = <strong>3</strong>. Maturity number is <strong>3</strong>.</p>
+        </div>
+
+        <div class="card-light p-6" style="margin-bottom:1rem;">
+          <h3 style="font-family:var(--font-family-heading);font-weight:700;color:var(--color-body-text);margin:0 0 0.75rem;">Example 2</h3>
+          <p style="color:var(--color-body-text);font-size:0.9rem;line-height:1.7;margin:0 0 0.3rem;">Life Path Number: <strong>9</strong></p>
+          <p style="color:var(--color-body-text);font-size:0.9rem;line-height:1.7;margin:0 0 0.3rem;">Expression Number: <strong>8</strong></p>
+          <p style="color:var(--color-body-text);font-size:0.9rem;line-height:1.7;margin:0 0 0.3rem;">9 + 8 = 17</p>
+          <p style="color:var(--color-body-text);font-size:0.9rem;line-height:1.7;margin:0;">1 + 7 = <strong>8</strong>. Maturity number is <strong>8</strong>.</p>
+        </div>
+
+        <div class="card-light p-6" style="margin-bottom:1.5rem;">
+          <h3 style="font-family:var(--font-family-heading);font-weight:700;color:var(--color-body-text);margin:0 0 0.75rem;">Example 3 (Master Number)</h3>
+          <p style="color:var(--color-body-text);font-size:0.9rem;line-height:1.7;margin:0 0 0.3rem;">Life Path Number: <strong>4</strong></p>
+          <p style="color:var(--color-body-text);font-size:0.9rem;line-height:1.7;margin:0 0 0.3rem;">Expression Number: <strong>7</strong></p>
+          <p style="color:var(--color-body-text);font-size:0.9rem;line-height:1.7;margin:0 0 0.3rem;">4 + 7 = <strong>11</strong></p>
+          <p style="color:var(--color-body-text);font-size:0.9rem;line-height:1.7;margin:0;">Stop here. 11 is a master number. Maturity number is <strong>11</strong>.</p>
+        </div>
+
+        <p style="color:var(--color-body-text);line-height:1.8;">
+          Don't know your life path or expression number yet? You can <a href="/calculator/" style="color:var(--color-soft-gold);">use our calculator</a> to find both, then add them together for your maturity number.
+        </p>
+      </section>
+
+      <!-- All maturity number meanings -->
+      <section id="meanings" style="margin-bottom:3rem;padding-top:2rem;border-top:1px solid var(--color-border);">
+        <h2 class="section-h2">All maturity number meanings</h2>
+
+        <p style="color:var(--color-body-text);line-height:1.8;margin-bottom:2rem;">
+          Each maturity number describes a different kind of second-half energy. Find yours below.
+        </p>
+
+        <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
+          {maturityNumbers.map(item => (
+            <a href={item.link} class="card-light overflow-hidden hover:border-violet/60 hover:-translate-y-0.5 transition-all duration-200 group block" style="text-decoration:none;">
+              <div style="position:relative;overflow:hidden;">
+                <img src={["11","22","33"].includes(item.num) ? `/images/learn/master-numbers/Master Number - ${{11:"The Intuitive",22:"The Master Builder",33:"The Master Teacher"}[item.num]}.webp` : `/images/learn/maturity-number/Maturity Number - ${item.num}.webp`} alt={`Maturity Number ${item.num}`} class="w-full" style="aspect-ratio:2/3;object-fit:cover;display:block;width:100%;" loading="lazy" decoding="async" />
+              </div>
+              <div style="padding:1.25rem;">
+                <div style="display:flex;align-items:center;gap:0.75rem;margin-bottom:0.75rem;">
+                  <div style="font-family:var(--font-family-heading);font-size:2.25rem;font-weight:700;color:var(--color-soft-gold);line-height:1;flex-shrink:0;">{item.num}</div>
+                  <h3 style="font-family:var(--font-family-heading);font-size:1.1rem;font-weight:700;color:var(--color-body-text);margin:0;" class="group-hover:text-violet transition-colors">{item.title}</h3>
+                </div>
+                <p style="color:var(--color-muted-text);line-height:1.7;font-size:0.85rem;margin:0;">{item.p1.substring(0, 180)}...</p>
+              </div>
+            </a>
+          ))}
+        </div>
+      </section>
+
+      <!-- When does it activate -->
+      <section id="activation" style="margin-bottom:3rem;padding-top:2rem;border-top:1px solid var(--color-border);">
+        <h2 class="section-h2">When does the maturity number activate?</h2>
+
+        <p style="color:var(--color-body-text);line-height:1.8;margin-bottom:1rem;">
+          The standard answer is somewhere between 35 and 40. But it's not like flipping a switch. You don't wake up on your 36th birthday with a new personality. It's more like a gradient. The energy fades in over several years.
+        </p>
+
+        <p style="color:var(--color-body-text);line-height:1.8;margin-bottom:1rem;">
+          Some people notice it earlier — especially if they've gone through major life events that forced growth. Divorce, career collapse, loss, relocation. These things can accelerate the maturity number's arrival because they strip away the surface-level identity and expose what's underneath.
+        </p>
+
+        <p style="color:var(--color-body-text);line-height:1.8;margin-bottom:1rem;">
+          Others feel it later, closer to their mid-forties. The timing depends on how much inner work you've done and how much life has asked of you. But almost everyone reports the same general experience: a shift in priorities. Things that used to matter intensely start to feel less urgent. And things you never paid attention to suddenly feel important.
+        </p>
+
+        <p style="color:var(--color-body-text);line-height:1.8;">
+          What that means is simple: if you're under 35, your maturity number is a preview. It shows you where you're headed. If you're over 40, look back at the last few years. You'll probably recognize the shift. And if you're right in that 35–40 window? Pay attention. The transition is happening now.
+        </p>
+      </section>
+
+      <!-- FAQ -->
+      <section id="faq" style="margin-bottom:3rem;padding-top:2rem;border-top:1px solid var(--color-border);">
+        <h2 class="section-h2" style="text-align:center;">Frequently Asked Questions</h2>
+        <div class="faq-list">
+          <details>
+            <summary>
+              What is a maturity number in numerology?
+              <svg class="faq-chevron" xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="6 9 12 15 18 9"/></svg>
+            </summary>
+            <p class="faq-answer">Your maturity number is calculated by adding your Life Path Number and your Expression Number, then reducing to a single digit (or master number). It represents the energy that grows strongest in the second half of your life — typically after age 35–40. Think of it as the person you're becoming after enough life experience has merged your innate gifts with your natural direction.</p>
+          </details>
+          <details>
+            <summary>
+              How do I calculate my maturity number?
+              <svg class="faq-chevron" xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="6 9 12 15 18 9"/></svg>
+            </summary>
+            <p class="faq-answer">Add your Life Path Number to your Expression Number, then reduce the result to a single digit. For example: if your life path is 7 and your expression number is 5, that's 7 + 5 = 12, then 1 + 2 = 3. Your maturity number is 3. If the sum is 11, 22, or 33, don't reduce further — those are master numbers.</p>
+          </details>
+          <details>
+            <summary>
+              When does the maturity number take effect?
+              <svg class="faq-chevron" xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="6 9 12 15 18 9"/></svg>
+            </summary>
+            <p class="faq-answer">The maturity number typically activates between ages 35 and 40. Some people feel it earlier, some later, but that mid-life window is when most people notice the shift. It doesn't arrive all at once — it's more like a slow fade-in. You start feeling drawn toward things you never cared about before, or priorities that seemed foreign begin to make sense.</p>
+          </details>
+          <details>
+            <summary>
+              Is the maturity number the same as the life path number?
+              <svg class="faq-chevron" xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="6 9 12 15 18 9"/></svg>
+            </summary>
+            <p class="faq-answer">No. Your life path number comes from your birth date alone and represents your core energy from birth. Your maturity number combines your life path with your expression number (from your full birth name) and represents who you're growing into. They can be the same number by coincidence, but they're calculated differently and mean different things.</p>
+          </details>
+          <details>
+            <summary>
+              Can you have a master number as your maturity number?
+              <svg class="faq-chevron" xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="6 9 12 15 18 9"/></svg>
+            </summary>
+            <p class="faq-answer">Yes. If your Life Path Number plus your Expression Number adds up to 11, 22, or 33, you have a master maturity number. Don't reduce it further. A master maturity number means the second half of your life carries amplified spiritual energy — higher intensity, bigger purpose, and often a stronger pull toward service or large-scale impact.</p>
+          </details>
+          <details>
+            <summary>
+              What if my maturity number is the same as my life path number?
+              <svg class="faq-chevron" xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="6 9 12 15 18 9"/></svg>
+            </summary>
+            <p class="faq-answer">When your maturity number matches your life path, it doubles down on that energy. The second half of life intensifies what was already there from the start. You don't shift direction — you go deeper. A life path 7 with a maturity number 7 becomes even more introspective and wisdom-focused with age. It's like the volume getting turned up on your core nature.</p>
+          </details>
+        </div>
+      </section>
+
+      <!-- Related guides -->
+      <section id="related" style="margin-bottom:1rem;padding-top:2rem;border-top:1px solid var(--color-border);">
+        <h2 class="section-h2">Related guides</h2>
+        <div class="grid sm:grid-cols-2 md:grid-cols-3 gap-5">
+          <a href="/learn/life-path-number/" class="card-light overflow-hidden hover:border-violet/60 hover:-translate-y-0.5 transition-all duration-200 group block" style="text-decoration:none;">
+            <img src="/images/learn/Life Path Numbers - Tile.webp" alt="Life Path Number guide" class="w-full transition-transform duration-500 group-hover:scale-105" style="aspect-ratio:2/3;object-fit:cover;display:block;" loading="lazy" decoding="async" />
+            <div style="padding:1.25rem;">
+              <h3 class="font-bold text-body-text group-hover:text-violet transition-colors mb-1">Life Path Number</h3>
+              <p class="text-xs text-muted-text">Your core energy from birth</p>
+            </div>
+          </a>
+          <a href="/learn/expression-number/" class="card-light overflow-hidden hover:border-violet/60 hover:-translate-y-0.5 transition-all duration-200 group block" style="text-decoration:none;">
+            <img src="/images/learn/Expression Numbers - Tile.webp" alt="Expression Number guide" class="w-full transition-transform duration-500 group-hover:scale-105" style="aspect-ratio:2/3;object-fit:cover;display:block;" loading="lazy" decoding="async" />
+            <div style="padding:1.25rem;">
+              <h3 class="font-bold text-body-text group-hover:text-violet transition-colors mb-1">Expression Number</h3>
+              <p class="text-xs text-muted-text">Your natural direction and talents</p>
+            </div>
+          </a>
+          <a href="/learn/soul-urge-number/" class="card-light overflow-hidden hover:border-violet/60 hover:-translate-y-0.5 transition-all duration-200 group block" style="text-decoration:none;">
+            <img src="/images/learn/Soul Urge Numbers - Tile.webp" alt="Soul Urge Number guide" class="w-full transition-transform duration-500 group-hover:scale-105" style="aspect-ratio:2/3;object-fit:cover;display:block;" loading="lazy" decoding="async" />
+            <div style="padding:1.25rem;">
+              <h3 class="font-bold text-body-text group-hover:text-violet transition-colors mb-1">Soul Urge Number</h3>
+              <p class="text-xs text-muted-text">Your deepest desires and motivations</p>
+            </div>
+          </a>
+          <a href="/learn/personality-number/" class="card-light overflow-hidden hover:border-violet/60 hover:-translate-y-0.5 transition-all duration-200 group block" style="text-decoration:none;">
+            <img src="/images/learn/Personality Numbers - Tile.webp" alt="Personality Number guide" class="w-full transition-transform duration-500 group-hover:scale-105" style="aspect-ratio:2/3;object-fit:cover;display:block;" loading="lazy" decoding="async" />
+            <div style="padding:1.25rem;">
+              <h3 class="font-bold text-body-text group-hover:text-violet transition-colors mb-1">Personality Number</h3>
+              <p class="text-xs text-muted-text">How others perceive you</p>
+            </div>
+          </a>
+        </div>
+      </section>
+
+    </div>
+  </article>
+
+    </div><!-- end main content column -->
+    <SidebarCTA />
+  </div><!-- end flex wrapper -->
+
+  <!-- Bottom CTA -->
+  <section style="background:var(--color-midnight);padding:5rem 1.5rem;text-align:center;">
+    <div style="max-width:36rem;margin:0 auto;">
+      <p class="p-label" style="color:rgba(196,162,78,0.7);margin-bottom:0.75rem;">Go Deeper</p>
+      <h2 style="font-family:var(--font-family-heading);font-size:clamp(1.75rem,4vw,2.5rem);font-weight:700;color:var(--color-starlight);margin:0 0 1rem;">Want to see your full numerology chart?</h2>
+      <p style="color:rgba(255,255,255,0.65);font-size:1rem;line-height:1.75;margin-bottom:2rem;">Your maturity number is one piece of the picture. A full reading includes your life path, expression, soul urge, personality number, and more — all mapped out together.</p>
+      <a href="https://8904b5z1168aar3k8annz7y61n.hop.clickbank.net" rel="noopener sponsored" style="display:inline-block;background:var(--color-soft-gold);color:var(--color-midnight);font-weight:700;font-size:1rem;padding:0.9rem 2.25rem;border-radius:6px;text-decoration:none;letter-spacing:0.02em;transition:opacity 0.2s;" onmouseover="this.style.opacity='0.88'" onmouseout="this.style.opacity='1'">Get Your Free Reading</a>
+    </div>
+  </section>
+
+</Layout>

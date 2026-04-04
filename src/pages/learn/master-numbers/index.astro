@@ -1,0 +1,356 @@
+---
+import Layout from '../../../layouts/Layout.astro';
+import SidebarCTA from '../../../components/SidebarCTA.astro';
+
+const faqSchema = {
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "What are master numbers in numerology?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Master numbers are 11, 22, and 33 - the only numbers in numerology that don't reduce to a single digit. When your birth date adds up to one of these three numbers, you don't reduce it further. This is because master numbers carry amplified, higher-frequency energy. A master number person has extra spiritual potential and often comes with greater challenges to match that potential."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Are master numbers better than regular life path numbers?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "No. Master numbers aren't 'better' - they're different. They carry more intense energy and come with bigger life lessons. A life path 4 (grounded, practical) is just as valuable as a life path 22 (visionary builder). Master numbers can feel like a gift or a burden depending on where you are in your journey. The person with an 11 isn't automatically more spiritual than someone with a 2. They're just working with higher-voltage energy."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "How do I know if I have a master number life path?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Calculate your life path number from your birth date (month + day + year). If the sum adds to 11, 22, or 33 before any further reduction, you have a master number. For example: if you were born 2/29/1988, that's 2 + 2 + 9 + 1 + 9 + 8 8 = 39, which reduces to 3 + 9 = 12, then 1 + 2 = 3. No master number. But if you were born 11/4/1988, that's 1 + 1 + 4 + 1 + 9 + 8 + 8 = 32, then 3 + 2 = 5. Still no master number. For a true master number, the first reduction must be 11, 22, or 33."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "What's the difference between master number 11 and life path 2?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Both 11 and 2 are intuitive and sensitive, but the energy is completely different in intensity. A life path 2 operates from empathy and diplomacy. A life path 11 operates from psychic knowing. The 11 doesn't just sense what others feel - they often see the truth underneath. The 2 can be content supporting others. The 11 often feels called to illuminate and inspire. It's the difference between sensitivity and illumination."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Can a master number become a regular life path number?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "No. A life path number is calculated once, from your birth date, and it doesn't change. If you were born on a date that adds to 11, you're always a life path 11 - not a 2. Some numerologists reduce master numbers to their single-digit equivalents in other calculations, but the life path itself never changes. Your birth date is your birth date."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Is life path 44 a master number?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "No. In numerology, only 11, 22, and 33 are recognized as master numbers. Some modern practitioners argue for 44, 55, etc., but the classical system stops at 33. If you were born on a date that adds to 44, you would reduce it: 4 + 4 = 8. You'd be a life path 8, not a master number."
+      }
+    }
+  ]
+};
+
+const breadcrumbSchema = {
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://numerologyguides.blog/" },
+    { "@type": "ListItem", "position": 2, "name": "Learn", "item": "https://numerologyguides.blog/learn/" },
+    { "@type": "ListItem", "position": 3, "name": "Master Numbers" }
+  ]
+};
+---
+
+<Layout
+  schema={[faqSchema, breadcrumbSchema]}
+  title="Master Numbers in Numerology: 11, 22, 33 Explained | Numerology Guides"
+  description="Master numbers 11, 22, and 33 carry amplified spiritual energy. Learn what master numbers mean, how to identify yours, and how they differ from regular life path numbers."
+>
+
+  <link
+    slot="head"
+    rel="stylesheet"
+    href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400;1,600&display=swap"
+  />
+
+  <style>
+    :root { --font-family-heading: 'Cormorant Garamond', Georgia, serif; }
+    .p-label { font-size:0.7rem; letter-spacing:0.18em; text-transform:uppercase; color:var(--color-soft-gold); font-weight:600; }
+    .p-divider { width:48px; height:2px; background:var(--color-soft-gold); margin:0 auto; }
+    .section-h2 { font-family:var(--font-family-heading); font-size:clamp(1.6rem,3.5vw,2.25rem); font-weight:700; color:var(--color-body-text); margin:0 0 1.25rem; }
+    .faq-list details { border-top:1px solid var(--color-border); }
+    .faq-list details:last-child { border-bottom:1px solid var(--color-border); }
+    .faq-list summary { padding:1.3rem 0; cursor:pointer; display:flex; align-items:center; justify-content:space-between; gap:1rem; font-weight:600; font-size:1rem; color:var(--color-body-text); list-style:none; transition:color 0.2s; }
+    .faq-list summary::-webkit-details-marker { display:none; }
+    .faq-list details[open] summary { color:var(--color-violet); }
+    .faq-chevron { flex-shrink:0; transition:transform 0.25s; }
+    .faq-list details[open] .faq-chevron { transform:rotate(180deg); }
+    .faq-answer { padding-bottom:1.3rem; font-size:0.9rem; color:var(--color-muted-text); line-height:1.8; }
+  </style>
+
+  <!-- Breadcrumb -->
+  <nav style="background:var(--color-card-bg);border-bottom:1px solid var(--color-border);padding:0.75rem 1.5rem;" aria-label="Breadcrumb">
+    <div style="max-width:1100px;margin:0 auto;display:flex;align-items:center;gap:0.5rem;font-size:0.75rem;color:var(--color-muted-text);">
+      <a href="/" style="color:var(--color-muted-text);text-decoration:none;" onmouseover="this.style.color='var(--color-violet)'" onmouseout="this.style.color='var(--color-muted-text)'">Home</a>
+      <span aria-hidden="true">›</span>
+      <a href="/learn/" style="color:var(--color-muted-text);text-decoration:none;" onmouseover="this.style.color='var(--color-violet)'" onmouseout="this.style.color='var(--color-muted-text)'">Learn</a>
+      <span aria-hidden="true">›</span>
+      <span style="color:var(--color-body-text);font-weight:600;">Master Numbers</span>
+    </div>
+  </nav>
+
+  <!-- Hero -->
+  <section style="position:relative;overflow:hidden;padding:6rem 1.5rem 5rem;text-align:center;min-height:480px;display:flex;align-items:center;">
+    <div style="position:absolute;inset:0;z-index:0;">
+      <img
+        src="/images/learn/Master Numbers Pillar Hero.webp"
+        alt=""
+        aria-hidden="true"
+        fetchpriority="high"
+        style="width:100%;height:100%;object-fit:cover;object-position:center 30%;display:block;"
+      />
+      <div style="position:absolute;inset:0;background:linear-gradient(to bottom, rgba(14,10,26,0.75) 0%, rgba(14,10,26,0.58) 45%, rgba(14,10,26,0.80) 100%);"></div>
+      <div style="position:absolute;inset:0;background-image:radial-gradient(circle,rgba(196,162,78,0.08) 1px,transparent 1px);background-size:28px 28px;pointer-events:none;"></div>
+    </div>
+    <div aria-hidden="true" style="position:absolute;left:-1rem;top:0.5rem;font-family:var(--font-family-heading);font-size:clamp(10rem,20vw,16rem);font-weight:700;line-height:1;color:transparent;-webkit-text-stroke:1px rgba(196,162,78,0.13);pointer-events:none;user-select:none;">11</div>
+    <div aria-hidden="true" style="position:absolute;right:-0.5rem;bottom:-1.5rem;font-family:var(--font-family-heading);font-size:clamp(10rem,20vw,16rem);font-weight:700;line-height:1;color:transparent;-webkit-text-stroke:1px rgba(124,92,191,0.1);pointer-events:none;user-select:none;">33</div>
+    <div style="position:relative;z-index:2;max-width:760px;margin:0 auto;width:100%;">
+      <p class="p-label" style="margin-bottom:1.25rem;color:var(--color-soft-gold);opacity:0.9;">Higher Vibration</p>
+      <div class="p-divider" style="margin-bottom:1.75rem;"></div>
+      <h1 style="font-family:var(--font-family-heading);font-size:clamp(2.6rem,6.5vw,4.75rem);font-weight:700;line-height:1.08;color:#f5f0e8;letter-spacing:-0.02em;margin:0 0 1.5rem;text-shadow:0 2px 20px rgba(14,10,26,0.6);">
+        Master Numbers:<br><em style="color:#c8a8f0;font-style:italic;">11, 22 & 33</em>
+      </h1>
+      <p style="font-size:1.05rem;line-height:1.8;color:rgba(240,234,255,0.82);max-width:540px;margin:0 auto 2.5rem;text-shadow:0 1px 8px rgba(14,10,26,0.5);">
+        Master numbers don't reduce to a single digit. They carry amplified spiritual energy and come with greater gifts — and greater responsibility.
+      </p>
+      <div style="display:flex;flex-wrap:wrap;gap:0.875rem;justify-content:center;">
+        <a href="https://8904b5z1168aar3k8annz7y61n.hop.clickbank.net" target="_blank" rel="noopener sponsored" style="display:inline-flex;align-items:center;gap:0.5rem;background:var(--color-violet);color:white;font-weight:700;font-size:1rem;padding:0.875rem 2rem;border-radius:6px;text-decoration:none;box-shadow:0 4px 20px rgba(124,92,191,0.45);transition:background 0.2s,transform 0.15s;" onmouseover="this.style.background='#6a4eab';this.style.transform='translateY(-1px)'" onmouseout="this.style.background='var(--color-violet)';this.style.transform='none'">Get My Free Reading →</a>
+        <a href="#masters" style="display:inline-flex;align-items:center;gap:0.5rem;background:rgba(255,255,255,0.08);backdrop-filter:blur(6px);color:#f5f0e8;font-weight:600;font-size:1rem;padding:0.875rem 1.75rem;border-radius:6px;text-decoration:none;border:1.5px solid rgba(255,255,255,0.2);transition:border-color 0.2s,background 0.2s;" onmouseover="this.style.background='rgba(255,255,255,0.15)';this.style.borderColor='rgba(255,255,255,0.4)'" onmouseout="this.style.background='rgba(255,255,255,0.08)';this.style.borderColor='rgba(255,255,255,0.2)'">Explore the Three Numbers ↓</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Author byline -->
+  <div style="background:var(--color-card-bg);padding:1.25rem 1.5rem;border-bottom:1px solid var(--color-border);">
+    <div style="max-width:1200px;margin:0 auto;display:flex;align-items:center;gap:1rem;">
+      <img src="/images/author-maddi-green.webp" alt="Maddie Greene" style="width:3rem;height:3rem;border-radius:50%;object-fit:cover;border:2px solid var(--color-border);" />
+      <div>
+        <p style="font-size:0.875rem;font-weight:600;color:var(--color-body-text);margin:0;">Written by <strong>Maddie Greene</strong></p>
+        <p style="font-size:0.75rem;color:var(--color-muted-text);margin:0;">Numerology writer &amp; researcher</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- Content + Sticky sidebar wrapper -->
+  <div class="xl:flex xl:gap-6 xl:max-w-[1200px] xl:mx-auto xl:px-4">
+    <!-- Main content column -->
+    <div class="xl:flex-1 xl:min-w-0">
+
+  <!-- Main content -->
+  <article style="padding:2.5rem 1.5rem 3rem;background:var(--color-card-bg);">
+    <div style="max-width:720px;margin:0 auto;">
+
+      <!-- What are master numbers -->
+      <section id="what" style="margin-bottom:3rem;">
+        <h2 class="section-h2">What are master numbers?</h2>
+        <p style="color:var(--color-body-text);line-height:1.8;margin-bottom:1rem;">
+          In numerology, every number from birth date reduces down to a single digit. Except three. Master numbers — 11, 22, and 33 — don't reduce. That's the whole rule. When your birth date adds up to one of these, you stop there. You don't reduce 11 to 1 + 1 = 2. You keep it as 11.
+        </p>
+        <p style="color:var(--color-body-text);line-height:1.8;margin-bottom:1rem;">
+          This matters because these numbers carry higher-frequency energy. A master number isn't 'stronger' in some vague sense — it means the energy is more intense, more concentrated, more demanding. A life path 2 is intuitive. A life path 11 is psychic. A life path 4 is practical. A life path 22 is a visionary builder. Same roots, higher voltage.
+        </p>
+        <p style="color:var(--color-body-text);line-height:1.8;margin-bottom:1rem;">
+          People with master numbers often report feeling the intensity early. They get pulled toward spiritual work, toward big visions, toward things that feel larger than themselves. And they typically face more inner turbulence in their teens and twenties — the energy is strong, and learning to harness it takes time.
+        </p>
+        <p style="color:var(--color-body-text);line-height:1.8;">
+          If you have a master number, it's not a sign you're special in some cosmic hierarchy. It's a sign you came in with a particular assignment: to develop your intuition at the highest level, or to build something real that changes the world, or to teach and heal others. Not better. Just more specific.
+        </p>
+      </section>
+
+      <!-- How to know if you have one -->
+      <section id="how" style="margin-bottom:3rem;">
+        <h2 class="section-h2">How to know if you have one</h2>
+        <p style="color:var(--color-body-text);line-height:1.8;margin-bottom:1rem;">
+          Calculate your life path from your full birth date. Add month + day + year, then keep adding digits until you get a single number — unless that number is 11, 22, or 33. Stop there.
+        </p>
+        <p style="color:var(--color-body-text);line-height:1.8;margin-bottom:1rem;">
+          Example: Born 2/11/1975. That's 2 + 11 + 1 + 9 + 7 + 5 = 35. Then 3 + 5 = 8. Life path 8. No master number.
+        </p>
+        <p style="color:var(--color-body-text);line-height:1.8;margin-bottom:1rem;">
+          Another example: Born 11/2/1985. That's 11 + 2 + 1 + 9 + 8 + 5 = 36. Then 3 + 6 = 9. Life path 9. No master number.
+        </p>
+        <p style="color:var(--color-body-text);line-height:1.8;">
+          One more: Born 2/11/1992. That's 2 + 11 + 1 + 9 + 9 + 2 = 34. Then 3 + 4 = 7. Still no master number. Master numbers are rarer than people think.
+        </p>
+      </section>
+
+      <!-- The three master numbers -->
+      <section id="masters" style="margin-bottom:3rem;">
+        <h2 class="section-h2">The three master numbers</h2>
+
+        <div class="grid md:grid-cols-3 gap-6" style="margin-bottom:2rem;">
+          <!-- Life Path 11 -->
+          <a href="/learn/life-path-number-11/" class="card-light group block overflow-hidden hover:border-violet/60 hover:-translate-y-1 transition-all duration-200" style="text-decoration:none;">
+            <div style="position:relative;overflow:hidden;">
+              <img src="/images/learn/master-numbers/Master Number - The Intuitive.webp" alt="Master Number 11" class="w-full group-hover:scale-105 transition-transform duration-500" style="aspect-ratio:2/3;object-fit:cover;display:block;width:100%;" loading="lazy" decoding="async" />
+            </div>
+            <div style="padding:1.25rem;">
+              <div style="font-size:0.7rem;text-transform:uppercase;letter-spacing:0.12em;color:var(--color-muted-text);margin-bottom:0.2rem;">Master Number 11</div>
+              <div style="font-weight:700;color:var(--color-body-text);font-size:1.1rem;margin-bottom:0.5rem;" class="group-hover:text-violet transition-colors">The Intuitive Master</div>
+              <p style="font-size:0.875rem;color:var(--color-muted-text);margin:0 0 1rem;line-height:1.6;">Life path 11 is the most intuitive number in numerology. It's the 2 amplified — all the sensitivity, doubled. But where a 2 feels your emotions, an 11 sees your truth. The 11's challenge is learning to trust and ground that intuition.</p>
+              <span style="font-size:0.875rem;font-weight:600;color:var(--color-violet);" class="group-hover:text-soft-violet transition-colors">Full 11 guide →</span>
+            </div>
+          </a>
+
+          <!-- Life Path 22 -->
+          <a href="/learn/life-path-number-22/" class="card-light group block overflow-hidden hover:border-violet/60 hover:-translate-y-1 transition-all duration-200" style="text-decoration:none;">
+            <div style="position:relative;overflow:hidden;">
+              <img src="/images/learn/master-numbers/Master Number - The Master Builder.webp" alt="Master Number 22" class="w-full group-hover:scale-105 transition-transform duration-500" style="aspect-ratio:2/3;object-fit:cover;display:block;width:100%;" loading="lazy" decoding="async" />
+            </div>
+            <div style="padding:1.25rem;">
+              <div style="font-size:0.7rem;text-transform:uppercase;letter-spacing:0.12em;color:var(--color-muted-text);margin-bottom:0.2rem;">Master Number 22</div>
+              <div style="font-weight:700;color:var(--color-body-text);font-size:1.1rem;margin-bottom:0.5rem;" class="group-hover:text-violet transition-colors">The Master Builder</div>
+              <p style="font-size:0.875rem;color:var(--color-muted-text);margin:0 0 1rem;line-height:1.6;">Life path 22 is often called the most powerful number in numerology. It's the 4 combined with the 2 at maximum intensity. This is the person who can see a vision, feel its emotional truth, and actually build it in the real world.</p>
+              <span style="font-size:0.875rem;font-weight:600;color:var(--color-violet);" class="group-hover:text-soft-violet transition-colors">Full 22 guide →</span>
+            </div>
+          </a>
+
+          <!-- Life Path 33 -->
+          <a href="/learn/life-path-number-33/" class="card-light group block overflow-hidden hover:border-violet/60 hover:-translate-y-1 transition-all duration-200" style="text-decoration:none;">
+            <div style="position:relative;overflow:hidden;">
+              <img src="/images/learn/master-numbers/Master Number - The Master Teacher.webp" alt="Master Number 33" class="w-full group-hover:scale-105 transition-transform duration-500" style="aspect-ratio:2/3;object-fit:cover;display:block;width:100%;" loading="lazy" decoding="async" />
+            </div>
+            <div style="padding:1.25rem;">
+              <div style="font-size:0.7rem;text-transform:uppercase;letter-spacing:0.12em;color:var(--color-muted-text);margin-bottom:0.2rem;">Master Number 33</div>
+              <div style="font-weight:700;color:var(--color-body-text);font-size:1.1rem;margin-bottom:0.5rem;" class="group-hover:text-violet transition-colors">The Master Teacher</div>
+              <p style="font-size:0.875rem;color:var(--color-muted-text);margin:0 0 1rem;line-height:1.6;">Life path 33 is the rarest master number — arguably the rarest life path number of all. People with 33 are here to teach and heal. Not because they chose it, but because they're wired for it. They see human potential and feel called to develop it.</p>
+              <span style="font-size:0.875rem;font-weight:600;color:var(--color-violet);" class="group-hover:text-soft-violet transition-colors">Full 33 guide →</span>
+            </div>
+          </a>
+        </div>
+      </section>
+
+      <!-- Are master numbers better? -->
+      <section id="misconception" style="margin-bottom:3rem;">
+        <h2 class="section-h2">Are master numbers better?</h2>
+        <p style="color:var(--color-body-text);line-height:1.8;margin-bottom:1rem;">
+          Here's where a lot of numerology goes sideways. People see 'master number' and think it's a hierarchy. 11 is better than 2. 22 is better than 4. Not true.
+        </p>
+        <p style="color:var(--color-body-text);line-height:1.8;margin-bottom:1rem;">
+          What's actually true: master numbers carry different energy. Higher frequency, not higher value. A life path 7 (seeker, philosopher) is just as complete and purposeful as a life path 11. A life path 4 (builder, stable, practical) has gifts that a life path 22 struggles with. A life path 6 (healer, nurturer) might teach a life path 33 about self-care.
+        </p>
+        <p style="color:var(--color-body-text);line-height:1.8;">
+          The misconception comes from the fact that master numbers often carry a sense of 'assignment' — you feel pulled toward bigger things. But that's not better. It's just harder. A 2 can have a simpler, happier, more balanced life than an 11. A 4 can build something lasting and solid. The master number person isn't spiritually superior. They're just working with higher voltage.
+        </p>
+      </section>
+
+      <!-- FAQ -->
+      <section id="faq" style="margin-bottom:3rem;">
+        <h2 class="section-h2">Common questions</h2>
+        <div class="faq-list">
+          {[
+            {
+              q: "What are master numbers in numerology?",
+              a: "Master numbers are 11, 22, and 33 - the only numbers in numerology that don't reduce to a single digit. When your birth date adds up to one of these three numbers, you don't reduce it further. This is because master numbers carry amplified, higher-frequency energy. A master number person has extra spiritual potential and often comes with greater challenges to match that potential."
+            },
+            {
+              q: "Are master numbers better than regular life path numbers?",
+              a: "No. Master numbers aren't 'better' - they're different. They carry more intense energy and come with bigger life lessons. A life path 4 (grounded, practical) is just as valuable as a life path 22 (visionary builder). Master numbers can feel like a gift or a burden depending on where you are in your journey. The person with an 11 isn't automatically more spiritual than someone with a 2. They're just working with higher-voltage energy."
+            },
+            {
+              q: "How do I know if I have a master number life path?",
+              a: "Calculate your life path number from your birth date (month + day + year). If the sum adds to 11, 22, or 33 before any further reduction, you have a master number. For example: if you were born 2/29/1988, that's 2 + 2 + 9 + 1 + 9 + 8 + 8 = 39, which reduces to 3 + 9 = 12, then 1 + 2 = 3. No master number. But if you were born 11/4/1988, that's 1 + 1 + 4 + 1 + 9 + 8 + 8 = 32, then 3 + 2 = 5. Still no master number. For a true master number, the first reduction must be 11, 22, or 33."
+            },
+            {
+              q: "What's the difference between master number 11 and life path 2?",
+              a: "Both 11 and 2 are intuitive and sensitive, but the energy is completely different in intensity. A life path 2 operates from empathy and diplomacy. A life path 11 operates from psychic knowing. The 11 doesn't just sense what others feel - they often see the truth underneath. The 2 can be content supporting others. The 11 often feels called to illuminate and inspire. It's the difference between sensitivity and illumination."
+            },
+            {
+              q: "Can a master number become a regular life path number?",
+              a: "No. A life path number is calculated once, from your birth date, and it doesn't change. If you were born on a date that adds to 11, you're always a life path 11 - not a 2. Some numerologists reduce master numbers to their single-digit equivalents in other calculations, but the life path itself never changes. Your birth date is your birth date."
+            },
+            {
+              q: "Is life path 44 a master number?",
+              a: "No. In numerology, only 11, 22, and 33 are recognized as master numbers. Some modern practitioners argue for 44, 55, etc., but the classical system stops at 33. If you were born on a date that adds to 44, you would reduce it: 4 + 4 = 8. You'd be a life path 8, not a master number."
+            }
+          ].map(item => (
+            <details>
+              <summary>
+                {item.q}
+                <svg class="faq-chevron" xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="6 9 12 15 18 9"/></svg>
+              </summary>
+              <div class="faq-answer">{item.a}</div>
+            </details>
+          ))}
+        </div>
+      </section>
+
+      <!-- Related guides -->
+      <section id="related" style="margin-bottom:1rem;">
+        <h2 class="section-h2">Related guides</h2>
+        <div class="grid sm:grid-cols-2 md:grid-cols-3 gap-5">
+          <a href="/learn/life-path-number-11/" class="card-light group block overflow-hidden hover:border-violet/60 hover:-translate-y-1 transition-all duration-200" style="text-decoration:none;">
+            <img src="/images/learn/master-numbers/Master Number - The Intuitive.webp" alt="Life Path 11" style="aspect-ratio:2/3;display:block;object-fit:cover;width:100%;" class="group-hover:scale-105 transition-transform duration-500" loading="lazy" decoding="async" />
+            <div style="padding:0.875rem;">
+              <p style="font-size:0.875rem;font-weight:700;color:var(--color-body-text);margin:0 0 0.2rem;" class="group-hover:text-violet transition-colors">Life Path 11</p>
+              <p style="font-size:0.75rem;color:var(--color-muted-text);margin:0;">The Intuitive Master</p>
+            </div>
+          </a>
+          <a href="/learn/life-path-number-22/" class="card-light group block overflow-hidden hover:border-violet/60 hover:-translate-y-1 transition-all duration-200" style="text-decoration:none;">
+            <img src="/images/learn/master-numbers/Master Number - The Master Builder.webp" alt="Life Path 22" style="aspect-ratio:2/3;display:block;object-fit:cover;width:100%;" class="group-hover:scale-105 transition-transform duration-500" loading="lazy" decoding="async" />
+            <div style="padding:0.875rem;">
+              <p style="font-size:0.875rem;font-weight:700;color:var(--color-body-text);margin:0 0 0.2rem;" class="group-hover:text-violet transition-colors">Life Path 22</p>
+              <p style="font-size:0.75rem;color:var(--color-muted-text);margin:0;">The Master Builder</p>
+            </div>
+          </a>
+          <a href="/learn/life-path-number-33/" class="card-light group block overflow-hidden hover:border-violet/60 hover:-translate-y-1 transition-all duration-200" style="text-decoration:none;">
+            <img src="/images/learn/master-numbers/Master Number - The Master Teacher.webp" alt="Life Path 33" style="aspect-ratio:2/3;display:block;object-fit:cover;width:100%;" class="group-hover:scale-105 transition-transform duration-500" loading="lazy" decoding="async" />
+            <div style="padding:0.875rem;">
+              <p style="font-size:0.875rem;font-weight:700;color:var(--color-body-text);margin:0 0 0.2rem;" class="group-hover:text-violet transition-colors">Life Path 33</p>
+              <p style="font-size:0.75rem;color:var(--color-muted-text);margin:0;">The Master Teacher</p>
+            </div>
+          </a>
+          <a href="/learn/how-to-calculate-life-path-number/" class="card-light group block overflow-hidden hover:border-violet/60 hover:-translate-y-1 transition-all duration-200" style="text-decoration:none;">
+            <img src="/images/learn/Life Path Numbers - Tile.webp" alt="How to Calculate" style="aspect-ratio:2/3;display:block;object-fit:cover;width:100%;" class="group-hover:scale-105 transition-transform duration-500" loading="lazy" decoding="async" />
+            <div style="padding:0.875rem;">
+              <p style="font-size:0.875rem;font-weight:700;color:var(--color-body-text);margin:0 0 0.2rem;" class="group-hover:text-violet transition-colors">How to Calculate</p>
+              <p style="font-size:0.75rem;color:var(--color-muted-text);margin:0;">Find your life path number</p>
+            </div>
+          </a>
+        </div>
+      </section>
+
+    </div>
+  </article>
+
+    </div><!-- end main content column -->
+    <SidebarCTA />
+  </div><!-- end flex wrapper -->
+
+  <!-- Bottom CTA -->
+  <section style="background:var(--color-midnight);padding:5.5rem 1.5rem;position:relative;overflow:hidden;text-align:center;">
+    <div style="position:absolute;inset:0;background:radial-gradient(ellipse at 50% 120%,rgba(124,92,191,0.18) 0%,transparent 70%);pointer-events:none;"></div>
+    <div style="position:relative;z-index:1;max-width:560px;margin:0 auto;">
+      <p class="p-label">Numerologist.com</p>
+      <div class="p-divider" style="margin:1rem auto;"></div>
+      <h2 style="font-family:var(--font-family-heading);font-size:clamp(1.85rem,4vw,2.9rem);font-weight:700;color:var(--color-starlight);margin:1rem 0;line-height:1.2;">
+        Want to understand your full chart?
+      </h2>
+      <p style="color:rgba(235,232,247,0.5);font-size:0.95rem;line-height:1.8;margin-bottom:2.5rem;">
+        Master numbers are one piece. Get a complete reading with your expression number, soul urge, personality number, and more.
+      </p>
+      <a href="https://8904b5z1168aar3k8annz7y61n.hop.clickbank.net" target="_blank" rel="noopener sponsored" style="display:inline-flex;align-items:center;gap:0.5rem;background:var(--color-soft-gold);color:var(--color-midnight);font-weight:700;font-size:0.95rem;padding:0.875rem 1.75rem;border-radius:6px;text-decoration:none;margin:0 auto;transition:opacity 0.2s;">
+        Get your free reading at Numerologist.com
+        <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="9 18 15 12 9 6"/></svg>
+      </a>
+    </div>
+  </section>
+
+</Layout>

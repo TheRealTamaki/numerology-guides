@@ -1,0 +1,32 @@
+﻿---
+import Layout from '../layouts/Layout.astro';
+---
+
+<Layout
+  title="Page Not Found - Numerology Guides"
+  description="The page you're looking for doesn't exist. Head back to the homepage or browse our free numerology guides."
+>
+  <section style="background:var(--color-midnight);padding:5rem 1.5rem;text-align:center;position:relative;overflow:hidden;">
+    <div style="position:absolute;inset:0;background:radial-gradient(ellipse at 50% 120%,rgba(124,92,191,0.18) 0%,transparent 70%);pointer-events:none;"></div>
+    <div style="position:relative;z-index:1;max-width:36rem;margin:0 auto;">
+
+      <div class="text-8xl md:text-9xl font-bold text-violet font-[family-name:var(--font-family-heading)] mb-4 opacity-80" style="filter: drop-shadow(0 0 30px rgba(196,162,78,0.2));">
+        404
+      </div>
+
+      <h1 class="text-2xl md:text-3xl font-bold font-[family-name:var(--font-family-heading)] text-white mb-4" style="text-shadow: 2px 2px 0 rgba(0,0,0,0.4);">
+        This page doesn't exist
+      </h1>
+
+      <p class="text-starlight/65 leading-relaxed mb-10 max-w-md mx-auto">
+        Whatever you were looking for, it's not here. Could be a typo, could be a page that moved. Either way - let's get you back on track.
+      </p>
+
+      <div class="flex flex-col sm:flex-row gap-4 justify-center">
+        <a href="/" style="display:inline-flex;align-items:center;gap:0.5rem;background:var(--color-violet);color:white;font-weight:700;font-size:1rem;padding:0.875rem 2rem;border-radius:6px;text-decoration:none;">Back to Home</a>
+        <a href="/learn/" class="btn-secondary text-white !border-white/40 hover:!bg-white/10 text-lg">Browse Guides</a>
+      </div>
+
+    </div>
+  </section>
+</Layout>

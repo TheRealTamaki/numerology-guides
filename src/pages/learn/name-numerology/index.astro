@@ -1,0 +1,439 @@
+---
+import Layout from '../../../layouts/Layout.astro';
+import SidebarCTA from '../../../components/SidebarCTA.astro';
+
+const faqSchema = {
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "What is name numerology?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Name numerology is the practice of converting the letters in your full birth name into numbers using the Pythagorean system (A=1 through I=9, then repeating). Those numbers produce three of your five core numerology numbers: your expression number (all letters), your soul urge number (vowels only), and your personality number (consonants only). Each one describes a different layer of who you are."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Does my married name affect my numerology?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Your married name adds a new energy overlay, but it doesn't replace your birth name vibration. In numerology, your full birth name - the one on your original birth certificate - is always your primary reading. A married name, or any adopted name, creates an additional influence on top of that foundation. Think of it like an accent over your original voice. It shifts the tone, but the voice underneath stays the same."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "What if I changed my name - which one do I use?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Always start with your full birth name for your core numbers. That's the original vibration you came in with. If you legally changed your name, adopted a new name, or go by a nickname, those names carry their own energy and can be calculated separately. But your birth name remains the baseline. Changed names influence how you move through the world now - they don't erase what you started with."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "What's the difference between expression, soul urge, and personality numbers?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "All three come from your birth name, but they use different letters. Your expression number uses every letter and describes your natural abilities and life direction. Your soul urge number uses only vowels (A, E, I, O, U) and reveals your inner desires and private motivations. Your personality number uses only consonants and shows how people perceive you on first impression. Together, they form a complete picture of your name's energy."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Do middle names count in numerology?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Yes, absolutely. Your full birth name means your entire birth certificate name - first, middle, and last. Leaving out a middle name changes the calculation and gives you an incomplete reading. Even if you never use your middle name in daily life, it's part of your original vibration. If you have multiple middle names, include all of them."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Can my name number be a master number?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Yes. When you add up the letters in your name and the total reduces to 11, 22, or 33 before reaching a single digit, you have a master number. Master numbers in name positions carry amplified energy. A master number expression number means your life direction operates at a higher intensity. A master number soul urge means your inner desires run deeper than most. These don't reduce further - you keep the double digit."
+      }
+    }
+  ]
+};
+
+const breadcrumbSchema = {
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://numerologyguides.blog/" },
+    { "@type": "ListItem", "position": 2, "name": "Learn", "item": "https://numerologyguides.blog/learn/" },
+    { "@type": "ListItem", "position": 3, "name": "Name Numerology" }
+  ]
+};
+---
+
+<Layout
+  schema={[faqSchema, breadcrumbSchema]}
+  title="Name Numerology: How Your Name Shapes Your Numbers | Numerology Guides"
+  description="Your full birth name produces three core numerology numbers: expression, soul urge, and personality. Learn how the Pythagorean letter-to-number system works and what your name reveals."
+>
+
+  <link slot="head" rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400;1,600&display=swap" />
+  <style>
+    :root { --font-family-heading: 'Cormorant Garamond', Georgia, serif; }
+    .p-label { font-size:0.7rem; letter-spacing:0.18em; text-transform:uppercase; color:var(--color-soft-gold); font-weight:600; }
+    .p-divider { width:48px; height:2px; background:var(--color-soft-gold); margin:0 auto; }
+    .section-h2 { font-family:var(--font-family-heading); font-size:clamp(1.6rem,3.5vw,2.25rem); font-weight:700; color:var(--color-body-text); margin:0 0 1.25rem; }
+    .section-h3 { font-family:var(--font-family-heading); font-size:1.2rem; font-weight:700; color:var(--color-body-text); margin:0 0 0.75rem; }
+    .faq-list details { border-top:1px solid var(--color-border); }
+    .faq-list details:last-child { border-bottom:1px solid var(--color-border); }
+    .faq-list summary { padding:1.3rem 0; cursor:pointer; display:flex; align-items:center; justify-content:space-between; gap:1rem; font-weight:600; font-size:1rem; color:var(--color-body-text); list-style:none; transition:color 0.2s; }
+    .faq-list summary::-webkit-details-marker { display:none; }
+    .faq-list details[open] summary { color:var(--color-violet); }
+    .faq-chevron { flex-shrink:0; transition:transform 0.25s; }
+    .faq-list details[open] .faq-chevron { transform:rotate(180deg); }
+    .faq-answer { padding-bottom:1.3rem; font-size:0.9rem; color:var(--color-muted-text); line-height:1.8; }
+    .num-table { width:100%; border-collapse:collapse; }
+    .num-table th { padding:0.5rem 0.75rem; font-size:0.875rem; font-weight:700; color:var(--color-body-text); background:rgba(124,92,191,0.08); border:1px solid var(--color-border); }
+    .num-table td { padding:0.5rem 0.75rem; font-size:0.875rem; font-weight:600; color:var(--color-body-text); border:1px solid var(--color-border); text-align:center; }
+  </style>
+
+  <!-- Breadcrumb -->
+  <nav style="background:var(--color-card-bg);border-bottom:1px solid var(--color-border);padding:0.75rem 1.5rem;" aria-label="Breadcrumb">
+    <div style="max-width:1100px;margin:0 auto;display:flex;align-items:center;gap:0.5rem;font-size:0.75rem;color:var(--color-muted-text);">
+      <a href="/" style="color:var(--color-muted-text);text-decoration:none;transition:color 0.2s;" onmouseover="this.style.color='var(--color-violet)'" onmouseout="this.style.color='var(--color-muted-text)'">Home</a>
+      <svg xmlns="http://www.w3.org/2000/svg" width="8" height="8" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="9 18 15 12 9 6"/></svg>
+      <a href="/learn/" style="color:var(--color-muted-text);text-decoration:none;transition:color 0.2s;" onmouseover="this.style.color='var(--color-violet)'" onmouseout="this.style.color='var(--color-muted-text)'">Learn</a>
+      <svg xmlns="http://www.w3.org/2000/svg" width="8" height="8" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="9 18 15 12 9 6"/></svg>
+      <span style="color:var(--color-body-text);font-weight:600;">Name Numerology</span>
+    </div>
+  </nav>
+
+  <!-- Hero -->
+  <section style="position:relative;overflow:hidden;padding:6rem 1.5rem 5rem;text-align:center;min-height:480px;display:flex;align-items:center;">
+    <div style="position:absolute;inset:0;z-index:0;">
+      <img
+        src="/images/learn/Name Numerology Pillar Hero.webp"
+        alt=""
+        aria-hidden="true"
+        fetchpriority="high"
+        style="width:100%;height:100%;object-fit:cover;object-position:center 30%;display:block;"
+      />
+      <div style="position:absolute;inset:0;background:linear-gradient(to bottom, rgba(14,10,26,0.75) 0%, rgba(14,10,26,0.58) 45%, rgba(14,10,26,0.80) 100%);"></div>
+      <div style="position:absolute;inset:0;background-image:radial-gradient(circle,rgba(196,162,78,0.08) 1px,transparent 1px);background-size:28px 28px;pointer-events:none;"></div>
+    </div>
+    <div aria-hidden="true" style="position:absolute;left:-1rem;top:0.5rem;z-index:1;font-family:var(--font-family-heading);font-size:clamp(10rem,20vw,16rem);font-weight:700;line-height:1;color:transparent;-webkit-text-stroke:1px rgba(196,162,78,0.18);pointer-events:none;user-select:none;">N</div>
+    <div aria-hidden="true" style="position:absolute;right:-0.5rem;bottom:-1.5rem;z-index:1;font-family:var(--font-family-heading);font-size:clamp(12rem,24vw,20rem);font-weight:700;line-height:1;color:transparent;-webkit-text-stroke:1px rgba(124,92,191,0.15);pointer-events:none;user-select:none;">N</div>
+    <div style="position:relative;z-index:2;max-width:760px;margin:0 auto;width:100%;">
+      <p class="p-label" style="margin-bottom:1.25rem;color:var(--color-soft-gold);opacity:0.9;">Core Concept</p>
+      <div class="p-divider" style="margin-bottom:1.75rem;"></div>
+      <h1 style="font-family:var(--font-family-heading);font-size:clamp(2.6rem,6.5vw,4.75rem);font-weight:700;line-height:1.08;color:#f5f0e8;letter-spacing:-0.02em;margin:0 0 1.5rem;text-shadow:0 2px 20px rgba(14,10,26,0.6);">
+        Name Numerology<br><em style="color:#c8a8f0;font-style:italic;">Explained</em>
+      </h1>
+      <p style="font-size:1.05rem;line-height:1.8;color:rgba(240,234,255,0.82);max-width:560px;margin:0 auto 2.5rem;text-shadow:0 1px 8px rgba(14,10,26,0.5);">
+        Your full birth name generates three of your five core numerology numbers. Each one describes a different layer of who you are — your direction, your inner drive, and the impression you leave on people.
+      </p>
+      <div style="display:flex;flex-wrap:wrap;gap:0.875rem;justify-content:center;">
+        <a href="https://8904b5z1168aar3k8annz7y61n.hop.clickbank.net" target="_blank" rel="noopener sponsored" style="display:inline-flex;align-items:center;gap:0.5rem;background:var(--color-violet);color:white;font-weight:700;font-size:1rem;padding:0.875rem 2rem;border-radius:6px;text-decoration:none;transition:background 0.2s,transform 0.15s;box-shadow:0 4px 20px rgba(124,92,191,0.45);" onmouseover="this.style.background='#6a4eab';this.style.transform='translateY(-1px)'" onmouseout="this.style.background='var(--color-violet)';this.style.transform='none'">Get My Free Reading →</a>
+        <a href="#what" style="display:inline-flex;align-items:center;gap:0.5rem;background:rgba(255,255,255,0.08);backdrop-filter:blur(6px);color:#f5f0e8;font-weight:600;font-size:1rem;padding:0.875rem 1.75rem;border-radius:6px;text-decoration:none;border:1.5px solid rgba(255,255,255,0.2);transition:border-color 0.2s,background 0.2s;" onmouseover="this.style.background='rgba(255,255,255,0.15)';this.style.borderColor='rgba(255,255,255,0.4)'" onmouseout="this.style.background='rgba(255,255,255,0.08)';this.style.borderColor='rgba(255,255,255,0.2)'">Explore ↓</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Author byline -->
+  <div style="background:var(--color-light-bg);padding:1.25rem 1.5rem;">
+    <div style="max-width:1100px;margin:0 auto;display:flex;align-items:center;gap:1rem;">
+      <img src="/images/author-maddi-green.webp" alt="Maddie Greene" style="width:2.75rem;height:2.75rem;border-radius:50%;object-fit:cover;flex-shrink:0;border:2px solid rgba(124,92,191,0.2);" />
+      <div>
+        <p style="color:var(--color-body-text);font-size:0.875rem;font-weight:600;margin:0 0 0.1rem;">Written by <strong>Maddie Greene</strong></p>
+        <p style="color:var(--color-muted-text);font-size:0.78rem;margin:0;">Numerology writer &amp; researcher</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- Content + Sticky sidebar wrapper -->
+  <div class="xl:flex xl:gap-6 xl:max-w-[1200px] xl:mx-auto xl:px-4">
+    <div class="xl:flex-1 xl:min-w-0">
+
+  <article style="padding:2.5rem 1.5rem 3rem;background:white;">
+    <div style="max-width:48rem;margin:0 auto;">
+
+      <!-- Why your name matters -->
+      <section id="why-name-matters" style="margin-bottom:3rem;">
+        <h2 class="section-h2">Why your name matters in numerology</h2>
+        <p style="color:var(--color-body-text);line-height:1.8;margin-bottom:1rem;">
+          Your birth date tells numerology when you arrived. Your name tells it what you brought with you.
+        </p>
+        <p style="color:var(--color-body-text);line-height:1.8;margin-bottom:1rem;">
+          In Pythagorean numerology, every letter in your full birth name converts to a number. And the patterns those numbers create describe different layers of who you are — your natural talents, your deepest motivations, and the first impression you make on other people. Three of your five core numerology numbers come directly from your name.
+        </p>
+        <p style="color:var(--color-body-text);line-height:1.8;margin-bottom:1rem;">
+          The thing is, most people think numerology is just about your birthday. It's not. Your birth date gives you your life path number and your birthday number. But the other three — expression, soul urge, and personality — all come from the sound and structure of the name you were given at birth.
+        </p>
+        <p style="color:var(--color-body-text);line-height:1.8;">
+          So if you've only ever looked at your life path number, you're working with less than half the picture. Your name carries a specific vibration, and that vibration shapes how you think, what you want, and how the world sees you.
+        </p>
+      </section>
+
+      <!-- The Pythagorean number system -->
+      <section id="pythagorean-system" style="margin-bottom:3rem;padding-top:2rem;border-top:1px solid var(--color-border);">
+        <h2 class="section-h2">The Pythagorean number system</h2>
+        <p style="color:var(--color-body-text);line-height:1.8;margin-bottom:1.5rem;">
+          Every letter from A to Z maps to a number from 1 to 9 in a repeating cycle. This isn't random — it's one of the oldest systems in numerology, dating back to Pythagoras. Here's the full chart:
+        </p>
+        <div style="overflow-x:auto;margin-bottom:1.5rem;">
+          <table class="num-table">
+            <thead>
+              <tr>
+                <th>1</th><th>2</th><th>3</th><th>4</th><th>5</th><th>6</th><th>7</th><th>8</th><th>9</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>A</td><td>B</td><td>C</td><td>D</td><td>E</td><td>F</td><td>G</td><td>H</td><td>I</td>
+              </tr>
+              <tr>
+                <td>J</td><td>K</td><td>L</td><td>M</td><td>N</td><td>O</td><td>P</td><td>Q</td><td>R</td>
+              </tr>
+              <tr>
+                <td>S</td><td>T</td><td>U</td><td>V</td><td>W</td><td>X</td><td>Y</td><td>Z</td><td></td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <p style="color:var(--color-body-text);line-height:1.8;">
+          So A, J, and S all equal 1. B, K, and T all equal 2. And so on, cycling through 1–9 three times to cover all 26 letters. You add up all the numbers, then keep reducing until you reach a single digit — unless you hit 11, 22, or 33, which are <a href="/learn/master-numbers/" style="color:var(--color-soft-gold);font-weight:600;">master numbers</a> and stay as they are.
+        </p>
+      </section>
+
+      <!-- The three name numbers -->
+      <section id="three-name-numbers" style="margin-bottom:3rem;padding-top:2rem;border-top:1px solid var(--color-border);">
+        <h2 class="section-h2">The three name numbers</h2>
+        <p style="color:var(--color-body-text);line-height:1.8;margin-bottom:1.5rem;">
+          Your name produces three distinct numbers, and each one uses a different set of letters. Here's what makes this interesting — the same name, read three different ways, tells three different stories about you.
+        </p>
+        <div style="display:flex;flex-direction:column;gap:1.5rem;">
+          <div class="card-light p-6">
+            <div style="display:flex;align-items:center;gap:1rem;margin-bottom:1rem;">
+              <div style="font-family:var(--font-family-heading);font-size:2.5rem;font-weight:700;color:var(--color-soft-gold);line-height:1;flex-shrink:0;">Exp</div>
+              <div>
+                <h3 style="font-family:var(--font-family-heading);font-size:1.2rem;font-weight:700;color:var(--color-body-text);margin:0 0 0.2rem;">Expression Number</h3>
+                <p style="font-size:0.8rem;color:var(--color-muted-text);margin:0;">All letters in your full birth name</p>
+              </div>
+            </div>
+            <p style="color:var(--color-body-text);line-height:1.8;font-size:0.9rem;margin-bottom:0.75rem;">
+              Your expression number is calculated from every single letter in your full birth name. It describes your natural abilities, your talents, and the direction your life is moving toward. Think of it as your skill set and purpose rolled into one number. If your life path number is the road you're on, your expression number is the vehicle you're driving.
+            </p>
+            <p style="color:var(--color-body-text);line-height:1.8;font-size:0.9rem;margin-bottom:1rem;">
+              This is the number that tells you what you're built for. Not what you want (that's soul urge) and not how you appear (that's personality). What you're actually equipped to do.
+            </p>
+            <a href="/learn/expression-number/" style="display:inline-block;color:var(--color-soft-gold);font-weight:600;font-size:0.9rem;text-decoration:none;" onmouseover="this.style.textDecoration='underline'" onmouseout="this.style.textDecoration='none'">Read the full expression number guide &rarr;</a>
+          </div>
+
+          <div class="card-light p-6">
+            <div style="display:flex;align-items:center;gap:1rem;margin-bottom:1rem;">
+              <div style="font-family:var(--font-family-heading);font-size:2.5rem;font-weight:700;color:var(--color-soft-gold);line-height:1;flex-shrink:0;">SU</div>
+              <div>
+                <h3 style="font-family:var(--font-family-heading);font-size:1.2rem;font-weight:700;color:var(--color-body-text);margin:0 0 0.2rem;">Soul Urge Number</h3>
+                <p style="font-size:0.8rem;color:var(--color-muted-text);margin:0;">Vowels only (A, E, I, O, U)</p>
+              </div>
+            </div>
+            <p style="color:var(--color-body-text);line-height:1.8;font-size:0.9rem;margin-bottom:0.75rem;">
+              Your soul urge number comes from just the vowels in your name — A, E, I, O, and U. It describes your deepest desires and inner motivation. The things that drive you that you might not even talk about. This is the private engine underneath everything else.
+            </p>
+            <p style="color:var(--color-body-text);line-height:1.8;font-size:0.9rem;margin-bottom:1rem;">
+              Here's the thing about the soul urge: it's often the number that makes people say "how did you know that?" Because it describes the part of you that doesn't show up on the surface. The quiet pull toward something you can't always explain.
+            </p>
+            <a href="/learn/soul-urge-number/" style="display:inline-block;color:var(--color-soft-gold);font-weight:600;font-size:0.9rem;text-decoration:none;" onmouseover="this.style.textDecoration='underline'" onmouseout="this.style.textDecoration='none'">Read the full soul urge number guide &rarr;</a>
+          </div>
+
+          <div class="card-light p-6">
+            <div style="display:flex;align-items:center;gap:1rem;margin-bottom:1rem;">
+              <div style="font-family:var(--font-family-heading);font-size:2.5rem;font-weight:700;color:var(--color-soft-gold);line-height:1;flex-shrink:0;">PN</div>
+              <div>
+                <h3 style="font-family:var(--font-family-heading);font-size:1.2rem;font-weight:700;color:var(--color-body-text);margin:0 0 0.2rem;">Personality Number</h3>
+                <p style="font-size:0.8rem;color:var(--color-muted-text);margin:0;">Consonants only</p>
+              </div>
+            </div>
+            <p style="color:var(--color-body-text);line-height:1.8;font-size:0.9rem;margin-bottom:0.75rem;">
+              Your personality number uses only the consonants in your birth name. It describes how the world sees you on first impression — the outer layer, the face you present before people know you well. It's not fake. It's the part of you that shows up first.
+            </p>
+            <p style="color:var(--color-body-text);line-height:1.8;font-size:0.9rem;margin-bottom:1rem;">
+              Think of your personality number as the door to the house. People see the door before they see the rooms inside. Your soul urge is the living room. Your expression number is the whole floor plan. But the personality number is what people notice when they walk up.
+            </p>
+            <a href="/learn/personality-number/" style="display:inline-block;color:var(--color-soft-gold);font-weight:600;font-size:0.9rem;text-decoration:none;" onmouseover="this.style.textDecoration='underline'" onmouseout="this.style.textDecoration='none'">Read the full personality number guide &rarr;</a>
+          </div>
+        </div>
+      </section>
+
+      <!-- How to calculate -->
+      <section id="how-to-calculate" style="margin-bottom:3rem;padding-top:2rem;border-top:1px solid var(--color-border);">
+        <h2 class="section-h2">How to calculate your name numbers</h2>
+        <p style="color:var(--color-body-text);line-height:1.8;margin-bottom:1rem;">
+          Let's walk through a real example. Say your birth name is <strong>Jane Marie Smith</strong>. Here's how you'd calculate all three numbers from that name.
+        </p>
+        <p style="color:var(--color-body-text);line-height:1.8;margin-bottom:0.75rem;">
+          First, convert every letter to its Pythagorean number:
+        </p>
+        <div class="card-light p-5" style="margin-bottom:1.5rem;overflow-x:auto;">
+          <div style="font-family:monospace;font-size:0.875rem;color:var(--color-body-text);display:flex;flex-direction:column;gap:0.75rem;">
+            <div><span style="color:var(--color-muted-text);">JANE:</span>&nbsp;&nbsp; J(1) + A(1) + N(5) + E(5) = <strong>12</strong></div>
+            <div><span style="color:var(--color-muted-text);">MARIE:</span>&nbsp; M(4) + A(1) + R(9) + I(9) + E(5) = <strong>28</strong></div>
+            <div><span style="color:var(--color-muted-text);">SMITH:</span>&nbsp; S(1) + M(4) + I(9) + T(2) + H(8) = <strong>24</strong></div>
+          </div>
+        </div>
+
+        <h3 class="section-h3">Expression Number (all letters)</h3>
+        <div class="card-light p-5" style="margin-bottom:1.5rem;">
+          <p style="font-family:monospace;font-size:0.875rem;color:var(--color-body-text);margin:0 0 0.4rem;">12 + 28 + 24 = <strong>64</strong></p>
+          <p style="font-family:monospace;font-size:0.875rem;color:var(--color-body-text);margin:0 0 0.4rem;">6 + 4 = <strong>10</strong></p>
+          <p style="font-family:monospace;font-size:0.875rem;color:var(--color-body-text);margin:0 0 0.75rem;">1 + 0 = <strong style="color:var(--color-soft-gold);font-size:1rem;">1</strong></p>
+          <p style="font-size:0.85rem;color:var(--color-muted-text);margin:0;">Jane Marie Smith has an Expression Number of <strong>1</strong>.</p>
+        </div>
+
+        <h3 class="section-h3">Soul Urge Number (vowels only)</h3>
+        <p style="color:var(--color-body-text);font-size:0.9rem;line-height:1.7;margin-bottom:0.75rem;">Pull out just the vowels: <strong>A, E</strong> (Jane) + <strong>A, I, E</strong> (Marie) + <strong>I</strong> (Smith)</p>
+        <div class="card-light p-5" style="margin-bottom:1.5rem;">
+          <p style="font-family:monospace;font-size:0.875rem;color:var(--color-body-text);margin:0 0 0.4rem;">A(1) + E(5) + A(1) + I(9) + E(5) + I(9) = <strong>30</strong></p>
+          <p style="font-family:monospace;font-size:0.875rem;color:var(--color-body-text);margin:0 0 0.75rem;">3 + 0 = <strong style="color:var(--color-soft-gold);font-size:1rem;">3</strong></p>
+          <p style="font-size:0.85rem;color:var(--color-muted-text);margin:0;">Jane Marie Smith has a Soul Urge Number of <strong>3</strong>.</p>
+        </div>
+
+        <h3 class="section-h3">Personality Number (consonants only)</h3>
+        <p style="color:var(--color-body-text);font-size:0.9rem;line-height:1.7;margin-bottom:0.75rem;">Pull out just the consonants: <strong>J, N</strong> (Jane) + <strong>M, R</strong> (Marie) + <strong>S, M, T, H</strong> (Smith)</p>
+        <div class="card-light p-5" style="margin-bottom:1.5rem;">
+          <p style="font-family:monospace;font-size:0.875rem;color:var(--color-body-text);margin:0 0 0.4rem;">J(1) + N(5) + M(4) + R(9) + S(1) + M(4) + T(2) + H(8) = <strong>34</strong></p>
+          <p style="font-family:monospace;font-size:0.875rem;color:var(--color-body-text);margin:0 0 0.75rem;">3 + 4 = <strong style="color:var(--color-soft-gold);font-size:1rem;">7</strong></p>
+          <p style="font-size:0.85rem;color:var(--color-muted-text);margin:0;">Jane Marie Smith has a Personality Number of <strong>7</strong>.</p>
+        </div>
+
+        <p style="color:var(--color-body-text);line-height:1.8;">
+          So from one name, you get three numbers that each describe something different. Expression 1 (natural leader, independent), Soul Urge 3 (driven by creative expression and connection), Personality 7 (comes across as thoughtful and private). That's a person who's built to lead, quietly motivated by creativity, and perceived as the analytical one in the room. You can already see how these layers interact.
+        </p>
+      </section>
+
+      <!-- Which name to use -->
+      <section id="which-name" style="margin-bottom:3rem;padding-top:2rem;border-top:1px solid var(--color-border);">
+        <h2 class="section-h2">Which name do you use?</h2>
+        <p style="color:var(--color-body-text);line-height:1.8;margin-bottom:1rem;">
+          This comes up a lot. And the answer is straightforward: always use your full birth name. The one on your original birth certificate. First name, middle name (or names), and last name.
+        </p>
+        <p style="color:var(--color-body-text);line-height:1.8;margin-bottom:1rem;">
+          Not your married name. Not the nickname everyone calls you. Not the shortened version you use at work. Your birth name is the original vibration — it's the frequency you came in with, and it doesn't change just because you started going by something different at age 25.
+        </p>
+        <p style="color:var(--color-body-text);line-height:1.8;margin-bottom:1rem;">
+          That said, changed names aren't meaningless. A married name, a legally changed name, or even a consistent nickname all add an energy overlay on top of your birth name. Some numerologists will calculate both to see how the new name shifts things. But the foundation is always the birth certificate name.
+        </p>
+        <p style="color:var(--color-body-text);line-height:1.8;">
+          If you were adopted and your name was changed early on, most practitioners still go with the birth certificate name. The reasoning is that this was the name attached to you at the moment you entered the world — and that moment is what numerology reads.
+        </p>
+      </section>
+
+      <!-- How name numbers work with birth date numbers -->
+      <section id="name-and-birthdate" style="margin-bottom:3rem;padding-top:2rem;border-top:1px solid var(--color-border);">
+        <h2 class="section-h2">How name numbers work with birth date numbers</h2>
+        <p style="color:var(--color-body-text);line-height:1.8;margin-bottom:1rem;">
+          Your name numbers don't exist in isolation. They work together with your birth date numbers as a complete system. Your <a href="/learn/life-path-number/" style="color:var(--color-soft-gold);font-weight:600;">life path number</a> (from your birth date) describes the road you're on. Your expression number (from your name) describes how you're equipped to walk that road. Put them together and you start to see the full picture.
+        </p>
+        <p style="color:var(--color-body-text);line-height:1.8;margin-bottom:1rem;">
+          Here's where it gets really interesting: your life path number and your expression number actually combine to form your <a href="/learn/maturity-number/" style="color:var(--color-soft-gold);font-weight:600;">maturity number</a>. You add them together and reduce. The maturity number describes who you're becoming in the second half of life — typically kicking in around age 40–50. It's the place where your life direction and your natural abilities finally merge.
+        </p>
+        <p style="color:var(--color-body-text);line-height:1.8;">
+          So the five core numbers — life path, expression, soul urge, personality, and birthday — form a system where name energy and birth date energy work together. No single number tells the whole story. But together, they paint a picture that's genuinely specific to you. Try the <a href="/calculator/" style="color:var(--color-soft-gold);font-weight:600;">numerology calculator</a> to see all five of yours at once.
+        </p>
+      </section>
+
+      <!-- FAQ -->
+      <section id="faq" style="margin-bottom:3rem;padding-top:2rem;border-top:1px solid var(--color-border);">
+        <h2 class="section-h2" style="text-align:center;">Frequently Asked Questions</h2>
+        <div class="faq-list">
+          <details>
+            <summary>What is name numerology?<svg class="faq-chevron" xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="6 9 12 15 18 9"/></svg></summary>
+            <p class="faq-answer">Name numerology is the practice of converting the letters in your full birth name into numbers using the Pythagorean system. Those numbers produce three of your five core numerology numbers: your expression number (all letters), your soul urge number (vowels only), and your personality number (consonants only). Each one describes a different layer of who you are.</p>
+          </details>
+          <details>
+            <summary>Does my married name affect my numerology?<svg class="faq-chevron" xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="6 9 12 15 18 9"/></svg></summary>
+            <p class="faq-answer">Your married name adds a new energy overlay, but it doesn't replace your birth name vibration. Your full birth name — the one on your original birth certificate — is always your primary reading. A married name creates an additional influence on top of that foundation. Think of it like an accent over your original voice. It shifts the tone, but the voice underneath stays the same.</p>
+          </details>
+          <details>
+            <summary>What if I changed my name — which one do I use?<svg class="faq-chevron" xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="6 9 12 15 18 9"/></svg></summary>
+            <p class="faq-answer">Always start with your full birth name for your core numbers. That's the original vibration you came in with. If you legally changed your name, adopted a new name, or go by a nickname, those names carry their own energy and can be calculated separately. But your birth name remains the baseline. Changed names influence how you move through the world now — they don't erase what you started with.</p>
+          </details>
+          <details>
+            <summary>What's the difference between expression, soul urge, and personality numbers?<svg class="faq-chevron" xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="6 9 12 15 18 9"/></svg></summary>
+            <p class="faq-answer">All three come from your birth name, but they use different letters. Your expression number uses every letter and describes your natural abilities and life direction. Your soul urge number uses only vowels (A, E, I, O, U) and reveals your inner desires and private motivations. Your personality number uses only consonants and shows how people perceive you on first impression.</p>
+          </details>
+          <details>
+            <summary>Do middle names count in numerology?<svg class="faq-chevron" xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="6 9 12 15 18 9"/></svg></summary>
+            <p class="faq-answer">Yes, absolutely. Your full birth name means your entire birth certificate name — first, middle, and last. Leaving out a middle name changes the calculation and gives you an incomplete reading. Even if you never use your middle name in daily life, it's part of your original vibration. If you have multiple middle names, include all of them.</p>
+          </details>
+          <details>
+            <summary>Can my name number be a master number?<svg class="faq-chevron" xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="6 9 12 15 18 9"/></svg></summary>
+            <p class="faq-answer">Yes. When you add up the letters in your name and the total reduces to 11, 22, or 33 before reaching a single digit, you have a master number. A master number expression number means your life direction operates at a higher intensity. A master number soul urge means your inner desires run deeper than most. These don't reduce further — you keep the double digit.</p>
+          </details>
+        </div>
+      </section>
+
+      <!-- Related guides -->
+      <section id="related" style="margin-bottom:1rem;padding-top:2rem;border-top:1px solid var(--color-border);">
+        <h2 class="section-h2">Related guides</h2>
+        <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(180px,1fr));gap:1.25rem;">
+          <a href="/learn/expression-number/" class="card-light overflow-hidden hover:border-violet/60 hover:-translate-y-0.5 transition-all duration-200 group block">
+            <img src="/images/learn/Expression Numbers - Tile.webp" alt="Expression Numbers" class="w-full aspect-[2/3] object-cover transition-transform duration-500 group-hover:scale-105" loading="lazy" />
+            <div class="p-4">
+              <h3 class="font-bold text-body-text group-hover:text-violet transition-colors mb-1">Expression Number</h3>
+              <p class="text-xs text-muted-text">Your talents and life direction</p>
+            </div>
+          </a>
+          <a href="/learn/soul-urge-number/" class="card-light overflow-hidden hover:border-violet/60 hover:-translate-y-0.5 transition-all duration-200 group block">
+            <img src="/images/learn/Soul Urge Numbers - Tile.webp" alt="Soul Urge Numbers" class="w-full aspect-[2/3] object-cover transition-transform duration-500 group-hover:scale-105" loading="lazy" />
+            <div class="p-4">
+              <h3 class="font-bold text-body-text group-hover:text-violet transition-colors mb-1">Soul Urge Number</h3>
+              <p class="text-xs text-muted-text">Your inner desires and motivation</p>
+            </div>
+          </a>
+          <a href="/learn/personality-number/" class="card-light overflow-hidden hover:border-violet/60 hover:-translate-y-0.5 transition-all duration-200 group block">
+            <img src="/images/learn/Personality Numbers - Tile.webp" alt="Personality Numbers" class="w-full aspect-[2/3] object-cover transition-transform duration-500 group-hover:scale-105" loading="lazy" />
+            <div class="p-4">
+              <h3 class="font-bold text-body-text group-hover:text-violet transition-colors mb-1">Personality Number</h3>
+              <p class="text-xs text-muted-text">How others perceive you</p>
+            </div>
+          </a>
+          <a href="/learn/birthday-number/" class="card-light overflow-hidden hover:border-violet/60 hover:-translate-y-0.5 transition-all duration-200 group block">
+            <img src="/images/learn/Birthday Numbers - Tile.webp" alt="Birthday Numbers" class="w-full aspect-[2/3] object-cover transition-transform duration-500 group-hover:scale-105" loading="lazy" />
+            <div class="p-4">
+              <h3 class="font-bold text-body-text group-hover:text-violet transition-colors mb-1">Birthday Number</h3>
+              <p class="text-xs text-muted-text">Your special gift from your birth day</p>
+            </div>
+          </a>
+          <a href="/learn/maturity-number/" class="card-light overflow-hidden hover:border-violet/60 hover:-translate-y-0.5 transition-all duration-200 group block">
+            <img src="/images/learn/Maturity Number - Tile.webp" alt="Maturity Number" class="w-full aspect-[2/3] object-cover transition-transform duration-500 group-hover:scale-105" loading="lazy" />
+            <div class="p-4">
+              <h3 class="font-bold text-body-text group-hover:text-violet transition-colors mb-1">Maturity Number</h3>
+              <p class="text-xs text-muted-text">Where your life path and expression merge</p>
+            </div>
+          </a>
+          <a href="/calculator/" class="card-light overflow-hidden hover:border-violet/60 hover:-translate-y-0.5 transition-all duration-200 group block">
+            <img src="/images/learn/Life Path Numbers - Tile.webp" alt="Numerology Calculator" class="w-full aspect-[2/3] object-cover transition-transform duration-500 group-hover:scale-105" loading="lazy" />
+            <div class="p-4">
+              <h3 class="font-bold text-body-text group-hover:text-violet transition-colors mb-1">Numerology Calculator</h3>
+              <p class="text-xs text-muted-text">Calculate all five core numbers at once</p>
+            </div>
+          </a>
+        </div>
+      </section>
+
+    </div>
+  </article>
+
+    </div>
+    <SidebarCTA />
+  </div>
+
+  <!-- Bottom CTA -->
+  <section style="background:var(--color-midnight);padding:5rem 1.5rem;text-align:center;">
+    <div style="max-width:36rem;margin:0 auto;">
+      <p class="p-label" style="color:rgba(196,162,78,0.7);margin-bottom:0.75rem;">Go Deeper</p>
+      <h2 style="font-family:var(--font-family-heading);font-size:clamp(1.75rem,4vw,2.5rem);font-weight:700;color:var(--color-starlight);margin:0 0 1rem;">Want to see what your name reveals?</h2>
+      <p style="color:rgba(255,255,255,0.65);font-size:1rem;line-height:1.75;margin-bottom:2rem;">Your name carries three separate numbers, each describing a different part of who you are. Get a free personalized reading that breaks down your full chart — expression, soul urge, personality, and more.</p>
+      <a href="https://8904b5z1168aar3k8annz7y61n.hop.clickbank.net" rel="noopener sponsored" style="display:inline-block;background:var(--color-soft-gold);color:var(--color-midnight);font-weight:700;font-size:1rem;padding:0.9rem 2.25rem;border-radius:6px;text-decoration:none;letter-spacing:0.02em;transition:opacity 0.2s;" onmouseover="this.style.opacity='0.88'" onmouseout="this.style.opacity='1'">Get Your Free Reading</a>
+    </div>
+  </section>
+
+</Layout>

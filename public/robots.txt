@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://numerologyguides.blog/sitemap-index.xml

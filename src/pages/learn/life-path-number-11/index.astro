@@ -1,0 +1,555 @@
+﻿---
+import Layout from '../../../layouts/Layout.astro';
+import SidebarCTA from '../../../components/SidebarCTA.astro';
+
+const compatibility = [
+ { lp: "1", label: "The Leader", score: 3, verdict: "LP1's drive and LP11's vision can be a powerful combination - when LP1 isn't steamrolling LP11's sensitivity. LP11 needs a partner who can handle their depth; LP1 needs one who can keep up. Possible with mutual respect." },
+ { lp: "2", label: "The Peacemaker", score: 5, verdict: "Deep resonance - LP11 carries LP2's energy amplified. LP2 understands LP11's sensitivity in a way few numbers do. Both are attuned to the emotional and intangible, creating a naturally harmonious connection." },
+ { lp: "4", label: "The Builder", score: 4, verdict: "LP4 provides the grounding LP11 urgently needs; LP11 provides the vision LP4 can sometimes miss. One of the most practically useful pairings for LP11 - as long as LP4 can honor what they can't quite see." },
+ { lp: "6", label: "The Nurturer", score: 4, verdict: "LP6's warmth and care create the safe environment LP11 needs to function at their best. LP6 appreciates LP11's depth. A nurturing, creatively rich pairing." },
+ { lp: "7", label: "The Seeker", score: 5, verdict: "Natural match for depth and spiritual orientation. LP7's analytical precision and LP11's intuitive knowing complement each other beautifully. Both are drawn to the unseen and the meaningful." },
+ { lp: "9", label: "The Humanitarian", score: 4, verdict: "Shared concern for the larger world and a resonance at the level of purpose and meaning. LP9's wisdom gives LP11's sensitivity direction; LP11's inspiration gives LP9's care a new channel." },
+ { lp: "11", label: "The Intuitive", score: 3, verdict: "Two LP11s understand each other completely - and can amplify each other's anxiety and sensitivity as easily as they amplify each other's gifts. Needs real grounding work from both." },
+ { lp: "22", label: "The Architect", score: 4, verdict: "LP22 can build what LP11 envisions. LP11's spiritual insight feeds LP22's large-scale work. When both are operating at their best, this is one of the most powerful collaborative pairings." },
+ { lp: "33", label: "The Teacher", score: 4, verdict: "Both master numbers oriented toward service. Deep resonance around purpose and contribution. LP33's unconditional love and LP11's inspiration can create something extraordinary together." },
+];
+
+const strengths = [
+ { title: "Strong intuition", desc: "LP11 receives information in ways that bypass ordinary logic. Hunches that turn out to be precisely right. Pattern recognition that operates ahead of conscious analysis. This isn't mystical. It's a form of processing that's faster and more associative than the rational mind, and LP11 has it in abundance." },
+ { title: "Capacity to inspire", desc: "People leave conversations with LP11 thinking differently. Something they said cracked a window open. The ability to shift how someone sees their situation, to illuminate rather than instruct, is real and valuable." },
+ { title: "Spiritual sensitivity", desc: "LP11 lives closer to the edge of things than most people. They feel the texture of a room, pick up what's unspoken, register layers of experience that others move through without noticing. This makes them genuinely useful in roles requiring empathy and perception. It also means certain environments wear them out faster than they wear out other people." },
+ { title: "Creative range", desc: "LP11 produces work-art, writing, music, ideas-that arrives from somewhere beyond pure analysis. When in flow, what comes out resonates with people who can't quite explain why." },
+];
+
+const challenges = [
+ { title: "Anxiety and overwhelm", desc: "The same sensitivity that powers LP11's gifts makes them vulnerable. High-frequency environments, emotional conflict, too much stimulation all cost LP11 more than they cost other people. Without grounding and recovery practices, LP11 runs on empty in ways that look like ordinary fatigue to everyone else." },
+ { title: "Difficulty grounding the vision", desc: "LP11 can see clearly what something could be, or what's really happening, or what the answer is. Then comes the hard part: bringing that into practical action. The gap between perception and execution is real. LP11 does best with collaborators who can take the vision and build it." },
+ { title: "Retreating from the calling", desc: "LP11s often feel pulled toward a larger purpose, something that asks more than ordinary effort. Many spend years avoiding this. They stay comfortable, stay small, stay below what they know they're capable of. Usually, the cost of avoidance exceeds the cost of answering." },
+ { title: "Hypersensitivity in relationships", desc: "LP11 reads energy shifts that others miss and can layer meaning onto something that was just a bad day. Learning to hold perceptions a bit more lightly, to wait for more data before interpreting, is some of their most useful work." },
+];
+
+const famousLP11s = [
+ { name: "Bill Clinton", why: "Extraordinary political instinct and an ability to connect with virtually anyone - LP11's gift for reading people and inspired communication, deployed at presidential scale." },
+ { name: "Coco Chanel", why: "A visionary who didn't just change fashion but changed how women thought about themselves. LP11's ability to perceive what people need before they can name it - and to express it through beauty." },
+ { name: "David Beckham", why: "An icon built not just on athletic skill but on something harder to name - a quality of presence, aesthetics, and appeal that crossed every usual boundary. LP11's particular brand of magnetic inspiration." },
+ { name: "Michael Jordan", why: "Widely considered the greatest basketball player ever - not just because of skill but because of an almost transcendent quality of performance under pressure. LP11 at its most focused and elevated." },
+ { name: "Gwen Stefani", why: "A creative artist who found her own language and inspired a generation to find theirs. LP11's originality and the ability to make personal expression feel universal." },
+ { name: "Edgar Allan Poe", why: "Writing that accessed something in human consciousness that most writers don't reach - the thin membrane between the rational and the terrifying. LP11's sensitivity to the unseen, turned into art." },
+];
+
+const allLifePaths = [
+ { n: "1", name: "The Leader" },
+ { n: "2", name: "The Peacemaker" },
+ { n: "3", name: "The Communicator" },
+ { n: "4", name: "The Builder" },
+ { n: "5", name: "The Adventurer" },
+ { n: "6", name: "The Nurturer" },
+ { n: "7", name: "The Seeker" },
+ { n: "8", name: "The Powerhouse" },
+ { n: "9", name: "The Humanitarian" },
+ { n: "11", name: "The Intuitive" },
+ { n: "22", name: "The Architect" },
+ { n: "33", name: "The Teacher" },
+];
+
+const faqSchema = {
+ "@context": "https://schema.org",
+ "@type": "FAQPage",
+ "mainEntity": [
+ { "@type": "Question", "name": "What does life path 11 mean?", "acceptedAnswer": { "@type": "Answer", "text": "Life path 11 is the Intuitive Master-the first master number in numerology. It describes a life with heightened intuition, sensitivity, and awareness of layers other people miss. LP11 is called more to inspire and illuminate than to simply achieve. The arc of development is learning to live at the voltage that potential requires." } },
+ { "@type": "Question", "name": "Is life path 11 rare?", "acceptedAnswer": { "@type": "Answer", "text": "Master numbers are less common than single-digit life paths, but they're not vanishingly rare. What's actually rare is the LP11 who has fully developed the gifts-who has grounded their sensitivity, trusted their intuition, and stepped into the larger contribution they sense coming. That level of development is uncommon in any number." } },
+ { "@type": "Question", "name": "What is the difference between life path 11 and life path 2?", "acceptedAnswer": { "@type": "Answer", "text": "LP11 reduces to LP2 (1+1=2), and both share sensitivity and relational depth. The difference is in scale. LP2 is fundamentally interpersonal: connection, diplomacy, emotional intelligence within relationships. LP11 carries this forward into a larger field: inspiration, spiritual awareness, transmitting something beyond the personal. LP11 feels the weight of a larger calling. LP2 tends to be more at ease in ordinary life." } },
+ { "@type": "Question", "name": "Why is 11 a master number?", "acceptedAnswer": { "@type": "Answer", "text": "In Pythagorean numerology, 11, 22, and 33 are the master numbers-the three double-digit numbers that repeat a single digit. This repetition amplifies the base energy: LP11 carries double the 1 energy (leadership, independence) aligned with LP2's sensitivity. The result is a higher-vibration frequency with both increased gifts and increased demands. Master numbers indicate a life with a specific larger purpose, though what that purpose is requires the full chart." } },
+ { "@type": "Question", "name": "What careers suit life path 11?", "acceptedAnswer": { "@type": "Answer", "text": "Teaching, writing, counseling, spiritual direction, creative arts, public speaking. LP11 also does well in roles requiring fine perception: negotiation, diplomacy, investigation. What they need is work where sensitivity and intuitive accuracy are assets, not inconveniences. The 11 who finds that tends to do something memorable." } },
+ { "@type": "Question", "name": "Is life path 11 difficult to live with?", "acceptedAnswer": { "@type": "Answer", "text": "Often yes, especially before LP11 develops practices to work with their nature rather than against it. The sensitivity is real and demands management. The gap between what they sense they're capable of and current reality can produce real anxiety. The pull toward larger purpose without a clear path is disorienting for years. But the LP11 who works through that-who learns to ground, to trust their perception-describes a life that feels meaningful in a way few numbers reach." } }
+ ]
+};
+
+const breadcrumbSchema = {
+ "@context": "https://schema.org",
+ "@type": "BreadcrumbList",
+ "itemListElement": [
+ { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://numerologyguides.blog/" },
+ { "@type": "ListItem", "position": 2, "name": "Learn", "item": "https://numerologyguides.blog/learn/" },
+ { "@type": "ListItem", "position": 3, "name": "Life Path Numbers", "item": "https://numerologyguides.blog/learn/life-path-number/" },
+ { "@type": "ListItem", "position": 4, "name": "Life Path 11" }
+ ]
+};
+---
+
+<Layout
+ schema={[faqSchema, breadcrumbSchema]}
+ title="Life Path Number 11: The Intuitive Master - Traits, Careers & Compatibility | Numerology Guides"
+ description="Life path 11 is numerology's first master number - the Intuitive. Highly sensitive, deeply inspired, and called to something larger. Explore LP11 traits, compatibility, career, and more."
+>
+
+  <link
+    slot="head"
+    rel="stylesheet"
+    href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400;1,600&display=swap"
+  />
+
+  <style>
+    :root { --font-family-heading: 'Cormorant Garamond', Georgia, serif; }
+    .p-label { font-size:0.7rem; letter-spacing:0.18em; text-transform:uppercase; color:var(--color-soft-gold); font-weight:600; }
+    .p-divider { width:48px; height:2px; background:var(--color-soft-gold); margin:0 auto; }
+    .section-h2 { font-family:var(--font-family-heading); font-size:clamp(1.6rem,3.5vw,2.25rem); font-weight:700; color:var(--color-body-text); margin:0 0 1.25rem; }
+    .faq-list details { border-top:1px solid var(--color-border); }
+    .faq-list details:last-child { border-bottom:1px solid var(--color-border); }
+    .faq-list summary { padding:1.3rem 0; cursor:pointer; display:flex; align-items:center; justify-content:space-between; gap:1rem; font-weight:600; font-size:1rem; color:var(--color-body-text); list-style:none; transition:color 0.2s; }
+    .faq-list summary::-webkit-details-marker { display:none; }
+    .faq-list details[open] summary { color:var(--color-violet); }
+    .faq-chevron { flex-shrink:0; transition:transform 0.25s; }
+    .faq-list details[open] .faq-chevron { transform:rotate(180deg); }
+    .faq-answer { padding-bottom:1.3rem; font-size:0.9rem; color:var(--color-muted-text); line-height:1.8; }
+    .lp-grid { display:grid; grid-template-columns:repeat(4,1fr); gap:0.75rem; }
+    @media (max-width:640px) { .lp-grid { grid-template-columns:repeat(3,1fr); } }
+    .feat-card { display:block; background:white; border:1px solid var(--color-border); border-radius:8px; overflow:hidden; text-decoration:none; transition:box-shadow 0.25s, transform 0.25s; }
+    .feat-card:hover { box-shadow:0 12px 40px rgba(26,21,40,0.1); transform:translateY(-3px); }
+  </style>
+
+
+ <!-- Breadcrumb -->
+ <nav class="bg-light-bg border-b border-border/40 px-4 py-2.5" aria-label="Breadcrumb">
+ <ol class="max-w-5xl mx-auto flex items-center gap-2 text-xs text-muted-text">
+ <li><a href="/" class="hover:text-violet transition-colors">Home</a></li>
+ <li class="text-border/60">›</li>
+ <li><a href="/learn/" style="color:var(--color-muted-text);text-decoration:none;">Learn</a></li>
+ <li class="text-border/60">›</li>
+ <li><a href="/learn/life-path-number/" style="color:var(--color-muted-text);text-decoration:none;">Life Path Numbers</a></li>
+ <li class="text-border/60">›</li>
+ <li class="text-body-text font-medium">Life Path 11</li>
+ </ol>
+ </nav>
+
+ <!-- Hero -->
+ <section style="position:relative;overflow:hidden;background:var(--color-midnight,#0e0a1a);">
+   <div aria-hidden="true" style="position:absolute;inset:0;background-image:radial-gradient(circle,rgba(196,162,78,0.07) 1px,transparent 1px);background-size:28px 28px;pointer-events:none;z-index:0;"></div>
+   <div aria-hidden="true" style="position:absolute;top:-10%;left:-5%;width:55%;height:120%;background:radial-gradient(ellipse at center,rgba(124,92,191,0.18) 0%,transparent 70%);pointer-events:none;z-index:0;"></div>
+   <div style="position:relative;z-index:1;max-width:1100px;margin:0 auto;padding:4rem 1.5rem;display:flex;align-items:center;gap:3rem;flex-wrap:wrap;">
+     <div style="flex:1;min-width:280px;">
+       <p class="p-label" style="margin-bottom:1.1rem;color:var(--color-soft-gold);opacity:0.9;">Life Path Number 11</p>
+       <div class="p-divider" style="margin:0 0 1.6rem;"></div>
+       <h1 style="font-family:var(--font-family-heading);font-size:clamp(2.8rem,6vw,5rem);font-weight:700;line-height:1.06;color:#f5f0e8;letter-spacing:-0.02em;margin:0 0 1.25rem;">
+         The <em style="color:#c8a8f0;font-style:italic;">Intuitive Master</em>
+       </h1>
+       <p style="font-size:1.05rem;line-height:1.8;color:rgba(240,234,255,0.78);max-width:460px;margin:0 0 2rem;">LP11 is the most spiritually attuned life path in numerology. Highly sensitive, deeply intuitive, carrying a rare gift for insight — the 11 is here to inspire. This guide covers what that actually means for your life.</p>
+       <div style="display:flex;flex-wrap:wrap;gap:0.875rem;">
+         <a href="https://8904b5z1168aar3k8annz7y61n.hop.clickbank.net" target="_blank" rel="noopener sponsored" style="display:inline-flex;align-items:center;gap:0.5rem;background:var(--color-violet);color:white;font-weight:700;font-size:1rem;padding:0.875rem 2rem;border-radius:6px;text-decoration:none;transition:background 0.2s,transform 0.15s;box-shadow:0 4px 20px rgba(124,92,191,0.45);" onmouseover="this.style.background='#6a4eab';this.style.transform='translateY(-1px)'" onmouseout="this.style.background='var(--color-violet)';this.style.transform='none'">Get My Free Reading →</a>
+         <a href="#compatibility" style="display:inline-flex;align-items:center;gap:0.5rem;background:rgba(255,255,255,0.08);backdrop-filter:blur(6px);color:#f5f0e8;font-weight:600;font-size:1rem;padding:0.875rem 1.75rem;border-radius:6px;text-decoration:none;border:1.5px solid rgba(255,255,255,0.2);transition:border-color 0.2s,background 0.2s;" onmouseover="this.style.background='rgba(255,255,255,0.15)';this.style.borderColor='rgba(255,255,255,0.4)'" onmouseout="this.style.background='rgba(255,255,255,0.08)';this.style.borderColor='rgba(255,255,255,0.2)'">Explore LP11 Compatibility ↓</a>
+       </div>
+     </div>
+     <div style="flex-shrink:0;width:clamp(200px,28vw,300px);filter:drop-shadow(0 8px 40px rgba(196,162,78,0.25)) drop-shadow(0 2px 12px rgba(0,0,0,0.6));">
+       <img src="/images/learn/Master Number 11 - The Intuitive Master.webp" alt="Life Path 11 — The Intuitive Master tarot card" fetchpriority="high" style="width:100%;border-radius:6px;display:block;" />
+     </div>
+   </div>
+ </section>
+
+  <!-- Author byline -->
+ <div style="background:var(--color-light-bg);padding:1.25rem 1.5rem;">
+   <div style="max-width:1100px;margin:0 auto;display:flex;align-items:center;gap:1rem;">
+     <img src="/images/author-maddi-green.webp" alt="Maddie Greene" style="width:2.75rem;height:2.75rem;border-radius:50%;object-fit:cover;flex-shrink:0;border:2px solid rgba(124,92,191,0.2);" />
+     <div>
+       <p style="color:var(--color-body-text);font-size:0.875rem;font-weight:600;margin:0 0 0.1rem;">Written by <strong>Maddie Greene</strong></p>
+       <p style="color:var(--color-muted-text);font-size:0.78rem;margin:0;">Numerology writer &amp; researcher</p>
+     </div>
+   </div>
+ </div>
+
+  <!-- Content + Sticky sidebar wrapper -->
+  <div class="xl:flex xl:gap-6 xl:max-w-[1200px] xl:mx-auto xl:px-4">
+    <!-- Main content column -->
+    <div class="xl:flex-1 xl:min-w-0">
+
+ <article style="padding:2rem 1.5rem 3rem;background:var(--color-card-bg);">
+ <div class="max-w-3xl mx-auto xl:mx-0 xl:max-w-none">
+
+ <!-- What does LP11 mean -->
+ <section class="mb-10">
+ <div class="max-w-3xl mx-auto">
+ <h2 class="section-h2">
+ What does life path number 11 mean?
+ </h2>
+ <div class="space-y-4 text-muted-text leading-relaxed">
+ <p>
+ Life path 11 is numerology's first master number. It's one of three double-digit numbers (11, 22, 33) that never reduce to a single digit. Master numbers carry amplified energy. More potential, more pressure, more of a pull toward a specific kind of work.
+ </p>
+ <p>
+ LP11 contains LP2's sensitivity and relational depth, elevated. Where LP2 is attuned to the emotional field around them, LP11 taps into something larger: inspiration, spiritual insight, the transmission of ideas and feelings that go beyond the ordinary. The 11 is less diplomat than channel.
+ </p>
+ <p>
+ The core challenge for life path 11 is learning to live at the voltage their nature requires. The sensitivity is real and it demands real attention. LP11s who haven't built practices for grounding themselves, protecting their energy, and tolerating the gap between their vision and their current reality tend to underperform relative to what they're actually capable of - or to burn out trying to match the intensity they sense is possible.
+ </p>
+ <div class="card-light p-5 mt-6">
+ <p class="text-sm text-body-text"><span class="font-semibold">Note on master numbers:</span> LP11 also resonates with LP2 energy, since 1+1=2. Many LP11s operate closer to LP2 in early life and grow into the fuller expression of 11 with time and experience. If the LP11 description doesn't fully resonate, reading the <a href="/learn/life-path-number-2/" class="text-violet hover:underline">LP2 page</a> may add useful context.</p>
+ </div>
+ </div>
+ </div>
+ </section>
+
+ <!-- Traits image + intro -->
+ <section class="py-16 px-4">
+ <div class="max-w-5xl mx-auto">
+ <div class="grid md:grid-cols-2 gap-10 items-center">
+ <div>
+ <div class="mb-8 rounded-lg overflow-hidden border border-border/60 shadow-lg">
+ <img
+ src="/images/learn/Life Path Number 11 - Traits.webp"
+ alt="Life Path 11 - The Intuitive Master personality traits"
+ class="w-full h-64 object-cover"
+ />
+ </div>
+ </div>
+ <div>
+ <h2 class="section-h2">
+ Personality traits of life path 11s
+ </h2>
+ <p class="text-muted-text leading-relaxed mb-4">
+ LP11 often knows things before they can explain how. They walk into a situation and immediately sense what's actually happening-not the surface story, but what's underneath. This intuition is genuine and tends to be accurate in startling ways.
+ </p>
+ <p class="text-muted-text leading-relaxed mb-4">
+ People who spend time with LP11 tend to feel more alive to their own possibilities. The 11 doesn't try to do this; it just happens. It's one of the quieter gifts and one of the most impactful.
+ </p>
+ <p class="text-muted-text leading-relaxed">
+ The inner life of LP11 is intense and often turbulent. They feel more than they show, process more deeply than they appear to, and carry awareness of a larger potential they haven't quite found how to express. Learning to make peace with that gap-to move toward the bigger thing without being paralyzed-is central to their development.
+ </p>
+ </div>
+ </div>
+ </div>
+ </section>
+
+ <!-- Strengths and challenges -->
+ <section style="padding:3rem 1.5rem;background:var(--color-card-bg);">
+ <div class="max-w-5xl mx-auto">
+ <h2 class="section-h2" style="text-align:center;margin-bottom:2.5rem;">
+ Strengths &amp; Challenges
+ </h2>
+ <div class="grid md:grid-cols-2 gap-6">
+ <div>
+ <h3 class="text-lg font-bold font-[family-name:var(--font-family-heading)] text-body-text mb-4 flex items-center gap-2">
+ <span class="text-rpg-green text-xl">✦</span> Core Strengths
+ </h3>
+ <div class="space-y-4">
+ {strengths.map(s => (
+ <div class="card-light p-5">
+ <div class="font-semibold text-body-text mb-1">{s.title}</div>
+ <p class="text-sm text-muted-text leading-relaxed">{s.desc}</p>
+ </div>
+ ))}
+ </div>
+ </div>
+ <div>
+ <h3 class="text-lg font-bold font-[family-name:var(--font-family-heading)] text-body-text mb-4 flex items-center gap-2">
+ <span class="text-rpg-red text-xl">✦</span> Key Challenges
+ </h3>
+ <div class="space-y-4">
+ {challenges.map(c => (
+ <div class="card-light p-5">
+ <div class="font-semibold text-body-text mb-1">{c.title}</div>
+ <p class="text-sm text-muted-text leading-relaxed">{c.desc}</p>
+ </div>
+ ))}
+ </div>
+ </div>
+ </div>
+ </div>
+ </section>
+
+ <!-- Love and relationships -->
+ <section class="py-16 px-4">
+ <div class="max-w-3xl mx-auto">
+ <h2 class="section-h2">
+ Life path 11 in love &amp; relationships
+ </h2>
+ <div class="space-y-4 text-muted-text leading-relaxed">
+ <p>
+ LP11 in love is deeply feeling and capable of an intimacy most people rarely experience. Being truly seen by an LP11 runs deep. They perceive things you haven't put into words and hold that knowledge with care.
+ </p>
+ <p>
+ The challenge is sensitivity. LP11 picks up emotional information constantly-moods, unsaid things, shifts in energy-and can become destabilized by it all without good filters. Distinguishing what's theirs from what belongs to the partner is real, ongoing work.
+ </p>
+ <p>
+ LP11 also needs a partner who takes their inner life seriously, who doesn't dismiss intuition as superstition, and who creates enough safety for them to be fully themselves. An LP11 trying to explain away their fundamental nature tends to become diminished in ways that eventually break the relationship.
+ </p>
+ <p>
+ The strongest matches are LP2 (deep mutual attunement), LP7 (intellectual and spiritual depth), and LP4 (grounding and practical stability). Harder pairings are those where LP11's sensitivity is met with skepticism or dismissal.
+ </p>
+ </div>
+ </div>
+ </section>
+
+ <!-- Compatibility table -->
+ <section id="compatibility" style="padding:3rem 1.5rem;background:var(--color-card-bg);">
+ <div class="max-w-5xl mx-auto">
+ <h2 class="section-h2" style="text-align:center;">
+ Life path 11 compatibility
+ </h2>
+ <p class="text-center text-muted-text mb-10 max-w-xl mx-auto">
+ How life path 11 pairs with key life path numbers - based on depth of connection, complementary energies, and where things tend to become difficult.
+ </p>
+ <div class="overflow-x-auto">
+ <table style="width:100%;font-size:0.875rem;border-collapse:collapse;border:1px solid var(--color-border);border-radius:8px;overflow:hidden;box-shadow:0 2px 12px rgba(26,21,40,0.07);">
+ <thead>
+ <tr>
+ <th class="text-left px-4 py-3 text-xs uppercase tracking-wider">Life Path</th>
+ <th class="text-left px-4 py-3 text-xs uppercase tracking-wider">Archetype</th>
+ <th class="text-center px-4 py-3 text-xs uppercase tracking-wider">Match</th>
+ <th class="text-left px-4 py-3 text-xs uppercase tracking-wider hidden md:table-cell">Notes</th>
+ </tr>
+ </thead>
+ <tbody>
+ {compatibility.map(row => (
+ <tr>
+ <td class="px-4 py-3 font-bold text-violet text-base">{row.lp}</td>
+ <td class="px-4 py-3 text-body-text font-medium whitespace-nowrap">{row.label}</td>
+ <td class="px-4 py-3 text-center whitespace-nowrap">
+ {Array.from({length: 5}).map((_, i) => (
+ <span class={i < row.score ? "text-gold" : "text-border/40"}>★</span>
+ ))}
+ </td>
+ <td class="px-4 py-3 text-muted-text hidden md:table-cell">{row.verdict}</td>
+ </tr>
+ ))}
+ </tbody>
+ </table>
+ </div>
+ <p class="text-xs text-muted-text mt-4 text-center">
+ Compatibility ratings reflect general patterns across life path numbers. Individual charts always add nuance.
+ </p>
+ </div>
+ </section>
+
+ <!-- Career -->
+ <section class="py-16 px-4">
+ <div class="max-w-3xl mx-auto">
+ <h2 class="section-h2">
+ Career paths for life path 11
+ </h2>
+ <div class="space-y-4 text-muted-text leading-relaxed">
+ <p>
+ LP11 thrives in work that transmits something-ideas, feelings, insights. Teaching, writing, counseling, therapy, spiritual work, creative arts. Any role where sensitivity and depth are the product, not a liability.
+ </p>
+ <p>
+ LP11 also does well in roles that require reading people accurately: negotiation, diplomacy, crisis counseling, investigative journalism. Anywhere the invisible matters as much as the visible. That ability to perceive what's actually happening is a real professional asset.
+ </p>
+ <p>
+ The work LP11 struggles with most is work that requires sustained high-volume social performance with no recovery time, or work in environments that are chaotic, harsh, or indifferent to anything beyond the transactional. LP11 can function in difficult environments, but the cost is higher and the recovery slower than for most other numbers.
+ </p>
+ <p>
+ The 11 who finds work that uses their gifts tends to do something notable. The feeling of alignment when they're doing what they're here to do is distinctive. Flow that other roles don't produce, regardless of success.
+ </p>
+ </div>
+ </div>
+ </section>
+
+ <!-- Famous LP11s -->
+ <section style="padding:3rem 1.5rem;background:var(--color-card-bg);">
+ <div class="max-w-5xl mx-auto">
+ <h2 class="section-h2" style="text-align:center;margin-bottom:2.5rem;">
+ Famous life path 11s
+ </h2>
+ <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-5">
+ {famousLP11s.map(p => (
+ <div class="card-light p-5">
+ <div class="font-bold font-[family-name:var(--font-family-heading)] text-body-text mb-2">{p.name}</div>
+ <p class="text-sm text-muted-text leading-relaxed">{p.why}</p>
+ </div>
+ ))}
+ </div>
+ </div>
+ </section>
+
+ <!-- All life paths grid -->
+ <section class="py-16 px-4">
+ <div class="max-w-5xl mx-auto">
+ <h2 class="section-h2" style="text-align:center;">
+ Explore all life path numbers
+ </h2>
+ <p class="text-center text-muted-text mb-10 max-w-xl mx-auto">
+ Each life path number carries its own strengths and tensions. Explore them all, or find yours if you haven't already.
+ </p>
+ <div class="grid grid-cols-3 sm:grid-cols-4 md:grid-cols-6 gap-3">
+ {allLifePaths.map(lp => (
+ <a
+ href={`/learn/life-path-number-${lp.n}/`}
+ class:list={[
+ "card-light p-3 text-center group block transition-all",
+ lp.n === "11" ? "ring-2 ring-violet/40" : ""
+ ]}
+ >
+ <div class:list={[
+ "text-2xl font-bold font-[family-name:var(--font-family-heading)] mb-1 group-hover:text-violet transition-colors",
+ lp.n === "11" ? "text-violet" : "text-body-text"
+ ]}>
+ {lp.n}
+ </div>
+ <div class="text-xs text-muted-text leading-tight">{lp.name}</div>
+ </a>
+ ))}
+ </div>
+ </div>
+ </section>
+
+ <!-- How to calculate -->
+ <section style="padding:3rem 1.5rem;background:var(--color-card-bg);border-top:1px solid var(--color-border);">
+ <div class="max-w-3xl mx-auto">
+ <h2 class="section-h2">
+ How to find your life path number
+ </h2>
+ <p class="text-muted-text leading-relaxed mb-6">
+ To find your life path number, reduce your full birth date to a single digit - or a master number. Write out your date of birth as three parts: month, day, and year. Reduce each to a single digit, then add them. If the result is 11, 22, or 33, stop - don't reduce further.
+ </p>
+ <div class="card-light p-6 mb-6">
+ <div class="font-bold text-body-text mb-4 font-[family-name:var(--font-family-heading)]">
+ Example: February 17, 1963
+ </div>
+ <div class="space-y-2 text-sm font-mono">
+ <div class="flex items-center gap-2">
+ <span class="text-violet font-bold w-16 shrink-0">Month:</span>
+ <span class="text-muted-text">2 (February = 2)</span>
+ </div>
+ <div class="flex items-center gap-2">
+ <span class="text-violet font-bold w-16 shrink-0">Day:</span>
+ <span class="text-muted-text">1 + 7 = 8</span>
+ </div>
+ <div class="flex items-center gap-2">
+ <span class="text-violet font-bold w-16 shrink-0">Year:</span>
+ <span class="text-muted-text">1 + 9 + 6 + 3 = 19 → 1 + 9 = 10 → 1 + 0 = 1</span>
+ </div>
+ <div class="border-t border-border/40 pt-2 mt-2 flex items-center gap-2">
+ <span class="text-gold font-bold w-16 shrink-0">Total:</span>
+ <span class="text-body-text font-bold">2 + 8 + 1 = <span class="text-violet">11</span> ← master number, not reduced</span>
+ </div>
+ </div>
+ </div>
+ <p class="text-muted-text leading-relaxed mb-4">
+ The master number rule: if your final total is 11, 22, or 33, it stays as-is. These are the only numbers in numerology that are never reduced.
+ </p>
+ <p class="text-muted-text leading-relaxed">
+ Want step-by-step examples for every possible scenario?
+ <a href="/learn/how-to-calculate-life-path-number/" class="text-violet hover:underline font-medium">Read the full calculation guide →</a>
+ </p>
+ </div>
+ </section>
+
+ <!-- FAQ -->
+ <section class="py-16 px-4">
+ <div class="max-w-3xl mx-auto">
+ <h2 class="section-h2" style="text-align:center;margin-bottom:2.5rem;">
+ Common questions about life path 11
+ </h2>
+ <div class="space-y-4">
+ {[
+ {
+ q: "What does life path 11 mean?",
+ a: "Life path 11 is the Intuitive Master-the first master number in numerology. It describes a life with heightened intuition, sensitivity, and awareness of layers other people miss. LP11 is called more to inspire and illuminate than to simply achieve. The arc of development is learning to live at the voltage that potential requires."
+ },
+ {
+ q: "Is life path 11 rare?",
+ a: "Master numbers are less common than single-digit life paths, but they're not vanishingly rare. What's actually rare is the LP11 who has fully developed the gifts-who has grounded their sensitivity, trusted their intuition, and stepped into the larger contribution they sense coming. That level of development is uncommon in any number."
+ },
+ {
+ q: "What is the difference between life path 11 and life path 2?",
+ a: "LP11 reduces to LP2 (1+1=2), and both share sensitivity and relational depth. The difference is in scale. LP2 is fundamentally interpersonal: connection, diplomacy, emotional intelligence within relationships. LP11 carries this forward into a larger field: inspiration, spiritual awareness, transmitting something beyond the personal. LP11 feels the weight of a larger calling. LP2 tends to be more at ease in ordinary life."
+ },
+ {
+ q: "Why is 11 a master number?",
+ a: "In Pythagorean numerology, 11, 22, and 33 are the master numbers-the three double-digit numbers that repeat a single digit. This repetition amplifies the base energy: LP11 carries double the 1 energy (leadership, independence) aligned with LP2's sensitivity. The result is a higher-vibration frequency with both increased gifts and increased demands. Master numbers indicate a life with a specific larger purpose, though what that purpose is requires the full chart."
+ },
+ {
+ q: "What careers suit life path 11?",
+ a: "Teaching, writing, counseling, spiritual direction, creative arts, public speaking. LP11 also does well in roles requiring fine perception: negotiation, diplomacy, investigation. What they need is work where sensitivity and intuitive accuracy are assets, not inconveniences. The 11 who finds that tends to do something memorable."
+ },
+ {
+ q: "Is life path 11 difficult to live with?",
+ a: "Often yes, especially before LP11 develops practices to work with their nature rather than against it. The sensitivity is real and demands management. The gap between what they sense they're capable of and current reality can produce real anxiety. The pull toward larger purpose without a clear path is disorienting for years. But the LP11 who works through that-who learns to ground, to trust their perception-describes a life that feels meaningful in a way few numbers reach."
+ },
+ ].map(item => (
+ <details class="card-light group">
+ <summary class="p-5 cursor-pointer font-semibold text-body-text flex items-center justify-between gap-4 list-none">
+ <span>{item.q}</span>
+ <span class="text-violet text-lg flex-shrink-0 group-open:rotate-45 transition-transform">+</span>
+ </summary>
+ <div class="px-5 pb-5 text-sm text-muted-text leading-relaxed border-t border-border/40 pt-4">
+ {item.a}
+ </div>
+ </details>
+ ))}
+ </div>
+ </div>
+ </section>
+
+
+ <!-- Cross-links to other number types -->
+ <section style="padding:2.25rem 1.5rem;background:var(--color-card-bg);;border-top:1px solid var(--color-border);">
+ <div class="max-w-5xl mx-auto">
+ <div class="flex items-center gap-3 mb-6">
+ <div class="p-divider"></div>
+ <h2 class="text-xl font-bold font-[family-name:var(--font-family-heading)] text-body-text whitespace-nowrap px-2">Explore your other numbers</h2>
+ <div class="p-divider"></div>
+ </div>
+ <p class="text-sm text-muted-text mb-5 text-center max-w-2xl mx-auto">Your life path number is the foundation - but your full chart has more to say. These three numbers come from your birth name and reveal different layers of who you are.</p>
+ <div class="grid sm:grid-cols-3 gap-4 mt-4">
+ <a href="/learn/expression-number/" class="card-light overflow-hidden group block">
+    <img src="/images/learn/Expression Numbers - Tile.webp" alt="Expression Numbers" loading="lazy" style="width:100%;aspect-ratio:2/3;object-fit:cover;" />
+    <div class="p-5">
+ <div class="text-xs text-violet font-semibold uppercase tracking-wider mb-2">Your Name</div>
+ <div class="font-bold font-[family-name:var(--font-family-heading)] text-body-text group-hover:text-violet transition-colors leading-tight mb-2">Expression Numbers</div>
+ <div class="text-xs text-muted-text">Your full birth name reveals the talents and abilities you're meant to develop.</div>
+      <div class="mt-3 text-xs font-semibold text-violet">Explore &rarr;</div>
+    </div>
+  </a>
+  <a href="/learn/soul-urge-number/" class="card-light overflow-hidden group block">
+    <img src="/images/learn/Soul Urge Numbers - Tile.webp" alt="Soul Urge Numbers" loading="lazy" style="width:100%;aspect-ratio:2/3;object-fit:cover;" />
+    <div class="p-5">
+      <div class="text-xs text-violet font-semibold uppercase tracking-wider mb-2">Your Heart</div>
+      <div class="font-bold font-[family-name:var(--font-family-heading)] text-body-text group-hover:text-violet transition-colors leading-tight mb-2">Soul Urge Numbers</div>
+      <div class="text-xs text-muted-text">The vowels in your name reveal your deepest inner motivations and desires.</div>
+      <div class="mt-3 text-xs font-semibold text-violet">Explore &rarr;</div>
+    </div>
+  </a>
+  <a href="/learn/personality-number/" class="card-light overflow-hidden group block">
+    <img src="/images/learn/Personality Numbers - Tile.webp" alt="Personality Numbers" loading="lazy" style="width:100%;aspect-ratio:2/3;object-fit:cover;" />
+    <div class="p-5">
+      <div class="text-xs text-violet font-semibold uppercase tracking-wider mb-2">Your Outer Self</div>
+      <div class="font-bold font-[family-name:var(--font-family-heading)] text-body-text group-hover:text-violet transition-colors leading-tight mb-2">Personality Numbers</div>
+      <div class="text-xs text-muted-text">How the world sees you first - calculated from the consonants in your name.</div>
+      <div class="mt-3 text-xs font-semibold text-violet">Explore &rarr;</div>
+    </div>
+  </a>
+
+ </div>
+ </div>
+ </section>
+
+ </div>
+ </article>
+
+    </div><!-- end main content column -->
+    <SidebarCTA />
+  </div><!-- end flex wrapper -->
+
+ <!-- Bottom CTA -->
+ <section style="background:var(--color-midnight);padding:5.5rem 1.5rem;position:relative;overflow:hidden;text-align:center;">
+   <div style="position:absolute;inset:0;background:radial-gradient(ellipse at 50% 120%,rgba(124,92,191,0.18) 0%,transparent 70%);pointer-events:none;"></div>
+ <div class="relative z-10 max-w-2xl mx-auto text-center">
+ <p class="text-starlight/60 text-sm uppercase tracking-widest mb-3">Your full chart goes deeper</p>
+ <h2 class="section-h2" style="color:var(--color-starlight);">
+ Life path 11 is just one number
+ </h2>
+ <p class="text-starlight/70 leading-relaxed mb-8">
+ Your life path describes the terrain. Your expression number, soul urge, and personality number add the full picture - what you're here to do, what you actually want, and how the world sees you before it knows you. A free reading from Numerologist.com calculates all of it.
+ </p>
+ <a
+ href="https://8904b5z1168aar3k8annz7y61n.hop.clickbank.net"
+ target="_blank"
+ rel="noopener sponsored"
+ style="display:inline-flex;align-items:center;gap:0.5rem;background:var(--color-soft-gold);color:var(--color-midnight);font-weight:700;font-size:0.95rem;padding:0.875rem 1.75rem;border-radius:6px;text-decoration:none;margin:0 auto;transition:opacity 0.2s;"
+ >
+ Get Your Free Reading
+ </a>
+ <p class="text-starlight/40 text-xs mt-4">Free via Numerologist.com - no payment required</p>
+ </div>
+ </section>
+
+</Layout>

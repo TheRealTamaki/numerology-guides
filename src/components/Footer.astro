@@ -1,0 +1,62 @@
+﻿---
+const year = new Date().getFullYear();
+---
+
+<footer class="relative bg-midnight border-t border-white/5">
+  <div class="relative z-10 max-w-6xl mx-auto px-4 py-12">
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-8 mb-8">
+      <!-- Brand -->
+      <div>
+        <a href="/" class="flex items-center gap-2 text-lg font-bold font-[family-name:var(--font-family-heading)] mb-3">
+          <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="text-soft-gold" aria-hidden="true"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+          <span class="text-gold-gradient">Numerology Guides</span>
+        </a>
+        <p class="text-sm text-starlight/45 leading-relaxed">
+          Free guides to help you understand numerology - what your numbers mean, how to calculate them, and how to use them.
+        </p>
+      </div>
+
+      <!-- Quick links -->
+      <div>
+        <h3 class="text-xs font-semibold text-soft-gold uppercase tracking-widest mb-4">Learn</h3>
+        <ul class="space-y-2.5">
+          <li><a href="/learn/" class="text-sm text-starlight/50 hover:text-soft-gold transition-colors flex items-center gap-2"><svg xmlns="http://www.w3.org/2000/svg" width="8" height="8" viewBox="0 0 24 24" fill="currentColor" stroke="none" aria-hidden="true"><polygon points="5 3 19 12 5 21 5 3"/></svg>All Guides</a></li>
+          <li><a href="/learn/life-path-number/" class="text-sm text-starlight/50 hover:text-soft-gold transition-colors flex items-center gap-2"><svg xmlns="http://www.w3.org/2000/svg" width="8" height="8" viewBox="0 0 24 24" fill="currentColor" stroke="none" aria-hidden="true"><polygon points="5 3 19 12 5 21 5 3"/></svg>Life Path Numbers</a></li>
+          <li><a href="/learn/how-to-calculate-life-path-number/" class="text-sm text-starlight/50 hover:text-soft-gold transition-colors flex items-center gap-2"><svg xmlns="http://www.w3.org/2000/svg" width="8" height="8" viewBox="0 0 24 24" fill="currentColor" stroke="none" aria-hidden="true"><polygon points="5 3 19 12 5 21 5 3"/></svg>Calculate Your Number</a></li>
+          <li><a href="/about/" class="text-sm text-starlight/50 hover:text-soft-gold transition-colors flex items-center gap-2"><svg xmlns="http://www.w3.org/2000/svg" width="8" height="8" viewBox="0 0 24 24" fill="currentColor" stroke="none" aria-hidden="true"><polygon points="5 3 19 12 5 21 5 3"/></svg>About</a></li>
+        </ul>
+      </div>
+
+      <!-- Recommended reading -->
+      <div>
+        <h3 class="text-xs font-semibold text-soft-gold uppercase tracking-widest mb-4">Free Numerology Reading</h3>
+        <p class="text-sm text-starlight/45 leading-relaxed mb-4">
+          Get a free personalized video reading based on your name and birthdate - the best starting point once you know your numbers.
+        </p>
+        <a
+          href="https://8904b5z1168aar3k8annz7y61n.hop.clickbank.net"
+          target="_blank"
+          rel="noopener sponsored"
+          class="text-sm text-soft-gold font-semibold hover:text-gold transition-colors flex items-center gap-1.5"
+        >
+          <svg xmlns="http://www.w3.org/2000/svg" width="8" height="8" viewBox="0 0 24 24" fill="currentColor" stroke="none" aria-hidden="true"><polygon points="5 3 19 12 5 21 5 3"/></svg>
+          Get your free reading at Numerologist.com
+        </a>
+      </div>
+    </div>
+
+    <div class="rpg-divider"></div>
+
+    <div class="flex flex-col md:flex-row justify-between items-center gap-4">
+      <p class="text-xs text-starlight/30">
+        &copy; {year} Numerology Guides. All rights reserved.
+      </p>
+      <p class="text-xs text-starlight/25">
+        <a href="/privacy/" class="underline underline-offset-2 hover:text-starlight/50 transition-colors">Privacy Policy</a> · <a href="/disclaimer/" class="underline underline-offset-2 hover:text-starlight/50 transition-colors">Affiliate Disclaimer</a>
+      </p>
+    </div>
+  </div>
+
+  <!-- Bottom accent line -->
+  <div class="h-0.5 w-full" style="background: linear-gradient(90deg, transparent, var(--color-violet) 30%, var(--color-gold) 70%, transparent);"></div>
+</footer>

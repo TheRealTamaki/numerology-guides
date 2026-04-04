@@ -1,0 +1,57 @@
+---
+import StarRating from './StarRating.astro';
+
+interface Props {
+  name: string;
+  slug: string;
+  rating: number;
+  price: string;
+  tagline: string;
+  pros: string[];
+  badge?: string;
+}
+
+const { name, slug, rating, price, tagline, pros, badge } = Astro.props;
+---
+
+<div class="relative card-light p-6">
+  {badge && (
+    <div class="absolute -top-3 left-6 rpg-badge">
+      <svg xmlns="http://www.w3.org/2000/svg" width="10" height="10" viewBox="0 0 24 24" fill="currentColor" stroke="none" class="inline mr-1" aria-hidden="true"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>{badge}
+    </div>
+  )}
+
+  <div class="flex flex-col gap-4">
+    <div>
+      <h3 class="text-xl font-bold font-[family-name:var(--font-family-heading)] text-body-text mb-1">
+        {name}
+      </h3>
+      <StarRating rating={rating} size="md" />
+    </div>
+
+    <p class="text-muted-text text-sm leading-relaxed">{tagline}</p>
+
+    <div class="text-sm stat-box inline-block px-3 py-1.5 self-start">
+      <span class="text-muted-text">Price:</span>
+      <span class="text-violet font-bold text-lg ml-1">{price}</span>
+    </div>
+
+    <ul class="space-y-1.5">
+      {pros.slice(0, 3).map(pro => (
+        <li class="flex items-start gap-2 text-sm text-muted-text">
+          <span class="text-rpg-green mt-0.5 shrink-0 font-bold">+</span>
+          <span>{pro}</span>
+        </li>
+      ))}
+    </ul>
+
+    <div class="flex gap-3 mt-2">
+      <a href={`/reviews/${slug}/`} class="btn-secondary text-sm !py-2 !px-4">
+        Read Review
+      </a>
+      <a href={`/reviews/${slug}/#visit`} class="btn-cta text-sm !py-2 !px-4">
+        Visit Site →
+      </a>
+    </div>
+  </div>
+</div>

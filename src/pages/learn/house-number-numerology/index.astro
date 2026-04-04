@@ -1,0 +1,441 @@
+---
+import Layout from '../../../layouts/Layout.astro';
+import SidebarCTA from '../../../components/SidebarCTA.astro';
+import { houseNumbers } from '../../../data/houseNumbers';
+
+
+const faqSchema = {
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "How do you calculate your house number in numerology?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Add all the digits in your house or apartment number together until you get a single digit (1-9) or a master number (11, 22, or 33). For example, house number 347 would be 3 + 4 + 7 = 14, then 1 + 4 = 5. Your house number in numerology is 5. If your digits add to 11, 22, or 33, keep it as a master number — don't reduce further."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "What does your house number mean in numerology?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Your house number reveals the dominant energy of your living space. Each number from 1 to 9 (plus master numbers 11, 22, and 33) carries a specific vibration that influences the atmosphere, the experiences you have there, and what the space naturally supports. A 1 house favors independence, a 6 house favors family, an 8 house favors financial growth, and so on."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Which house number is the luckiest in numerology?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "No single house number is universally lucky. The best house number depends on what you need right now. A house number 8 is considered auspicious for wealth and career. A 6 is ideal for family harmony. A 3 is perfect for creative energy. The 'luckiest' house is the one whose energy matches your current goals and life season."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Does house number numerology apply to apartments?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Yes. Use your apartment number, not the building number. If your apartment is 7B, convert the letter using its position in the alphabet (B = 2), so 7B = 7 + 2 = 9. If your apartment is 204, add 2 + 0 + 4 = 6. The apartment number is the one that directly affects your personal space."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Can you change your house number energy?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "You can't change the number itself, but you can work with or compensate for its energy. Some numerologists suggest placing a different number inside your front door to shift the vibration. The more practical approach is understanding what your house number supports and what it doesn't, then using your own habits and choices to fill the gaps."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Are house numbers in numerology accurate?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Numerology is a self-awareness tool, not a science with controlled studies. What people consistently report is that knowing their house number energy helps them understand patterns they were already noticing — why one home felt energizing while another felt stagnant. The accuracy depends less on the numbers being 'real' and more on whether the framework helps you make better choices about your living environment."
+      }
+    }
+  ]
+};
+
+const breadcrumbSchema = {
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://numerologyguides.blog/" },
+    { "@type": "ListItem", "position": 2, "name": "Learn", "item": "https://numerologyguides.blog/learn/" },
+    { "@type": "ListItem", "position": 3, "name": "House Number Numerology" }
+  ]
+};
+---
+
+<link slot="head" rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400;1,600&display=swap" />
+<style>
+  :root { --font-family-heading: 'Cormorant Garamond', Georgia, serif; }
+  .p-label { font-size:0.7rem; letter-spacing:0.18em; text-transform:uppercase; color:var(--color-soft-gold); font-weight:600; }
+  .p-divider { width:48px; height:2px; background:var(--color-soft-gold); margin:0 auto; }
+  .section-h2 { font-family:var(--font-family-heading); font-size:clamp(1.6rem,3.5vw,2.25rem); font-weight:700; color:var(--color-body-text); margin:0 0 1.25rem; }
+  .ref-table { width:100%; border-collapse:collapse; font-size:0.875rem; }
+  .ref-table thead th { background:var(--color-light-bg); padding:0.75rem 1rem; text-align:left; font-weight:600; color:var(--color-body-text); border-bottom:2px solid var(--color-border); }
+  .ref-table tbody tr { border-bottom:1px solid var(--color-border); }
+  .ref-table tbody td { padding:0.65rem 1rem; color:var(--color-body-text); }
+  .faq-list details { border-top:1px solid var(--color-border); }
+  .faq-list details:last-child { border-bottom:1px solid var(--color-border); }
+  .faq-list summary { padding:1.3rem 0; cursor:pointer; display:flex; align-items:center; justify-content:space-between; gap:1rem; font-weight:600; font-size:1rem; color:var(--color-body-text); list-style:none; transition:color 0.2s; }
+  .faq-list summary::-webkit-details-marker { display:none; }
+  .faq-list details[open] summary { color:var(--color-violet); }
+  .faq-chevron { flex-shrink:0; transition:transform 0.25s; }
+  .faq-list details[open] .faq-chevron { transform:rotate(180deg); }
+  .faq-answer { padding-bottom:1.3rem; font-size:0.9rem; color:var(--color-muted-text); line-height:1.8; }
+</style>
+
+<Layout
+  schema={[faqSchema, breadcrumbSchema]}
+  title="House Number Numerology: What Your Address Means | Numerology Guides"
+  description="Find out what your house number means in numerology. Calculate your home's number and discover how it affects your energy, relationships, and daily life. Numbers 1-9 plus master numbers explained."
+>
+
+  <!-- Breadcrumb -->
+  <nav style="background:var(--color-card-bg);border-bottom:1px solid var(--color-border);padding:0.75rem 1.5rem;" aria-label="Breadcrumb">
+    <div style="max-width:1100px;margin:0 auto;display:flex;align-items:center;gap:0.5rem;font-size:0.8rem;color:var(--color-muted-text);">
+      <a href="/" style="color:var(--color-muted-text);text-decoration:none;" onmouseover="this.style.color='var(--color-violet)'" onmouseout="this.style.color='var(--color-muted-text)'">Home</a>
+      <svg xmlns="http://www.w3.org/2000/svg" width="8" height="8" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="9 18 15 12 9 6"/></svg>
+      <a href="/learn/" style="color:var(--color-muted-text);text-decoration:none;" onmouseover="this.style.color='var(--color-violet)'" onmouseout="this.style.color='var(--color-muted-text)'">Learn</a>
+      <svg xmlns="http://www.w3.org/2000/svg" width="8" height="8" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="9 18 15 12 9 6"/></svg>
+      <span style="color:var(--color-body-text);font-weight:600;">House Number Numerology</span>
+    </div>
+  </nav>
+
+  <!-- Hero -->
+  <section style="position:relative;overflow:hidden;padding:6rem 1.5rem 5rem;text-align:center;min-height:480px;display:flex;align-items:center;">
+    <div style="position:absolute;inset:0;z-index:0;">
+      <img
+        src="/images/learn/House Number Numerology Pillar Hero.webp"
+        alt=""
+        aria-hidden="true"
+        fetchpriority="high"
+        style="width:100%;height:100%;object-fit:cover;object-position:center 30%;display:block;"
+      />
+      <div style="position:absolute;inset:0;background:linear-gradient(to bottom, rgba(14,10,26,0.75) 0%, rgba(14,10,26,0.58) 45%, rgba(14,10,26,0.80) 100%);"></div>
+      <div style="position:absolute;inset:0;background-image:radial-gradient(circle,rgba(196,162,78,0.08) 1px,transparent 1px);background-size:28px 28px;pointer-events:none;"></div>
+    </div>
+    <div style="position:relative;z-index:2;max-width:760px;margin:0 auto;width:100%;">
+      <p class="p-label" style="margin-bottom:1.25rem;color:var(--color-soft-gold);opacity:0.9;">Applied Numerology</p>
+      <div class="p-divider" style="margin-bottom:1.75rem;"></div>
+      <h1 style="font-family:var(--font-family-heading);font-size:clamp(2.6rem,6.5vw,4.75rem);font-weight:700;line-height:1.08;color:#f5f0e8;letter-spacing:-0.02em;margin:0 0 1.5rem;text-shadow:0 2px 20px rgba(14,10,26,0.6);">
+        House Number<br><em style="color:#c8a8f0;font-style:italic;">Numerology</em>
+      </h1>
+      <p style="font-size:1.05rem;line-height:1.8;color:rgba(240,234,255,0.82);max-width:560px;margin:0 auto 2.5rem;text-shadow:0 1px 8px rgba(14,10,26,0.5);">
+        Your home has a number. That number carries an energy. And that energy quietly shapes what happens inside those walls every day.
+      </p>
+      <div style="display:flex;flex-wrap:wrap;gap:0.875rem;justify-content:center;">
+        <a href="https://8904b5z1168aar3k8annz7y61n.hop.clickbank.net" target="_blank" rel="noopener sponsored" style="display:inline-flex;align-items:center;gap:0.5rem;background:var(--color-violet);color:white;font-weight:700;font-size:1rem;padding:0.875rem 2rem;border-radius:6px;text-decoration:none;transition:background 0.2s,transform 0.15s;box-shadow:0 4px 20px rgba(124,92,191,0.45);" onmouseover="this.style.background='#6a4eab';this.style.transform='translateY(-1px)'" onmouseout="this.style.background='var(--color-violet)';this.style.transform='none'">Get My Free Reading →</a>
+        <a href="#numbers" style="display:inline-flex;align-items:center;gap:0.5rem;background:rgba(255,255,255,0.1);backdrop-filter:blur(6px);color:#f5f0e8;font-weight:600;font-size:1rem;padding:0.875rem 1.75rem;border-radius:6px;text-decoration:none;border:1.5px solid rgba(255,255,255,0.25);transition:border-color 0.2s,background 0.2s;" onmouseover="this.style.background='rgba(255,255,255,0.18)';this.style.borderColor='rgba(255,255,255,0.45)'" onmouseout="this.style.background='rgba(255,255,255,0.1)';this.style.borderColor='rgba(255,255,255,0.25)'">Find My Number ↓</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Author byline -->
+  <div style="background:var(--color-light-bg);padding:1.25rem 1.5rem;">
+    <div style="max-width:1100px;margin:0 auto;display:flex;align-items:center;gap:1rem;">
+      <img src="/images/author-maddi-green.webp" alt="Maddie Greene" style="width:2.75rem;height:2.75rem;border-radius:50%;object-fit:cover;flex-shrink:0;border:2px solid rgba(124,92,191,0.2);" />
+      <div>
+        <p style="color:var(--color-body-text);font-size:0.875rem;font-weight:600;margin:0 0 0.1rem;">Written by <strong>Maddie Greene</strong></p>
+        <p style="color:var(--color-muted-text);font-size:0.78rem;margin:0;">Numerology writer &amp; researcher</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- Content + Sticky sidebar wrapper -->
+  <div class="xl:flex xl:gap-6 xl:max-w-[1200px] xl:mx-auto xl:px-4">
+    <!-- Main content column -->
+    <div class="xl:flex-1 xl:min-w-0">
+
+  <!-- Main content -->
+  <article style="background:white;padding-top:1.5rem;padding-bottom:2.5rem;" class="px-4">
+    <div class="max-w-3xl mx-auto xl:mx-0 xl:max-w-none">
+
+      <!-- What is house number numerology -->
+      <section id="what" class="mb-10">
+        <h2 class="section-h2">What is house number numerology?</h2>
+
+        <p style="color:var(--color-body-text);line-height:1.8;margin-bottom:1rem;">
+          Every address has a number. In numerology, that number isn't random. It carries a specific vibration that affects the energy of the space, the people living in it, and the experiences that tend to unfold there. House number numerology is the study of what your address means and how to work with it.
+        </p>
+
+        <p style="color:var(--color-body-text);line-height:1.8;margin-bottom:1rem;">
+          Think of it like this: your life path number describes who you are. Your house number describes the energy of the space you live in. Sometimes those match beautifully. A life path 4 in a 4 house will feel deeply at home. Sometimes they create useful tension. A life path 4 in a 5 house might find the change energy uncomfortable at first, but it's exactly the push they need to loosen up.
+        </p>
+
+        <p style="color:var(--color-body-text);line-height:1.8;margin-bottom:1rem;">
+          The numerology of your house doesn't override your personality or your choices. It's a background influence. Like the weather. You still decide what to wear and where to go. But knowing whether it's sunny or raining helps you make better decisions. Knowing whether your home carries 1 energy (independence) or 6 energy (family) helps you understand why certain patterns keep showing up.
+        </p>
+
+        <p style="color:var(--color-body-text);line-height:1.8;">
+          And here's the practical part: you can choose a house number that supports what you're building. Looking for a home to start a family? A 6 house. Building a business? An 8 house. Need a creative reset? A 3 house. The number won't do the work for you, but it creates conditions that make certain outcomes more natural.
+        </p>
+      </section>
+
+      <!-- How to calculate -->
+      <section id="calculate" class="mb-10">
+        <h2 class="section-h2">How to calculate your house number</h2>
+
+        <p style="color:var(--color-body-text);line-height:1.8;margin-bottom:1rem;">
+          Take your house or apartment number and add the digits together. Keep adding until you get a single digit (1 through 9) or a master number (11, 22, or 33).
+        </p>
+
+        <div class="card-light p-6 mb-6">
+          <h3 style="font-weight:700;font-family:var(--font-family-heading);color:var(--color-body-text);margin-bottom:1rem;">Examples</h3>
+          <div style="display:flex;flex-direction:column;gap:0.75rem;font-size:0.875rem;">
+            <div style="display:flex;align-items:flex-start;gap:0.75rem;">
+              <span style="font-family:monospace;font-weight:700;color:var(--color-violet);flex-shrink:0;">127</span>
+              <span style="color:var(--color-body-text);">→ 1 + 2 + 7 = 10 → 1 + 0 = <strong>1</strong></span>
+            </div>
+            <div style="display:flex;align-items:flex-start;gap:0.75rem;">
+              <span style="font-family:monospace;font-weight:700;color:var(--color-violet);flex-shrink:0;">45</span>
+              <span style="color:var(--color-body-text);">→ 4 + 5 = <strong>9</strong></span>
+            </div>
+            <div style="display:flex;align-items:flex-start;gap:0.75rem;">
+              <span style="font-family:monospace;font-weight:700;color:var(--color-violet);flex-shrink:0;">29</span>
+              <span style="color:var(--color-body-text);">→ 2 + 9 = <strong>11</strong> (master number, don't reduce)</span>
+            </div>
+            <div style="display:flex;align-items:flex-start;gap:0.75rem;">
+              <span style="font-family:monospace;font-weight:700;color:var(--color-violet);flex-shrink:0;">347</span>
+              <span style="color:var(--color-body-text);">→ 3 + 4 + 7 = 14 → 1 + 4 = <strong>5</strong></span>
+            </div>
+            <div style="display:flex;align-items:flex-start;gap:0.75rem;">
+              <span style="font-family:monospace;font-weight:700;color:var(--color-violet);flex-shrink:0;">Apt 7B</span>
+              <span style="color:var(--color-body-text);">→ 7 + 2 (B is 2nd letter) = <strong>9</strong></span>
+            </div>
+          </div>
+        </div>
+
+        <p style="color:var(--color-body-text);line-height:1.8;margin-bottom:1rem;">
+          <strong>Apartments:</strong> Use your apartment number, not the building number. The apartment is your personal space. That's the number that directly affects your daily energy.
+        </p>
+
+        <p style="color:var(--color-body-text);line-height:1.8;margin-bottom:1rem;">
+          <strong>Letters in the address:</strong> Convert each letter to its position in the alphabet. A = 1, B = 2, C = 3, and so on. Then add it to the number.
+        </p>
+
+        <p style="color:var(--color-body-text);line-height:1.8;">
+          <strong>Street names:</strong> Some numerologists include the full street name in the calculation, but the standard approach focuses on the house or apartment number alone. That's what we use throughout this guide.
+        </p>
+      </section>
+
+      <!-- All house numbers grid -->
+      <section id="numbers" class="mb-10">
+        <h2 class="section-h2">Every house number meaning</h2>
+
+        <p style="color:var(--color-body-text);line-height:1.8;margin-bottom:1.5rem;">
+          Each house number carries a distinct energy. Here's a quick overview of all 12 house numbers in numerology, from the single digits through the master numbers.
+        </p>
+
+        <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-5">
+          {houseNumbers.map(hn => (
+            <a href={`/learn/house-number-numerology/${hn.n}/`} class="group block rounded-xl overflow-hidden bg-white border border-gray-100 shadow-md hover:shadow-xl hover:-translate-y-1 transition-all duration-300">
+              <div class="overflow-hidden">
+                <img src={`/images/learn/house-number-numerology/House Number - ${hn.title}.webp`} alt={`House Number ${hn.n} - ${hn.title}`} class="w-full object-cover transition-transform duration-500 group-hover:scale-105" style="aspect-ratio:2/3;display:block;" loading="lazy" decoding="async" />
+              </div>
+              <div class="p-5">
+                <div class="flex items-center gap-3 mb-3">
+                  <div class="stat-box w-10 h-10 flex items-center justify-center text-lg font-bold text-violet font-[family-name:var(--font-family-heading)]">
+                    {hn.n}
+                  </div>
+                  <div>
+                    <div class="text-xs text-muted-text uppercase tracking-wider">House Number {hn.n}</div>
+                    <div class="font-bold text-body-text group-hover:text-violet transition-colors">{hn.title}</div>
+                  </div>
+                </div>
+                <p class="text-sm text-muted-text mb-3 leading-relaxed line-clamp-3">{hn.shortDesc}</p>
+                <div style="margin-top:0.75rem;font-size:0.875rem;font-weight:600;color:var(--color-violet);">
+                  Full guide →
+                </div>
+              </div>
+            </a>
+          ))}
+        </div>
+      </section>
+
+      <!-- How house numbers affect you -->
+      <section id="how-it-works" class="mb-10">
+        <h2 class="section-h2">How house numbers actually affect you</h2>
+
+        <p style="color:var(--color-body-text);line-height:1.8;margin-bottom:1rem;">
+          Your house number doesn't control your life. It sets the stage. Think of it as the default setting for your home environment. You can override it, work with it, or ignore it entirely. But understanding it gives you information you can use.
+        </p>
+
+        <p style="color:var(--color-body-text);line-height:1.8;margin-bottom:1rem;">
+          The energy of your house number influences three things: what the space naturally supports, what patterns tend to emerge there, and what challenges you're more likely to face. A house number 5 naturally supports change and adventure. The pattern that emerges is an active, social lifestyle. The challenge is instability and difficulty committing. Knowing this doesn't trap you. It prepares you.
+        </p>
+
+        <p style="color:var(--color-body-text);line-height:1.8;margin-bottom:1rem;">
+          Some people notice the energy immediately. They move into a 7 house and suddenly crave solitude and books. Others feel it gradually. After a year in a 6 house, they realize they've been cooking more, hosting more, and investing more in family connections. The house number is always working in the background. How loudly it speaks depends on how closely you're listening.
+        </p>
+
+        <p style="color:var(--color-body-text);line-height:1.8;">
+          And here's what matters most: your house number interacts with your personal numerology. Your life path number, your expression number, your personal year number. The house energy combines with your energy. Sometimes it amplifies what you already have. Sometimes it provides what you're missing. The interaction is always unique to you.
+        </p>
+      </section>
+
+      <!-- Choosing a house number -->
+      <section id="choosing" class="mb-10">
+        <h2 class="section-h2">Choosing a lucky house number</h2>
+
+        <p style="color:var(--color-body-text);line-height:1.8;margin-bottom:1rem;">
+          If you're choosing between homes, the house number can be a tiebreaker. Not the only factor, not even the main factor, but useful information. Here's a quick reference based on what you're looking for:
+        </p>
+
+        <div style="overflow-x:auto;margin-bottom:1.5rem;">
+          <table class="ref-table">
+            <thead>
+              <tr>
+                <th>If you need...</th>
+                <th>Choose house number</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr><td>Independence, fresh start</td><td><a href="/learn/house-number-numerology/1/" style="color:var(--color-violet);font-weight:600;text-decoration:none;" onmouseover="this.style.textDecoration='underline'" onmouseout="this.style.textDecoration='none'">1</a></td></tr>
+              <tr><td>Partnership, emotional depth</td><td><a href="/learn/house-number-numerology/2/" style="color:var(--color-violet);font-weight:600;text-decoration:none;" onmouseover="this.style.textDecoration='underline'" onmouseout="this.style.textDecoration='none'">2</a></td></tr>
+              <tr><td>Creativity, social energy</td><td><a href="/learn/house-number-numerology/3/" style="color:var(--color-violet);font-weight:600;text-decoration:none;" onmouseover="this.style.textDecoration='underline'" onmouseout="this.style.textDecoration='none'">3</a></td></tr>
+              <tr><td>Stability, long-term building</td><td><a href="/learn/house-number-numerology/4/" style="color:var(--color-violet);font-weight:600;text-decoration:none;" onmouseover="this.style.textDecoration='underline'" onmouseout="this.style.textDecoration='none'">4</a></td></tr>
+              <tr><td>Freedom, adventure, variety</td><td><a href="/learn/house-number-numerology/5/" style="color:var(--color-violet);font-weight:600;text-decoration:none;" onmouseover="this.style.textDecoration='underline'" onmouseout="this.style.textDecoration='none'">5</a></td></tr>
+              <tr><td>Family, nurturing, beauty</td><td><a href="/learn/house-number-numerology/6/" style="color:var(--color-violet);font-weight:600;text-decoration:none;" onmouseover="this.style.textDecoration='underline'" onmouseout="this.style.textDecoration='none'">6</a></td></tr>
+              <tr><td>Solitude, study, spirituality</td><td><a href="/learn/house-number-numerology/7/" style="color:var(--color-violet);font-weight:600;text-decoration:none;" onmouseover="this.style.textDecoration='underline'" onmouseout="this.style.textDecoration='none'">7</a></td></tr>
+              <tr><td>Financial growth, ambition</td><td><a href="/learn/house-number-numerology/8/" style="color:var(--color-violet);font-weight:600;text-decoration:none;" onmouseover="this.style.textDecoration='underline'" onmouseout="this.style.textDecoration='none'">8</a></td></tr>
+              <tr><td>Humanitarian work, letting go</td><td><a href="/learn/house-number-numerology/9/" style="color:var(--color-violet);font-weight:600;text-decoration:none;" onmouseover="this.style.textDecoration='underline'" onmouseout="this.style.textDecoration='none'">9</a></td></tr>
+              <tr><td>Spiritual awakening, intuition</td><td><a href="/learn/house-number-numerology/11/" style="color:var(--color-violet);font-weight:600;text-decoration:none;" onmouseover="this.style.textDecoration='underline'" onmouseout="this.style.textDecoration='none'">11</a></td></tr>
+              <tr><td>Legacy building, big visions</td><td><a href="/learn/house-number-numerology/22/" style="color:var(--color-violet);font-weight:600;text-decoration:none;" onmouseover="this.style.textDecoration='underline'" onmouseout="this.style.textDecoration='none'">22</a></td></tr>
+              <tr><td>Healing, unconditional love</td><td><a href="/learn/house-number-numerology/33/" style="color:var(--color-violet);font-weight:600;text-decoration:none;" onmouseover="this.style.textDecoration='underline'" onmouseout="this.style.textDecoration='none'">33</a></td></tr>
+            </tbody>
+          </table>
+        </div>
+
+        <p style="color:var(--color-body-text);line-height:1.8;">
+          A quick note about "auspicious" house numbers: in numerology, there's no universally good or bad number. An 8 house is auspicious for career growth but might feel relentless for someone who needs rest. A 7 house is perfect for introspection but might feel isolating for someone who craves community. The most auspicious house number is the one that matches what you actually need right now.
+        </p>
+      </section>
+
+      <!-- Feng shui connection -->
+      <section id="feng-shui" class="mb-10">
+        <h2 class="section-h2">House numerology and feng shui</h2>
+
+        <p style="color:var(--color-body-text);line-height:1.8;margin-bottom:1rem;">
+          Numerology and feng shui approach home energy from different angles, but they overlap in interesting ways. Feng shui looks at the flow of energy through physical space. Numerology looks at the vibrational quality of the number assigned to that space. Both agree on one thing: your home has energy, and that energy affects how you live.
+        </p>
+
+        <p style="color:var(--color-body-text);line-height:1.8;margin-bottom:1rem;">
+          In Chinese numerology, the number 8 is considered the most prosperous because it sounds like the word for wealth. The number 4 is avoided because it sounds like the word for death. Western numerology doesn't use these sound-based associations. It works with the vibrational meaning of each number instead. A 4 house in Western numerology is stable and secure, not unlucky.
+        </p>
+
+        <p style="color:var(--color-body-text);line-height:1.8;">
+          If you practice both feng shui and numerology, they can complement each other. Use your house number to understand the energy theme. Use feng shui to optimize how that energy flows through the physical space. The number tells you what the energy is. Feng shui tells you how to move it.
+        </p>
+      </section>
+
+      <!-- FAQ -->
+      <section id="faq" class="mb-10">
+        <h2 class="section-h2">Questions</h2>
+
+        <div class="faq-list">
+          <details>
+            <summary>How do you calculate your house number in numerology?<svg class="faq-chevron" xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="6 9 12 15 18 9"/></svg></summary>
+            <p class="faq-answer">Add all the digits in your house or apartment number together until you get a single digit (1–9) or a master number (11, 22, or 33). For example, house number 347 would be 3 + 4 + 7 = 14, then 1 + 4 = 5. Your house number in numerology is 5. If your digits add to 11, 22, or 33, keep it as a master number and don't reduce further.</p>
+          </details>
+          <details>
+            <summary>What does your house number mean in numerology?<svg class="faq-chevron" xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="6 9 12 15 18 9"/></svg></summary>
+            <p class="faq-answer">Your house number reveals the dominant energy of your living space. Each number carries a specific vibration that influences the atmosphere, the experiences you have, and what the space naturally supports. A 1 house favors independence. A 6 house favors family. An 8 house favors financial growth. The number doesn't control your life, but it sets the energetic backdrop for everything that happens inside those walls.</p>
+          </details>
+          <details>
+            <summary>Which house number is the luckiest in numerology?<svg class="faq-chevron" xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="6 9 12 15 18 9"/></svg></summary>
+            <p class="faq-answer">No single house number is universally lucky. The best house number depends on what you need in your current season of life. An 8 is auspicious for wealth building. A 6 is ideal for family harmony. A 3 supports creative energy. Choosing a "lucky" house number is really about choosing one whose energy aligns with your goals.</p>
+          </details>
+          <details>
+            <summary>Does house number numerology apply to apartments?<svg class="faq-chevron" xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="6 9 12 15 18 9"/></svg></summary>
+            <p class="faq-answer">Yes. Use your apartment number, not the building number. If your apartment is 7B, convert the letter to its position in the alphabet (B = 2), so 7B = 7 + 2 = 9. If your apartment is 204, add 2 + 0 + 4 = 6. The apartment number is the one that directly affects your personal living space.</p>
+          </details>
+          <details>
+            <summary>Can you change your house number energy?<svg class="faq-chevron" xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="6 9 12 15 18 9"/></svg></summary>
+            <p class="faq-answer">You can't change the number itself, but you can work with or compensate for its energy. Some numerologists suggest placing a different number inside your front door to shift the vibration. The more practical approach is understanding what your house number supports and what it doesn't, then using your own habits and choices to fill the gaps. Awareness is the first tool.</p>
+          </details>
+          <details>
+            <summary>Are house numbers in numerology accurate?<svg class="faq-chevron" xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="6 9 12 15 18 9"/></svg></summary>
+            <p class="faq-answer">Numerology is a self-awareness tool, not a hard science. What people consistently report is that knowing their house number energy helps them understand patterns they were already noticing. The 1 house resident who feels isolated isn't experiencing magic. They're recognizing a match between the environment's energy and their experience. Accuracy depends on whether the framework helps you make better choices about your living environment.</p>
+          </details>
+          <details>
+            <summary>Is house number 4 unlucky?<svg class="faq-chevron" xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="6 9 12 15 18 9"/></svg></summary>
+            <p class="faq-answer">In Chinese culture, 4 is associated with the word for death and is often avoided. In Western numerology, 4 is one of the most stable, secure house numbers. It represents structure, reliability, and long-term building. The "unlucky" association is cultural superstition specific to certain languages, not a numerological principle. In Western numerology, a 4 house is actually one of the best for families and stability.</p>
+          </details>
+          <details>
+            <summary>How do I find my house number numerology?<svg class="faq-chevron" xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="6 9 12 15 18 9"/></svg></summary>
+            <p class="faq-answer">Take the number on your house or apartment and add the digits together. Keep adding until you get a single digit (1–9) or a master number (11, 22, 33). For example, 56 becomes 5 + 6 = 11 (master number, stop). 742 becomes 7 + 4 + 2 = 13, then 1 + 3 = 4. That final number is your house number in numerology.</p>
+          </details>
+        </div>
+      </section>
+
+      <!-- Related guides -->
+      <section id="related" class="mb-10">
+        <h2 class="section-h2">Related guides</h2>
+
+        <div class="grid sm:grid-cols-2 md:grid-cols-3 gap-5">
+          <a href="/learn/life-path-number/" class="card-light overflow-hidden hover:border-violet/60 hover:-translate-y-0.5 transition-all duration-200 group block" style="text-decoration:none;">
+            <img src="/images/learn/Life Path Numbers - Tile.webp" alt="Life Path Numbers" class="w-full object-cover transition-transform duration-500 group-hover:scale-105" style="aspect-ratio:2/3;display:block;" loading="lazy" decoding="async" />
+            <div style="padding:1.25rem;">
+              <h3 class="font-bold text-body-text group-hover:text-violet transition-colors mb-1">Life Path Numbers</h3>
+              <p class="text-xs text-muted-text">Your core numerology number</p>
+            </div>
+          </a>
+          <a href="/learn/personal-year-number/" class="card-light overflow-hidden hover:border-violet/60 hover:-translate-y-0.5 transition-all duration-200 group block" style="text-decoration:none;">
+            <img src="/images/learn/Personal Year Numbers - Tile.webp" alt="Personal Year Number" class="w-full object-cover transition-transform duration-500 group-hover:scale-105" style="aspect-ratio:2/3;display:block;" loading="lazy" decoding="async" />
+            <div style="padding:1.25rem;">
+              <h3 class="font-bold text-body-text group-hover:text-violet transition-colors mb-1">Personal Year Numbers</h3>
+              <p class="text-xs text-muted-text">Your current annual cycle</p>
+            </div>
+          </a>
+          <a href="/learn/master-numbers/" class="card-light overflow-hidden hover:border-violet/60 hover:-translate-y-0.5 transition-all duration-200 group block" style="text-decoration:none;">
+            <img src="/images/learn/Master Numbers - Tile.webp" alt="Master Numbers" class="w-full object-cover transition-transform duration-500 group-hover:scale-105" style="aspect-ratio:2/3;display:block;" loading="lazy" decoding="async" />
+            <div style="padding:1.25rem;">
+              <h3 class="font-bold text-body-text group-hover:text-violet transition-colors mb-1">Master Numbers</h3>
+              <p class="text-xs text-muted-text">11, 22, 33 explained</p>
+            </div>
+          </a>
+          <a href="/calculator/" class="card-light overflow-hidden hover:border-violet/60 hover:-translate-y-0.5 transition-all duration-200 group block" style="text-decoration:none;">
+            <img src="/images/learn/Life Path Numbers - Tile.webp" alt="Numerology Calculator" class="w-full object-cover transition-transform duration-500 group-hover:scale-105" style="aspect-ratio:2/3;display:block;" loading="lazy" decoding="async" />
+            <div style="padding:1.25rem;">
+              <h3 class="font-bold text-body-text group-hover:text-violet transition-colors mb-1">Numerology Calculator</h3>
+              <p class="text-xs text-muted-text">Calculate all five core numbers</p>
+            </div>
+          </a>
+        </div>
+      </section>
+
+    </div>
+  </article>
+
+    </div><!-- end main content column -->
+    <SidebarCTA />
+  </div><!-- end flex wrapper -->
+
+  <!-- Bottom CTA -->
+  <section style="background:var(--color-midnight);padding:5rem 1.5rem;text-align:center;">
+    <div style="max-width:36rem;margin:0 auto;">
+      <p class="p-label" style="color:rgba(196,162,78,0.7);margin-bottom:0.75rem;">Go Deeper</p>
+      <h2 style="font-family:var(--font-family-heading);font-size:clamp(1.75rem,4vw,2.5rem);font-weight:700;color:var(--color-starlight);margin:0 0 1rem;">Want to see your full numerology chart?</h2>
+      <p style="color:rgba(255,255,255,0.65);font-size:1rem;line-height:1.75;margin:0 0 2rem;">
+        Your house number is one layer. Your life path, expression, soul urge, and personality numbers complete the picture. Get a free personalized reading that connects all the pieces.
+      </p>
+      <a
+        href="https://8904b5z1168aar3k8annz7y61n.hop.clickbank.net"
+        target="_blank"
+        rel="noopener sponsored"
+        style="display:inline-block;background:var(--color-soft-gold);color:var(--color-midnight);font-weight:700;font-size:1.05rem;padding:1rem 2.25rem;border-radius:0.5rem;text-decoration:none;letter-spacing:0.02em;transition:opacity 0.2s;"
+        onmouseover="this.style.opacity='0.88'"
+        onmouseout="this.style.opacity='1'"
+      >
+        Get Your Free Numerology Reading
+      </a>
+    </div>
+  </section>
+
+</Layout>

@@ -1,0 +1,403 @@
+---
+import Layout from '../../../layouts/Layout.astro';
+import SidebarCTA from '../../../components/SidebarCTA.astro';
+import { allNumbers, lifePathTraits, getAllPairs, getCompatibility, matchToStars } from '../../../data/compatibility';
+
+const pairs = getAllPairs();
+
+// Group pairs by first number for organized display
+const pairsByNumber: Record<string, typeof pairs> = {};
+for (const num of allNumbers) {
+  pairsByNumber[num] = pairs.filter(p => p.a === num && p.b !== p.a);
+}
+
+const lpPortrait: Record<string, string> = {
+  '1':  '/images/learn/Life Path Number 1 - The Leader.webp',
+  '2':  '/images/learn/Life Path Number 2 - The Peacemaker.webp',
+  '3':  '/images/learn/Life Path Number 3 - The Communicator.webp',
+  '4':  '/images/learn/Life Path Number 4 - The Builder.webp',
+  '5':  '/images/learn/Life Path Number 5 - The Adventurer.webp',
+  '6':  '/images/learn/Life Path Number 6 - The Nurturer.webp',
+  '7':  '/images/learn/Life Path Number 7 - The Seeker.webp',
+  '8':  '/images/learn/Life Path Number 8 - The Powerhouse.webp',
+  '9':  '/images/learn/Life Path Number 9 - The Humanitarian.webp',
+  '11': '/images/learn/Master Number 11 - The Intuitive Master.webp',
+  '22': '/images/learn/Master Number 22 - The Master Builder.webp',
+  '33': '/images/learn/Master Number 33 - The Master Teacher.webp',
+};
+
+const faqSchema = {
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "What is life path compatibility in numerology?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Life path compatibility looks at how two people's core numerology numbers interact. Your life path number, calculated from your birth date, carries a specific energy. Some energies naturally harmonize (like 2 and 6, both nurturers). Others create tension (like 1 and 8, both leaders who want control). Compatibility isn't about finding a 'perfect match'. It's about understanding the dynamics so you can work with them."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Can incompatible life path numbers have a successful relationship?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Absolutely. Numerology shows you the energy dynamics, not the verdict. A 'challenging' match just means you'll need more awareness and effort in specific areas. Some of the strongest relationships are between so-called incompatible numbers, because the friction creates growth. A 4 and 5 who learn to balance stability and freedom become more complete people. The numbers aren't a prison sentence."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Which life path numbers are most compatible?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Some of the strongest natural pairings include 2 and 6 (kindred nurturers), 1 and 2 (natural balance of leadership and support), 4 and 8 (power builders), 6 and 9 (compassionate idealists), and 7 and 11 (spiritual seekers). But 'most compatible' depends on what you value. If you want excitement, a 3 and 5 is electric. If you want depth, a 7 and 11 is unmatched. Compatibility isn't one-size-fits-all."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Does life path compatibility apply to friendships and work relationships?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Yes. Life path compatibility isn't just about romance. The same energy dynamics show up in friendships, business partnerships, family relationships, and work teams. A 1 and 3 make a great creative business partnership. A 4 and 22 can build organizations together. A 2 and 6 create loyal, lasting friendships. The dynamics are the same. The context just changes."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "How do master numbers affect compatibility?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Master numbers (11, 22, 33) carry amplified energy, which makes their compatibility dynamics more intense. An 11 feels everything more deeply than a 2. A 22 builds with more force than a 4. A 33 teaches with more authority than a 6. This intensity can be a gift or a challenge in relationships. It depends on the other person's ability to match that energy without being overwhelmed by it."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Is life path the only number that matters for compatibility?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "No. Life path is the most important single number, but your full chart includes your expression number, soul urge, personality number, and more. Two people with challenging life path compatibility might have beautifully aligned soul urge numbers, which means their deepest desires match even if their outer energies clash. Life path is the starting point, not the whole picture."
+      }
+    }
+  ]
+};
+
+const breadcrumbSchema = {
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://numerologyguides.blog/" },
+    { "@type": "ListItem", "position": 2, "name": "Learn", "item": "https://numerologyguides.blog/learn/" },
+    { "@type": "ListItem", "position": 3, "name": "Life Path Compatibility" }
+  ]
+};
+---
+
+<Layout
+  schema={[faqSchema, breadcrumbSchema]}
+  title="Life Path Compatibility: All 78 Pairs Explained | Numerology Guides"
+  description="Find out how your life path number pairs with every other number. Detailed compatibility insights for all 78 unique life path combinations in love, friendship, and work."
+>
+
+  <link slot="head" rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400;1,600&display=swap" />
+
+  <style>
+    :root { --font-family-heading: 'Cormorant Garamond', Georgia, serif; }
+    .p-label { font-size:0.7rem; letter-spacing:0.18em; text-transform:uppercase; color:var(--color-soft-gold); font-weight:600; }
+    .p-divider { width:48px; height:2px; background:var(--color-soft-gold); margin:0 auto; }
+    .section-h2 { font-family:var(--font-family-heading); font-size:clamp(1.6rem,3.5vw,2.25rem); font-weight:700; color:var(--color-body-text); margin:0 0 1.25rem; }
+    .faq-list details { border-top:1px solid var(--color-border); }
+    .faq-list details:last-child { border-bottom:1px solid var(--color-border); }
+    .faq-list summary { padding:1.3rem 0; cursor:pointer; display:flex; align-items:center; justify-content:space-between; gap:1rem; font-weight:600; font-size:1rem; color:var(--color-body-text); list-style:none; transition:color 0.2s; }
+    .faq-list summary::-webkit-details-marker { display:none; }
+    .faq-list details[open] summary { color:var(--color-violet); }
+    .faq-chevron { flex-shrink:0; transition:transform 0.25s; }
+    .faq-list details[open] .faq-chevron { transform:rotate(180deg); }
+    .faq-answer { padding-bottom:1.3rem; font-size:0.9rem; color:var(--color-muted-text); line-height:1.8; }
+    .pair-card { display:block; background:var(--color-card-bg); border:1px solid var(--color-border); border-radius:8px; padding:0.875rem 1rem; text-decoration:none; transition:border-color 0.2s, box-shadow 0.2s, transform 0.2s; }
+    .pair-card:hover { border-color:var(--color-violet); box-shadow:0 4px 16px rgba(124,92,191,0.1); transform:translateY(-1px); }
+    .match-strong { color:#16a34a; }
+    .match-good { color:var(--color-soft-gold); }
+    .match-challenging { color:#e11d48; }
+    .feat-card { display:block; background:white; border:1px solid var(--color-border); border-radius:8px; overflow:hidden; text-decoration:none; transition:box-shadow 0.25s, transform 0.25s; }
+    .feat-card:hover { box-shadow:0 12px 40px rgba(26,21,40,0.1); transform:translateY(-3px); }
+    .feat-img-wrap { overflow:hidden; }
+    .feat-card img { width:100%; aspect-ratio:2/3; object-fit:cover; object-position:top; transition:transform 0.5s; }
+    .feat-card:hover img { transform:scale(1.05); }
+    .feat-body { padding:1.25rem 1.5rem; }
+    .feat-link { display:inline-block; margin-top:0.75rem; font-size:0.8rem; font-weight:600; color:var(--color-violet); }
+    .lp-section-inner { display:flex; gap:1.75rem; align-items:flex-start; }
+    .lp-portrait { width:200px; flex-shrink:0; border-radius:10px; overflow:hidden; box-shadow:0 4px 24px rgba(14,10,26,0.18); }
+    .lp-portrait img { width:100%; display:block; object-fit:cover; }
+    @media (max-width:640px) { .lp-portrait { display:none; } }
+  </style>
+
+  <!-- Breadcrumb -->
+  <nav style="background:var(--color-card-bg);border-bottom:1px solid var(--color-border);padding:0.75rem 1.5rem;" aria-label="Breadcrumb">
+    <div style="max-width:1100px;margin:0 auto;display:flex;align-items:center;gap:0.5rem;font-size:0.75rem;color:var(--color-muted-text);">
+      <a href="/" style="color:var(--color-muted-text);text-decoration:none;">Home</a>
+      <svg xmlns="http://www.w3.org/2000/svg" width="8" height="8" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="9 18 15 12 9 6"/></svg>
+      <a href="/learn/" style="color:var(--color-muted-text);text-decoration:none;">Learn</a>
+      <svg xmlns="http://www.w3.org/2000/svg" width="8" height="8" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="9 18 15 12 9 6"/></svg>
+      <span style="color:var(--color-body-text);font-weight:600;">Life Path Compatibility</span>
+    </div>
+  </nav>
+
+  <!-- Hero -->
+  <section style="position:relative;overflow:hidden;padding:6rem 1.5rem 5rem;text-align:center;min-height:440px;display:flex;align-items:center;">
+    <!-- Background image -->
+    <div style="position:absolute;inset:0;z-index:0;">
+      <img
+        src="/images/learn/Life Path Compatibility Pillar Hero.webp"
+        alt=""
+        aria-hidden="true"
+        fetchpriority="high"
+        style="width:100%;height:100%;object-fit:cover;object-position:center 30%;display:block;"
+      />
+      <div style="position:absolute;inset:0;background:linear-gradient(to bottom, rgba(14,10,26,0.75) 0%, rgba(14,10,26,0.58) 45%, rgba(14,10,26,0.80) 100%);"></div>
+      <div style="position:absolute;inset:0;background-image:radial-gradient(circle,rgba(196,162,78,0.08) 1px,transparent 1px);background-size:28px 28px;pointer-events:none;"></div>
+    </div>
+    <!-- Ghost numerals (decorative) -->
+    <div aria-hidden="true" style="position:absolute;left:-1rem;top:0;z-index:1;font-family:var(--font-family-heading);font-size:clamp(14rem,28vw,22rem);font-weight:700;line-height:0.9;color:transparent;-webkit-text-stroke:1px rgba(196,162,78,0.18);pointer-events:none;user-select:none;">2</div>
+    <div aria-hidden="true" style="position:absolute;right:-1rem;bottom:-2rem;z-index:1;font-family:var(--font-family-heading);font-size:clamp(14rem,28vw,22rem);font-weight:700;line-height:0.9;color:transparent;-webkit-text-stroke:1px rgba(124,92,191,0.15);pointer-events:none;user-select:none;">6</div>
+    <!-- Content -->
+    <div style="position:relative;z-index:2;max-width:680px;margin:0 auto;width:100%;">
+      <p class="p-label" style="margin-bottom:1.25rem;color:var(--color-soft-gold);opacity:0.9;">Compatibility Guide</p>
+      <div class="p-divider" style="margin-bottom:1.75rem;"></div>
+      <h1 style="font-family:var(--font-family-heading);font-size:clamp(2.6rem,6.5vw,4.75rem);font-weight:700;line-height:1.08;color:#f5f0e8;letter-spacing:-0.02em;margin:0 0 1.25rem;text-shadow:0 2px 20px rgba(14,10,26,0.6);">
+        Life Path <em style="color:#c8a8f0;font-style:italic;">Compatibility</em>
+      </h1>
+      <p style="font-size:1.05rem;line-height:1.8;color:rgba(240,234,255,0.82);max-width:520px;margin:0 auto;text-shadow:0 1px 8px rgba(14,10,26,0.5);">Every life path number carries a specific energy. Some energies harmonize naturally. Others create friction that forces growth. Here's how every pairing actually works.</p>
+      <div style="display:flex;flex-wrap:wrap;gap:0.875rem;justify-content:center;margin-top:2rem;">
+        <a href="https://8904b5z1168aar3k8annz7y61n.hop.clickbank.net" target="_blank" rel="noopener sponsored" style="display:inline-flex;align-items:center;gap:0.5rem;background:var(--color-violet);color:white;font-weight:700;font-size:1rem;padding:0.875rem 2rem;border-radius:6px;text-decoration:none;transition:background 0.2s,transform 0.15s;box-shadow:0 4px 20px rgba(124,92,191,0.45);" onmouseover="this.style.background='#6a4eab';this.style.transform='translateY(-1px)'" onmouseout="this.style.background='var(--color-violet)';this.style.transform='none'">Get My Free Reading →</a>
+        <a href="#all-pairs" style="display:inline-flex;align-items:center;gap:0.5rem;background:rgba(255,255,255,0.1);backdrop-filter:blur(6px);color:#f5f0e8;font-weight:600;font-size:1rem;padding:0.875rem 1.75rem;border-radius:6px;text-decoration:none;border:1.5px solid rgba(255,255,255,0.25);transition:border-color 0.2s,background 0.2s;" onmouseover="this.style.background='rgba(255,255,255,0.18)';this.style.borderColor='rgba(255,255,255,0.45)'" onmouseout="this.style.background='rgba(255,255,255,0.1)';this.style.borderColor='rgba(255,255,255,0.25)'">Browse All 78 Pairs ↓</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Author byline -->
+  <div style="background:var(--color-light-bg);padding:1.25rem 1.5rem;">
+    <div style="max-width:1100px;margin:0 auto;display:flex;align-items:center;gap:1rem;">
+      <img src="/images/author-maddi-green.webp" alt="Maddie Greene" style="width:2.75rem;height:2.75rem;border-radius:50%;object-fit:cover;flex-shrink:0;border:2px solid rgba(124,92,191,0.2);" />
+      <div>
+        <p style="color:var(--color-body-text);font-size:0.875rem;font-weight:600;margin:0 0 0.1rem;">Written by <strong>Maddie Greene</strong></p>
+        <p style="color:var(--color-muted-text);font-size:0.78rem;margin:0;">Numerology writer &amp; researcher</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- Content + Sticky sidebar wrapper -->
+  <div class="xl:flex xl:gap-6 xl:max-w-[1200px] xl:mx-auto xl:px-4">
+    <!-- Main content column -->
+    <div class="xl:flex-1 xl:min-w-0">
+
+  <article style="padding:2rem 1.5rem 3rem;background:var(--color-card-bg);">
+    <div class="max-w-3xl mx-auto xl:mx-0 xl:max-w-none">
+
+      <!-- What is life path compatibility -->
+      <section id="what" style="margin-bottom:3rem;">
+        <h2 class="section-h2">What is life path compatibility?</h2>
+
+        <p style="color:var(--color-body-text);line-height:1.8;margin-bottom:1rem;">
+          Your life path number is calculated from your birth date. It describes your core energy, how you approach life, what drives you, and what challenges you naturally face. When two people come together, their life path energies interact. Sometimes that interaction is smooth. Sometimes it's friction. And sometimes it's the kind of friction that makes diamonds.
+        </p>
+
+        <p style="color:var(--color-body-text);line-height:1.8;margin-bottom:1rem;">
+          Compatibility in numerology isn't a verdict. It's a map. A "strong" match means the energies naturally flow together — less effort required for harmony. A "challenging" match means the energies push against each other — more awareness needed, but also more potential for growth.
+        </p>
+
+        <p style="color:var(--color-body-text);line-height:1.8;">
+          Here's the thing: some of the best relationships are between "incompatible" numbers. A life path 4 and a life path 5 are classically challenging. The 4 wants stability, the 5 wants freedom. But when they figure it out, both people become more complete. The 4 loosens up. The 5 learns to commit. That's not failure of compatibility. That's the whole point.
+        </p>
+      </section>
+
+      <!-- How to use compatibility -->
+      <section id="how-to-use" style="margin-bottom:3rem;padding-top:2rem;border-top:1px solid var(--color-border);">
+        <h2 class="section-h2">How to use this guide</h2>
+
+        <p style="color:var(--color-body-text);line-height:1.8;margin-bottom:1rem;">
+          First, you need both life path numbers. If you don't know yours, <a href="/calculator/" style="color:var(--color-soft-gold);text-decoration:none;border-bottom:1px solid rgba(196,162,78,0.4);">use our calculator</a>. Then find your pair below.
+        </p>
+
+        <p style="color:var(--color-body-text);line-height:1.8;margin-bottom:1rem;">
+          Each pair page covers the real dynamics — not just romance, but friendship and work relationships too. Because the same energies that create sparks in love also show up when you're trying to run a business with someone or navigate a lifelong friendship.
+        </p>
+
+        <p style="color:var(--color-body-text);line-height:1.8;margin-bottom:1rem;">
+          We rate each pairing as <strong>strong</strong> (natural harmony), <strong>good</strong> (works with some awareness), or <strong>challenging</strong> (requires real effort). But remember — "challenging" doesn't mean "doomed." It means you'll grow more.
+        </p>
+
+        <p style="color:var(--color-body-text);line-height:1.8;">
+          Want a quick answer? Try our <a href="/learn/compatibility/" style="color:var(--color-soft-gold);text-decoration:none;border-bottom:1px solid rgba(196,162,78,0.4);">interactive compatibility checker</a>. Enter two numbers and get an instant reading.
+        </p>
+      </section>
+
+      <!-- All compatibility pairs -->
+      <section id="all-pairs" style="margin-bottom:3rem;padding-top:2rem;border-top:1px solid var(--color-border);">
+        <h2 class="section-h2">All compatibility pairs</h2>
+
+        <p style="color:var(--color-muted-text);line-height:1.8;margin-bottom:2rem;">
+          Click any pair to read the full compatibility breakdown — love, friendship, work, and practical tips.
+        </p>
+
+        {allNumbers.map(num => {
+          const traits = lifePathTraits[num];
+          const displayPairs = pairs.filter(p => p.a === num && p.b !== p.a);
+          if (displayPairs.length === 0) return null;
+          const portrait = lpPortrait[num];
+
+          return (
+            <div style="margin-bottom:3rem;padding-bottom:3rem;border-bottom:1px solid var(--color-border);">
+              <div class="lp-section-inner">
+                <!-- Left: heading + pairs grid -->
+                <div style="flex:1;min-width:0;">
+                  <h3 style="font-family:var(--font-family-heading);font-size:1.35rem;font-weight:700;color:var(--color-body-text);margin:0 0 1.1rem;display:flex;align-items:center;gap:0.75rem;">
+                    <span style="font-size:2rem;color:var(--color-soft-gold);line-height:1;font-family:var(--font-family-heading);">{num}</span>
+                    <span>{traits.title}</span>
+                  </h3>
+                  <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:0.75rem;">
+                    {displayPairs.map(pair => {
+                      const compat = getCompatibility(pair.a, pair.b);
+                      const colorClass = compat?.match === 'strong' ? 'match-strong' : compat?.match === 'good' ? 'match-good' : 'match-challenging';
+                      return (
+                        <a href={`/learn/life-path-compatibility/${pair.slug}/`} class="pair-card">
+                          <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:0.35rem;">
+                            <span style="font-weight:700;color:var(--color-body-text);font-size:0.875rem;">{pair.a} &amp; {pair.b}</span>
+                            <span class={colorClass} style="font-size:0.72rem;font-weight:600;text-transform:capitalize;">{compat?.match}</span>
+                          </div>
+                          <p style="font-size:0.75rem;color:var(--color-muted-text);line-height:1.4;margin:0;">{compat?.verdict}</p>
+                        </a>
+                      );
+                    })}
+                  </div>
+                </div>
+                <!-- Right: portrait -->
+                {portrait && (
+                  <div class="lp-portrait">
+                    <img src={portrait} alt={`Life Path ${num} - ${traits.title}`} loading="lazy" decoding="async" />
+                  </div>
+                )}
+              </div>
+            </div>
+          );
+        })}
+
+        <!-- Same-number pairs -->
+        <div style="margin-bottom:2.5rem;">
+          <h3 style="font-family:var(--font-family-heading);font-size:1.2rem;font-weight:700;color:var(--color-body-text);margin:0 0 1rem;display:flex;align-items:center;gap:0.75rem;">
+            <span style="font-size:1.75rem;color:var(--color-soft-gold);line-height:1;">=</span>
+            <span>Same Number Pairs</span>
+          </h3>
+          <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:0.75rem;">
+            {allNumbers.map(num => {
+              const compat = getCompatibility(num, num);
+              const colorClass = compat?.match === 'strong' ? 'match-strong' : compat?.match === 'good' ? 'match-good' : 'match-challenging';
+              return (
+                <a href={`/learn/life-path-compatibility/${num}-and-${num}/`} class="pair-card">
+                  <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:0.35rem;">
+                    <span style="font-weight:700;color:var(--color-body-text);font-size:0.875rem;">{num} &amp; {num}</span>
+                    <span class={colorClass} style="font-size:0.72rem;font-weight:600;text-transform:capitalize;">{compat?.match}</span>
+                  </div>
+                  <p style="font-size:0.75rem;color:var(--color-muted-text);line-height:1.4;margin:0;">{compat?.verdict}</p>
+                </a>
+              );
+            })}
+          </div>
+        </div>
+      </section>
+
+      <!-- Interactive checker CTA -->
+      <section id="checker" style="margin-bottom:3rem;">
+        <div style="background:var(--color-light-bg);border:1px solid var(--color-border);border-radius:10px;padding:2.5rem 2rem;text-align:center;">
+          <p class="p-label" style="margin-bottom:0.75rem;">Quick tool</p>
+          <h2 style="font-family:var(--font-family-heading);font-size:clamp(1.4rem,3vw,2rem);font-weight:700;color:var(--color-body-text);margin:0 0 0.75rem;">Want an instant answer?</h2>
+          <div class="p-divider" style="margin:0 auto 1.25rem;"></div>
+          <p style="color:var(--color-muted-text);font-size:0.9rem;line-height:1.7;max-width:400px;margin:0 auto 1.75rem;">Use the interactive compatibility checker — enter two life path numbers and get a reading in seconds.</p>
+          <a href="/learn/compatibility/" style="display:inline-flex;align-items:center;gap:0.5rem;background:var(--color-violet);color:white;font-weight:700;font-size:0.95rem;padding:0.875rem 1.75rem;border-radius:6px;text-decoration:none;transition:background 0.2s;" onmouseover="this.style.background='#6a4eab'" onmouseout="this.style.background='var(--color-violet)'">Check Your Compatibility →</a>
+        </div>
+      </section>
+
+      <!-- FAQ -->
+      <section id="faq" style="margin-bottom:3rem;padding-top:2rem;border-top:1px solid var(--color-border);">
+        <h2 class="section-h2">Common questions</h2>
+
+        <div class="faq-list">
+          {faqSchema.mainEntity.map(item => (
+            <details>
+              <summary>
+                {item.name}
+                <svg class="faq-chevron" xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="6 9 12 15 18 9"/></svg>
+              </summary>
+              <div class="faq-answer">{item.acceptedAnswer.text}</div>
+            </details>
+          ))}
+        </div>
+      </section>
+
+      <!-- Related guides -->
+      <section id="related" style="margin-bottom:2rem;padding-top:2rem;border-top:1px solid var(--color-border);">
+        <h2 class="section-h2">Related guides</h2>
+
+        <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:1.25rem;">
+          <a href="/learn/life-path-number/" class="feat-card">
+            <div class="feat-img-wrap">
+              <img src="/images/learn/Life Path Numbers - Tile.webp" alt="Life Path Numbers" loading="lazy" decoding="async" />
+            </div>
+            <div class="feat-body">
+              <p class="p-label">Guide</p>
+              <h3 style="font-family:var(--font-family-heading);font-size:1.15rem;font-weight:700;color:var(--color-body-text);margin:0.4rem 0 0.5rem;">Life Path Numbers</h3>
+              <p style="font-size:0.82rem;color:var(--color-muted-text);line-height:1.5;margin:0;">All 12 life path numbers explained</p>
+              <span class="feat-link">Read guide →</span>
+            </div>
+          </a>
+          <a href="/learn/compatibility/" class="feat-card">
+            <div class="feat-img-wrap">
+              <img src="/images/learn/Numerology Compatibility - Tile.webp" alt="Compatibility Checker" loading="lazy" decoding="async" />
+            </div>
+            <div class="feat-body">
+              <p class="p-label">Tool</p>
+              <h3 style="font-family:var(--font-family-heading);font-size:1.15rem;font-weight:700;color:var(--color-body-text);margin:0.4rem 0 0.5rem;">Compatibility Checker</h3>
+              <p style="font-size:0.82rem;color:var(--color-muted-text);line-height:1.5;margin:0;">Instant compatibility reading tool</p>
+              <span class="feat-link">Try tool →</span>
+            </div>
+          </a>
+          <a href="/learn/soul-urge-number/" class="feat-card">
+            <div class="feat-img-wrap">
+              <img src="/images/learn/Soul Urge Numbers - Tile.webp" alt="Soul Urge Numbers" loading="lazy" decoding="async" />
+            </div>
+            <div class="feat-body">
+              <p class="p-label">Guide</p>
+              <h3 style="font-family:var(--font-family-heading);font-size:1.15rem;font-weight:700;color:var(--color-body-text);margin:0.4rem 0 0.5rem;">Soul Urge Numbers</h3>
+              <p style="font-size:0.82rem;color:var(--color-muted-text);line-height:1.5;margin:0;">Your heart's deepest desires</p>
+              <span class="feat-link">Read guide →</span>
+            </div>
+          </a>
+        </div>
+      </section>
+
+    </div>
+  </article>
+
+    </div><!-- end main content column -->
+    <SidebarCTA />
+  </div><!-- end flex wrapper -->
+
+  <!-- Bottom CTA -->
+  <section style="background:var(--color-midnight);padding:5.5rem 1.5rem;position:relative;overflow:hidden;text-align:center;">
+    <div style="position:absolute;inset:0;background:radial-gradient(ellipse at 50% 120%,rgba(124,92,191,0.18) 0%,transparent 70%);pointer-events:none;"></div>
+    <div style="position:relative;z-index:1;max-width:560px;margin:0 auto;">
+      <p class="p-label">Numerologist.com</p>
+      <div class="p-divider" style="margin:1rem auto;"></div>
+      <h2 style="font-family:var(--font-family-heading);font-size:clamp(1.85rem,4vw,2.9rem);font-weight:700;color:var(--color-starlight);margin:1rem 0;line-height:1.2;">
+        Ready to see what your numbers actually say?
+      </h2>
+      <p style="color:rgba(235,232,247,0.5);font-size:0.95rem;line-height:1.8;margin-bottom:2.5rem;">
+        Enter your name and birthdate. Get a free video reading built around you.
+      </p>
+      <a href="https://8904b5z1168aar3k8annz7y61n.hop.clickbank.net" target="_blank" rel="noopener sponsored" style="display:inline-flex;align-items:center;gap:0.5rem;background:var(--color-soft-gold);color:var(--color-midnight);font-weight:700;font-size:0.95rem;padding:0.875rem 1.75rem;border-radius:6px;text-decoration:none;margin:0 auto;transition:opacity 0.2s;" onmouseover="this.style.opacity='0.88'" onmouseout="this.style.opacity='1'">
+        Get your free reading at Numerologist.com
+        <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="9 18 15 12 9 6"/></svg>
+      </a>
+    </div>
+  </section>
+
+</Layout>

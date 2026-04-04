@@ -1,0 +1,91 @@
+﻿---
+import Layout from '../../layouts/Layout.astro';
+import SidebarCTA from '../../components/SidebarCTA.astro';
+---
+
+<link slot="head" rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400;1,600&display=swap" />
+<style>
+  :root { --font-family-heading: 'Cormorant Garamond', Georgia, serif; }
+</style>
+
+<Layout
+  title="Affiliate Disclaimer - Numerology Guides"
+  description="Numerology Guides participates in affiliate programs. This page explains how we earn commissions and how that affects our content."
+>
+  <section style="background:var(--color-light-bg);padding:4rem 1.5rem 3.5rem;position:relative;overflow:hidden;border-bottom:1px solid var(--color-border);">
+    <div style="position:absolute;inset:0;background-image:radial-gradient(circle,rgba(124,92,191,0.07) 1px,transparent 1px);background-size:28px 28px;pointer-events:none;"></div>
+    <div style="position:relative;z-index:1;max-width:760px;margin:0 auto;text-align:center;">
+      <h1 style="font-family:var(--font-family-heading);font-size:clamp(2rem,5vw,3rem);font-weight:700;color:var(--color-body-text);margin:0 0 0.75rem;">
+        Affiliate <span style="color:var(--color-soft-gold);">Disclaimer</span>
+      </h1>
+      <p style="color:var(--color-muted-text);font-size:0.875rem;margin:0;">Last updated: March 2026</p>
+    </div>
+  </section>
+
+  <!-- Content + Sticky sidebar wrapper -->
+  <div class="xl:flex xl:gap-6 xl:max-w-[1200px] xl:mx-auto xl:px-4">
+    <!-- Main content column -->
+    <div class="xl:flex-1 xl:min-w-0">
+
+  <section style="padding:2.5rem 1rem;background:white;">
+    <div class="max-w-2xl mx-auto xl:mx-0 xl:max-w-none space-y-5">
+
+      <div class="card-light p-6 md:p-8">
+        <h2 class="text-lg font-bold font-[family-name:var(--font-family-heading)] text-body-text mb-3">
+          <span class="text-violet mr-2">⬥</span> What this site is
+        </h2>
+        <p class="text-muted-text leading-relaxed text-sm">
+          Numerology Guides is a free educational website. All guides, articles, and explanations on this site are provided at no cost to readers. The site covers numerology topics including life path numbers, master numbers, compatibility, and calculation methods.
+        </p>
+      </div>
+
+      <div class="card-light p-6 md:p-8">
+        <h2 class="text-lg font-bold font-[family-name:var(--font-family-heading)] text-body-text mb-3">
+          <span class="text-violet mr-2">⬥</span> How we earn money
+        </h2>
+        <p class="text-muted-text leading-relaxed text-sm mb-3">
+          To cover operating costs, Numerology Guides uses affiliate links. This means that when you click a link on this site to an external service and subsequently make a purchase, we may receive a commission, at no additional cost to you.
+        </p>
+        <p class="text-muted-text leading-relaxed text-sm">
+          The primary affiliate relationship on this site is with <strong class="text-body-text">Numerologist.com</strong>, operated through the ClickBank affiliate network. We earn a commission if you purchase a paid report after accessing their free reading through our link.
+        </p>
+      </div>
+
+      <div class="card-light p-6 md:p-8">
+        <h2 class="text-lg font-bold font-[family-name:var(--font-family-heading)] text-body-text mb-3">
+          <span class="text-violet mr-2">⬥</span> How this affects our content
+        </h2>
+        <p class="text-muted-text leading-relaxed text-sm mb-3">
+          The affiliate relationship with Numerologist.com does not influence the educational content on this site. Guides are written to be accurate and useful, not to maximize clicks or conversions. We recommend Numerologist.com because it is the most established and widely used numerology platform available, not because it pays the highest commission.
+        </p>
+        <p class="text-muted-text leading-relaxed text-sm">
+          The free reading offered by Numerologist.com genuinely costs nothing. No payment or credit card is required to access the free video reading. We only mention paid reports where relevant, and we note clearly when something requires a purchase.
+        </p>
+      </div>
+
+      <div class="card-light p-6 md:p-8">
+        <h2 class="text-lg font-bold font-[family-name:var(--font-family-heading)] text-body-text mb-3">
+          <span class="text-violet mr-2">⬥</span> FTC compliance
+        </h2>
+        <p class="text-muted-text leading-relaxed text-sm">
+          In accordance with the U.S. Federal Trade Commission's guidelines on endorsements and testimonials (16 CFR Part 255), we disclose that this site contains affiliate links. Posts, pages, and recommendations that include affiliate links are marked with <code class="text-violet text-xs bg-violet/10 px-1.5 py-0.5 rounded">rel="sponsored"</code> on the underlying link element. This page serves as a site-wide disclosure covering all such links.
+        </p>
+      </div>
+
+      <div class="card-light p-6 md:p-8">
+        <h2 class="text-lg font-bold font-[family-name:var(--font-family-heading)] text-body-text mb-3">
+          <span class="text-violet mr-2">⬥</span> Questions
+        </h2>
+        <p class="text-muted-text leading-relaxed text-sm">
+          If you have any questions about how affiliate relationships work on this site, reach out at
+          <a href="mailto:hello@numerologyguides.blog" class="text-violet hover:underline font-medium">hello@numerologyguides.blog</a>.
+        </p>
+      </div>
+
+    </div>
+  </section>
+
+    </div><!-- end main content column -->
+    <SidebarCTA />
+  </div><!-- end flex wrapper -->
+</Layout>

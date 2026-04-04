@@ -1,0 +1,709 @@
+﻿---
+import Layout from '../../layouts/Layout.astro';
+import SidebarCTA from '../../components/SidebarCTA.astro';
+
+const breadcrumbSchema = {
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position": 1,
+      "name": "Home",
+      "item": "https://numerologyguides.blog"
+    },
+    {
+      "@type": "ListItem",
+      "position": 2,
+      "name": "Calculator",
+      "item": "https://numerologyguides.blog/calculator/"
+    }
+  ]
+};
+
+const faqSchema = {
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "What is the difference between Life Path Number and Expression Number?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Your Life Path Number comes from your birth date and shows the overall theme and direction of your life. Your Expression Number comes from your full name at birth and reveals your natural talents, gifts, and how you express yourself in the world. Think of it this way: Life Path is the terrain you're walking, Expression is how you walk it."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Why aren't master numbers 11, 22, and 33 reduced further?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Master numbers carry amplified energy and special significance in numerology. They're not reduced because that amplification is the whole point. An 11 isn't a 2-it's an elevated, intensified 1+1 energy. Same with 22 and 33. The only exception: if your Birthday Number, Soul Urge, or Personality Number is a master number, it stays as is. But if it's something like 47, that reduces to 4+7=11, which then stays as 11."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "What do the five numbers in this calculator actually tell me?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Your five core numbers paint a complete numerological picture. Life Path shows your overall direction. Expression shows your gifts and natural abilities. Soul Urge reveals your deepest wants and emotional core. Personality shows how others perceive you and how you show up publicly. Birthday Number gives you insight into your specific strengths and the energy of the day you were born."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Can I have a Life Path Number of 0?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "No. Life Path Numbers range from 1 to 9, plus the master numbers 11, 22, and 33. If you're getting 0, you've left out a step in the reduction. Make sure you're reducing each digit: 1+0 = 1, not 10 left as-is."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "What if my name is hyphenated or has a special spelling?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Use your full name exactly as it appears on your birth certificate. That's the name that carries the energy your parents (or the universe) intended for you. Hyphens, apostrophes, and spaces don't count-only the actual letters do. So if your name is Anne-Marie, you'd use A-N-N-E-M-A-R-I-E."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Should I use my birth name or the name I go by now?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Always use your birth name for Life Path and all the five core numbers in this calculator. Your birth name carries the vibration that corresponds to the energy of the moment you were born. If you've legally changed your name later in life, that's a separate numerological story-and it creates a Destiny Number worth exploring separately. But your five core numbers always come from your original birth name and date."
+      }
+    }
+  ]
+};
+---
+
+<link slot="head" rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400;1,600&display=swap" />
+<style>
+  :root { --font-family-heading: 'Cormorant Garamond', Georgia, serif; }
+  .p-label { font-size:0.7rem; letter-spacing:0.18em; text-transform:uppercase; color:var(--color-soft-gold); font-weight:600; }
+</style>
+
+<Layout
+  title="Numerology Calculator - Discover Your Five Core Numbers"
+  description="Enter your birth date and name. Get your Life Path, Expression, Soul Urge, Personality, and Birthday numbers instantly. Free numerology calculator with explanations."
+  schema={[breadcrumbSchema, faqSchema]}
+>
+
+  <!-- Hero -->
+  <section style="background:var(--color-light-bg);padding:4rem 1.5rem 3.5rem;position:relative;overflow:hidden;border-bottom:1px solid var(--color-border);">
+    <div style="position:absolute;inset:0;background-image:radial-gradient(circle,rgba(124,92,191,0.07) 1px,transparent 1px);background-size:28px 28px;pointer-events:none;"></div>
+    <div style="position:relative;z-index:1;max-width:56rem;margin:0 auto;text-align:center;">
+      <!-- Breadcrumb -->
+      <nav style="font-size:0.875rem;color:var(--color-muted-text);margin-bottom:1.5rem;display:flex;justify-content:center;gap:0.5rem;">
+        <a href="/" style="color:var(--color-muted-text);text-decoration:none;" onmouseover="this.style.color='var(--color-soft-gold)'" onmouseout="this.style.color='var(--color-muted-text)'">Home</a>
+        <span><svg xmlns="http://www.w3.org/2000/svg" width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="display:inline;"><polyline points="9 18 15 12 9 6"/></svg></span>
+        <span>Calculator</span>
+      </nav>
+
+      <span class="p-label" style="display:inline-block;margin-bottom:1rem;">Free Tool</span>
+
+      <h1 style="font-family:var(--font-family-heading);font-size:clamp(2rem,5vw,3.25rem);font-weight:700;color:var(--color-body-text);margin:0 0 1.25rem;line-height:1.15;">
+        Find Your <span style="color:var(--color-soft-gold);">Five Core Numbers</span>
+      </h1>
+
+      <p style="font-size:1.0625rem;color:var(--color-muted-text);max-width:36rem;margin:0 auto 2rem;line-height:1.7;">
+        Enter your birth date and full birth name. The calculator finds your Life Path, Expression, Soul Urge, Personality, and Birthday numbers instantly.
+      </p>
+    </div>
+  </section>
+
+  <!-- Calculator Section -->
+  <section style="position:relative;padding:3.5rem 1rem;background:var(--color-deep-purple);overflow:hidden;">
+    <div class="absolute inset-0 z-0">
+      <img src="/images/learn/Life Path Number 1 - Hero.webp" alt="" class="w-full h-full object-cover opacity-20" aria-hidden="true" />
+      <div class="absolute inset-0" style="background: linear-gradient(to bottom, rgba(10,5,30,0.85) 0%, rgba(10,5,30,0.95) 100%);"></div>
+    </div>
+    <div class="relative z-10 max-w-3xl mx-auto">
+
+      <!-- Input Form -->
+      <div class="bg-white rounded-xl shadow-xl p-6 md:p-8 mb-10 border border-white/10">
+        <h2 class="text-2xl font-bold font-[family-name:var(--font-family-heading)] text-body-text mb-6">Enter Your Information</h2>
+
+        <div class="space-y-6">
+          <!-- Date Input -->
+          <div>
+            <label for="birthDate" class="block text-sm font-semibold text-body-text mb-2">Date of Birth</label>
+            <input
+              type="date"
+              id="birthDate"
+              class="w-full px-4 py-2 border border-border rounded-lg bg-white text-body-text focus:outline-none focus:ring-2 focus:ring-violet"
+              placeholder="MM/DD/YYYY"
+            />
+          </div>
+
+          <!-- Name Input -->
+          <div>
+            <label for="birthName" class="block text-sm font-semibold text-body-text mb-2">Full Birth Name</label>
+            <input
+              type="text"
+              id="birthName"
+              class="w-full px-4 py-2 border border-border rounded-lg bg-white text-body-text focus:outline-none focus:ring-2 focus:ring-violet"
+              placeholder="e.g., Sarah Elizabeth Johnson"
+            />
+            <p class="text-xs text-muted-text mt-2">Use the name on your birth certificate. Spaces and hyphens don't count-only letters.</p>
+          </div>
+
+          <!-- Calculate Button -->
+          <div class="pt-4">
+            <button
+              id="calculateBtn"
+              style="display:block;width:100%;text-align:center;background:var(--color-violet);color:white;font-weight:700;font-size:1rem;padding:0.875rem 2rem;border-radius:6px;border:none;cursor:pointer;"
+            >
+              Calculate My Numbers
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Loading Overlay -->
+      <div id="loadingOverlay" class="hidden">
+        <div class="bg-white rounded-xl shadow-xl p-8 md:p-12 mb-10 border border-white/10 text-center">
+          <div class="mb-6">
+            <div class="inline-flex items-center justify-center w-20 h-20 rounded-full" style="background: linear-gradient(135deg, rgba(139,92,246,0.15), rgba(196,162,78,0.15)); border: 2px solid rgba(139,92,246,0.3);">
+              <span id="loadingNumber" class="text-4xl font-bold text-violet font-[family-name:var(--font-family-heading)] transition-all">9</span>
+            </div>
+          </div>
+          <h3 class="text-xl font-bold font-[family-name:var(--font-family-heading)] text-body-text mb-3">Reading Your Numbers</h3>
+          <p id="loadingStep" class="text-sm text-muted-text mb-6">Reducing birth date digits...</p>
+          <div class="max-w-xs mx-auto">
+            <div class="h-1.5 bg-gray-100 rounded-full overflow-hidden">
+              <div id="loadingBar" class="h-full rounded-full transition-all duration-500 ease-out" style="width: 0%; background: linear-gradient(90deg, var(--color-violet), var(--color-soft-gold));"></div>
+            </div>
+          </div>
+          <p id="loadingCalc" class="font-mono text-xs text-muted-text/60 mt-4 h-5">1 + 9 + 8 + 7 = 25 → 2 + 5 = 7</p>
+        </div>
+      </div>
+
+      <!-- Error Message (hidden by default) -->
+      <div id="errorMessage" class="hidden bg-rpg-red/10 border border-rpg-red text-rpg-red px-4 py-3 rounded-lg mb-8"></div>
+
+      <!-- Results Section (hidden by default) -->
+      <div id="resultsSection" class="hidden">
+        <h2 class="text-2xl font-bold font-[family-name:var(--font-family-heading)] text-white mb-8">Your Numbers</h2>
+
+        <!-- Grid of 5 number cards -->
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-4 mb-10">
+          <!-- Life Path -->
+          <div class="bg-white rounded-xl overflow-hidden shadow-md text-center">
+            <div class="aspect-[16/10] overflow-hidden">
+              <img src="/images/learn/Life Path Number 1 - Hero.webp" alt="Life Path Number" class="w-full h-full object-cover" loading="lazy" />
+            </div>
+            <div class="p-4">
+              <p class="text-xs text-muted-text font-semibold uppercase tracking-widest mb-2">Life Path</p>
+              <div class="text-5xl font-bold text-violet mb-2" id="lifePathNumber">-</div>
+              <p class="text-xs text-muted-text leading-snug">The overall theme and direction of your life journey.</p>
+              <a id="lifePathLink" href="#" class="text-xs font-semibold text-violet hover:text-soft-violet mt-2 inline-block">Learn More →</a>
+            </div>
+          </div>
+
+          <!-- Expression -->
+          <div class="bg-white rounded-xl overflow-hidden shadow-md text-center">
+            <div class="aspect-[16/10] overflow-hidden">
+              <img src="/images/learn/expression-numbers/Expression Number - The Creative.webp" alt="Expression Number" class="w-full h-full object-cover" loading="lazy" />
+            </div>
+            <div class="p-4">
+              <p class="text-xs text-muted-text font-semibold uppercase tracking-widest mb-2">Expression</p>
+              <div class="text-5xl font-bold text-violet mb-2" id="expressionNumber">-</div>
+              <p class="text-xs text-muted-text leading-snug">Your natural talents and how you express yourself.</p>
+              <a id="expressionLink" href="#" class="text-xs font-semibold text-violet hover:text-soft-violet mt-2 inline-block">Learn More →</a>
+            </div>
+          </div>
+
+          <!-- Soul Urge -->
+          <div class="bg-white rounded-xl overflow-hidden shadow-md text-center">
+            <div class="aspect-[16/10] overflow-hidden">
+              <img src="/images/learn/soul-urge-numbers/Soul Urge Number - Inner Fire.webp" alt="Soul Urge Number" class="w-full h-full object-cover" loading="lazy" />
+            </div>
+            <div class="p-4">
+              <p class="text-xs text-muted-text font-semibold uppercase tracking-widest mb-2">Soul Urge</p>
+              <div class="text-5xl font-bold text-violet mb-2" id="soulUrgeNumber">-</div>
+              <p class="text-xs text-muted-text leading-snug">Your deepest desires and emotional core.</p>
+              <a id="soulUrgeLink" href="#" class="text-xs font-semibold text-violet hover:text-soft-violet mt-2 inline-block">Learn More →</a>
+            </div>
+          </div>
+
+          <!-- Personality -->
+          <div class="bg-white rounded-xl overflow-hidden shadow-md text-center">
+            <div class="aspect-[16/10] overflow-hidden">
+              <img src="/images/learn/personality-numbers/Personality Number - The Arrival.webp" alt="Personality Number" class="w-full h-full object-cover" loading="lazy" />
+            </div>
+            <div class="p-4">
+              <p class="text-xs text-muted-text font-semibold uppercase tracking-widest mb-2">Personality</p>
+              <div class="text-5xl font-bold text-violet mb-2" id="personalityNumber">-</div>
+              <p class="text-xs text-muted-text leading-snug">How others perceive you and how you show up.</p>
+              <a id="personalityLink" href="#" class="text-xs font-semibold text-violet hover:text-soft-violet mt-2 inline-block">Learn More →</a>
+            </div>
+          </div>
+
+          <!-- Birthday -->
+          <div class="bg-white rounded-xl overflow-hidden shadow-md text-center">
+            <div class="aspect-[16/10] overflow-hidden">
+              <img src="/images/learn/birthday-numbers/Birthday Number - 1.webp" alt="Birthday Number" class="w-full h-full object-cover" loading="lazy" />
+            </div>
+            <div class="p-4">
+              <p class="text-xs text-muted-text font-semibold uppercase tracking-widest mb-2">Birthday</p>
+              <div class="text-5xl font-bold text-violet mb-2" id="birthdayNumber">-</div>
+              <p class="text-xs text-muted-text leading-snug">Your specific strengths and natural gifts.</p>
+              <a id="birthdayLink" href="#" class="text-xs font-semibold text-violet hover:text-soft-violet mt-2 inline-block">Learn More →</a>
+            </div>
+          </div>
+        </div>
+
+        <!-- Working explanation (collapsible) -->
+        <div class="card-light p-6 md:p-8 mb-10">
+          <button id="toggleWorkings" class="w-full text-left flex items-center justify-between">
+            <h3 class="text-lg font-bold font-[family-name:var(--font-family-heading)] text-body-text">How We Got These Numbers</h3>
+            <span id="toggleIcon" class="text-2xl text-violet">+</span>
+          </button>
+          <div id="workingsContent" class="hidden mt-6 space-y-4 text-sm text-muted-text">
+            <div>
+              <p class="font-semibold text-body-text mb-2">Life Path Number:</p>
+              <p id="lifePathWorking" class="font-mono text-xs bg-light-bg p-3 rounded">-</p>
+            </div>
+            <div>
+              <p class="font-semibold text-body-text mb-2">Expression Number:</p>
+              <p id="expressionWorking" class="font-mono text-xs bg-light-bg p-3 rounded">-</p>
+            </div>
+            <div>
+              <p class="font-semibold text-body-text mb-2">Soul Urge Number:</p>
+              <p id="soulUrgeWorking" class="font-mono text-xs bg-light-bg p-3 rounded">-</p>
+            </div>
+            <div>
+              <p class="font-semibold text-body-text mb-2">Personality Number:</p>
+              <p id="personalityWorking" class="font-mono text-xs bg-light-bg p-3 rounded">-</p>
+            </div>
+            <div>
+              <p class="font-semibold text-body-text mb-2">Birthday Number:</p>
+              <p id="birthdayWorking" class="font-mono text-xs bg-light-bg p-3 rounded">-</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- Content + Sticky sidebar wrapper -->
+  <div class="xl:flex xl:gap-6 xl:max-w-[1200px] xl:mx-auto xl:px-4">
+    <!-- Main content column -->
+    <div class="xl:flex-1 xl:min-w-0">
+
+  <!-- What These Numbers Mean Section -->
+  <section class="py-10 px-4 bg-light-bg">
+    <div class="max-w-3xl mx-auto xl:mx-0 xl:max-w-none">
+      <h2 class="text-2xl md:text-3xl font-bold font-[family-name:var(--font-family-heading)] text-body-text mb-6">How the Five Numbers Work Together</h2>
+
+      <div class="space-y-6 text-base leading-relaxed text-muted-text">
+        <p>Your five core numbers don't exist in isolation. They're a team, each one showing you a different facet of who you are and how you move through the world.</p>
+
+        <p><strong class="text-body-text">Your Life Path</strong> is the backbone. It's the core lesson you're here to learn and the overall direction of your life. Think of it as the terrain-mountains, rivers, valleys. It doesn't change.</p>
+
+        <p><strong class="text-body-text">Your Expression</strong> is what you bring to that terrain. It's your toolkit-your talents, your voice, how naturally you communicate and create. If Life Path is the landscape, Expression is how you move through it.</p>
+
+        <p><strong class="text-body-text">Your Soul Urge</strong> is what you really want underneath. It's the private you, your deepest motivations and emotional drivers. This is where your real satisfaction lives. Some people ignore this one and wonder why they succeed externally but feel empty.</p>
+
+        <p><strong class="text-body-text">Your Personality Number</strong> is your public face-how people read you when they first meet you, the energy you project. It's not fake; it's just not your whole story.</p>
+
+        <p><strong class="text-body-text">Your Birthday Number</strong> is a bonus. It amplifies certain strengths and shows you specific gifts the day you were born held for you.</p>
+
+        <p>When your Life Path and Expression are aligned-when what you're here to learn matches how you naturally express-life feels intentional. When your Soul Urge is honored alongside your Life Path, you get fulfillment on top of success. That's the real power of knowing these numbers.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- FAQ Section -->
+  <section class="py-10 px-4">
+    <div class="max-w-3xl mx-auto xl:mx-0 xl:max-w-none">
+      <h2 class="text-2xl md:text-3xl font-bold font-[family-name:var(--font-family-heading)] text-body-text mb-8">Questions About Your Numbers</h2>
+
+      <div class="space-y-4">
+        <!-- FAQ Item 1 -->
+        <details class="card-light p-6">
+          <summary class="cursor-pointer font-semibold text-body-text flex items-center justify-between">
+            What is the difference between Life Path Number and Expression Number?
+            <span class="text-xl text-violet">+</span>
+          </summary>
+          <p class="text-muted-text mt-4 text-sm leading-relaxed">Your Life Path Number comes from your birth date and shows the overall theme and direction of your life. Your Expression Number comes from your full name at birth and reveals your natural talents, gifts, and how you express yourself in the world. Think of it this way: Life Path is the terrain you're walking, Expression is how you walk it.</p>
+        </details>
+
+        <!-- FAQ Item 2 -->
+        <details class="card-light p-6">
+          <summary class="cursor-pointer font-semibold text-body-text flex items-center justify-between">
+            Why aren't master numbers 11, 22, and 33 reduced further?
+            <span class="text-xl text-violet">+</span>
+          </summary>
+          <p class="text-muted-text mt-4 text-sm leading-relaxed">Master numbers carry amplified energy and special significance in numerology. They're not reduced because that amplification is the whole point. An 11 isn't a 2-it's an elevated, intensified 1+1 energy. Same with 22 and 33. The only exception: if your Birthday Number, Soul Urge, or Personality Number is a master number, it stays as is. But if it's something like 47, that reduces to 4+7=11, which then stays as 11.</p>
+        </details>
+
+        <!-- FAQ Item 3 -->
+        <details class="card-light p-6">
+          <summary class="cursor-pointer font-semibold text-body-text flex items-center justify-between">
+            What do the five numbers in this calculator actually tell me?
+            <span class="text-xl text-violet">+</span>
+          </summary>
+          <p class="text-muted-text mt-4 text-sm leading-relaxed">Your five core numbers paint a complete numerological picture. Life Path shows your overall direction. Expression shows your gifts and natural abilities. Soul Urge reveals your deepest wants and emotional core. Personality shows how others perceive you and how you show up publicly. Birthday Number gives you insight into your specific strengths and the energy of the day you were born.</p>
+        </details>
+
+        <!-- FAQ Item 4 -->
+        <details class="card-light p-6">
+          <summary class="cursor-pointer font-semibold text-body-text flex items-center justify-between">
+            Can I have a Life Path Number of 0?
+            <span class="text-xl text-violet">+</span>
+          </summary>
+          <p class="text-muted-text mt-4 text-sm leading-relaxed">No. Life Path Numbers range from 1 to 9, plus the master numbers 11, 22, and 33. If you're getting 0, you've left out a step in the reduction. Make sure you're reducing each digit: 1+0 = 1, not 10 left as-is.</p>
+        </details>
+
+        <!-- FAQ Item 5 -->
+        <details class="card-light p-6">
+          <summary class="cursor-pointer font-semibold text-body-text flex items-center justify-between">
+            What if my name is hyphenated or has a special spelling?
+            <span class="text-xl text-violet">+</span>
+          </summary>
+          <p class="text-muted-text mt-4 text-sm leading-relaxed">Use your full name exactly as it appears on your birth certificate. That's the name that carries the energy your parents (or the universe) intended for you. Hyphens, apostrophes, and spaces don't count-only the actual letters do. So if your name is Anne-Marie, you'd use A-N-N-E-M-A-R-I-E.</p>
+        </details>
+
+        <!-- FAQ Item 6 -->
+        <details class="card-light p-6">
+          <summary class="cursor-pointer font-semibold text-body-text flex items-center justify-between">
+            Should I use my birth name or the name I go by now?
+            <span class="text-xl text-violet">+</span>
+          </summary>
+          <p class="text-muted-text mt-4 text-sm leading-relaxed">Always use your birth name for Life Path and all the five core numbers in this calculator. Your birth name carries the vibration that corresponds to the energy of the moment you were born. If you've legally changed your name later in life, that's a separate numerological story-and it creates a Destiny Number worth exploring separately. But your five core numbers always come from your original birth name and date.</p>
+        </details>
+      </div>
+    </div>
+  </section>
+
+    </div><!-- end main content column -->
+    <SidebarCTA />
+  </div><!-- end flex wrapper -->
+
+  <!-- Bottom CTA -->
+  <section class="py-16 px-4 bg-light-bg">
+    <div class="max-w-3xl mx-auto text-center">
+      <h2 class="text-2xl md:text-3xl font-bold font-[family-name:var(--font-family-heading)] text-body-text mb-4">Ready for Deeper Insight?</h2>
+      <p class="text-muted-text text-lg mb-6 leading-relaxed max-w-2xl mx-auto">Your five core numbers are just the beginning. A personalized reading dives deeper into how these numbers interact in your chart, what they mean for your relationships, career, and life purpose.</p>
+      <a
+        href="https://8904b5z1168aar3k8annz7y61n.hop.clickbank.net"
+        rel="noopener sponsored"
+        style="display:inline-block;background:var(--color-soft-gold);color:var(--color-midnight);font-weight:700;font-size:1.05rem;padding:1rem 2.25rem;border-radius:0.5rem;text-decoration:none;letter-spacing:0.02em;"
+      >
+        Get Your Free Personalized Reading
+      </a>
+    </div>
+  </section>
+
+</Layout>
+
+<script>
+  // Pythagorean reduction mapping
+  const letterValues = {
+    A: 1, B: 2, C: 3, D: 4, E: 5, F: 6, G: 7, H: 8, I: 9,
+    J: 1, K: 2, L: 3, M: 4, N: 5, O: 6, P: 7, Q: 8, R: 9,
+    S: 1, T: 2, U: 3, V: 4, W: 5, X: 6, Y: 7, Z: 8,
+  };
+
+  const vowels = ['A', 'E', 'I', 'O', 'U'];
+  const consonants = ['B', 'C', 'D', 'F', 'G', 'H', 'J', 'K', 'L', 'M', 'N', 'P', 'Q', 'R', 'S', 'T', 'V', 'W', 'X', 'Y', 'Z'];
+
+  // Reduce to single digit or master number
+  function reduce(num) {
+    if (num < 10) return num;
+    if (num === 11 || num === 22 || num === 33) return num;
+
+    let sum = 0;
+    while (num > 0) {
+      sum += num % 10;
+      num = Math.floor(num / 10);
+    }
+    return reduce(sum);
+  }
+
+  // Calculate Life Path
+  function calculateLifePath(dateStr) {
+    const [year, month, day] = dateStr.split('-');
+
+    const monthReduced = reduce(parseInt(month));
+    const dayReduced = reduce(parseInt(day));
+    const yearSum = Array.from(year).map(Number).reduce((a, b) => a + b, 0);
+    const yearReduced = reduce(yearSum);
+
+    const total = monthReduced + dayReduced + yearReduced;
+    return {
+      number: reduce(total),
+      working: `${month} (${monthReduced}) + ${day} (${dayReduced}) + ${year} (${yearReduced}) = ${total}`
+    };
+  }
+
+  // Calculate Expression Number (all letters)
+  function calculateExpression(name) {
+    const cleaned = name.replace(/[^a-zA-Z]/g, '').toUpperCase();
+    let sum = 0;
+    let breakdown = [];
+
+    for (const letter of cleaned) {
+      if (letterValues[letter]) {
+        sum += letterValues[letter];
+        breakdown.push(`${letter}(${letterValues[letter]})`);
+      }
+    }
+
+    const breakStr = breakdown.join(' + ');
+    return {
+      number: reduce(sum),
+      working: `${breakStr} = ${sum}`
+    };
+  }
+
+  // Calculate Soul Urge (vowels only)
+  function calculateSoulUrge(name) {
+    const cleaned = name.replace(/[^a-zA-Z]/g, '').toUpperCase();
+    let sum = 0;
+    let breakdown = [];
+
+    for (const letter of cleaned) {
+      if (vowels.includes(letter) && letterValues[letter]) {
+        sum += letterValues[letter];
+        breakdown.push(`${letter}(${letterValues[letter]})`);
+      }
+    }
+
+    const breakStr = breakdown.join(' + ') || '(no vowels)';
+    return {
+      number: sum === 0 ? 0 : reduce(sum),
+      working: `${breakStr} = ${sum}`
+    };
+  }
+
+  // Calculate Personality Number (consonants only)
+  function calculatePersonality(name) {
+    const cleaned = name.replace(/[^a-zA-Z]/g, '').toUpperCase();
+    let sum = 0;
+    let breakdown = [];
+
+    for (const letter of cleaned) {
+      if (consonants.includes(letter) && letterValues[letter]) {
+        sum += letterValues[letter];
+        breakdown.push(`${letter}(${letterValues[letter]})`);
+      }
+    }
+
+    const breakStr = breakdown.join(' + ') || '(no consonants)';
+    return {
+      number: sum === 0 ? 0 : reduce(sum),
+      working: `${breakStr} = ${sum}`
+    };
+  }
+
+  // Calculate Birthday Number
+  function calculateBirthday(dateStr) {
+    const [, , day] = dateStr.split('-');
+    const dayNum = parseInt(day);
+    return {
+      number: reduce(dayNum),
+      working: `Day ${day} reduces to ${reduce(dayNum)}`
+    };
+  }
+
+  // Get guide link based on number
+  function getGuideLink(number) {
+    const baseUrl = '/learn';
+    const numberMap = {
+      1: '/life-path-number-1/',
+      2: '/life-path-number-2/',
+      3: '/life-path-number-3/',
+      4: '/life-path-number-4/',
+      5: '/life-path-number-5/',
+      6: '/life-path-number-6/',
+      7: '/life-path-number-7/',
+      8: '/life-path-number-8/',
+      9: '/life-path-number-9/',
+      11: '/life-path-number-11/',
+      22: '/life-path-number-22/',
+      33: '/life-path-number-33/',
+    };
+    return numberMap[number] ? `${baseUrl}${numberMap[number]}` : null;
+  }
+
+  // Loading animation steps
+  const loadingSteps = [
+    { text: "Reducing birth date digits...", calc: "month + day + year", pct: 10 },
+    { text: "Extracting Pythagorean values from name...", calc: "", pct: 20 },
+    { text: "Calculating Life Path Number...", calc: "", pct: 30 },
+    { text: "Mapping letter values A=1 through Z=8...", calc: "", pct: 45 },
+    { text: "Calculating Expression Number...", calc: "", pct: 55 },
+    { text: "Separating vowels for Soul Urge...", calc: "", pct: 65 },
+    { text: "Isolating consonants for Personality...", calc: "", pct: 75 },
+    { text: "Reducing Birthday to single digit...", calc: "", pct: 85 },
+    { text: "Checking for master numbers 11, 22, 33...", calc: "", pct: 92 },
+    { text: "Finalizing your chart...", calc: "", pct: 100 },
+  ];
+
+  function showLoading(dateInput, nameInput, callback) {
+    const overlay = document.getElementById('loadingOverlay');
+    const loadingNum = document.getElementById('loadingNumber');
+    const loadingStep = document.getElementById('loadingStep');
+    const loadingBar = document.getElementById('loadingBar');
+    const loadingCalc = document.getElementById('loadingCalc');
+    const resultsSection = document.getElementById('resultsSection');
+
+    resultsSection.classList.add('hidden');
+    overlay.classList.remove('hidden');
+    // Stay where the user is - no scrolling
+
+    // Generate dynamic calc strings from actual input
+    const [year, month, day] = dateInput.split('-');
+    const cleaned = nameInput.replace(/[^a-zA-Z]/g, '').toUpperCase();
+    const sampleCalcs = [
+      `${month} + ${day} + ${year}`,
+      cleaned.slice(0,6).split('').map(l => `${l}=${letterValues[l]||'?'}`).join('  '),
+      `${reduce(parseInt(month))} + ${reduce(parseInt(day))} + ${reduce(Array.from(year).map(Number).reduce((a,b)=>a+b,0))}`,
+      cleaned.split('').slice(0,8).map(l => `${letterValues[l]||0}`).join(' + '),
+      cleaned.split('').map(l => letterValues[l]||0).reduce((a,b)=>a+b,0) + ` → reduce`,
+      cleaned.split('').filter(l => vowels.includes(l)).map(l => `${l}(${letterValues[l]})`).join(' + '),
+      cleaned.split('').filter(l => consonants.includes(l)).slice(0,6).map(l => `${l}(${letterValues[l]})`).join(' + '),
+      `Day ${day} → ${reduce(parseInt(day))}`,
+      `11? 22? 33? → checking reductions`,
+      `5 core numbers ready`,
+    ];
+
+    // Cycle random numbers in the circle
+    const masterNums = [1,2,3,4,5,6,7,8,9,11,22,33];
+    let numInterval = setInterval(() => {
+      loadingNum.textContent = masterNums[Math.floor(Math.random() * masterNums.length)];
+    }, 120);
+
+    let step = 0;
+    function nextStep() {
+      if (step >= loadingSteps.length) {
+        clearInterval(numInterval);
+        overlay.classList.add('hidden');
+        callback();
+        return;
+      }
+
+      const s = loadingSteps[step];
+      loadingStep.textContent = s.text;
+      loadingBar.style.width = s.pct + '%';
+      loadingCalc.textContent = sampleCalcs[step] || '';
+
+      step++;
+      const delay = 250 + Math.random() * 200;
+      setTimeout(nextStep, delay);
+    }
+
+    nextStep();
+  }
+
+  // Main calculation
+  function calculate() {
+    const dateInput = document.getElementById('birthDate').value;
+    const nameInput = document.getElementById('birthName').value.trim();
+    const errorDiv = document.getElementById('errorMessage');
+    const resultsSection = document.getElementById('resultsSection');
+
+    // Validation
+    if (!dateInput) {
+      errorDiv.textContent = 'Please enter your birth date.';
+      errorDiv.classList.remove('hidden');
+      resultsSection.classList.add('hidden');
+      return;
+    }
+
+    if (!nameInput) {
+      errorDiv.textContent = 'Please enter your full birth name.';
+      errorDiv.classList.remove('hidden');
+      resultsSection.classList.add('hidden');
+      return;
+    }
+
+    // Clear error
+    errorDiv.classList.add('hidden');
+
+    // Disable button during animation
+    const btn = document.getElementById('calculateBtn');
+    btn.disabled = true;
+    btn.style.opacity = '0.6';
+    btn.textContent = 'Calculating...';
+
+    showLoading(dateInput, nameInput, function() {
+      // Calculate all five
+      const lifePathResult = calculateLifePath(dateInput);
+      const expressionResult = calculateExpression(nameInput);
+      const soulUrgeResult = calculateSoulUrge(nameInput);
+      const personalityResult = calculatePersonality(nameInput);
+      const birthdayResult = calculateBirthday(dateInput);
+
+      // Display results
+      document.getElementById('lifePathNumber').textContent = lifePathResult.number;
+      document.getElementById('expressionNumber').textContent = expressionResult.number;
+      document.getElementById('soulUrgeNumber').textContent = soulUrgeResult.number;
+      document.getElementById('personalityNumber').textContent = personalityResult.number;
+      document.getElementById('birthdayNumber').textContent = birthdayResult.number;
+
+      // Display workings
+      document.getElementById('lifePathWorking').textContent = lifePathResult.working;
+      document.getElementById('expressionWorking').textContent = expressionResult.working;
+      document.getElementById('soulUrgeWorking').textContent = soulUrgeResult.working;
+      document.getElementById('personalityWorking').textContent = personalityResult.working;
+      document.getElementById('birthdayWorking').textContent = birthdayResult.working;
+
+      // Set guide links
+      const lpLink = getGuideLink(lifePathResult.number);
+      if (lpLink) document.getElementById('lifePathLink').href = lpLink;
+
+      const exLink = getGuideLink(expressionResult.number);
+      if (exLink) document.getElementById('expressionLink').href = exLink;
+
+      const suLink = getGuideLink(soulUrgeResult.number);
+      if (suLink) document.getElementById('soulUrgeLink').href = suLink;
+
+      const pLink = getGuideLink(personalityResult.number);
+      if (pLink) document.getElementById('personalityLink').href = pLink;
+
+      const bdLink = getGuideLink(birthdayResult.number);
+      if (bdLink) document.getElementById('birthdayLink').href = bdLink;
+
+      // Show results
+      resultsSection.classList.remove('hidden');
+      // Stay where the user is - no scrolling
+
+      // Re-enable button
+      btn.disabled = false;
+      btn.style.opacity = '1';
+      btn.textContent = 'Calculate My Numbers';
+    });
+  }
+
+  // Event listeners
+  document.getElementById('calculateBtn').addEventListener('click', calculate);
+
+  // Allow Enter key to calculate
+  document.getElementById('birthDate').addEventListener('keypress', (e) => {
+    if (e.key === 'Enter') calculate();
+  });
+
+  document.getElementById('birthName').addEventListener('keypress', (e) => {
+    if (e.key === 'Enter') calculate();
+  });
+
+  // Toggle workings details
+  document.getElementById('toggleWorkings').addEventListener('click', function(e) {
+    e.preventDefault();
+    const content = document.getElementById('workingsContent');
+    const icon = document.getElementById('toggleIcon');
+
+    if (content.classList.contains('hidden')) {
+      content.classList.remove('hidden');
+      icon.textContent = '−';
+    } else {
+      content.classList.add('hidden');
+      icon.textContent = '+';
+    }
+  });
+</script>

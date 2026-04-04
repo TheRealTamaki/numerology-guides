@@ -1,0 +1,282 @@
+---
+import Layout from '../../../layouts/Layout.astro';
+import SidebarCTA from '../../../components/SidebarCTA.astro';
+import { personalityNumbers } from '../../../data/personalityNumbers';
+
+
+// First-impression traits for each personality number
+const pnMeta: Record<number, { projects: string; vibe: string }> = {
+  1: { projects: "Confident, decisive, independent",          vibe: "People read leadership energy before you've said much" },
+  2: { projects: "Gentle, approachable, diplomatic",          vibe: "People feel immediately at ease and heard around you" },
+  3: { projects: "Warm, expressive, magnetic",                vibe: "You're the one who lights up the energy in a room" },
+  4: { projects: "Reliable, grounded, methodical",            vibe: "People trust you with serious things almost immediately" },
+  5: { projects: "Dynamic, adventurous, free-spirited",       vibe: "You read as someone who's been everywhere and done things" },
+  6: { projects: "Caring, responsible, trustworthy",          vibe: "People bring their problems to you without quite knowing why" },
+  7: { projects: "Private, perceptive, quietly intense",      vibe: "People sense depth and don't always know how to read you" },
+  8: { projects: "Authoritative, polished, ambitious",        vibe: "You come across as someone who gets things done at scale" },
+  9: { projects: "Wise, compassionate, self-possessed",       vibe: "People feel like you've already seen what they're going through" },
+};
+---
+
+<Layout
+  title="Personality Number in Numerology - Your Outer Impression & First Impact"
+  description="Your personality number reveals how others perceive you on first contact - the outer layer you project before people know you well. Find yours and explore all 9 personality numbers."
+>
+
+  <link slot="head" rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400;1,600&display=swap" />
+
+  <style>
+    :root { --font-family-heading: 'Cormorant Garamond', Georgia, serif; }
+    .p-label { font-size:0.7rem; letter-spacing:0.18em; text-transform:uppercase; color:var(--color-soft-gold); font-weight:600; }
+    .p-divider { width:48px; height:2px; background:var(--color-soft-gold); margin:0 auto; }
+    .section-h2 { font-family:var(--font-family-heading); font-size:clamp(1.6rem,3.5vw,2.25rem); font-weight:700; color:var(--color-body-text); margin:0 0 1.25rem; }
+  </style>
+
+  <!-- Breadcrumb -->
+  <nav style="background:var(--color-card-bg);border-bottom:1px solid var(--color-border);padding:0.75rem 1.5rem;" aria-label="Breadcrumb">
+    <div style="max-width:1100px;margin:0 auto;display:flex;align-items:center;gap:0.5rem;font-size:0.75rem;color:var(--color-muted-text);">
+      <a href="/" style="color:var(--color-muted-text);text-decoration:none;" onmouseover="this.style.color='var(--color-violet)'" onmouseout="this.style.color='var(--color-muted-text)'">Home</a>
+      <svg xmlns="http://www.w3.org/2000/svg" width="8" height="8" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="9 18 15 12 9 6"/></svg>
+      <a href="/learn/" style="color:var(--color-muted-text);text-decoration:none;" onmouseover="this.style.color='var(--color-violet)'" onmouseout="this.style.color='var(--color-muted-text)'">Learn</a>
+      <svg xmlns="http://www.w3.org/2000/svg" width="8" height="8" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="9 18 15 12 9 6"/></svg>
+      <span style="color:var(--color-body-text);font-weight:600;">Personality Numbers</span>
+    </div>
+  </nav>
+
+  <!-- Hero -->
+  <section style="position:relative;overflow:hidden;padding:6rem 1.5rem 5rem;text-align:center;min-height:480px;display:flex;align-items:center;">
+    <div style="position:absolute;inset:0;z-index:0;">
+      <img
+        src="/images/learn/Personality Numbers Pillar Hero.webp"
+        alt=""
+        aria-hidden="true"
+        fetchpriority="high"
+        style="width:100%;height:100%;object-fit:cover;object-position:center 30%;display:block;"
+      />
+      <div style="position:absolute;inset:0;background:linear-gradient(to bottom, rgba(14,10,26,0.75) 0%, rgba(14,10,26,0.58) 45%, rgba(14,10,26,0.80) 100%);"></div>
+      <div style="position:absolute;inset:0;background-image:radial-gradient(circle,rgba(196,162,78,0.08) 1px,transparent 1px);background-size:28px 28px;pointer-events:none;"></div>
+    </div>
+    <div aria-hidden="true" style="position:absolute;left:-1rem;top:0.5rem;z-index:1;font-family:var(--font-family-heading);font-size:clamp(10rem,20vw,16rem);font-weight:700;line-height:1;color:transparent;-webkit-text-stroke:1px rgba(196,162,78,0.18);pointer-events:none;user-select:none;">P</div>
+    <div aria-hidden="true" style="position:absolute;right:-0.5rem;bottom:-1.5rem;z-index:1;font-family:var(--font-family-heading);font-size:clamp(12rem,24vw,20rem);font-weight:700;line-height:1;color:transparent;-webkit-text-stroke:1px rgba(124,92,191,0.15);pointer-events:none;user-select:none;">N</div>
+    <div style="position:relative;z-index:2;max-width:760px;margin:0 auto;width:100%;">
+      <p class="p-label" style="margin-bottom:1.25rem;color:var(--color-soft-gold);opacity:0.9;">Core Chart Numbers</p>
+      <div class="p-divider" style="margin-bottom:1.75rem;"></div>
+      <h1 style="font-family:var(--font-family-heading);font-size:clamp(2.6rem,6.5vw,4.75rem);font-weight:700;line-height:1.08;color:#f5f0e8;letter-spacing:-0.02em;margin:0 0 1.5rem;text-shadow:0 2px 20px rgba(14,10,26,0.6);">
+        Personality Number in<br><em style="color:#c8a8f0;font-style:italic;">Numerology</em>
+      </h1>
+      <p style="font-size:1.05rem;line-height:1.8;color:rgba(240,234,255,0.82);max-width:560px;margin:0 auto 2.5rem;text-shadow:0 1px 8px rgba(14,10,26,0.5);">
+        Calculated from the consonants in your birth name, your personality number reveals the first impression you make — the outer layer that people perceive before they really know you.
+      </p>
+      <div style="display:flex;flex-wrap:wrap;gap:0.875rem;justify-content:center;">
+        <a href="https://8904b5z1168aar3k8annz7y61n.hop.clickbank.net" target="_blank" rel="noopener sponsored" style="display:inline-flex;align-items:center;gap:0.5rem;background:var(--color-violet);color:white;font-weight:700;font-size:1rem;padding:0.875rem 2rem;border-radius:6px;text-decoration:none;transition:background 0.2s,transform 0.15s;box-shadow:0 4px 20px rgba(124,92,191,0.45);" onmouseover="this.style.background='#6a4eab';this.style.transform='translateY(-1px)'" onmouseout="this.style.background='var(--color-violet)';this.style.transform='none'">Get My Free Reading →</a>
+        <a href="#all-numbers" style="display:inline-flex;align-items:center;gap:0.5rem;background:rgba(255,255,255,0.1);backdrop-filter:blur(6px);color:#f5f0e8;font-weight:600;font-size:1rem;padding:0.875rem 1.75rem;border-radius:6px;text-decoration:none;border:1.5px solid rgba(255,255,255,0.25);transition:border-color 0.2s,background 0.2s;" onmouseover="this.style.background='rgba(255,255,255,0.18)';this.style.borderColor='rgba(255,255,255,0.45)'" onmouseout="this.style.background='rgba(255,255,255,0.1)';this.style.borderColor='rgba(255,255,255,0.25)'">Find My Number ↓</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Author byline -->
+  <div style="background:var(--color-light-bg);padding:1.5rem 1.5rem;">
+    <div style="max-width:1100px;margin:0 auto;display:flex;align-items:center;gap:1rem;">
+      <img src="/images/author-maddi-green.webp" alt="Maddie Greene" style="width:3rem;height:3rem;border-radius:50%;object-fit:cover;flex-shrink:0;border:2px solid rgba(124,92,191,0.2);box-shadow:0 2px 8px rgba(26,21,40,0.08);" />
+      <div>
+        <p style="color:var(--color-body-text);font-size:0.9rem;font-weight:600;margin:0 0 0.15rem;">Written by <strong>Maddie Greene</strong></p>
+        <p style="color:var(--color-muted-text);font-size:0.8rem;margin:0;">Numerology writer &amp; researcher</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- Content + Sticky sidebar wrapper -->
+  <div class="xl:flex xl:gap-6 xl:max-w-[1200px] xl:mx-auto xl:px-4">
+    <!-- Main content column -->
+    <div class="xl:flex-1 xl:min-w-0">
+
+  <!-- What is the personality number -->
+  <section style="padding:3.5rem 1.5rem 3.5rem;background:var(--color-card-bg);">
+    <div class="max-w-3xl mx-auto xl:mx-0 xl:max-w-none">
+      <h2 class="section-h2">What is the personality number?</h2>
+      <p style="font-size:1rem;line-height:1.8;color:var(--color-muted-text);margin:0 0 1.25rem;">
+        In Pythagorean numerology, your birth name contains two separate layers of information. The vowels carry your inner world — they produce your soul urge number, the private motivation beneath your choices. The consonants carry your outer layer — they produce your personality number, the impression you project before people know you well.
+      </p>
+      <p style="font-size:1rem;line-height:1.8;color:var(--color-muted-text);margin:0 0 1.25rem;">
+        Think of it as the outer garment: the way you present to the world before the full person is visible. It's not the complete picture — just the first picture. But first pictures matter. They shape what people expect from you, how they approach you, and what kinds of opportunities and relationships come your way.
+      </p>
+      <p style="font-size:1rem;line-height:1.8;color:var(--color-muted-text);margin:0 0 1.5rem;">
+        Understanding your personality number helps you work with that outer impression consciously — knowing what you're projecting, where it's accurate, where it might be creating expectations that don't match your inner reality, and how to use it effectively.
+      </p>
+    </div>
+  </section>
+
+  <!-- How to calculate -->
+  <section style="padding:4rem 1.5rem;background:var(--color-light-bg);border-top:1px solid var(--color-border);">
+    <div class="max-w-3xl mx-auto xl:mx-0 xl:max-w-none">
+      <h2 class="section-h2">How to calculate your personality number</h2>
+      <p style="font-size:1rem;line-height:1.8;color:var(--color-muted-text);margin:0 0 1.5rem;">
+        Use your full birth name — first, middle, and last — exactly as it appears on your birth certificate. Extract only the consonants (everything that isn't A, E, I, O, or U). Assign each consonant its Pythagorean value, add them all together, and reduce to a single digit. Unlike life path and expression numbers, personality numbers don't produce master numbers.
+      </p>
+
+      <div style="background:var(--color-card-bg);border:1px solid var(--color-border);border-radius:8px;padding:1.5rem;margin-bottom:1.5rem;">
+        <h3 style="font-family:var(--font-family-heading);font-weight:700;color:var(--color-body-text);margin:0 0 1rem;font-size:1.05rem;">Pythagorean Consonant Values</h3>
+        <div class="grid grid-cols-9 gap-1 text-center text-sm">
+          <div style="font-weight:700;color:var(--color-violet);padding:0.5rem 0;">1</div>
+          <div style="font-weight:700;color:var(--color-violet);padding:0.5rem 0;">2</div>
+          <div style="font-weight:700;color:var(--color-violet);padding:0.5rem 0;">3</div>
+          <div style="font-weight:700;color:var(--color-violet);padding:0.5rem 0;">4</div>
+          <div style="font-weight:700;color:var(--color-violet);padding:0.5rem 0;">5</div>
+          <div style="font-weight:700;color:var(--color-violet);padding:0.5rem 0;">6</div>
+          <div style="font-weight:700;color:var(--color-violet);padding:0.5rem 0;">7</div>
+          <div style="font-weight:700;color:var(--color-violet);padding:0.5rem 0;">8</div>
+          <div style="font-weight:700;color:var(--color-violet);padding:0.5rem 0;">9</div>
+          <div style="color:var(--color-muted-text);padding:0.25rem 0;">J,S</div>
+          <div style="color:var(--color-muted-text);padding:0.25rem 0;">B,K,T</div>
+          <div style="color:var(--color-muted-text);padding:0.25rem 0;">C,L</div>
+          <div style="color:var(--color-muted-text);padding:0.25rem 0;">D,M,V</div>
+          <div style="color:var(--color-muted-text);padding:0.25rem 0;">F,N,W</div>
+          <div style="color:var(--color-muted-text);padding:0.25rem 0;">G,X</div>
+          <div style="color:var(--color-muted-text);padding:0.25rem 0;">H,P,Y</div>
+          <div style="color:var(--color-muted-text);padding:0.25rem 0;">Q,Z</div>
+          <div style="color:var(--color-muted-text);padding:0.25rem 0;">R</div>
+        </div>
+      </div>
+
+      <div style="background:var(--color-card-bg);border:1px solid var(--color-border);border-left:4px solid var(--color-violet);border-radius:8px;padding:1.5rem;">
+        <h3 style="font-family:var(--font-family-heading);font-weight:700;color:var(--color-body-text);margin:0 0 0.75rem;font-size:1.05rem;">Worked example: Mark James Cole</h3>
+        <div style="font-size:0.875rem;color:var(--color-muted-text);display:flex;flex-direction:column;gap:0.5rem;">
+          <p style="margin:0;"><strong style="color:var(--color-body-text);">MARK (M,R,K):</strong> M(4) + R(9) + K(2) = 15 → 1+5 = <strong style="color:var(--color-violet);">6</strong></p>
+          <p style="margin:0;"><strong style="color:var(--color-body-text);">JAMES (J,M,S):</strong> J(1) + M(4) + S(1) = <strong style="color:var(--color-violet);">6</strong></p>
+          <p style="margin:0;"><strong style="color:var(--color-body-text);">COLE (C,L):</strong> C(3) + L(3) = <strong style="color:var(--color-violet);">6</strong></p>
+          <p style="margin:0.5rem 0 0;padding-top:0.5rem;border-top:1px solid var(--color-border);"><strong style="color:var(--color-body-text);">Total:</strong> 6 + 6 + 6 = 18 → 1+8 = <strong style="color:var(--color-violet);font-size:1rem;">Personality Number 9</strong></p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Personality vs other numbers -->
+  <section style="padding:4rem 1.5rem;background:var(--color-card-bg);border-top:1px solid var(--color-border);">
+    <div class="max-w-3xl mx-auto xl:mx-0 xl:max-w-none">
+      <h2 class="section-h2">Personality number vs your other numbers</h2>
+      <p style="font-size:1rem;line-height:1.8;color:var(--color-muted-text);margin:0 0 1.25rem;">
+        Your personality number is the outer garment — the first thing people see. Your soul urge number is what's underneath: the private motivation driving your choices. Your expression number is the direction you're heading. Your life path is the terrain you're moving through.
+      </p>
+      <p style="font-size:1rem;line-height:1.8;color:var(--color-muted-text);margin:0 0 1.25rem;">
+        It's surprisingly common for personality numbers and soul urge numbers to be quite different from each other. Someone whose first impression reads as bold and independent (Personality 1) might have a soul urge that's deeply relationship-oriented (Soul Urge 2). The outer layer doesn't always match the inner need.
+      </p>
+      <p style="font-size:1rem;line-height:1.8;color:var(--color-muted-text);margin:0 0 2rem;">
+        Understanding how these interact is where a full numerology reading becomes genuinely useful. A free reading from Numerologist.com calculates your complete chart and shows you how all your numbers work together.
+      </p>
+      <a href="https://8904b5z1168aar3k8annz7y61n.hop.clickbank.net" target="_blank" rel="noopener sponsored" style="display:inline-flex;align-items:center;gap:0.5rem;background:var(--color-violet);color:white;font-weight:700;font-size:0.95rem;padding:0.875rem 1.75rem;border-radius:6px;text-decoration:none;transition:background 0.2s;" onmouseover="this.style.background='#6a4eab'" onmouseout="this.style.background='var(--color-violet)'">
+        Get Your Free Reading →
+      </a>
+    </div>
+  </section>
+
+  <!-- All personality numbers grid -->
+  <section id="all-numbers" style="padding:5rem 1.5rem;background:var(--color-light-bg);border-top:1px solid var(--color-border);">
+    <div style="max-width:1100px;margin:0 auto;">
+      <div style="text-align:center;margin-bottom:3rem;">
+        <p class="p-label" style="margin-bottom:0.75rem;">All Personality Numbers</p>
+        <h2 style="font-family:var(--font-family-heading);font-size:clamp(1.75rem,4vw,2.75rem);font-weight:700;color:var(--color-body-text);margin:0 0 0.75rem;">Find Your Personality Number</h2>
+        <div class="p-divider" style="margin:0 auto;"></div>
+        <p style="color:var(--color-muted-text);margin-top:1rem;max-width:560px;margin-left:auto;margin-right:auto;font-size:0.95rem;line-height:1.7;">Select your number to explore the first impression you make, what it opens for you, and where it might be creating mismatches with your inner reality.</p>
+      </div>
+
+      <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-6 mb-6">
+        {personalityNumbers.map(pn => {
+          const meta = pnMeta[pn.n];
+          const topStrength = pn.strengths[0]?.title ?? '';
+          const topChallenge = pn.challenges[0]?.title ?? '';
+          return (
+            <a href={`/learn/personality-number/${pn.n}/`} class="card-light group block overflow-hidden hover:border-violet/60 hover:-translate-y-1 transition-all duration-200" style="text-decoration:none;">
+              <div style="position:relative;overflow:hidden;">
+                <img
+                  src={`/images/learn/personality-numbers/Personality Number - ${pn.title}.webp`}
+                  alt={`Personality Number ${pn.n} - ${pn.title}`}
+                  class="w-full group-hover:scale-105 transition-transform duration-500"
+                  style="aspect-ratio:2/3;object-fit:cover;display:block;width:100%;"
+                  loading="lazy"
+                  decoding="async"
+                />
+              </div>
+              <div style="padding:1.25rem;">
+                <div style="font-size:0.7rem;text-transform:uppercase;letter-spacing:0.12em;color:var(--color-muted-text);margin-bottom:0.2rem;">Personality {pn.n}</div>
+                <div style="font-weight:700;color:var(--color-body-text);font-size:1.1rem;margin-bottom:0.35rem;" class="group-hover:text-violet transition-colors">{pn.title}</div>
+                <p style="font-size:0.875rem;color:var(--color-muted-text);margin:0 0 0.75rem;line-height:1.6;">{meta.projects}</p>
+                <div style="font-size:0.8rem;color:var(--color-muted-text);font-style:italic;border-left:2px solid rgba(124,92,191,0.3);padding-left:0.75rem;margin-bottom:1rem;">"{meta.vibe}"</div>
+                <div style="display:flex;flex-direction:column;gap:0.35rem;font-size:0.8rem;margin-bottom:1rem;">
+                  <div style="display:flex;gap:0.5rem;">
+                    <span style="color:#4a9e5c;font-weight:600;width:5rem;flex-shrink:0;">Strength:</span>
+                    <span style="color:var(--color-muted-text);">{topStrength}</span>
+                  </div>
+                  <div style="display:flex;gap:0.5rem;">
+                    <span style="color:#c0444a;font-weight:600;width:5rem;flex-shrink:0;">Challenge:</span>
+                    <span style="color:var(--color-muted-text);">{topChallenge}</span>
+                  </div>
+                </div>
+                <span style="font-size:0.875rem;font-weight:600;color:var(--color-violet);" class="group-hover:text-soft-violet transition-colors">Full {pn.n} guide →</span>
+              </div>
+            </a>
+          );
+        })}
+      </div>
+
+      <p style="text-align:center;font-size:0.875rem;color:var(--color-muted-text);margin-top:1rem;">Note: Personality numbers run 1–9. Unlike life path and expression numbers, they don't produce master numbers (11, 22, 33).</p>
+    </div>
+  </section>
+
+    </div><!-- end main content column -->
+    <SidebarCTA />
+  </div><!-- end flex wrapper -->
+
+  <!-- Related guides -->
+  <section style="padding:5rem 1.5rem;background:var(--color-card-bg);border-top:1px solid var(--color-border);">
+    <div style="max-width:1100px;margin:0 auto;">
+      <div style="text-align:center;margin-bottom:3rem;">
+        <p class="p-label" style="margin-bottom:0.75rem;">Keep Exploring</p>
+        <h2 style="font-family:var(--font-family-heading);font-size:clamp(1.5rem,3vw,2rem);font-weight:700;color:var(--color-body-text);margin:0 0 0.75rem;">Related Guides</h2>
+        <div class="p-divider" style="margin:0 auto;"></div>
+      </div>
+      <div class="grid sm:grid-cols-2 md:grid-cols-3 gap-5">
+        <a href="/learn/soul-urge-number/" class="card-light overflow-hidden hover:border-violet/60 hover:-translate-y-0.5 transition-all duration-200 group block" style="text-decoration:none;">
+          <img src="/images/learn/Soul Urge Numbers - Tile.webp" alt="Soul Urge Numbers" class="w-full object-cover transition-transform duration-500 group-hover:scale-105" style="aspect-ratio:2/3;display:block;" loading="lazy" decoding="async" />
+          <div style="padding:1.25rem;">
+            <div style="font-weight:700;color:var(--color-body-text);margin-bottom:0.35rem;" class="group-hover:text-violet transition-colors">Soul Urge Numbers</div>
+            <p style="font-size:0.8rem;color:var(--color-muted-text);margin:0;">Your deepest inner motivation — from the vowels in your name.</p>
+          </div>
+        </a>
+        <a href="/learn/expression-number/" class="card-light overflow-hidden hover:border-violet/60 hover:-translate-y-0.5 transition-all duration-200 group block" style="text-decoration:none;">
+          <img src="/images/learn/Expression Numbers - Tile.webp" alt="Expression Numbers" class="w-full object-cover transition-transform duration-500 group-hover:scale-105" style="aspect-ratio:2/3;display:block;" loading="lazy" decoding="async" />
+          <div style="padding:1.25rem;">
+            <div style="font-weight:700;color:var(--color-body-text);margin-bottom:0.35rem;" class="group-hover:text-violet transition-colors">Expression Numbers</div>
+            <p style="font-size:0.8rem;color:var(--color-muted-text);margin:0;">Your destiny direction — from your full birth name.</p>
+          </div>
+        </a>
+        <a href="/learn/life-path-number/" class="card-light overflow-hidden hover:border-violet/60 hover:-translate-y-0.5 transition-all duration-200 group block" style="text-decoration:none;">
+          <img src="/images/learn/Life Path Numbers - Tile.webp" alt="Life Path Numbers" class="w-full object-cover transition-transform duration-500 group-hover:scale-105" style="aspect-ratio:2/3;display:block;" loading="lazy" decoding="async" />
+          <div style="padding:1.25rem;">
+            <div style="font-weight:700;color:var(--color-body-text);margin-bottom:0.35rem;" class="group-hover:text-violet transition-colors">Life Path Numbers</div>
+            <p style="font-size:0.8rem;color:var(--color-muted-text);margin:0;">The most important number in your chart — from your birth date.</p>
+          </div>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Bottom CTA -->
+  <section style="background:var(--color-midnight);padding:5.5rem 1.5rem;position:relative;overflow:hidden;text-align:center;">
+    <div style="position:absolute;inset:0;background:radial-gradient(ellipse at 50% 120%,rgba(124,92,191,0.18) 0%,transparent 70%);pointer-events:none;"></div>
+    <div style="position:relative;z-index:1;max-width:560px;margin:0 auto;">
+      <p class="p-label">Numerologist.com</p>
+      <div class="p-divider" style="margin:1rem auto;"></div>
+      <h2 style="font-family:var(--font-family-heading);font-size:clamp(1.85rem,4vw,2.9rem);font-weight:700;color:var(--color-starlight);margin:1rem 0;line-height:1.2;">
+        Ready to see what your numbers actually say?
+      </h2>
+      <p style="color:rgba(235,232,247,0.5);font-size:0.95rem;line-height:1.8;margin-bottom:2.5rem;">
+        Enter your name and birthdate. Get a free video reading built around you.
+      </p>
+      <a href="https://8904b5z1168aar3k8annz7y61n.hop.clickbank.net" target="_blank" rel="noopener sponsored" style="display:inline-flex;align-items:center;gap:0.5rem;background:var(--color-soft-gold);color:var(--color-midnight);font-weight:700;font-size:0.95rem;padding:0.875rem 1.75rem;border-radius:6px;text-decoration:none;margin:0 auto;transition:opacity 0.2s;" onmouseover="this.style.opacity='0.88'" onmouseout="this.style.opacity='1'">
+        Get your free reading at Numerologist.com
+        <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="9 18 15 12 9 6"/></svg>
+      </a>
+    </div>
+  </section>
+
+</Layout>

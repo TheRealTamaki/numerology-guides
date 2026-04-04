@@ -1,0 +1,301 @@
+---
+import Layout from '../../../layouts/Layout.astro';
+import SidebarCTA from '../../../components/SidebarCTA.astro';
+import { birthdayNumbers } from '../../../data/birthdayNumbers';
+
+export function getStaticPaths() {
+  return birthdayNumbers.map(bn => ({
+    params: { n: String(bn.day) },
+    props: { bn },
+  }));
+}
+
+const { bn } = Astro.props;
+
+const isMaster = bn.day === 11 || bn.day === 22 || bn.reducedTo === 11;
+const reducedLabel = bn.reducedTo === null
+  ? (bn.day > 9 ? 'master number' : null)
+  : `reduces to ${bn.reducedTo}`;
+
+const allNumbers = birthdayNumbers.map(b => ({ day: b.day, title: b.title }));
+
+const faqSchema = {
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": bn.faq.map(item => ({
+    "@type": "Question",
+    "name": item.q,
+    "acceptedAnswer": { "@type": "Answer", "text": item.a.join(" ") }
+  }))
+};
+
+const breadcrumbSchema = {
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://numerologyguides.blog/" },
+    { "@type": "ListItem", "position": 2, "name": "Learn", "item": "https://numerologyguides.blog/learn/" },
+    { "@type": "ListItem", "position": 3, "name": "Birthday Numbers", "item": "https://numerologyguides.blog/learn/birthday-number/" },
+    { "@type": "ListItem", "position": 4, "name": `Birthday Number ${bn.day}` }
+  ]
+};
+---
+
+<Layout
+  schema={[faqSchema, breadcrumbSchema]}
+  title={`Birthday Number ${bn.day}: ${bn.title} - What Your Birth Day Reveals | Numerology Guides`}
+  description={bn.shortDesc}
+>
+
+  <link slot="head" rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400;1,600&display=swap" />
+
+  <style>
+    :root { --font-family-heading: 'Cormorant Garamond', Georgia, serif; }
+    .p-label { font-size:0.7rem; letter-spacing:0.18em; text-transform:uppercase; color:var(--color-soft-gold); font-weight:600; }
+    .p-divider { width:48px; height:2px; background:var(--color-soft-gold); margin:0 auto; }
+    .section-h2 { font-family:var(--font-family-heading); font-size:clamp(1.6rem,3.5vw,2.25rem); font-weight:700; color:var(--color-body-text); margin:0 0 1.25rem; }
+    .faq-list details { border-top:1px solid var(--color-border); }
+    .faq-list details:last-child { border-bottom:1px solid var(--color-border); }
+    .faq-list summary { padding:1.3rem 0; cursor:pointer; display:flex; align-items:center; justify-content:space-between; gap:1rem; font-weight:600; font-size:1rem; color:var(--color-body-text); list-style:none; transition:color 0.2s; }
+    .faq-list summary::-webkit-details-marker { display:none; }
+    .faq-list details[open] summary { color:var(--color-violet); }
+    .faq-chevron { flex-shrink:0; transition:transform 0.25s; }
+    .faq-list details[open] .faq-chevron { transform:rotate(180deg); }
+    .faq-answer { padding-bottom:1.3rem; font-size:0.9rem; color:var(--color-muted-text); line-height:1.8; }
+  </style>
+
+  <!-- Breadcrumb -->
+  <nav style="background:var(--color-card-bg);border-bottom:1px solid var(--color-border);padding:0.75rem 1.5rem;" aria-label="Breadcrumb">
+    <div style="max-width:1100px;margin:0 auto;display:flex;align-items:center;gap:0.5rem;font-size:0.75rem;color:var(--color-muted-text);">
+      <a href="/" style="color:inherit;text-decoration:none;transition:color 0.2s;" onmouseover="this.style.color='var(--color-violet)'" onmouseout="this.style.color='var(--color-muted-text)'">Home</a>
+      <svg xmlns="http://www.w3.org/2000/svg" width="8" height="8" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="9 18 15 12 9 6"/></svg>
+      <a href="/learn/" style="color:inherit;text-decoration:none;transition:color 0.2s;" onmouseover="this.style.color='var(--color-violet)'" onmouseout="this.style.color='var(--color-muted-text)'">Learn</a>
+      <svg xmlns="http://www.w3.org/2000/svg" width="8" height="8" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="9 18 15 12 9 6"/></svg>
+      <a href="/learn/birthday-number/" style="color:inherit;text-decoration:none;transition:color 0.2s;" onmouseover="this.style.color='var(--color-violet)'" onmouseout="this.style.color='var(--color-muted-text)'">Birthday Numbers</a>
+      <svg xmlns="http://www.w3.org/2000/svg" width="8" height="8" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="9 18 15 12 9 6"/></svg>
+      <span style="color:var(--color-body-text);font-weight:600;">Birthday {bn.day}</span>
+    </div>
+  </nav>
+
+  <!-- Hero -->
+  <section style="position:relative;overflow:hidden;background:var(--color-midnight,#0e0a1a);">
+    <div aria-hidden="true" style="position:absolute;inset:0;background-image:radial-gradient(circle,rgba(196,162,78,0.07) 1px,transparent 1px);background-size:28px 28px;pointer-events:none;z-index:0;"></div>
+    <div aria-hidden="true" style="position:absolute;top:-10%;left:-5%;width:55%;height:120%;background:radial-gradient(ellipse at center,rgba(124,92,191,0.18) 0%,transparent 70%);pointer-events:none;z-index:0;"></div>
+    <div style="position:relative;z-index:1;max-width:1100px;margin:0 auto;padding:4rem 1.5rem;display:flex;align-items:center;gap:3rem;flex-wrap:wrap;">
+      <div style="flex:1;min-width:280px;">
+        <p class="p-label" style="margin-bottom:1.1rem;color:var(--color-soft-gold);opacity:0.9;">
+          Birthday Number {bn.day}{isMaster && <span style="margin-left:0.75rem;color:#c8a8f0;">· Master Number</span>}
+        </p>
+        {reducedLabel && <p style="font-size:0.75rem;color:rgba(196,162,78,0.7);letter-spacing:0.12em;text-transform:uppercase;margin:0 0 0.75rem;">{reducedLabel}</p>}
+        <div class="p-divider" style="margin:0 0 1.6rem;"></div>
+        <h1 style="font-family:var(--font-family-heading);font-size:clamp(2.8rem,6vw,5rem);font-weight:700;line-height:1.06;color:#f5f0e8;letter-spacing:-0.02em;margin:0 0 1.25rem;">
+          Birthday <em style="color:#c8a8f0;font-style:italic;">{bn.day}</em>: {bn.title}
+        </h1>
+        <p style="font-size:1.05rem;line-height:1.8;color:rgba(240,234,255,0.78);max-width:460px;margin:0 0 2rem;">{bn.heroSubtitle}</p>
+        <div style="display:flex;flex-wrap:wrap;gap:0.875rem;">
+          <a href="https://8904b5z1168aar3k8annz7y61n.hop.clickbank.net" target="_blank" rel="noopener sponsored" style="display:inline-flex;align-items:center;gap:0.5rem;background:var(--color-violet);color:white;font-weight:700;font-size:1rem;padding:0.875rem 2rem;border-radius:6px;text-decoration:none;transition:background 0.2s,transform 0.15s;box-shadow:0 4px 20px rgba(124,92,191,0.45);" onmouseover="this.style.background='#6a4eab';this.style.transform='translateY(-1px)'" onmouseout="this.style.background='var(--color-violet)';this.style.transform='none'">Get My Free Reading →</a>
+          <a href="#meaning" style="display:inline-flex;align-items:center;gap:0.5rem;background:rgba(255,255,255,0.08);backdrop-filter:blur(6px);color:#f5f0e8;font-weight:600;font-size:1rem;padding:0.875rem 1.75rem;border-radius:6px;text-decoration:none;border:1.5px solid rgba(255,255,255,0.2);transition:border-color 0.2s,background 0.2s;" onmouseover="this.style.background='rgba(255,255,255,0.15)';this.style.borderColor='rgba(255,255,255,0.4)'" onmouseout="this.style.background='rgba(255,255,255,0.08)';this.style.borderColor='rgba(255,255,255,0.2)'">What It Means ↓</a>
+        </div>
+      </div>
+      <div style="flex-shrink:0;width:clamp(200px,28vw,300px);filter:drop-shadow(0 8px 40px rgba(196,162,78,0.25)) drop-shadow(0 2px 12px rgba(0,0,0,0.6));">
+        <img
+          src={`/images/learn/birthday-numbers/Birthday Number - ${bn.day}.webp`}
+          alt={`Birthday Number ${bn.day} — ${bn.title}`}
+          fetchpriority="high"
+          style="width:100%;border-radius:6px;display:block;"
+        />
+      </div>
+    </div>
+  </section>
+
+  <!-- Author byline -->
+  <div style="background:var(--color-card-bg);padding:1.75rem 1.5rem;border-bottom:1px solid var(--color-border);">
+    <div style="max-width:1100px;margin:0 auto;display:flex;align-items:center;gap:1rem;">
+      <img src="/images/author-maddi-green.webp" alt="Maddie Greene" style="width:3.25rem;height:3.25rem;border-radius:50%;object-fit:cover;flex-shrink:0;border:2px solid var(--color-border);" />
+      <div>
+        <p style="margin:0;font-size:0.95rem;font-weight:600;color:var(--color-body-text);">Written by <strong>Maddie Greene</strong></p>
+        <p style="margin:0;font-size:0.8rem;color:var(--color-muted-text);">Numerology writer &amp; researcher</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- Content + Sticky sidebar wrapper -->
+  <div class="xl:flex xl:gap-6 xl:max-w-[1200px] xl:mx-auto xl:px-4">
+    <!-- Main content column -->
+    <div class="xl:flex-1 xl:min-w-0">
+
+  <!-- What does birthday [n] mean -->
+  <section id="meaning" style="padding:3.5rem 1.5rem;background:var(--color-light-bg);">
+    <div style="max-width:760px;margin:0 auto;">
+      <h2 class="section-h2">What birthday number {bn.day} means</h2>
+      <div style="display:flex;flex-direction:column;gap:1rem;">
+        {bn.meaning.map(para => <p style="color:var(--color-body-text);line-height:1.8;margin:0;">{para}</p>)}
+      </div>
+    </div>
+  </section>
+
+  <!-- The character of birthday [n] -->
+  <section id="traits" style="padding:3.5rem 1.5rem;background:var(--color-card-bg);">
+    <div style="max-width:760px;margin:0 auto;">
+      <h2 class="section-h2">The character of birthday {bn.day}</h2>
+      <div style="display:flex;flex-direction:column;gap:1rem;">
+        {bn.traits.map(para => <p style="color:var(--color-body-text);line-height:1.8;margin:0;">{para}</p>)}
+      </div>
+    </div>
+  </section>
+
+  <!-- Strengths & challenges -->
+  <section id="strengths" style="padding:3.5rem 1.5rem;background:var(--color-light-bg);">
+    <div style="max-width:760px;margin:0 auto;">
+      <h2 class="section-h2">Strengths &amp; challenges</h2>
+      <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:2rem;">
+        <div>
+          <h3 style="font-family:var(--font-family-heading);font-size:1.1rem;font-weight:700;color:var(--color-body-text);margin:0 0 1rem;display:flex;align-items:center;gap:0.5rem;">
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="currentColor" stroke="none" style="color:#4ade80;flex-shrink:0;" aria-hidden="true"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+            What works in your favour
+          </h3>
+          <div style="display:flex;flex-direction:column;gap:0.75rem;">
+            {bn.strengths.map(s => (
+              <div style="background:var(--color-card-bg);border:1px solid var(--color-border);border-radius:8px;padding:1.1rem 1.25rem;">
+                <div style="font-weight:600;color:var(--color-body-text);margin-bottom:0.3rem;font-size:0.95rem;">{s.title}</div>
+                <p style="margin:0;font-size:0.875rem;color:var(--color-muted-text);line-height:1.7;">{s.desc}</p>
+              </div>
+            ))}
+          </div>
+        </div>
+        <div>
+          <h3 style="font-family:var(--font-family-heading);font-size:1.1rem;font-weight:700;color:var(--color-body-text);margin:0 0 1rem;display:flex;align-items:center;gap:0.5rem;">
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="color:#f87171;flex-shrink:0;" aria-hidden="true"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
+            What to watch
+          </h3>
+          <div style="display:flex;flex-direction:column;gap:0.75rem;">
+            {bn.challenges.map(c => (
+              <div style="background:var(--color-card-bg);border:1px solid var(--color-border);border-radius:8px;padding:1.1rem 1.25rem;">
+                <div style="font-weight:600;color:var(--color-body-text);margin-bottom:0.3rem;font-size:0.95rem;">{c.title}</div>
+                <p style="margin:0;font-size:0.875rem;color:var(--color-muted-text);line-height:1.7;">{c.desc}</p>
+              </div>
+            ))}
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- How the birthday number is calculated -->
+  <section id="calculate" style="padding:3.5rem 1.5rem;background:var(--color-card-bg);">
+    <div style="max-width:760px;margin:0 auto;">
+      <h2 class="section-h2">How the birthday number is calculated</h2>
+      <div style="display:flex;flex-direction:column;gap:1rem;margin-bottom:1.5rem;">
+        <p style="color:var(--color-body-text);line-height:1.8;margin:0;">
+          The birthday number is the simplest calculation in numerology — it's just the day of the month you were born. Single-digit days (1–9) are already your birthday number. For double-digit days, add the two digits together and reduce to a single number. The exceptions are 11 and 22, which are master numbers and stay as they are.
+        </p>
+        {bn.reducedTo !== null && (
+          <p style="color:var(--color-body-text);line-height:1.8;margin:0;">
+            For birthday {bn.day}: {String(bn.day).split('').join(' + ')} = {bn.reducedTo} — so your birthday number is <strong>{bn.reducedTo}</strong>.
+          </p>
+        )}
+        {bn.reducedTo === null && bn.day > 9 && (
+          <p style="color:var(--color-body-text);line-height:1.8;margin:0;">
+            Birthday {bn.day} is a master number — it carries the energy of {bn.day} without reduction.
+          </p>
+        )}
+      </div>
+      <p style="color:var(--color-muted-text);font-size:0.875rem;line-height:1.7;margin:0 0 1.5rem;">Want the complete picture? A free reading at Numerologist.com calculates your full chart — birthday number, life path, expression, and soul urge together.</p>
+      <a href="https://8904b5z1168aar3k8annz7y61n.hop.clickbank.net" target="_blank" rel="noopener sponsored" style="display:inline-block;padding:0.75rem 1.75rem;background:var(--color-soft-gold);color:#1a1200;border-radius:6px;font-size:0.95rem;font-weight:700;text-decoration:none;transition:opacity 0.2s;" onmouseover="this.style.opacity='0.88'" onmouseout="this.style.opacity='1'">Get Your Free Numerology Reading</a>
+    </div>
+  </section>
+
+  <!-- FAQ -->
+  <section id="faq" style="padding:3.5rem 1.5rem;background:var(--color-light-bg);">
+    <div style="max-width:760px;margin:0 auto;">
+      <h2 class="section-h2">Common questions</h2>
+      <div class="faq-list">
+        {bn.faq.map(item => (
+          <details>
+            <summary>
+              <span>{item.q}</span>
+              <svg class="faq-chevron" xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="6 9 12 15 18 9"/></svg>
+            </summary>
+            <div class="faq-answer">
+              {item.a.map(para => <p style="margin:0 0 0.6rem;">{para}</p>)}
+            </div>
+          </details>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- All birthday numbers -->
+  <section id="all" style="padding:3.5rem 1.5rem;background:var(--color-card-bg);">
+    <div style="max-width:760px;margin:0 auto;">
+      <h2 class="section-h2">All birthday numbers</h2>
+      <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:0.5rem;">
+        {allNumbers.map(num => (
+          <a
+            href={`/learn/birthday-number/${num.day}/`}
+            style={num.day === bn.day
+              ? "display:block;padding:0.65rem 0.4rem;text-align:center;border-radius:7px;border:2px solid var(--color-soft-gold);background:rgba(196,162,78,0.08);text-decoration:none;transition:all 0.2s;"
+              : "display:block;padding:0.65rem 0.4rem;text-align:center;border-radius:7px;border:1.5px solid var(--color-border);background:var(--color-light-bg);text-decoration:none;transition:all 0.2s;"}
+            onmouseover={num.day !== bn.day ? "this.style.borderColor='var(--color-violet)';this.style.background='rgba(124,58,237,0.05)'" : ""}
+            onmouseout={num.day !== bn.day ? "this.style.borderColor='var(--color-border)';this.style.background='var(--color-light-bg)'" : ""}
+          >
+            <div style={num.day === bn.day
+              ? "font-family:var(--font-family-heading);font-size:1.3rem;font-weight:700;color:var(--color-soft-gold);line-height:1;"
+              : "font-family:var(--font-family-heading);font-size:1.3rem;font-weight:700;color:var(--color-body-text);line-height:1;"}>
+              {num.day}
+            </div>
+            <div style="font-size:0.65rem;margin-top:0.25rem;color:var(--color-muted-text);line-height:1.2;">{num.title.replace('The ', '')}</div>
+          </a>
+        ))}
+      </div>
+    </div>
+  </section>
+
+    </div><!-- end main content column -->
+    <SidebarCTA />
+  </div><!-- end flex wrapper -->
+
+  <!-- Related guides -->
+  <section style="padding:3.5rem 1.5rem;background:var(--color-light-bg);border-top:1px solid var(--color-border);">
+    <div style="max-width:1100px;margin:0 auto;">
+      <h2 class="section-h2">Related guides</h2>
+      <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:1.25rem;">
+        <a href="/learn/life-path-number/" style="display:block;text-decoration:none;border-radius:10px;overflow:hidden;border:1.5px solid var(--color-border);background:var(--color-card-bg);transition:all 0.2s;" onmouseover="this.style.borderColor='var(--color-violet)';this.style.transform='translateY(-2px)'" onmouseout="this.style.borderColor='var(--color-border)';this.style.transform='translateY(0)'">
+          <div style="aspect-ratio:2/3;overflow:hidden;"><img src="/images/learn/Life Path Numbers - Tile.webp" alt="Life Path Numbers" style="width:100%;height:100%;object-fit:cover;display:block;" loading="lazy" /></div>
+          <div style="padding:0.9rem 1rem;">
+            <div style="font-weight:700;color:var(--color-body-text);font-size:0.925rem;margin-bottom:0.3rem;">Life Path Numbers</div>
+            <p style="margin:0;font-size:0.78rem;color:var(--color-muted-text);line-height:1.5;">Your primary chart number — calculated from your full birth date, not just the day.</p>
+          </div>
+        </a>
+        <a href="/learn/expression-number/" style="display:block;text-decoration:none;border-radius:10px;overflow:hidden;border:1.5px solid var(--color-border);background:var(--color-card-bg);transition:all 0.2s;" onmouseover="this.style.borderColor='var(--color-violet)';this.style.transform='translateY(-2px)'" onmouseout="this.style.borderColor='var(--color-border)';this.style.transform='translateY(0)'">
+          <div style="aspect-ratio:2/3;overflow:hidden;"><img src="/images/learn/Expression Numbers - Tile.webp" alt="Expression Numbers" style="width:100%;height:100%;object-fit:cover;display:block;" loading="lazy" /></div>
+          <div style="padding:0.9rem 1rem;">
+            <div style="font-weight:700;color:var(--color-body-text);font-size:0.925rem;margin-bottom:0.3rem;">Expression Numbers</div>
+            <p style="margin:0;font-size:0.78rem;color:var(--color-muted-text);line-height:1.5;">Your destiny direction — from your full birth name.</p>
+          </div>
+        </a>
+        <a href="/learn/soul-urge-number/" style="display:block;text-decoration:none;border-radius:10px;overflow:hidden;border:1.5px solid var(--color-border);background:var(--color-card-bg);transition:all 0.2s;" onmouseover="this.style.borderColor='var(--color-violet)';this.style.transform='translateY(-2px)'" onmouseout="this.style.borderColor='var(--color-border)';this.style.transform='translateY(0)'">
+          <div style="aspect-ratio:2/3;overflow:hidden;"><img src="/images/learn/Soul Urge Numbers - Tile.webp" alt="Soul Urge Numbers" style="width:100%;height:100%;object-fit:cover;display:block;" loading="lazy" /></div>
+          <div style="padding:0.9rem 1rem;">
+            <div style="font-weight:700;color:var(--color-body-text);font-size:0.925rem;margin-bottom:0.3rem;">Soul Urge Numbers</div>
+            <p style="margin:0;font-size:0.78rem;color:var(--color-muted-text);line-height:1.5;">Your deepest inner motivation — from the vowels in your name.</p>
+          </div>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Bottom CTA -->
+  <section style="padding:5rem 1.5rem;background:#0e0a1a;text-align:center;">
+    <div style="max-width:640px;margin:0 auto;">
+      <p class="p-label" style="margin-bottom:1rem;">Go Deeper</p>
+      <div class="p-divider" style="margin-bottom:1.5rem;"></div>
+      <h2 style="font-family:var(--font-family-heading);font-size:clamp(1.8rem,4vw,2.5rem);font-weight:700;color:#fff;margin:0 0 1.25rem;line-height:1.2;">See how your numbers fit together</h2>
+      <p style="color:rgba(240,235,255,0.65);line-height:1.8;margin:0 0 2rem;">
+        Your birthday number is one piece of the chart — but its meaning deepens when you see it alongside your life path, expression, and soul urge. A free reading from Numerologist.com brings the full picture together.
+      </p>
+      <a href="https://8904b5z1168aar3k8annz7y61n.hop.clickbank.net" target="_blank" rel="noopener sponsored" style="display:inline-block;padding:0.9rem 2.25rem;background:var(--color-soft-gold);color:#1a1200;border-radius:6px;font-size:1.05rem;font-weight:700;text-decoration:none;transition:opacity 0.2s;" onmouseover="this.style.opacity='0.88'" onmouseout="this.style.opacity='1'">Get Your Free Numerology Reading</a>
+    </div>
+  </section>
+
+</Layout>

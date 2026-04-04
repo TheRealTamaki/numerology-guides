@@ -1,11 +1,852 @@
 ---
-import Welcome from '../components/Welcome.astro';
 import Layout from '../layouts/Layout.astro';
 
-// Welcome to Astro! Wondering what to do next? Check out the Astro documentation at https://docs.astro.build
-// Don't want to use any of this? Delete everything in this file, the `assets`, `components`, and `layouts` directories, and start fresh.
+const numbers = [
+  { n: 1,  title: "The Leader",       img: "/images/learn/Life Path Number 1 - The Leader.webp" },
+  { n: 2,  title: "The Peacemaker",   img: "/images/learn/Life Path Number 2 - The Peacemaker.webp" },
+  { n: 3,  title: "The Communicator", img: "/images/learn/Life Path Number 3 - The Communicator.webp" },
+  { n: 4,  title: "The Builder",      img: "/images/learn/Life Path Number 4 - The Builder.webp" },
+  { n: 5,  title: "The Adventurer",   img: "/images/learn/Life Path Number 5 - The Adventurer.webp" },
+  { n: 6,  title: "The Nurturer",     img: "/images/learn/Life Path Number 6 - The Nurturer.webp" },
+  { n: 7,  title: "The Seeker",       img: "/images/learn/Life Path Number 7 - The Seeker.webp" },
+  { n: 8,  title: "The Powerhouse",   img: "/images/learn/Life Path Number 8 - The Powerhouse.webp" },
+  { n: 9,  title: "The Humanitarian", img: "/images/learn/Life Path Number 9 - The Humanitarian.webp" },
+  { n: 11, title: "The Intuitive",    img: "/images/learn/Master Number 11 - The Intuitive Master.webp", master: true },
+  { n: 22, title: "The Architect",    img: "/images/learn/Master Number 22 - The Master Builder.webp", master: true },
+  { n: 33, title: "The Teacher",      img: "/images/learn/Master Number 33 - The Master Teacher.webp", master: true },
+];
+
+const features = [
+  {
+    href: "/learn/life-path-number/",
+    img: "/images/learn/Life Path Number 1 - Hero.webp",
+    label: "Foundation",
+    title: "Life Path Numbers",
+    desc: "The single most important number in your chart. It comes from your birth date and describes how you're fundamentally wired.",
+  },
+  {
+    href: "/learn/angel-numbers/",
+    img: "/images/learn/angel-numbers/Angel Number - 111.webp",
+    label: "Signs & Patterns",
+    title: "Angel Numbers",
+    desc: "Repeating sequences that show up when you're paying attention — 111, 444, 777. What they mean and why you keep seeing them.",
+  },
+  {
+    href: "/learn/life-path-compatibility/",
+    img: "/images/learn/Numerology Compatibility.webp",
+    label: "Relationships",
+    title: "Compatibility",
+    desc: "How the nine life path numbers relate to each other — where the chemistry is, where the friction lives, and what to do with both.",
+  },
+];
+
+const readingPoints = [
+  {
+    heading: "Genuinely personalized",
+    body: "Patented technology generates your reading from your specific name and birthdate — not a template with your name dropped in.",
+  },
+  {
+    heading: "Free to start",
+    body: "The full video reading costs nothing. You get a real breakdown before you're ever asked to buy anything.",
+  },
+  {
+    heading: "2.3 million+ readings delivered",
+    body: "Running since 1999. Google featured their personalization technology as a case study.",
+  },
+  {
+    heading: "Goes deeper if you want it to",
+    body: "The free reading gives you the foundation. The paid Deluxe Report covers every number in your chart — up to 115 pages.",
+  },
+];
+
+const faqs = [
+  {
+    q: "Is numerology real?",
+    a: "That depends what you mean by 'real'. The numbers and calculation methods are real and consistent — anyone calculating your Life Path Number using the same system will get the same result. Whether the meanings attached to those numbers reflect something genuine about you is something you'll have to judge for yourself. Most people who engage with it seriously say it describes them more accurately than they expected.",
+  },
+  {
+    q: "What's the most important number in numerology?",
+    a: "Your Life Path Number. It comes entirely from your birth date, and it's the anchor for everything else in the chart — the equivalent of a sun sign in astrology. Your Expression Number, Soul Urge Number, and Personal Year cycles all add texture. But the Life Path Number is what you start with, and for most people, it's the one that lands hardest.",
+  },
+  {
+    q: "Why do different sites give me different numbers?",
+    a: "Different systems. Most sites (including this one) use Pythagorean numerology — A=1, B=2, C=3, and so on. Some use the older Chaldean system, which assigns different values to letters. Your Life Path Number comes only from your birth date, so it should match everywhere. Name-based numbers like your Expression Number are where the systems diverge.",
+  },
+  {
+    q: "What's the difference between the guides here and a reading at Numerologist.com?",
+    a: "The guides here teach you the system — what the numbers mean, how they're calculated, what they say about personality and relationships. Numerologist.com applies the system to you specifically. You give it your name and birthdate; it gives you a personalized video walking through your actual numbers. The guides are learning the language. The reading is getting a letter written in it, addressed to you.",
+  },
+];
 ---
 
-<Layout>
-	<Welcome />
+<Layout
+  title="Numerology Guides — Learn What Your Numbers Mean"
+  description="Free guides to life path numbers, angel numbers, compatibility, and more. Learn numerology from scratch, then get a free personalized reading."
+>
+
+  <link
+    slot="head"
+    rel="stylesheet"
+    href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400;1,600&display=swap"
+  />
+
+  <style>
+    /* Override heading font for this page only */
+    :root {
+      --font-family-heading: 'Cormorant Garamond', Georgia, 'Times New Roman', serif;
+    }
+
+    /* ── Shared utilities ───────────────────── */
+    .p-label {
+      font-size: 0.7rem;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--color-soft-gold);
+      font-weight: 600;
+    }
+    .p-divider {
+      width: 48px;
+      height: 2px;
+      background: var(--color-soft-gold);
+      margin: 0 auto;
+    }
+
+    /* ── Hero ───────────────────────────────── */
+    .hero {
+      background: var(--color-card-bg);
+      padding: 5.5rem 1.5rem 4.5rem;
+      position: relative;
+      overflow: hidden;
+      border-bottom: 1px solid var(--color-border);
+      text-align: center;
+    }
+    .hero-dots {
+      position: absolute;
+      inset: 0;
+      background-image: radial-gradient(circle, rgba(124,92,191,0.07) 1px, transparent 1px);
+      background-size: 28px 28px;
+      pointer-events: none;
+    }
+    .hero-numeral {
+      position: absolute;
+      font-family: var(--font-family-heading);
+      font-weight: 700;
+      line-height: 1;
+      color: transparent;
+      pointer-events: none;
+      user-select: none;
+    }
+    .hero-numeral-l {
+      left: -1rem;
+      top: 0.5rem;
+      font-size: clamp(10rem, 20vw, 16rem);
+      -webkit-text-stroke: 1px rgba(196,162,78,0.13);
+    }
+    .hero-numeral-r {
+      right: -0.5rem;
+      bottom: -1.5rem;
+      font-size: clamp(12rem, 24vw, 20rem);
+      -webkit-text-stroke: 1px rgba(124,92,191,0.1);
+    }
+    .hero-inner {
+      position: relative;
+      z-index: 1;
+      max-width: 760px;
+      margin: 0 auto;
+    }
+    .hero h1 {
+      font-family: var(--font-family-heading);
+      font-size: clamp(2.6rem, 6.5vw, 4.75rem);
+      font-weight: 700;
+      line-height: 1.08;
+      color: var(--color-body-text);
+      letter-spacing: -0.02em;
+      margin: 0 0 1.5rem;
+    }
+    .hero h1 em {
+      color: var(--color-violet);
+      font-style: italic;
+    }
+    .hero-sub {
+      font-size: 1.05rem;
+      line-height: 1.8;
+      color: var(--color-muted-text);
+      max-width: 540px;
+      margin: 0 auto 2.5rem;
+    }
+    .hero-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.875rem;
+      justify-content: center;
+      align-items: center;
+      margin-bottom: 1.75rem;
+    }
+    .btn-primary {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      background: var(--color-violet);
+      color: white;
+      font-weight: 700;
+      font-size: 1rem;
+      padding: 0.875rem 2rem;
+      border-radius: 6px;
+      text-decoration: none;
+      transition: background 0.2s, transform 0.15s;
+      letter-spacing: 0.01em;
+    }
+    .btn-primary:hover { background: #6a4eab; transform: translateY(-1px); }
+    .btn-ghost {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      background: transparent;
+      color: var(--color-body-text);
+      font-weight: 600;
+      font-size: 1rem;
+      padding: 0.875rem 1.75rem;
+      border-radius: 6px;
+      text-decoration: none;
+      border: 1.5px solid var(--color-border);
+      transition: border-color 0.2s, color 0.2s;
+    }
+    .btn-ghost:hover { border-color: var(--color-violet); color: var(--color-violet); }
+    .hero-trust { font-size: 0.74rem; color: var(--color-muted-text); letter-spacing: 0.04em; }
+
+    /* ── Finder ─────────────────────────────── */
+    .finder {
+      background: var(--color-deep-purple);
+      padding: 5rem 1.5rem;
+    }
+    .finder-inner { max-width: 520px; margin: 0 auto; text-align: center; }
+    .finder h2 {
+      font-family: var(--font-family-heading);
+      font-size: clamp(1.75rem, 4vw, 2.5rem);
+      font-weight: 700;
+      color: var(--color-starlight);
+      margin: 0.875rem 0 1rem;
+      line-height: 1.2;
+    }
+    .finder-sub { color: rgba(235,232,247,0.55); font-size: 0.95rem; line-height: 1.75; margin-bottom: 2rem; }
+    .finder-card {
+      background: rgba(255,255,255,0.04);
+      border: 1px solid rgba(196,162,78,0.2);
+      border-radius: 10px;
+      padding: 2rem;
+      text-align: left;
+    }
+    .finder-label {
+      display: block;
+      font-size: 0.75rem;
+      font-weight: 600;
+      color: rgba(235,232,247,0.55);
+      margin-bottom: 0.5rem;
+      letter-spacing: 0.07em;
+      text-transform: uppercase;
+    }
+    .finder-input {
+      width: 100%;
+      padding: 0.75rem 1rem;
+      border-radius: 6px;
+      border: 1px solid rgba(196,162,78,0.25);
+      background: rgba(255,255,255,0.06);
+      color: var(--color-starlight);
+      font-size: 1rem;
+      margin-bottom: 1rem;
+      outline: none;
+      transition: border-color 0.2s;
+      color-scheme: dark;
+    }
+    .finder-input:focus { border-color: rgba(196,162,78,0.6); }
+    .finder-error { display: none; color: #f87171; font-size: 0.8rem; margin-bottom: 0.75rem; }
+    .btn-gold {
+      width: 100%;
+      padding: 0.875rem;
+      background: var(--color-soft-gold);
+      color: var(--color-midnight);
+      font-weight: 700;
+      font-size: 1rem;
+      border: none;
+      border-radius: 6px;
+      cursor: pointer;
+      transition: opacity 0.2s;
+      letter-spacing: 0.02em;
+    }
+    .btn-gold:hover { opacity: 0.88; }
+    .finder-result {
+      display: none;
+      margin-top: 1.5rem;
+      padding-top: 1.5rem;
+      border-top: 1px solid rgba(196,162,78,0.15);
+      text-align: center;
+    }
+    .result-subtitle { font-size: 0.72rem; text-transform: uppercase; letter-spacing: 0.12em; color: rgba(235,232,247,0.4); margin-bottom: 0.5rem; }
+    .result-number {
+      font-family: var(--font-family-heading);
+      font-size: 5.5rem;
+      font-weight: 700;
+      color: var(--color-soft-gold);
+      line-height: 1;
+      margin-bottom: 0.375rem;
+    }
+    .result-title {
+      font-family: var(--font-family-heading);
+      font-size: 1.2rem;
+      font-weight: 600;
+      font-style: italic;
+      color: var(--color-starlight);
+      margin-bottom: 1.25rem;
+    }
+    .result-actions { display: flex; flex-direction: column; gap: 0.625rem; }
+    .btn-violet-block {
+      display: block;
+      padding: 0.75rem;
+      background: var(--color-violet);
+      color: white;
+      font-weight: 600;
+      font-size: 0.9rem;
+      border-radius: 6px;
+      text-align: center;
+      text-decoration: none;
+      transition: opacity 0.2s;
+    }
+    .btn-violet-block:hover { opacity: 0.88; }
+    .btn-ghost-dark {
+      display: block;
+      padding: 0.75rem;
+      background: rgba(255,255,255,0.05);
+      color: rgba(235,232,247,0.65);
+      font-size: 0.84rem;
+      border-radius: 6px;
+      text-align: center;
+      text-decoration: none;
+      border: 1px solid rgba(196,162,78,0.18);
+      transition: border-color 0.2s, color 0.2s;
+    }
+    .btn-ghost-dark:hover { border-color: rgba(196,162,78,0.4); color: var(--color-soft-gold); }
+    .restart-btn {
+      margin-top: 1rem;
+      background: none;
+      border: none;
+      color: rgba(235,232,247,0.3);
+      font-size: 0.75rem;
+      cursor: pointer;
+      text-decoration: underline;
+    }
+    .finder-note { margin-top: 1rem; font-size: 0.7rem; color: rgba(235,232,247,0.25); }
+
+    /* ── Numbers grid ───────────────────────── */
+    .numbers-section { background: var(--color-light-bg); padding: 5.5rem 1.5rem; }
+    .section-head { text-align: center; margin-bottom: 3rem; }
+    .section-head h2 {
+      font-family: var(--font-family-heading);
+      font-size: clamp(1.75rem, 4vw, 2.75rem);
+      font-weight: 700;
+      color: var(--color-body-text);
+      margin: 0.875rem 0 1.25rem;
+      line-height: 1.2;
+    }
+    .numbers-grid {
+      max-width: 1100px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 1rem;
+    }
+    .num-tile {
+      position: relative;
+      overflow: hidden;
+      border-radius: 8px;
+      display: block;
+      aspect-ratio: 2 / 3;
+    }
+    .num-tile img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.6s ease; }
+    .num-tile:hover img { transform: scale(1.07); }
+    .num-overlay {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(to top, rgba(7,7,26,0.92) 0%, rgba(7,7,26,0.35) 55%, transparent 100%);
+      transition: background 0.3s;
+    }
+    .num-tile:hover .num-overlay { background: linear-gradient(to top, rgba(7,7,26,0.96) 0%, rgba(7,7,26,0.55) 65%, transparent 100%); }
+    .num-content { position: absolute; bottom: 0; left: 0; right: 0; padding: 1rem 0.875rem; }
+    .num-n {
+      font-family: var(--font-family-heading);
+      font-size: 2.5rem;
+      font-weight: 700;
+      color: var(--color-soft-gold);
+      line-height: 1;
+      margin-bottom: 0.2rem;
+    }
+    .num-n.master { font-size: 1.9rem; }
+    .num-label { font-size: 0.68rem; text-transform: uppercase; letter-spacing: 0.12em; color: rgba(235,232,247,0.7); font-weight: 600; }
+    .master-badge { font-size: 0.58rem; letter-spacing: 0.1em; text-transform: uppercase; color: var(--color-soft-gold); margin-top: 0.2rem; font-weight: 600; display: block; }
+    .numbers-footer { text-align: center; margin-top: 2rem; font-size: 0.875rem; color: var(--color-muted-text); }
+    .numbers-footer a { color: var(--color-violet); font-weight: 600; text-decoration: none; }
+
+    /* ── Featured guides ────────────────────── */
+    .guides-section { background: white; padding: 5.5rem 1.5rem; border-top: 1px solid var(--color-border); }
+    .guides-inner { max-width: 1100px; margin: 0 auto; }
+    .guides-header {
+      display: flex;
+      align-items: flex-end;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 1rem;
+      margin-bottom: 2.5rem;
+    }
+    .guides-header h2 {
+      font-family: var(--font-family-heading);
+      font-size: clamp(1.6rem, 3.5vw, 2.5rem);
+      font-weight: 700;
+      color: var(--color-body-text);
+      line-height: 1.15;
+      margin-top: 0.625rem;
+    }
+    .link-underline {
+      font-size: 0.85rem;
+      font-weight: 600;
+      color: var(--color-violet);
+      padding-bottom: 0.125rem;
+      border-bottom: 1.5px solid var(--color-violet);
+      white-space: nowrap;
+      text-decoration: none;
+      transition: opacity 0.2s;
+    }
+    .link-underline:hover { opacity: 0.75; }
+    .feat-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.5rem; margin-bottom: 1.25rem; }
+    .feat-card {
+      display: block;
+      background: white;
+      border: 1px solid var(--color-border);
+      border-radius: 8px;
+      overflow: hidden;
+      text-decoration: none;
+      transition: box-shadow 0.25s, transform 0.25s;
+    }
+    .feat-card:hover { box-shadow: 0 12px 40px rgba(26,21,40,0.1); transform: translateY(-3px); }
+    .feat-img-wrap { overflow: hidden; height: 220px; }
+    .feat-card img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.5s; }
+    .feat-card:hover img { transform: scale(1.05); }
+    .feat-body { padding: 1.5rem; }
+    .feat-body h3 {
+      font-family: var(--font-family-heading);
+      font-size: 1.3rem;
+      font-weight: 700;
+      color: var(--color-body-text);
+      margin: 0.5rem 0 0.625rem;
+      line-height: 1.25;
+    }
+    .feat-body p { font-size: 0.875rem; color: var(--color-muted-text); line-height: 1.7; margin-bottom: 1.25rem; }
+    .feat-link { font-size: 0.8rem; font-weight: 700; color: var(--color-violet); letter-spacing: 0.04em; }
+    .mini-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 0.875rem; }
+    .mini-card {
+      display: block;
+      padding: 1rem 1.25rem;
+      background: var(--color-light-bg);
+      border: 1px solid var(--color-border);
+      border-radius: 6px;
+      text-decoration: none;
+      font-size: 0.875rem;
+      font-weight: 600;
+      color: var(--color-body-text);
+      transition: border-color 0.2s, color 0.2s;
+    }
+    .mini-card:hover { border-color: var(--color-violet); color: var(--color-violet); }
+    .mini-card span { display: block; font-size: 0.75rem; font-weight: 400; color: var(--color-muted-text); margin-top: 0.2rem; }
+
+    /* ── Reading block ──────────────────────── */
+    .reading-section { background: var(--color-light-bg); padding: 5.5rem 1.5rem; border-top: 1px solid var(--color-border); }
+    .reading-inner { max-width: 1000px; margin: 0 auto; }
+    .reading-block {
+      background: var(--color-midnight);
+      border-radius: 12px;
+      overflow: hidden;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+    }
+    .reading-left { padding: 3rem 2.75rem; display: flex; flex-direction: column; justify-content: center; }
+    .reading-left h2 {
+      font-family: var(--font-family-heading);
+      font-size: clamp(1.5rem, 3vw, 2.1rem);
+      font-weight: 700;
+      color: var(--color-starlight);
+      line-height: 1.25;
+      margin: 1rem 0;
+    }
+    .reading-left h2 em { font-style: italic; color: var(--color-soft-gold); }
+    .reading-left p { font-size: 0.9rem; line-height: 1.75; color: rgba(235,232,247,0.58); margin-bottom: 2rem; }
+    .btn-gold-inline {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      background: var(--color-soft-gold);
+      color: var(--color-midnight);
+      font-weight: 700;
+      font-size: 0.95rem;
+      padding: 0.875rem 1.75rem;
+      border-radius: 6px;
+      text-decoration: none;
+      width: fit-content;
+      transition: opacity 0.2s;
+    }
+    .btn-gold-inline:hover { opacity: 0.88; }
+    .reading-disclaimer { margin-top: 1rem; font-size: 0.68rem; color: rgba(235,232,247,0.22); line-height: 1.5; }
+    .reading-right {
+      background: rgba(255,255,255,0.04);
+      border-left: 1px solid rgba(196,162,78,0.12);
+      padding: 3rem 2.5rem;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      gap: 1.5rem;
+    }
+    .reading-point { display: flex; gap: 1rem; align-items: flex-start; }
+    .reading-dot { width: 5px; height: 5px; border-radius: 50%; background: var(--color-soft-gold); margin-top: 0.45rem; flex-shrink: 0; }
+    .reading-point-head { font-size: 0.875rem; font-weight: 600; color: var(--color-starlight); margin-bottom: 0.2rem; }
+    .reading-point-body { font-size: 0.8rem; color: rgba(235,232,247,0.5); line-height: 1.6; }
+
+    /* ── FAQ ────────────────────────────────── */
+    .faq-section { background: white; padding: 5.5rem 1.5rem; border-top: 1px solid var(--color-border); }
+    .faq-inner { max-width: 680px; margin: 0 auto; }
+    .faq-inner .section-head h2 {
+      font-family: var(--font-family-heading);
+      font-size: clamp(1.5rem, 3.5vw, 2.25rem);
+      font-weight: 700;
+      color: var(--color-body-text);
+      margin-bottom: 0.5rem;
+    }
+    .faq-list details { border-top: 1px solid var(--color-border); }
+    .faq-list details:last-child { border-bottom: 1px solid var(--color-border); }
+    .faq-list summary {
+      padding: 1.3rem 0;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 1rem;
+      font-weight: 600;
+      font-size: 1rem;
+      color: var(--color-body-text);
+      list-style: none;
+      transition: color 0.2s;
+    }
+    .faq-list summary::-webkit-details-marker { display: none; }
+    .faq-list details[open] summary { color: var(--color-violet); }
+    .faq-chevron { flex-shrink: 0; transition: transform 0.25s; }
+    .faq-list details[open] .faq-chevron { transform: rotate(180deg); }
+    .faq-answer { padding-bottom: 1.3rem; font-size: 0.9rem; color: var(--color-muted-text); line-height: 1.8; }
+
+    /* ── Bottom CTA ─────────────────────────── */
+    .bottom-cta {
+      background: var(--color-midnight);
+      padding: 5.5rem 1.5rem;
+      position: relative;
+      overflow: hidden;
+      text-align: center;
+    }
+    .bottom-cta-glow {
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(ellipse at 50% 120%, rgba(124,92,191,0.18) 0%, transparent 70%);
+      pointer-events: none;
+    }
+    .bottom-cta-inner { position: relative; z-index: 1; max-width: 560px; margin: 0 auto; }
+    .bottom-cta h2 {
+      font-family: var(--font-family-heading);
+      font-size: clamp(1.85rem, 4vw, 2.9rem);
+      font-weight: 700;
+      color: var(--color-starlight);
+      margin: 1rem 0;
+      line-height: 1.2;
+    }
+    .bottom-cta p { color: rgba(235,232,247,0.5); font-size: 0.95rem; line-height: 1.8; margin-bottom: 2.5rem; }
+
+    /* ── Responsive ─────────────────────────── */
+    @media (max-width: 900px) {
+      .numbers-grid { grid-template-columns: repeat(3, 1fr); }
+      .feat-grid { grid-template-columns: 1fr 1fr; }
+      .mini-grid { grid-template-columns: repeat(2, 1fr); }
+      .reading-block { grid-template-columns: 1fr; }
+      .reading-right { border-left: none; border-top: 1px solid rgba(196,162,78,0.12); }
+    }
+    @media (max-width: 600px) {
+      .numbers-grid { grid-template-columns: repeat(3, 1fr); gap: 0.625rem; }
+      .feat-grid { grid-template-columns: 1fr; }
+      .mini-grid { grid-template-columns: repeat(2, 1fr); }
+      .hero-numeral-l, .hero-numeral-r { display: none; }
+    }
+  </style>
+
+
+  <!-- ═══ HERO ═══════════════════════════════════════ -->
+  <section class="hero">
+    <div class="hero-dots"></div>
+    <div class="hero-numeral hero-numeral-l" aria-hidden="true">3</div>
+    <div class="hero-numeral hero-numeral-r" aria-hidden="true">7</div>
+
+    <div class="hero-inner">
+      <p class="p-label" style="margin-bottom:1.25rem;">Free Numerology Education</p>
+      <div class="p-divider" style="margin-bottom:1.75rem;"></div>
+
+      <h1>
+        Your birth date<br>
+        <em>is trying to tell you something.</em>
+      </h1>
+
+      <p class="hero-sub">
+        The numbers in your name and birth date describe patterns — personality tendencies, the way you relate to people, how you work. Most people recognise them immediately once they see them. These guides explain how the system works, for free.
+      </p>
+
+      <div class="hero-actions">
+        <a href="/learn/" class="btn-primary">
+          Start learning free
+          <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="9 18 15 12 9 6"/></svg>
+        </a>
+        <a href="https://8904b5z1168aar3k8annz7y61n.hop.clickbank.net" target="_blank" rel="noopener sponsored" class="btn-ghost">
+          Get a free reading
+        </a>
+      </div>
+
+      <p class="hero-trust">Pythagorean system &nbsp;·&nbsp; No sign-up required &nbsp;·&nbsp; Free to use</p>
+    </div>
+  </section>
+
+
+  <!-- ═══ LIFE PATH FINDER ════════════════════════════ -->
+  <section class="finder">
+    <div class="finder-inner">
+      <p class="p-label">Discover yours</p>
+      <h2>Find your Life Path Number</h2>
+      <p class="finder-sub">
+        It comes from your birth date and it's the anchor for everything else in your chart. Takes about five seconds.
+      </p>
+
+      <div class="finder-card">
+        <label for="finder-dob" class="finder-label">Your date of birth</label>
+        <input type="date" id="finder-dob" class="finder-input" />
+        <div id="finder-error" class="finder-error"></div>
+        <button id="finder-btn" class="btn-gold">Find My Number</button>
+
+        <div id="finder-result" class="finder-result">
+          <p class="result-subtitle">Your Life Path Number</p>
+          <div id="result-num" class="result-number"></div>
+          <div id="result-title" class="result-title"></div>
+          <div class="result-actions">
+            <a id="result-link" href="#" class="btn-violet-block">Read your guide →</a>
+            <a href="https://8904b5z1168aar3k8annz7y61n.hop.clickbank.net" target="_blank" rel="noopener sponsored" class="btn-ghost-dark">
+              Get a personalized reading at Numerologist.com →
+            </a>
+          </div>
+          <button id="finder-restart" class="restart-btn">Start over</button>
+        </div>
+      </div>
+
+      <p class="finder-note">We don't store your date. The calculation happens in your browser.</p>
+    </div>
+  </section>
+
+
+  <!-- ═══ ALL NUMBERS ══════════════════════════════════ -->
+  <section class="numbers-section">
+    <div class="section-head">
+      <p class="p-label">The system</p>
+      <h2>Every Life Path Number</h2>
+      <div class="p-divider"></div>
+    </div>
+
+    <div class="numbers-grid">
+      {numbers.map(n => (
+        <a href={`/learn/life-path-number-${n.n}/`} class="num-tile">
+          <img src={n.img} alt={`Life Path ${n.n} — ${n.title}`} loading="lazy" decoding="async" />
+          <div class="num-overlay"></div>
+          <div class="num-content">
+            <div class:list={["num-n", { master: n.master }]}>{n.n}</div>
+            <div class="num-label">{n.title}</div>
+            {n.master && <span class="master-badge">Master Number</span>}
+          </div>
+        </a>
+      ))}
+    </div>
+
+    <p class="numbers-footer" style="margin-top:2rem;">
+      Not sure which is yours?
+      <a href="#finder-dob" onclick="document.getElementById('finder-dob').focus();return false;">Calculate it above →</a>
+    </p>
+  </section>
+
+
+  <!-- ═══ FEATURED GUIDES ═════════════════════════════ -->
+  <section class="guides-section">
+    <div class="guides-inner">
+
+      <div class="guides-header">
+        <div>
+          <p class="p-label">Where to start</p>
+          <h2>The essential guides</h2>
+        </div>
+        <a href="/learn/" class="link-underline">Browse all guides →</a>
+      </div>
+
+      <div class="feat-grid">
+        {features.map(f => (
+          <a href={f.href} class="feat-card">
+            <div class="feat-img-wrap">
+              <img src={f.img} alt={f.title} loading="lazy" decoding="async" />
+            </div>
+            <div class="feat-body">
+              <p class="p-label">{f.label}</p>
+              <h3>{f.title}</h3>
+              <p>{f.desc}</p>
+              <span class="feat-link">Read guide →</span>
+            </div>
+          </a>
+        ))}
+      </div>
+
+      <div class="mini-grid">
+        <a href="/learn/expression-number/" class="mini-card">Expression Number <span>Free guide →</span></a>
+        <a href="/learn/soul-urge-number/" class="mini-card">Soul Urge Number <span>Free guide →</span></a>
+        <a href="/learn/personal-year-number/" class="mini-card">Personal Year <span>Free guide →</span></a>
+        <a href="/calculator/" class="mini-card">Numerology Calculator <span>Try it free →</span></a>
+      </div>
+    </div>
+  </section>
+
+
+  <!-- ═══ FREE READING ════════════════════════════════ -->
+  <section class="reading-section">
+    <div class="reading-inner">
+      <div class="reading-block">
+
+        <div class="reading-left">
+          <p class="p-label">Recommended</p>
+          <h2>
+            Once you know your numbers — see what they say about <em>you</em>
+          </h2>
+          <p>
+            The guides here teach you the system. Numerologist.com makes it personal — enter your name and birthdate and get a free video built around your specific numbers. Running since 1999. Over 2.3 million readings delivered.
+          </p>
+          <a href="https://8904b5z1168aar3k8annz7y61n.hop.clickbank.net" target="_blank" rel="noopener sponsored" class="btn-gold-inline">
+            Get your free reading
+            <svg xmlns="http://www.w3.org/2000/svg" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="9 18 15 12 9 6"/></svg>
+          </a>
+          <p class="reading-disclaimer">Free to use. Affiliate link — we may earn a commission if you purchase a paid report.</p>
+        </div>
+
+        <div class="reading-right">
+          {readingPoints.map(item => (
+            <div class="reading-point">
+              <div class="reading-dot"></div>
+              <div>
+                <p class="reading-point-head">{item.heading}</p>
+                <p class="reading-point-body">{item.body}</p>
+              </div>
+            </div>
+          ))}
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+
+  <!-- ═══ FAQ ═════════════════════════════════════════ -->
+  <section class="faq-section">
+    <div class="faq-inner">
+      <div class="section-head">
+        <h2>Common questions</h2>
+        <div class="p-divider" style="margin-top:0.5rem;"></div>
+      </div>
+
+      <div class="faq-list">
+        {faqs.map(item => (
+          <details>
+            <summary>
+              {item.q}
+              <svg class="faq-chevron" xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="6 9 12 15 18 9"/></svg>
+            </summary>
+            <div class="faq-answer">{item.a}</div>
+          </details>
+        ))}
+      </div>
+    </div>
+  </section>
+
+
+  <!-- ═══ BOTTOM CTA ══════════════════════════════════ -->
+  <section class="bottom-cta">
+    <div class="bottom-cta-glow"></div>
+    <div class="bottom-cta-inner">
+      <p class="p-label">Numerologist.com</p>
+      <div class="p-divider" style="margin:1rem auto;"></div>
+      <h2>Ready to see what your numbers actually say?</h2>
+      <p>Enter your name and birthdate. Get a free video reading built around you — not a generic overview with your name dropped in.</p>
+      <a href="https://8904b5z1168aar3k8annz7y61n.hop.clickbank.net" target="_blank" rel="noopener sponsored" class="btn-gold-inline" style="margin:0 auto;">
+        Get your free reading at Numerologist.com
+        <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="9 18 15 12 9 6"/></svg>
+      </a>
+    </div>
+  </section>
+
+
+  <script>
+  (function () {
+    const lpTitles: Record<number, string> = {
+      1:"The Leader", 2:"The Peacemaker", 3:"The Communicator",
+      4:"The Builder", 5:"The Adventurer", 6:"The Nurturer",
+      7:"The Seeker", 8:"The Powerhouse", 9:"The Humanitarian",
+      11:"The Intuitive Master", 22:"The Master Builder", 33:"The Master Teacher"
+    };
+
+    function reduce(n: number): number {
+      if (n < 10 || n === 11 || n === 22 || n === 33) return n;
+      let s = 0;
+      while (n > 0) { s += n % 10; n = Math.floor(n / 10); }
+      return reduce(s);
+    }
+
+    function calcLP(str: string): number {
+      const [y, m, d] = str.split('-').map(Number);
+      const rm = reduce(m);
+      const rd = reduce(d);
+      const ry = reduce(String(y).split('').map(Number).reduce((a: number, b: number) => a + b, 0));
+      return reduce(rm + rd + ry);
+    }
+
+    const dobEl    = document.getElementById('finder-dob') as HTMLInputElement;
+    const btnEl    = document.getElementById('finder-btn') as HTMLButtonElement;
+    const errEl    = document.getElementById('finder-error') as HTMLElement;
+    const resEl    = document.getElementById('finder-result') as HTMLElement;
+    const numEl    = document.getElementById('result-num') as HTMLElement;
+    const titleEl  = document.getElementById('result-title') as HTMLElement;
+    const linkEl   = document.getElementById('result-link') as HTMLAnchorElement;
+    const restart  = document.getElementById('finder-restart') as HTMLButtonElement;
+
+    btnEl.addEventListener('click', () => {
+      errEl.style.display = 'none';
+      if (!dobEl.value) {
+        errEl.textContent = "Pop your birthday in above and we'll do the rest.";
+        errEl.style.display = 'block';
+        return;
+      }
+      const lp = calcLP(dobEl.value);
+      numEl.textContent   = String(lp);
+      titleEl.textContent = lpTitles[lp] ?? 'Unknown';
+      linkEl.href         = `/learn/life-path-number-${lp}/`;
+      linkEl.textContent  = `Read your Life Path ${lp} guide →`;
+      resEl.style.display = 'block';
+      resEl.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+    });
+
+    dobEl.addEventListener('keypress', (e: KeyboardEvent) => { if (e.key === 'Enter') btnEl.click(); });
+
+    restart.addEventListener('click', () => {
+      dobEl.value = '';
+      resEl.style.display = 'none';
+    });
+  })();
+  </script>
+
 </Layout>

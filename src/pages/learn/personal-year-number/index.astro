@@ -1,0 +1,257 @@
+---
+import Layout from '../../../layouts/Layout.astro';
+import SidebarCTA from '../../../components/SidebarCTA.astro';
+import { personalYearNumbers } from '../../../data/personalYearNumbers';
+
+
+const pyMeta: Record<number, { traits: string; focus: string }> = {
+  1: { traits: "New starts, leadership, boldness", focus: "Initiate something fresh" },
+  2: { traits: "Partnership, patience, harmony", focus: "Deepen relationships" },
+  3: { traits: "Creativity, visibility, joy", focus: "Express and share" },
+  4: { traits: "Structure, work, discipline", focus: "Build solid foundations" },
+  5: { traits: "Change, freedom, adventure", focus: "Embrace the unexpected" },
+  6: { traits: "Home, care, family", focus: "Tend what matters" },
+  7: { traits: "Reflection, rest, inner work", focus: "Understand yourself" },
+  8: { traits: "Power, achievement, results", focus: "Step into leadership" },
+  9: { traits: "Completion, release, wisdom", focus: "Finish and release" },
+};
+---
+
+<Layout
+  title="Personal Year Numbers in Numerology - Find Your Cycle & Energy"
+  description="Personal Year Numbers reveal the energy and theme of your current year. Understand what's being asked of you and how to work with the cycle. Calculate your Personal Year."
+>
+
+  <link
+    slot="head"
+    rel="stylesheet"
+    href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400;1,600&display=swap"
+  />
+
+  <style>
+    :root { --font-family-heading: 'Cormorant Garamond', Georgia, serif; }
+    .p-label { font-size:0.7rem; letter-spacing:0.18em; text-transform:uppercase; color:var(--color-soft-gold); font-weight:600; }
+    .p-divider { width:48px; height:2px; background:var(--color-soft-gold); margin:0 auto; }
+    .section-h2 { font-family:var(--font-family-heading); font-size:clamp(1.6rem,3.5vw,2.25rem); font-weight:700; color:var(--color-body-text); margin:0 0 1.25rem; }
+    .faq-list details { border-top:1px solid var(--color-border); }
+    .faq-list details:last-child { border-bottom:1px solid var(--color-border); }
+    .faq-list summary { padding:1.3rem 0; cursor:pointer; display:flex; align-items:center; justify-content:space-between; gap:1rem; font-weight:600; font-size:1rem; color:var(--color-body-text); list-style:none; transition:color 0.2s; }
+    .faq-list summary::-webkit-details-marker { display:none; }
+    .faq-list details[open] summary { color:var(--color-violet); }
+    .faq-chevron { flex-shrink:0; transition:transform 0.25s; }
+    .faq-list details[open] .faq-chevron { transform:rotate(180deg); }
+    .faq-answer { padding-bottom:1.3rem; font-size:0.9rem; color:var(--color-muted-text); line-height:1.8; }
+  </style>
+
+  <!-- Hero — image-based (number-set pillar) -->
+  <section style="position:relative;height:440px;min-height:360px;overflow:hidden;">
+    <img src="/images/learn/Personal Year Numbers Pillar Hero.webp" alt="Personal Year Numbers" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:center 30%;" />
+    <div style="position:absolute;inset:0;background:linear-gradient(to bottom,rgba(14,10,26,0.75) 0%,rgba(14,10,26,0.58) 50%,rgba(14,10,26,0.80) 100%);"></div>
+    <div style="position:absolute;inset:0;background-image:radial-gradient(circle,rgba(196,162,78,0.08) 1px,transparent 1px);background-size:28px 28px;pointer-events:none;"></div>
+    <div aria-hidden="true" style="position:absolute;left:-1rem;top:0;font-family:var(--font-family-heading);font-size:clamp(14rem,28vw,22rem);font-weight:700;line-height:1;color:transparent;-webkit-text-stroke:1px rgba(196,162,78,0.18);pointer-events:none;user-select:none;">P</div>
+    <div aria-hidden="true" style="position:absolute;right:-0.5rem;bottom:-1rem;font-family:var(--font-family-heading);font-size:clamp(14rem,28vw,22rem);font-weight:700;line-height:1;color:transparent;-webkit-text-stroke:1px rgba(196,162,78,0.18);pointer-events:none;user-select:none;">Y</div>
+    <div style="position:relative;z-index:2;height:100%;display:flex;flex-direction:column;justify-content:flex-end;padding:3rem 1.5rem 3.5rem;max-width:1100px;margin:0 auto;">
+      <nav aria-label="Breadcrumb" style="margin-bottom:1.25rem;font-size:0.78rem;display:flex;gap:0.5rem;flex-wrap:wrap;">
+        <a href="/" style="color:rgba(240,234,255,0.6);text-decoration:none;">Home</a>
+        <span style="color:rgba(240,234,255,0.4);">›</span>
+        <a href="/learn/" style="color:rgba(240,234,255,0.6);text-decoration:none;">Learn</a>
+        <span style="color:rgba(240,234,255,0.4);">›</span>
+        <span style="color:rgba(240,234,255,0.7);font-weight:500;">Personal Year Numbers</span>
+      </nav>
+      <p class="p-label" style="opacity:0.9;margin-bottom:0.75rem;">Annual Cycles</p>
+      <h1 style="font-family:var(--font-family-heading);font-size:clamp(2.4rem,6vw,4.25rem);font-weight:700;line-height:1.08;color:#f5f0e8;letter-spacing:-0.02em;margin:0 0 1rem;text-shadow:0 2px 20px rgba(14,10,26,0.6);">
+        Personal Year Numbers in <em style="color:#c8a8f0;font-style:italic;">Numerology</em>
+      </h1>
+      <p style="font-size:1rem;line-height:1.7;color:rgba(240,234,255,0.82);max-width:580px;text-shadow:0 1px 8px rgba(14,10,26,0.5);margin:0 0 2rem;">
+        Your Personal Year Number reveals the energy and themes of your current year — what's being asked of you and what the universe is supporting.
+      </p>
+      <div style="display:flex;flex-wrap:wrap;gap:0.875rem;">
+        <a href="https://8904b5z1168aar3k8annz7y61n.hop.clickbank.net" target="_blank" rel="noopener sponsored" style="display:inline-flex;align-items:center;gap:0.5rem;background:var(--color-violet);color:white;font-weight:700;font-size:1rem;padding:0.875rem 2rem;border-radius:6px;text-decoration:none;box-shadow:0 4px 20px rgba(124,92,191,0.45);">Get My Free Reading →</a>
+        <a href="#all-numbers" style="display:inline-flex;align-items:center;gap:0.5rem;background:rgba(255,255,255,0.1);color:rgba(255,255,255,0.9);font-weight:600;font-size:1rem;padding:0.875rem 1.75rem;border-radius:6px;text-decoration:none;border:1.5px solid rgba(255,255,255,0.25);backdrop-filter:blur(6px);">Find Your Year ↓</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Author byline -->
+  <div style="background:var(--color-card-bg);padding:1.25rem 1.5rem;border-bottom:1px solid var(--color-border);">
+    <div style="max-width:1200px;margin:0 auto;display:flex;align-items:center;gap:1rem;">
+      <img src="/images/author-maddi-green.webp" alt="Maddie Greene" style="width:3rem;height:3rem;border-radius:50%;object-fit:cover;border:2px solid var(--color-border);" />
+      <div>
+        <p style="font-size:0.875rem;font-weight:600;color:var(--color-body-text);margin:0;">Written by <strong>Maddie Greene</strong></p>
+        <p style="font-size:0.75rem;color:var(--color-muted-text);margin:0;">Numerology writer &amp; researcher</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- Content + Sticky sidebar wrapper -->
+  <div class="xl:flex xl:gap-6 xl:max-w-[1200px] xl:mx-auto xl:px-4">
+    <!-- Main content column -->
+    <div class="xl:flex-1 xl:min-w-0">
+
+  <!-- Main content -->
+  <article style="padding:2.5rem 1.5rem 3rem;background:var(--color-card-bg);">
+    <div style="max-width:720px;margin:0 auto;">
+
+      <!-- What is Personal Year -->
+      <section id="what-is" style="margin-bottom:3rem;">
+        <h2 class="section-h2">What is a Personal Year Number?</h2>
+        <p style="color:var(--color-body-text);line-height:1.8;margin-bottom:1rem;">
+          Your Personal Year Number is a single number that describes the energy and themes of your current calendar year — what you're meant to focus on, what challenges you'll face, and what the universe is supporting. It's calculated fresh every year from your birth month, birth day, and the current calendar year.
+        </p>
+        <p style="color:var(--color-body-text);line-height:1.8;margin-bottom:1rem;">
+          Unlike your Life Path Number or Expression Number (which are fixed from birth), your Personal Year changes every calendar year. It moves through a 9-year cycle where each number has its own energy and lessons. Year 1 is always about new beginnings. Year 9 is always about completion. And everything in between has its own specific frequency.
+        </p>
+        <p style="color:var(--color-body-text);line-height:1.8;">
+          Think of it less like a prediction and more like a weather forecast. The Personal Year shows you what climate you're moving through — and that information helps you dress right, plan your year, and know what to expect.
+        </p>
+      </section>
+
+      <!-- How to calculate -->
+      <section id="calculate" style="margin-bottom:3rem;">
+        <h2 class="section-h2">How to calculate your Personal Year</h2>
+        <p style="color:var(--color-body-text);line-height:1.8;margin-bottom:1.25rem;">
+          The formula is simple: Add your birth month + birth day + the current calendar year. Then reduce to a single digit (or keep 11, 22, 33 if you land there — those are master numbers and aren't reduced further).
+        </p>
+        <div style="background:var(--color-light-bg);border:1px solid var(--color-border);border-left:4px solid var(--color-violet);border-radius:8px;padding:1.5rem;margin-bottom:1.25rem;">
+          <h3 style="font-family:var(--font-family-heading);font-size:1.1rem;font-weight:700;color:var(--color-body-text);margin:0 0 0.75rem;">The formula</h3>
+          <p style="color:var(--color-muted-text);margin-bottom:0.75rem;">
+            <span style="font-weight:600;color:var(--color-body-text);">Birth month + Birth day + Current calendar year = Total</span>
+          </p>
+          <p style="color:var(--color-muted-text);font-size:0.9rem;margin:0;">
+            Then reduce the total by adding its digits together until you get a single digit. If you land on 11, 22, or 33 on the first reduction, stop — don't reduce further.
+          </p>
+        </div>
+        <div style="background:var(--color-light-bg);border:1px solid var(--color-border);border-left:4px solid var(--color-violet);border-radius:8px;padding:1.5rem;">
+          <h3 style="font-family:var(--font-family-heading);font-size:1.1rem;font-weight:700;color:var(--color-body-text);margin:0 0 0.75rem;">Worked example</h3>
+          <div style="display:grid;gap:0.5rem;font-size:0.875rem;color:var(--color-muted-text);">
+            <div><span style="font-weight:600;color:var(--color-body-text);">Born:</span> March 15</div>
+            <div><span style="font-weight:600;color:var(--color-body-text);">Current year:</span> 2026</div>
+            <div style="padding-top:0.5rem;border-top:1px solid var(--color-border);"><span style="font-weight:600;color:var(--color-body-text);">Calculation:</span> 3 + 15 + 2026 = 2044</div>
+            <div><span style="font-weight:600;color:var(--color-body-text);">Reduce:</span> 2 + 0 + 4 + 4 = 10 → 1 + 0 = <span style="color:var(--color-violet);font-weight:700;font-size:1rem;">1</span></div>
+            <div style="padding-top:0.5rem;border-top:1px solid var(--color-border);"><span style="color:var(--color-body-text);font-weight:600;">Result:</span> <span style="color:var(--color-violet);font-weight:700;">Personal Year 1 in 2026</span></div>
+          </div>
+        </div>
+      </section>
+
+      <!-- The 9-year cycle -->
+      <section id="cycle" style="margin-bottom:3rem;">
+        <h2 class="section-h2">The 9-year cycle</h2>
+        <p style="color:var(--color-body-text);line-height:1.8;margin-bottom:1rem;">
+          Your Personal Year moves through a 9-year cycle that begins in PY1 (new beginnings) and ends in PY9 (completion). Then it starts over. Each number has a specific energy and a specific job to do.
+        </p>
+        <p style="color:var(--color-body-text);line-height:1.8;margin-bottom:1.5rem;">
+          This cycle is consistent for everyone. Year 1 is always about initiative. Year 5 is always about change. The number doesn't care whether you're ready for what it's asking — it's asking anyway. Your job is to understand what energy you're moving through and work with it instead of fighting it.
+        </p>
+        <a
+          href="https://8904b5z1168aar3k8annz7y61n.hop.clickbank.net"
+          target="_blank"
+          rel="noopener sponsored"
+          style="display:inline-flex;align-items:center;gap:0.5rem;background:var(--color-violet);color:white;font-weight:700;font-size:1rem;padding:0.875rem 2rem;border-radius:6px;text-decoration:none;transition:background 0.2s,transform 0.15s;"
+        >
+          Get Your Free Reading →
+        </a>
+      </section>
+
+    </div>
+  </article>
+
+  <!-- All personal year numbers grid -->
+  <section id="all-numbers" style="padding:3.5rem 1.5rem;background:var(--color-light-bg);border-top:1px solid var(--color-border);">
+    <div style="max-width:1100px;margin:0 auto;">
+      <div style="text-align:center;margin-bottom:3rem;">
+        <p class="p-label" style="margin-bottom:0.75rem;">All Personal Year Numbers</p>
+        <div class="p-divider" style="margin-bottom:1.25rem;"></div>
+        <h2 style="font-family:var(--font-family-heading);font-size:clamp(1.6rem,3.5vw,2.25rem);font-weight:700;color:var(--color-body-text);margin:0 0 0.75rem;">Find Your Personal Year</h2>
+        <p style="color:var(--color-muted-text);font-size:0.95rem;max-width:480px;margin:0 auto;">Select your number to explore what energy you're moving through this year — and how to work with it.</p>
+      </div>
+
+      <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
+        {personalYearNumbers.map(py => {
+          const meta = pyMeta[py.n];
+          return (
+            <a href={`/learn/personal-year-number/${py.n}/`} class="card-light group block overflow-hidden hover:border-violet/60 hover:-translate-y-1 transition-all duration-200" style="text-decoration:none;">
+              <div style="position:relative;overflow:hidden;">
+                <img
+                  src={`/images/learn/personal-year-numbers/Personal Year Number - ${py.title}.webp`}
+                  alt={`Personal Year ${py.n} - ${py.title}`}
+                  class="w-full group-hover:scale-105 transition-transform duration-500"
+                  style="aspect-ratio:2/3;object-fit:cover;display:block;width:100%;"
+                  loading="lazy"
+                  decoding="async"
+                />
+              </div>
+              <div style="padding:1.25rem;">
+                <div style="font-size:0.7rem;text-transform:uppercase;letter-spacing:0.12em;color:var(--color-muted-text);margin-bottom:0.2rem;">Personal Year {py.n}</div>
+                <div style="font-weight:700;color:var(--color-body-text);font-size:1.1rem;margin-bottom:0.35rem;" class="group-hover:text-violet transition-colors">{py.title}</div>
+                <p style="font-size:0.875rem;color:var(--color-muted-text);margin:0 0 0.75rem;line-height:1.6;">{meta.traits}</p>
+                <div style="font-size:0.75rem;margin-bottom:0.75rem;">
+                  <span style="color:var(--color-violet);font-weight:600;">This year's focus:</span>
+                  <span style="color:var(--color-muted-text);margin-left:0.25rem;">{meta.focus}</span>
+                </div>
+                <span style="font-size:0.875rem;font-weight:600;color:var(--color-violet);" class="group-hover:text-soft-violet transition-colors">Explore PY{py.n} →</span>
+              </div>
+            </a>
+          );
+        })}
+      </div>
+    </div>
+  </section>
+
+  <!-- Related guides -->
+  <section style="padding:5rem 1.5rem;background:var(--color-card-bg);border-top:1px solid var(--color-border);">
+    <div style="max-width:1100px;margin:0 auto;">
+      <div style="text-align:center;margin-bottom:3rem;">
+        <p class="p-label" style="margin-bottom:0.75rem;">Keep Exploring</p>
+        <h2 style="font-family:var(--font-family-heading);font-size:clamp(1.5rem,3vw,2rem);font-weight:700;color:var(--color-body-text);margin:0 0 0.75rem;">Related Guides</h2>
+        <div class="p-divider" style="margin:0 auto;"></div>
+      </div>
+      <div class="grid sm:grid-cols-2 md:grid-cols-3 gap-5">
+        <a href="/learn/life-path-number/" class="card-light overflow-hidden hover:border-violet/60 hover:-translate-y-0.5 transition-all duration-200 group block" style="text-decoration:none;">
+          <img src="/images/learn/Life Path Numbers - Tile.webp" alt="Life Path Numbers" class="w-full object-cover transition-transform duration-500 group-hover:scale-105" style="aspect-ratio:2/3;display:block;" loading="lazy" decoding="async" />
+          <div style="padding:1.25rem;">
+            <div style="font-weight:700;color:var(--color-body-text);margin-bottom:0.35rem;" class="group-hover:text-violet transition-colors">Life Path Numbers</div>
+            <p style="font-size:0.8rem;color:var(--color-muted-text);margin:0;">Your core number — the terrain and themes of your entire life journey.</p>
+          </div>
+        </a>
+        <a href="/learn/expression-number/" class="card-light overflow-hidden hover:border-violet/60 hover:-translate-y-0.5 transition-all duration-200 group block" style="text-decoration:none;">
+          <img src="/images/learn/Expression Numbers - Tile.webp" alt="Expression Numbers" class="w-full object-cover transition-transform duration-500 group-hover:scale-105" style="aspect-ratio:2/3;display:block;" loading="lazy" decoding="async" />
+          <div style="padding:1.25rem;">
+            <div style="font-weight:700;color:var(--color-body-text);margin-bottom:0.35rem;" class="group-hover:text-violet transition-colors">Expression Numbers</div>
+            <p style="font-size:0.8rem;color:var(--color-muted-text);margin:0;">The direction your destiny is pulling you — your life's purpose and expression.</p>
+          </div>
+        </a>
+        <a href="/learn/soul-urge-number/" class="card-light overflow-hidden hover:border-violet/60 hover:-translate-y-0.5 transition-all duration-200 group block" style="text-decoration:none;">
+          <img src="/images/learn/Soul Urge Numbers - Tile.webp" alt="Soul Urge Numbers" class="w-full object-cover transition-transform duration-500 group-hover:scale-105" style="aspect-ratio:2/3;display:block;" loading="lazy" decoding="async" />
+          <div style="padding:1.25rem;">
+            <div style="font-weight:700;color:var(--color-body-text);margin-bottom:0.35rem;" class="group-hover:text-violet transition-colors">Soul Urge Numbers</div>
+            <p style="font-size:0.8rem;color:var(--color-muted-text);margin:0;">What you want at a deep level — the desires that drive your choices.</p>
+          </div>
+        </a>
+      </div>
+    </div>
+  </section>
+
+    </div><!-- end main content column -->
+    <SidebarCTA />
+  </div><!-- end flex wrapper -->
+
+  <!-- Bottom CTA -->
+  <section style="background:var(--color-midnight);padding:5.5rem 1.5rem;position:relative;overflow:hidden;text-align:center;">
+    <div style="position:absolute;inset:0;background:radial-gradient(ellipse at 50% 120%,rgba(124,92,191,0.18) 0%,transparent 70%);pointer-events:none;"></div>
+    <div style="position:relative;z-index:1;max-width:560px;margin:0 auto;">
+      <p class="p-label">Numerologist.com</p>
+      <div class="p-divider" style="margin:1rem auto;"></div>
+      <h2 style="font-family:var(--font-family-heading);font-size:clamp(1.85rem,4vw,2.9rem);font-weight:700;color:var(--color-starlight);margin:1rem 0;line-height:1.2;">
+        Understanding your whole chart
+      </h2>
+      <p style="color:rgba(235,232,247,0.5);font-size:0.95rem;line-height:1.8;margin-bottom:2.5rem;">
+        Your Personal Year Number is one piece of your numerology chart. A free reading from Numerologist.com calculates your Life Path, Expression Number, Soul Urge, and Personality Number — and how they all work together.
+      </p>
+      <a href="https://8904b5z1168aar3k8annz7y61n.hop.clickbank.net" target="_blank" rel="noopener sponsored" style="display:inline-flex;align-items:center;gap:0.5rem;background:var(--color-soft-gold);color:var(--color-midnight);font-weight:700;font-size:0.95rem;padding:0.875rem 1.75rem;border-radius:6px;text-decoration:none;margin:0 auto;transition:opacity 0.2s;">
+        Get Your Free Numerology Reading
+        <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="9 18 15 12 9 6"/></svg>
+      </a>
+    </div>
+  </section>
+
+</Layout>

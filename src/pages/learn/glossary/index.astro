@@ -1,0 +1,354 @@
+﻿---
+import Layout from '../../../layouts/Layout.astro';
+import SidebarCTA from '../../../components/SidebarCTA.astro';
+
+const glossaryTerms = [
+  {
+    term: "Birthday Number",
+    definition: "The single digit or master number derived from your day of birth (1-31). Different from the life path number, the birthday number represents a secondary energy that influences your personality and how you express yourself on a daily basis.",
+    link: "/learn/birthday-number/"
+  },
+  {
+    term: "Chaldean Numerology",
+    definition: "One of two major numerology systems (the other being Pythagorean). The Chaldean system assigns numerical values to letters based on ancient Babylonian wisdom. It's considered the oldest numerology tradition, though it's less commonly used in the West today.",
+    link: null
+  },
+  {
+    term: "Core Numbers",
+    definition: "The essential numbers in your numerology chart: life path number, expression number, soul urge number, and personality number. These four numbers form the foundation of your numerological profile."
+  },
+  {
+    term: "Destiny Number",
+    definition: "Another name for the expression number. This number describes your natural talents, your innate abilities, and the way you're meant to express yourself in the world. It's calculated from your full birth name.",
+    link: "/learn/expression-number/"
+  },
+  {
+    term: "Expression Number",
+    definition: "Calculated from your full birth name, this number reveals your natural talents, communication style, and how you're meant to express yourself. It's also called the destiny number. Where the life path shows your direction, the expression number shows your gifts.",
+    link: "/learn/expression-number/"
+  },
+  {
+    term: "Karmic Debt Numbers",
+    definition: "The numbers 13, 14, 16, and 19. When these appear in your chart (usually as a reduced life path or other core number), they carry a lesson about past patterns. Not punishment - just areas where you're learning something specific in this lifetime."
+  },
+  {
+    term: "Karmic Lessons",
+    definition: "Numbers that are missing from your full birth name. If your name lacks certain digit frequencies, that number represents something you're here to learn or develop. Each missing number suggests a potential area of growth."
+  },
+  {
+    term: "Life Path Number",
+    definition: "The most important number in numerology, calculated from your full birth date (month + day + year). It reveals your core direction, instincts, natural strengths, the challenges that keep showing up, and the overall lessons you're here to work through.",
+    link: "/learn/life-path-number/"
+  },
+  {
+    term: "Master Numbers",
+    definition: "The numbers 11, 22, and 33 - the only numbers that don't reduce to a single digit. Master numbers carry amplified spiritual energy and represent higher-frequency assignments. A person with a master number life path works with more intense energy and greater responsibility.",
+    link: "/learn/master-numbers/"
+  },
+  {
+    term: "Name Numerology",
+    definition: "The branch of numerology that works with your name to calculate expression number, personality number, and other derived numbers. The belief is that your name, given at birth, contains energetic information about your purpose and personality."
+  },
+  {
+    term: "Numerology Chart",
+    definition: "The complete map of your numerological profile, showing your life path number, expression number, soul urge number, personality number, birthday number, and other derived numbers. It's like a personal numerological fingerprint."
+  },
+  {
+    term: "Personal Day",
+    definition: "Calculated by adding the current day + current month + the day's energy. The personal day number influences the energy of a specific 24-hour period and can help you understand daily themes and opportunities."
+  },
+  {
+    term: "Personal Month",
+    definition: "Calculated by adding the current month + your birthday month + your birth day. The personal month number influences the energy of the entire calendar month for you, revealing themes and lessons you're working through."
+  },
+  {
+    term: "Personal Year",
+    definition: "Calculated from your birthday (month + day) + the current year. This number cycles through 1 to 9 and repeats, describing the overall energy and theme of each year. A 1 year is about new beginnings; a 9 year is about completion and release.",
+    link: null
+  },
+  {
+    term: "Personality Number",
+    definition: "Calculated from only the consonants in your full birth name, this number shows how others perceive you on first meeting. It's the mask you wear socially, your first impression. Different from your soul urge, which is your inner world.",
+    link: "/learn/personality-number/"
+  },
+  {
+    term: "Pinnacle Cycles",
+    definition: "Major life chapters calculated from your birth date, typically lasting 9 years each. Each pinnacle represents a different phase of growth and has its own theme and challenges. Your chart usually has 4 pinnacles across your lifetime."
+  },
+  {
+    term: "Pythagorean Numerology",
+    definition: "The most widely used numerology system in the West. Developed by the Greek mathematician Pythagoras, it assigns numerical values to letters A-I (1-9) based on their position in the alphabet. This is the system most numerology guides use today.",
+    link: null
+  },
+  {
+    term: "Reducing",
+    definition: "The process of adding digits together until you get a single digit (or a master number). For example: 25 reduces to 2 + 5 = 7. This is how you calculate most numerology numbers from larger figures."
+  },
+  {
+    term: "Soul Urge Number",
+    definition: "Calculated from only the vowels in your full birth name, this number represents your deepest desires, motivations, and inner world. It's what drives you when no one is watching. Different from your personality number, which is your public self.",
+    link: "/learn/soul-urge-number/"
+  },
+  {
+    term: "Vowels and Consonants",
+    definition: "In numerology, vowels and consonants are treated separately. Vowels are used to calculate the soul urge number (your inner desires); consonants calculate the personality number (how others see you). Together, they form your complete expression number."
+  }
+];
+
+const faqSchema = {
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "What is the difference between life path number and expression number?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Your life path number (from birth date) shows your overall direction and core lessons. Your expression number (from birth name) shows your natural talents and how you express yourself. Think of life path as where you're going, and expression number as what you bring to the journey."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "What are the core numbers in numerology?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "The four core numbers are: life path number (your direction), expression number (your gifts), soul urge number (your inner desires), and personality number (how others see you). These four make up the foundation of your numerology chart."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "What is a karmic debt number?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Karmic debt numbers (13, 14, 16, 19) appear when these numbers show up in your chart as a reduced life path or other core number. They represent lessons or patterns you're working through. Not punishment - just areas of growth and learning."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "How do karmic lessons work in numerology?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Karmic lessons are numbers missing from your birth name. If your name lacks the number 3, for example, developing creativity and expression is part of your growth. Each missing number shows an area where you have the opportunity to develop."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "What is the difference between Pythagorean and Chaldean numerology?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Pythagorean numerology (most common in the West) assigns A-I = 1-9 based on alphabet position. Chaldean numerology (older, from ancient Babylon) assigns values differently. Most Western numerology guides use the Pythagorean system."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Is numerology a science?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Numerology is not scientific. It's a symbolic system for self-understanding - like astrology or tarot. It works as a mirror to help you think about yourself and your patterns. Use it as a tool for reflection, not prediction."
+      }
+    }
+  ]
+};
+
+const breadcrumbSchema = {
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://numerologyguides.blog/" },
+    { "@type": "ListItem", "position": 2, "name": "Learn", "item": "https://numerologyguides.blog/learn/" },
+    { "@type": "ListItem", "position": 3, "name": "Glossary" }
+  ]
+};
+---
+
+<link slot="head" rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400;1,600&display=swap" />
+<style>
+  :root { --font-family-heading: 'Cormorant Garamond', Georgia, serif; }
+  .p-label { font-size:0.7rem; letter-spacing:0.18em; text-transform:uppercase; color:var(--color-soft-gold); font-weight:600; }
+  .p-divider { width:48px; height:2px; background:var(--color-soft-gold); margin:0 auto; }
+  .section-h2 { font-family:var(--font-family-heading); font-size:clamp(1.6rem,3.5vw,2.25rem); font-weight:700; color:var(--color-body-text); margin:0 0 1.25rem; }
+</style>
+
+<Layout
+  schema={[faqSchema, breadcrumbSchema]}
+  title="Numerology Glossary - Key Terms & Definitions | Numerology Guides"
+  description="Complete glossary of numerology terms and definitions. Learn the vocabulary of numerology: life path, expression number, soul urge, karmic debt, and more."
+>
+
+  <!-- Breadcrumb -->
+  <nav style="background:var(--color-card-bg);border-bottom:1px solid var(--color-border);padding:0.75rem 1.5rem;" aria-label="Breadcrumb">
+    <div class="max-w-5xl mx-auto flex items-center gap-2 text-xs text-muted-text">
+      <a href="/" class="hover:text-violet transition-colors">Home</a>
+      <svg xmlns="http://www.w3.org/2000/svg" width="8" height="8" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="9 18 15 12 9 6"/></svg>
+      <a href="/learn/" class="hover:text-violet transition-colors">Learn</a>
+      <svg xmlns="http://www.w3.org/2000/svg" width="8" height="8" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="9 18 15 12 9 6"/></svg>
+      <span class="text-body-text font-semibold">Glossary</span>
+    </div>
+  </nav>
+
+  <!-- Hero -->
+  <section style="background:var(--color-light-bg);padding:4rem 1.5rem 3.5rem;position:relative;overflow:hidden;border-bottom:1px solid var(--color-border);">
+    <div style="position:absolute;inset:0;background-image:radial-gradient(circle,rgba(124,92,191,0.07) 1px,transparent 1px);background-size:28px 28px;pointer-events:none;"></div>
+    <div style="position:relative;z-index:1;max-width:56rem;margin:0 auto;text-align:center;">
+      <span class="p-label" style="display:inline-block;margin-bottom:1rem;">Reference</span>
+      <h1 style="font-family:var(--font-family-heading);font-size:clamp(2rem,5vw,3.25rem);font-weight:700;color:var(--color-body-text);margin:0 0 1.25rem;line-height:1.15;">
+        Numerology <span style="color:var(--color-soft-gold);">Glossary</span>
+      </h1>
+      <p style="font-size:1.0625rem;color:var(--color-muted-text);max-width:36rem;margin:0 auto;line-height:1.7;">
+        A complete reference guide to the key terms and concepts you'll encounter learning numerology.
+      </p>
+    </div>
+  </section>
+
+  <!-- Author byline -->
+  <div style="background:var(--color-light-bg);padding:1.25rem 1.5rem;">
+    <div style="max-width:1100px;margin:0 auto;display:flex;align-items:center;gap:1rem;">
+      <img src="/images/author-maddi-green.webp" alt="Maddie Greene" style="width:2.75rem;height:2.75rem;border-radius:50%;object-fit:cover;flex-shrink:0;border:2px solid rgba(124,92,191,0.2);" />
+      <div>
+        <p style="color:var(--color-body-text);font-size:0.875rem;font-weight:600;margin:0 0 0.1rem;">Written by <strong>Maddie Greene</strong></p>
+        <p style="color:var(--color-muted-text);font-size:0.78rem;margin:0;">Numerology writer &amp; researcher</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- Content + Sticky sidebar wrapper -->
+  <div class="xl:flex xl:gap-6 xl:max-w-[1200px] xl:mx-auto xl:px-4">
+    <!-- Main content column -->
+    <div class="xl:flex-1 xl:min-w-0">
+
+  <!-- Main content -->
+  <article style="padding:1.5rem 1rem 2.5rem;background:white;">
+    <div class="max-w-3xl mx-auto xl:mx-0 xl:max-w-none">
+
+      <!-- Terms list -->
+      <section id="terms" class="mb-10">
+        <h2 class="section-h2">Terms &amp; definitions</h2>
+
+        <div class="space-y-6">
+          {glossaryTerms.map(item => (
+            <div class="border-l-4 border-soft-gold pl-4">
+              <div class="flex items-baseline gap-2 mb-2">
+                <h3 class="text-lg font-bold font-[family-name:var(--font-family-heading)] text-body-text">{item.term}</h3>
+                {item.link && (
+                  <a href={item.link} class="text-xs text-soft-gold hover:underline">Learn more →</a>
+                )}
+              </div>
+              <p class="text-body-text leading-relaxed">
+                {item.definition}
+              </p>
+            </div>
+          ))}
+        </div>
+      </section>
+
+      <!-- FAQ -->
+      <section id="faq" class="mb-10">
+        <h2 class="section-h2">Common questions</h2>
+
+        <div class="space-y-4">
+          {[
+            {
+              q: "What is the difference between life path number and expression number?",
+              a: "Your life path number (from birth date) shows your overall direction and core lessons. Your expression number (from birth name) shows your natural talents and how you express yourself. Think of life path as where you're going, and expression number as what you bring to the journey."
+            },
+            {
+              q: "What are the core numbers in numerology?",
+              a: "The four core numbers are: life path number (your direction), expression number (your gifts), soul urge number (your inner desires), and personality number (how others see you). These four make up the foundation of your numerology chart."
+            },
+            {
+              q: "What is a karmic debt number?",
+              a: "Karmic debt numbers (13, 14, 16, 19) appear when these numbers show up in your chart as a reduced life path or other core number. They represent lessons or patterns you're working through. Not punishment - just areas of growth and learning."
+            },
+            {
+              q: "How do karmic lessons work in numerology?",
+              a: "Karmic lessons are numbers missing from your birth name. If your name lacks the number 3, for example, developing creativity and expression is part of your growth. Each missing number shows an area where you have the opportunity to develop."
+            },
+            {
+              q: "What is the difference between Pythagorean and Chaldean numerology?",
+              a: "Pythagorean numerology (most common in the West) assigns A-I = 1-9 based on alphabet position. Chaldean numerology (older, from ancient Babylon) assigns values differently. Most Western numerology guides use the Pythagorean system."
+            },
+            {
+              q: "Is numerology a science?",
+              a: "Numerology is not scientific. It's a symbolic system for self-understanding - like astrology or tarot. It works as a mirror to help you think about yourself and your patterns. Use it as a tool for reflection, not prediction."
+            }
+          ].map(item => (
+            <details class="card-light p-4 cursor-pointer group">
+              <summary class="font-semibold text-body-text flex justify-between items-center">
+                {item.q}
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="group-open:rotate-180 transition-transform" aria-hidden="true"><polyline points="6 9 12 15 18 9"/></svg>
+              </summary>
+              <p class="text-muted-text text-sm mt-4 leading-relaxed">{item.a}</p>
+            </details>
+          ))}
+        </div>
+      </section>
+
+      <!-- Related guides -->
+      <section id="related" class="mb-10">
+        <h2 class="section-h2">Related guides</h2>
+
+        <div class="grid sm:grid-cols-2 md:grid-cols-3 gap-5">
+          <a href="/learn/life-path-number/" class="card-light overflow-hidden hover:border-violet/60 hover:-translate-y-0.5 transition-all duration-200 group block">
+            <img src="/images/learn/Life Path Numbers - Tile.webp" alt="Life Path Numbers" class="w-full aspect-[2/3] object-cover transition-transform duration-500 group-hover:scale-105" loading="lazy" />
+            <div class="p-4">
+              <h3 class="font-bold text-body-text group-hover:text-violet transition-colors mb-1">Life Path Numbers</h3>
+              <p class="text-xs text-muted-text">Find your number and understand what it means.</p>
+            </div>
+          </a>
+          <a href="/learn/expression-number/" class="card-light overflow-hidden hover:border-violet/60 hover:-translate-y-0.5 transition-all duration-200 group block">
+            <img src="/images/learn/Expression Numbers - Tile.webp" alt="Expression Numbers" class="w-full aspect-[2/3] object-cover transition-transform duration-500 group-hover:scale-105" loading="lazy" />
+            <div class="p-4">
+              <h3 class="font-bold text-body-text group-hover:text-violet transition-colors mb-1">Expression Numbers</h3>
+              <p class="text-xs text-muted-text">Discover your natural talents and gifts.</p>
+            </div>
+          </a>
+          <a href="/learn/soul-urge-number/" class="card-light overflow-hidden hover:border-violet/60 hover:-translate-y-0.5 transition-all duration-200 group block">
+            <img src="/images/learn/Soul Urge Numbers - Tile.webp" alt="Soul Urge Numbers" class="w-full aspect-[2/3] object-cover transition-transform duration-500 group-hover:scale-105" loading="lazy" />
+            <div class="p-4">
+              <h3 class="font-bold text-body-text group-hover:text-violet transition-colors mb-1">Soul Urge Numbers</h3>
+              <p class="text-xs text-muted-text">Learn your deepest desires and motivations.</p>
+            </div>
+          </a>
+          <a href="/learn/personality-number/" class="card-light overflow-hidden hover:border-violet/60 hover:-translate-y-0.5 transition-all duration-200 group block">
+            <img src="/images/learn/Personality Numbers - Tile.webp" alt="Personality Numbers" class="w-full aspect-[2/3] object-cover transition-transform duration-500 group-hover:scale-105" loading="lazy" />
+            <div class="p-4">
+              <h3 class="font-bold text-body-text group-hover:text-violet transition-colors mb-1">Personality Numbers</h3>
+              <p class="text-xs text-muted-text">See how others perceive you.</p>
+            </div>
+          </a>
+          <a href="/learn/master-numbers/" class="card-light overflow-hidden hover:border-violet/60 hover:-translate-y-0.5 transition-all duration-200 group block">
+            <img src="/images/learn/Master Numbers - Tile.webp" alt="Master Numbers" class="w-full aspect-[2/3] object-cover transition-transform duration-500 group-hover:scale-105" loading="lazy" />
+            <div class="p-4">
+              <h3 class="font-bold text-body-text group-hover:text-violet transition-colors mb-1">Master Numbers</h3>
+              <p class="text-xs text-muted-text">Explore 11, 22, and 33 in depth.</p>
+            </div>
+          </a>
+          <a href="/learn/compatibility/" class="card-light overflow-hidden hover:border-violet/60 hover:-translate-y-0.5 transition-all duration-200 group block">
+            <img src="/images/learn/Numerology Compatibility - Tile.webp" alt="Compatibility" class="w-full aspect-[2/3] object-cover transition-transform duration-500 group-hover:scale-105" loading="lazy" />
+            <div class="p-4">
+              <h3 class="font-bold text-body-text group-hover:text-violet transition-colors mb-1">Compatibility</h3>
+              <p class="text-xs text-muted-text">Check how life path numbers match.</p>
+            </div>
+          </a>
+        </div>
+      </section>
+
+    </div>
+  </article>
+
+    </div><!-- end main content column -->
+    <SidebarCTA />
+  </div><!-- end flex wrapper -->
+
+  <!-- Bottom CTA -->
+  <section id="cta" style="background:var(--color-midnight);padding:5rem 1.5rem;text-align:center;">
+    <div style="max-width:36rem;margin:0 auto;">
+      <p class="p-label" style="color:rgba(196,162,78,0.7);margin-bottom:0.75rem;">Go Deeper</p>
+      <h2 style="font-family:var(--font-family-heading);font-size:clamp(1.75rem,4vw,2.5rem);font-weight:700;color:var(--color-starlight);margin:0 0 1rem;">Ready to go deeper?</h2>
+      <p style="color:rgba(255,255,255,0.65);font-size:1rem;line-height:1.75;margin:0 0 2rem;">Get your complete numerology chart with all your core numbers calculated and explained in a personalized reading.</p>
+      <a href="https://8904b5z1168aar3k8annz7y61n.hop.clickbank.net" rel="noopener sponsored"
+        style="display:inline-block;background:var(--color-soft-gold);color:var(--color-midnight);font-weight:700;font-size:1.05rem;padding:1rem 2.25rem;border-radius:0.5rem;text-decoration:none;letter-spacing:0.02em;">Get Your Free Reading</a>
+    </div>
+  </section>
+
+</Layout>

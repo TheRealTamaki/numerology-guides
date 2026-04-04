@@ -1,0 +1,544 @@
+﻿---
+import Layout from '../../../layouts/Layout.astro';
+import SidebarCTA from '../../../components/SidebarCTA.astro';
+
+const compatData = [
+ { number: 1, title: "The Leader", match: "challenging", note: "Two leaders can clash. Works if you both respect each other's independence." },
+ { number: 2, title: "The Peacemaker", match: "strong", note: "2 provides the emotional balance that 1 often lacks. Classic pairing." },
+ { number: 3, title: "The Communicator", match: "strong", note: "3's creativity and 1's drive complement each other well." },
+ { number: 4, title: "The Builder", match: "good", note: "4 brings the structure that keeps 1's big ideas grounded." },
+ { number: 5, title: "The Adventurer", match: "good", note: "Both independent. Can work if neither tries to control the other." },
+ { number: 6, title: "The Nurturer", match: "strong", note: "6 provides warmth and home; 1 provides direction and security." },
+ { number: 7, title: "The Seeker", match: "good", note: "Intellectually stimulating. Both need space, which helps." },
+ { number: 8, title: "The Powerhouse", match: "challenging", note: "Two ambitious numbers. Power struggles are common." },
+ { number: 9, title: "The Humanitarian", match: "good", note: "9's vision and 1's drive can build something meaningful together." },
+];
+
+const matchColor: Record<string, string> = {
+ strong: "text-rpg-green",
+ good: "text-soft-gold",
+ challenging: "text-red-400",
+};
+
+const careers = [
+ { role: "Entrepreneur", why: "Natural comfort with risk, self-direction, and building from scratch." },
+ { role: "Executive / CEO", why: "Born to lead teams and set direction. Thrives with authority." },
+ { role: "Politician / Activist", why: "Strong conviction drives people toward a cause." },
+ { role: "Military Officer", why: "Command, discipline, and decisive action under pressure." },
+ { role: "Creative Director", why: "Channels originality into work that bears a distinct personal stamp." },
+ { role: "Athlete / Coach", why: "Competitive drive and self-motivation suit high-performance environments." },
+];
+
+const famous = [
+ "Martin Luther King Jr.",
+ "Steve Jobs",
+ "Napoleon Bonaparte",
+ "Lady Gaga",
+ "Nikola Tesla",
+ "Tom Hanks",
+ "Scarlett Johansson",
+ "George Washington",
+];
+
+const faqSchema = {
+ "@context": "https://schema.org",
+ "@type": "FAQPage",
+ "mainEntity": [
+ { "@type": "Question", "name": "What does it mean to have a life path number of 1?", "acceptedAnswer": { "@type": "Answer", "text": "Life path 1 is the number of independence, initiative, and a drive to lead that most 1s didn't ask for. It just showed up.. People with this number are self-motivated, goal-oriented, and have a tendency to end up running things whether they planned to or not. The 1 is the first number in the cycle, which reflects how 1s move through the world: as initiators. The challenges include impatience, self-centered thinking, and difficulty accepting input from others. In astrology terms, the energy is closest to Aries - bold, direct, and a bit stubborn. The mind of a 1 is always scanning for the next move." } },
+ { "@type": "Question", "name": "Who should life path 1 marry?", "acceptedAnswer": { "@type": "Answer", "text": "Life path 2 is the most recommended match for LP1. The 2's emotional depth and supportive nature balance the 1's independence without competing with it. Life path 3 and life path 6 are also strong compatibility options - the 3 brings creativity and lightness to the relationship, while the 6 brings warmth and stability. Life paths 1 and 8 can be challenging together: two ambitious, driven numbers in the same relationship often creates power struggles. Two life path 1 individuals together can work if both are secure enough not to keep score, but it requires genuine mutual respect." } },
+ { "@type": "Question", "name": "What are the weaknesses of life path number 1?", "acceptedAnswer": { "@type": "Answer", "text": "The main weaknesses of life path number 1 are impatience, stubbornness, and a driven nature that can tip into selfishness when unchecked. 1s sometimes find it hard to delegate because they believe, often correctly, which makes it worse, that they'll do it better themselves. The tendency to domineer in group settings isn't always intentional, but it's real. The other common weakness is tunnel vision: when a 1 is locked onto a goal, they can neglect their love life, their health, and the people around them without noticing." } },
+ { "@type": "Question", "name": "What are the lessons of life path 1?", "acceptedAnswer": { "@type": "Answer", "text": "The main lesson of life path 1 is that leadership doesn't require doing everything alone. 1s come into the world with a lot of natural ability, the focus, the self-motivation, the inner drive, but they often spend the first half of their life trying to prove they don't need anyone. The real work for this number is learning to combine that independence with genuine collaboration: being the initiator, taking charge, pursuing their own path - while also allowing others to contribute and keeping the ego in check. The 1 that learns this becomes effective rather than just relentlessly busy. Channelling that drive without burning bridges is the core growth edge for this number." } },
+ { "@type": "Question", "name": "What is the numerology chart position of the life path number?", "acceptedAnswer": { "@type": "Answer", "text": "The life path number is the most important single-digit number in a person's numerology chart: it's the equivalent of a sun sign in astrology. It's derived from your full birth date and describes your overall direction in life: your instincts, your greatest strengths, the challenges you'll repeatedly face, and the lessons you're meant to work through. Other numbers in the chart (expression number, soul urge number, personality number) add nuance, but the life path number is always the foundation." } },
+ { "@type": "Question", "name": "Can life path 1 be a master number?", "acceptedAnswer": { "@type": "Answer", "text": "No. The master numbers in numerology are 11, 22, and 33. A life path number only becomes a master number if the calculation produces one of those values before it's reduced to a single digit. Life path 1 is a standard single-digit number, not a master number. However, if your birth date reduces to 10, that 10 reduces to 1 and you're still a life path 1. The master number distinction applies to 11 (which doesn't get reduced to 2), 22 (not reduced to 4), and 33 (not reduced to 6)." } }
+ ]
+};
+
+const breadcrumbSchema = {
+ "@context": "https://schema.org",
+ "@type": "BreadcrumbList",
+ "itemListElement": [
+ { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://numerologyguides.blog/" },
+ { "@type": "ListItem", "position": 2, "name": "Learn", "item": "https://numerologyguides.blog/learn/" },
+ { "@type": "ListItem", "position": 3, "name": "Life Path Numbers", "item": "https://numerologyguides.blog/learn/life-path-number/" },
+ { "@type": "ListItem", "position": 4, "name": "Life Path 1" }
+ ]
+};
+---
+
+<Layout
+ schema={[faqSchema, breadcrumbSchema]}
+ title="Life Path Number 1: The Leader - Traits, Careers & Compatibility | Numerology Guides"
+ description="Life path number 1 is the trailblazer of numerology - independent, driven, and built to lead. Discover your personality traits, compatibility, career strengths, and shadow side."
+>
+
+ <link slot="head" rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400;1,600&display=swap" />
+
+ <style>
+   :root { --font-family-heading: 'Cormorant Garamond', Georgia, serif; }
+   .p-label { font-size:0.7rem; letter-spacing:0.18em; text-transform:uppercase; color:var(--color-soft-gold); font-weight:600; }
+   .p-divider { width:48px; height:2px; background:var(--color-soft-gold); margin:0 auto; }
+   .section-h2 { font-family:var(--font-family-heading); font-size:clamp(1.6rem,3.5vw,2.25rem); font-weight:700; color:var(--color-body-text); margin:0 0 1.25rem; }
+   .faq-list details { border-top:1px solid var(--color-border); }
+   .faq-list details:last-child { border-bottom:1px solid var(--color-border); }
+   .faq-list summary { padding:1.3rem 0; cursor:pointer; display:flex; align-items:center; justify-content:space-between; gap:1rem; font-weight:600; font-size:1rem; color:var(--color-body-text); list-style:none; transition:color 0.2s; }
+   .faq-list summary::-webkit-details-marker { display:none; }
+   .faq-list details[open] summary { color:var(--color-violet); }
+   .faq-chevron { flex-shrink:0; transition:transform 0.25s; }
+   .faq-list details[open] .faq-chevron { transform:rotate(180deg); }
+   .faq-answer { padding-bottom:1.3rem; font-size:0.9rem; color:var(--color-muted-text); line-height:1.8; }
+   .lp-grid { display:grid; grid-template-columns:repeat(4,1fr); gap:0.75rem; }
+   @media (max-width:640px) { .lp-grid { grid-template-columns:repeat(3,1fr); } }
+   .feat-card { display:block; background:white; border:1px solid var(--color-border); border-radius:8px; overflow:hidden; text-decoration:none; transition:box-shadow 0.25s, transform 0.25s; }
+   .feat-card:hover { box-shadow:0 12px 40px rgba(26,21,40,0.1); transform:translateY(-3px); }
+   .feat-img-wrap { overflow:hidden; }
+   .feat-card img { width:100%; aspect-ratio:2/3; object-fit:cover; transition:transform 0.5s; }
+   .feat-card:hover img { transform:scale(1.05); }
+ </style>
+
+ <!-- Breadcrumb -->
+ <nav style="background:var(--color-card-bg);border-bottom:1px solid var(--color-border);padding:0.75rem 1.5rem;" aria-label="Breadcrumb">
+   <div style="max-width:1100px;margin:0 auto;display:flex;align-items:center;gap:0.5rem;font-size:0.75rem;color:var(--color-muted-text);">
+     <a href="/" style="color:var(--color-muted-text);text-decoration:none;">Home</a>
+     <svg xmlns="http://www.w3.org/2000/svg" width="8" height="8" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="9 18 15 12 9 6"/></svg>
+     <a href="/learn/" style="color:var(--color-muted-text);text-decoration:none;">Learn</a>
+     <svg xmlns="http://www.w3.org/2000/svg" width="8" height="8" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="9 18 15 12 9 6"/></svg>
+     <a href="/learn/life-path-number/" style="color:var(--color-muted-text);text-decoration:none;">Life Path Numbers</a>
+     <svg xmlns="http://www.w3.org/2000/svg" width="8" height="8" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="9 18 15 12 9 6"/></svg>
+     <span style="color:var(--color-body-text);font-weight:600;">Life Path Number 1</span>
+   </div>
+ </nav>
+
+ <!-- Hero -->
+ <section style="position:relative;overflow:hidden;background:var(--color-midnight,#0e0a1a);">
+   <!-- Dot grid background -->
+   <div aria-hidden="true" style="position:absolute;inset:0;background-image:radial-gradient(circle,rgba(196,162,78,0.07) 1px,transparent 1px);background-size:28px 28px;pointer-events:none;z-index:0;"></div>
+   <!-- Subtle radial glow left -->
+   <div aria-hidden="true" style="position:absolute;top:-10%;left:-5%;width:55%;height:120%;background:radial-gradient(ellipse at center,rgba(124,92,191,0.18) 0%,transparent 70%);pointer-events:none;z-index:0;"></div>
+
+   <div style="position:relative;z-index:1;max-width:1100px;margin:0 auto;padding:4rem 1.5rem;display:flex;align-items:center;gap:3rem;flex-wrap:wrap;">
+
+     <!-- Left: text -->
+     <div style="flex:1;min-width:280px;">
+       <p class="p-label" style="margin-bottom:1.1rem;color:var(--color-soft-gold);opacity:0.9;">Life Path Number 1</p>
+       <div class="p-divider" style="margin:0 0 1.6rem;"></div>
+       <h1 style="font-family:var(--font-family-heading);font-size:clamp(2.8rem,6vw,5rem);font-weight:700;line-height:1.06;color:#f5f0e8;letter-spacing:-0.02em;margin:0 0 1.25rem;">
+         The <em style="color:#c8a8f0;font-style:italic;">Leader</em>
+       </h1>
+       <p style="font-size:1.05rem;line-height:1.8;color:rgba(240,234,255,0.78);max-width:460px;margin:0 0 2rem;">The 1 is numerology's trailblazer: independent, ambitious, and determined to chart their own course. If that's you, this guide should feel pretty familiar.</p>
+       <div style="display:flex;flex-wrap:wrap;gap:0.875rem;">
+         <a href="https://8904b5z1168aar3k8annz7y61n.hop.clickbank.net" target="_blank" rel="noopener sponsored" style="display:inline-flex;align-items:center;gap:0.5rem;background:var(--color-violet);color:white;font-weight:700;font-size:1rem;padding:0.875rem 2rem;border-radius:6px;text-decoration:none;transition:background 0.2s,transform 0.15s;box-shadow:0 4px 20px rgba(124,92,191,0.45);" onmouseover="this.style.background='#6a4eab';this.style.transform='translateY(-1px)'" onmouseout="this.style.background='var(--color-violet)';this.style.transform='none'">Get My Free Reading →</a>
+         <a href="#compatibility" style="display:inline-flex;align-items:center;gap:0.5rem;background:rgba(255,255,255,0.08);backdrop-filter:blur(6px);color:#f5f0e8;font-weight:600;font-size:1rem;padding:0.875rem 1.75rem;border-radius:6px;text-decoration:none;border:1.5px solid rgba(255,255,255,0.2);transition:border-color 0.2s,background 0.2s;" onmouseover="this.style.background='rgba(255,255,255,0.15)';this.style.borderColor='rgba(255,255,255,0.4)'" onmouseout="this.style.background='rgba(255,255,255,0.08)';this.style.borderColor='rgba(255,255,255,0.2)'">See Compatibility ↓</a>
+       </div>
+     </div>
+
+     <!-- Right: tarot card -->
+     <div style="flex-shrink:0;width:clamp(200px,28vw,300px);filter:drop-shadow(0 8px 40px rgba(196,162,78,0.25)) drop-shadow(0 2px 12px rgba(0,0,0,0.6));">
+       <img
+         src="/images/learn/Life Path Number 1 - The Leader.webp"
+         alt="Life Path 1 — The Leader tarot card"
+         fetchpriority="high"
+         style="width:100%;border-radius:6px;display:block;"
+       />
+     </div>
+
+   </div>
+ </section>
+
+ <!-- Author byline -->
+ <div style="background:var(--color-light-bg);padding:1.25rem 1.5rem;">
+   <div style="max-width:1100px;margin:0 auto;display:flex;align-items:center;gap:1rem;">
+     <img src="/images/author-maddi-green.webp" alt="Maddie Greene" style="width:2.75rem;height:2.75rem;border-radius:50%;object-fit:cover;flex-shrink:0;border:2px solid rgba(124,92,191,0.2);" />
+     <div>
+       <p style="color:var(--color-body-text);font-size:0.875rem;font-weight:600;margin:0 0 0.1rem;">Written by <strong>Maddie Greene</strong></p>
+       <p style="color:var(--color-muted-text);font-size:0.78rem;margin:0;">Numerology writer &amp; researcher</p>
+     </div>
+   </div>
+ </div>
+
+ <!-- Content + Sticky sidebar wrapper -->
+ <div class="xl:flex xl:gap-6 xl:max-w-[1200px] xl:mx-auto xl:px-4">
+   <!-- Main content column -->
+   <div class="xl:flex-1 xl:min-w-0">
+
+ <!-- Main content -->
+ <article style="padding:2rem 1.5rem 3rem;background:var(--color-card-bg);">
+ <div class="max-w-3xl mx-auto xl:mx-0 xl:max-w-none">
+
+ <!-- What it means -->
+ <section id="meaning" style="margin-bottom:3rem;">
+ <h2 class="section-h2">What life path number 1 means</h2>
+
+ <p class="text-body-text leading-relaxed mb-4">
+ Your life path number comes from your date of birth and describes your core direction in life. It's your instincts, your strengths, the challenges that keep showing up. Think of it as a map, not a label.
+ </p>
+ <p class="text-body-text leading-relaxed mb-4">
+ Life path 1 sits at the very start of the numerological cycle. The number 1 comes before everything else, and that's exactly how 1s move through the world: first out of the gate, setting direction, rarely waiting for permission. The drive that defines this number isn't something people choose. It's just how they're wired.
+ </p>
+ <p class="text-body-text leading-relaxed mb-4">
+ That doesn't mean every life path 1 is loud or aggressive. Plenty of 1s are quietly self-directed. They just won't follow someone else's blueprint for long. What matters to 1s is autonomy: the freedom to pursue their goals on their own terms, at their own pace. Being told to wait, or to defer to someone they don't respect, is almost physically uncomfortable for this number. There's a strong sense of self that runs through the 1 - it shows up even in those who seem reserved.
+ </p>
+ <p class="text-body-text leading-relaxed">
+ The gifts here are real: leadership instinct, courage, genuine confidence. The harder parts, selfishness, impatience, bulldozing over others' input, are what most 1s spend their life learning to manage. The 1 is always pulled toward initiating. That doesn't change. What changes is learning to lead well.
+ </p>
+ </section>
+
+ <!-- Traits image -->
+ <div class="mb-10 rounded-lg overflow-hidden border border-border/60 shadow-lg">
+ <img
+ src="/images/learn/Life Path Number 1 - Traits.webp"
+ alt="Crown and sword on a cosmic backdrop representing Life Path 1 leadership traits"
+ class="w-full object-cover max-h-72"
+ loading="lazy"
+ />
+ </div>
+
+ <!-- Personality traits -->
+ <section id="traits" style="margin-bottom:3rem;">
+ <h2 class="section-h2">Personality traits</h2>
+
+ <p class="text-body-text leading-relaxed mb-6">
+ Most 1s see themselves here immediately. Whether they're building companies at 28 or quietly refusing orders in an office, the same energy shows up. Different lives, same driver.
+ </p>
+
+ <div class="grid md:grid-cols-2 gap-6 mb-8">
+ <!-- Strengths -->
+ <div class="card-light p-6">
+ <h3 style="font-family:var(--font-family-heading);font-weight:700;color:var(--color-body-text);margin:0 0 1rem;display:flex;align-items:center;gap:0.5rem;font-size:1.1rem;">
+ <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="currentColor" stroke="none" style="color:#4a9e5c;" aria-hidden="true"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+ Strengths
+ </h3>
+ <ul class="space-y-3">
+ {[
+ ["Pioneering spirit", "1s don't follow maps - they draw them. The instinct to create their own path rather than follow someone else's is the defining quality of this number."],
+ ["Natural-born leadership", "Put a 1 in a group and they'll naturally take the initiative. They don't always seek leadership roles, but they end up in them."],
+ ["Self-motivation", "Most life paths need external encouragement. 1 individuals are self-motivated to a degree that can be hard for other numbers to understand."],
+ ["Inner strength", "Under pressure, 1s don't fold. The drive and determination to keep going, especially when things aren't working, is unusually strong in this number."],
+ ["Goal-oriented focus", "When a 1 gets things done, they really get things done. The ability to lock onto a goal and pursue it without distraction is a real gift."],
+ ].map(([title, desc]) => (
+ <li class="flex items-start gap-2 text-sm">
+ <span style="color:#4a9e5c;font-weight:700;margin-top:0.1rem;flex-shrink:0;">+</span>
+ <span><span class="font-semibold text-body-text">{title}:</span> <span class="text-muted-text">{desc}</span></span>
+ </li>
+ ))}
+ </ul>
+ </div>
+
+ <!-- Challenges -->
+ <div class="card-light p-6">
+ <h3 style="font-family:var(--font-family-heading);font-weight:700;color:var(--color-body-text);margin:0 0 1rem;display:flex;align-items:center;gap:0.5rem;font-size:1.1rem;">
+ <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="color:#c0444a;" aria-hidden="true"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
+ Challenges of life path 1
+ </h3>
+ <ul class="space-y-3">
+ {[
+ ["Impatience", "1s move fast. 2, 4, and 6 move more slowly. 1s find this maddening."],
+ ["Stubborn streak", "The strong-willed nature that makes 1 effective also makes them resistant to input. They can domineer without meaning to."],
+ ["Self-centered focus", "The driven nature of the 1 means their attention naturally goes inward - toward their own goals, their own plans. This reads as selfishness to people around them."],
+ ["Difficulty collaborating", "1s are naturally inclined to lead rather than follow, and rather than follow instructions they don't believe in. This creates friction in team settings."],
+ ["Taking on too much", "The self-motivated energy of this number means 1s often feel they're the only ones who can do something properly - and end up carrying more than they should."],
+ ].map(([title, desc]) => (
+ <li class="flex items-start gap-2 text-sm">
+ <span style="color:#c0444a;font-weight:700;margin-top:0.1rem;flex-shrink:0;">-</span>
+ <span><span class="font-semibold text-body-text">{title}:</span> <span class="text-muted-text">{desc}</span></span>
+ </li>
+ ))}
+ </ul>
+ </div>
+ </div>
+
+ <div class="card-light" style="padding:1.25rem;border-left:4px solid var(--color-violet);">
+ <p class="text-sm text-muted-text leading-relaxed">
+ <span class="font-semibold text-body-text">The 1's core tension:</span> The same driven nature that makes life path 1 individuals effective (the self-motivation, the refusal to be limited by other people's timelines) is the exact quality that makes relationships and collaboration difficult. The lesson most 1s spend their life learning: leading doesn't require doing everything alone.
+ </p>
+ </div>
+ </section>
+
+ <!-- Love & relationships -->
+ <section id="relationships" style="margin-bottom:3rem;">
+ <h2 class="section-h2">Love &amp; relationships</h2>
+
+ <p class="text-body-text leading-relaxed mb-4">
+ 1s in relationships are either all-in or absent. At their best: loyal, protective, romantic. At their worst: controlling, emotionally unavailable, so locked onto their own goals their partner becomes background noise.
+ </p>
+ <p class="text-body-text leading-relaxed mb-4">
+ What life path number 1 individuals need in a partner is someone who won't try to dim them. Needy, dependent partners suffocate 1s quickly. But equally, they need a partner who isn't afraid to push back - who won't just nod along to everything. Someone strong enough to hold their own, but secure enough not to make it a competition.
+ </p>
+ <p class="text-body-text leading-relaxed mb-4">
+ Among the nine life paths, 2, 3, and 6 tend to work best with the 1. Life path 2 is the most natural pairing: the 2's emotional intelligence and ability to support without suffocating provides exactly the kind of grounding that 1s need but rarely seek out on their own.
+ </p>
+ <p class="text-body-text leading-relaxed">
+ Life path 3 works because the 3's creativity and social energy complement rather than compete with 1's ambition. Life path 6 works because the 6 brings warmth and stability to the home - and a 1 with a secure base shows up better in all areas of life.
+ </p>
+
+ <!-- Compatibility grid -->
+ <h3 class="text-lg font-bold font-[family-name:var(--font-family-heading)] text-body-text mt-8 mb-4">LP1 compatibility across all life paths</h3>
+ <div style="overflow-x:auto;">
+ <table style="width:100%;font-size:0.875rem;border-collapse:collapse;border:1px solid var(--color-border);border-radius:8px;overflow:hidden;box-shadow:0 2px 12px rgba(26,21,40,0.07);">
+ <thead>
+ <tr style="background:var(--color-light-bg);border-bottom:2px solid var(--color-border);">
+ <th style="text-align:left;padding:0.875rem 1rem;font-size:0.72rem;font-weight:600;text-transform:uppercase;letter-spacing:0.08em;color:var(--color-soft-gold);">Life path</th>
+ <th style="text-align:left;padding:0.875rem 1rem;font-size:0.72rem;font-weight:600;text-transform:uppercase;letter-spacing:0.08em;color:var(--color-soft-gold);">Match</th>
+ <th style="text-align:left;padding:0.875rem 1rem;font-size:0.72rem;font-weight:600;text-transform:uppercase;letter-spacing:0.08em;color:var(--color-soft-gold);" class="hidden md:table-cell">Notes on compatibility</th>
+ </tr>
+ </thead>
+ <tbody>
+ {compatData.map(row => (
+ <tr style="border-bottom:1px solid var(--color-border);">
+ <td style="padding:0.75rem 1rem;">
+ <span style="font-weight:600;color:var(--color-body-text);">LP {row.number}</span>
+ <span style="color:var(--color-muted-text);margin-left:0.35rem;font-size:0.78rem;">— {row.title}</span>
+ </td>
+ <td style="padding:0.75rem 1rem;">
+ <span style={`font-weight:600;text-transform:capitalize;color:${row.match === 'strong' ? '#4a9e5c' : row.match === 'good' ? 'var(--color-soft-gold)' : '#c0444a'};`}>{row.match}</span>
+ </td>
+ <td style="padding:0.75rem 1rem;color:var(--color-muted-text);font-size:0.82rem;" class="hidden md:table-cell">{row.note}</td>
+ </tr>
+ ))}
+ </tbody>
+ </table>
+ </div>
+ </section>
+
+ <!-- Career -->
+ <section id="career" style="margin-bottom:3rem;">
+ <h2 class="section-h2">Career paths for life path 1</h2>
+
+ <p class="text-body-text leading-relaxed mb-6">
+ 1s are drawn to careers with autonomy and authority. Self-employment is a natural fit - owning the schedule, making the calls, building something under their own name. Other life paths can report to someone and be fine. 1s struggle with that. Entrepreneurship shows up repeatedly in 1s for a reason.
+ </p>
+ <p class="text-body-text leading-relaxed mb-6">
+ The positions 1s struggle in are middle-management roles with no real decision-making power, or any situation where they're meant to follow orders from someone they don't respect. That's not a personality flaw; it's just how the 1 is built. The goal is to find structures that work with their initiative rather than against it.
+ </p>
+
+ <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-4 mb-6">
+ {careers.map(c => (
+ <div class="card-light p-4">
+ <div class="font-semibold text-body-text font-[family-name:var(--font-family-heading)] mb-1">{c.role}</div>
+ <div class="text-xs text-muted-text leading-relaxed">{c.why}</div>
+ </div>
+ ))}
+ </div>
+
+ <p class="text-body-text leading-relaxed">
+ Coaching also suits 1s. They're effective mentors when they learn to meet people where they are, not where they think they should be.
+ </p>
+ </section>
+
+ <!-- Famous LP1s -->
+ <section id="famous" style="margin-bottom:3rem;">
+ <h2 class="section-h2">Famous life path 1s</h2>
+
+ <p class="text-body-text leading-relaxed mb-6">
+ Life path 1s show up throughout history. They move through the world on their own terms and never ask permission.
+ </p>
+
+ <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:0.625rem;">
+ {famous.map(name => (
+ <div style="background:var(--color-card-bg);border:1px solid var(--color-border);border-radius:6px;padding:0.75rem;text-align:center;font-size:0.82rem;font-weight:600;color:var(--color-body-text);">{name}</div>
+ ))}
+ </div>
+ </section>
+
+ <!-- All life paths reference -->
+ <section id="all-life-paths" style="margin-bottom:3rem;">
+ <h2 class="section-h2">All life path numbers at a glance</h2>
+
+ <p class="text-body-text leading-relaxed mb-6">
+ Understanding how the 1 compares with the other life paths helps put things in context. All nine life paths exist on a spectrum - each one reflects a different set of instincts, strengths, and tensions. Some life paths are more relationship-oriented; others are built for solitude or creative work. Below is a quick look at all nine, plus the three master numbers that sit outside the standard single-digit range.
+ </p>
+
+ <div class="lp-grid">
+ {[
+ { n: 1, label: "The Leader", href: "/learn/life-path-number-1/", active: true },
+ { n: 2, label: "The Peacemaker", href: "/learn/life-path-number-2/" },
+ { n: 3, label: "The Communicator", href: "/learn/life-path-number-3/" },
+ { n: 4, label: "The Builder", href: "/learn/life-path-number-4/" },
+ { n: 5, label: "The Adventurer", href: "/learn/life-path-number-5/" },
+ { n: 6, label: "The Nurturer", href: "/learn/life-path-number-6/" },
+ { n: 7, label: "The Seeker", href: "/learn/life-path-number-7/" },
+ { n: 8, label: "The Powerhouse", href: "/learn/life-path-number-8/" },
+ { n: 9, label: "The Humanitarian", href: "/learn/life-path-number-9/" },
+ { n: 11, label: "Master Intuitive", href: "/learn/life-path-number-11/", master: true },
+ { n: 22, label: "Master Builder", href: "/learn/life-path-number-22/", master: true },
+ { n: 33, label: "Master Teacher", href: "/learn/life-path-number-33/", master: true },
+ ].map(lp => (
+ <a
+   href={lp.href}
+   style={lp.active
+     ? "display:block;padding:0.75rem 0.5rem;text-align:center;border-radius:6px;border:2px solid var(--color-soft-gold);background:rgba(196,162,78,0.08);text-decoration:none;"
+     : lp.master
+     ? "display:block;padding:0.75rem 0.5rem;text-align:center;border-radius:6px;border:1.5px solid rgba(124,92,191,0.35);background:rgba(124,92,191,0.04);text-decoration:none;"
+     : "display:block;padding:0.75rem 0.5rem;text-align:center;border-radius:6px;border:1.5px solid var(--color-border);background:var(--color-card-bg);text-decoration:none;"}
+ >
+   <div style={`font-family:var(--font-family-heading);font-size:1.3rem;font-weight:700;color:${lp.active ? 'var(--color-soft-gold)' : lp.master ? 'var(--color-violet)' : 'var(--color-body-text)'};`}>{lp.n}</div>
+   <div style="font-size:0.68rem;color:var(--color-muted-text);margin-top:0.15rem;">{lp.label}</div>
+   {lp.master && <div style="font-size:0.62rem;color:var(--color-violet);margin-top:0.1rem;font-weight:600;">Master</div>}
+ </a>
+ ))}
+ </div>
+
+ <p class="text-muted-text text-sm mt-4 leading-relaxed">
+ Every life path has strengths and pressure points. The 1 isn't better than the others - just first. Number 9 closes the cycle that 1 opens. Number 5 brings the freedom 1 lacks. Number 3 brings joy. Different numbers, different tools. Understanding your number means finding where you fit in the bigger picture.
+ </p>
+ </section>
+
+ <!-- How to calculate -->
+ <section id="calculate" style="margin-bottom:3rem;">
+ <h2 class="section-h2">How to find your life path number</h2>
+
+ <p class="text-body-text leading-relaxed mb-4">
+ Your life path number is derived from your birth date by reducing each component (day, month, year) to a single-digit number, then adding those digits together and reducing again. The exception is if any stage produces 11, 22, or 33 - those are master numbers and are not reduced further.
+ </p>
+
+ <div class="card-light" style="padding:1.25rem 1.5rem;margin-bottom:1rem;">
+ <div style="font-size:0.85rem;font-weight:600;color:var(--color-body-text);margin-bottom:0.75rem;">Example: October 15, 1987</div>
+ <div style="display:flex;flex-direction:column;gap:0.4rem;font-size:0.85rem;color:var(--color-muted-text);">
+ <div style="display:flex;gap:0.5rem;"><span style="color:var(--color-violet);font-weight:600;width:4rem;">Month:</span> October = <strong style="color:var(--color-body-text);margin-left:0.25rem;">10 → 1+0 = 1</strong></div>
+ <div style="display:flex;gap:0.5rem;"><span style="color:var(--color-violet);font-weight:600;width:4rem;">Day:</span> 15 → 1+5 = <strong style="color:var(--color-body-text);margin-left:0.25rem;">6</strong></div>
+ <div style="display:flex;gap:0.5rem;"><span style="color:var(--color-violet);font-weight:600;width:4rem;">Year:</span> 1987 → 1+9+8+7 = 25 → 2+5 = <strong style="color:var(--color-body-text);margin-left:0.25rem;">7</strong></div>
+ <div style="border-top:1px solid var(--color-border);padding-top:0.4rem;display:flex;gap:0.5rem;"><span style="color:var(--color-violet);font-weight:600;width:4rem;">Total:</span> 1+6+7 = 14 → 1+4 = <strong style="color:var(--color-soft-gold);font-size:1rem;margin-left:0.25rem;">5</strong></div>
+ </div>
+ </div>
+
+ <p class="text-body-text leading-relaxed mb-4">
+ To find your life path number, calculate your own date of birth the same way. If the final number reduces to 1, this page is yours. You can also use our free calculator to do it instantly - or read our <a href="/learn/how-to-calculate-life-path-number/" class="text-violet hover:text-soft-gold underline">full guide to calculating your life path number</a> if you want to understand the method properly.
+ </p>
+
+ <div style="text-align:center;margin-top:1.5rem;">
+ <a href="/learn/life-path-number/#calculator" style="display:inline-flex;align-items:center;gap:0.5rem;background:var(--color-violet);color:white;font-weight:700;font-size:0.95rem;padding:0.875rem 1.75rem;border-radius:6px;text-decoration:none;">
+ Calculate your life path number free
+ <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="9 18 15 12 9 6"/></svg>
+ </a>
+ </div>
+ </section>
+
+ <!-- FAQ -->
+ <section id="faq" style="margin-bottom:3rem;">
+ <h2 class="section-h2">Frequently asked questions</h2>
+
+ <div class="faq-list">
+ {[
+ {
+ q: "What does it mean to have a life path number of 1?",
+ a: "Life path 1 is the number of independence, initiative, and a drive to lead that most 1s didn't ask for. It just showed up.. People with this number are self-motivated, goal-oriented, and have a tendency to end up running things whether they planned to or not. The 1 is the first number in the cycle, which reflects how 1s move through the world: as initiators. The challenges include impatience, self-centered thinking, and difficulty accepting input from others. In astrology terms, the energy is closest to Aries - bold, direct, and a bit stubborn. The mind of a 1 is always scanning for the next move.",
+ },
+ {
+ q: "Who should life path 1 marry?",
+ a: "Life path 2 is the most recommended match for LP1. The 2's emotional depth and supportive nature balance the 1's independence without competing with it. Life path 3 and life path 6 are also strong compatibility options - the 3 brings creativity and lightness to the relationship, while the 6 brings warmth and stability. Life paths 1 and 8 can be challenging together: two ambitious, driven numbers in the same relationship often creates power struggles. Two life path 1 individuals together can work if both are secure enough not to keep score, but it requires genuine mutual respect.",
+ },
+ {
+ q: "What are the weaknesses of life path number 1?",
+ a: "The main weaknesses of life path number 1 are impatience, stubbornness, and a driven nature that can tip into selfishness when unchecked. 1s sometimes find it hard to delegate because they believe, often correctly, which makes it worse, that they'll do it better themselves. The tendency to domineer in group settings isn't always intentional, but it's real. The other common weakness is tunnel vision: when a 1 is locked onto a goal, they can neglect their love life, their health, and the people around them without noticing.",
+ },
+ {
+ q: "What are the lessons of life path 1?",
+ a: "The main lesson of life path 1 is that leadership doesn't require doing everything alone. 1s come into the world with a lot of natural ability, the focus, the self-motivation, the inner drive, but they often spend the first half of their life trying to prove they don't need anyone. The real work for this number is learning to combine that independence with genuine collaboration: being the initiator, taking charge, pursuing their own path - while also allowing others to contribute and keeping the ego in check. The 1 that learns this becomes effective rather than just relentlessly busy. Channelling that drive without burning bridges is the core growth edge for this number.",
+ },
+ {
+ q: "What is the numerology chart position of the life path number?",
+ a: "The life path number is the most important single-digit number in a person's numerology chart: it's the equivalent of a sun sign in astrology. It's derived from your full birth date and describes your overall direction in life: your instincts, your greatest strengths, the challenges you'll repeatedly face, and the lessons you're meant to work through. Other numbers in the chart (expression number, soul urge number, personality number) add nuance, but the life path number is always the foundation.",
+ },
+ {
+ q: "Can life path 1 be a master number?",
+ a: "No. The master numbers in numerology are 11, 22, and 33. A life path number only becomes a master number if the calculation produces one of those values before it's reduced to a single digit. Life path 1 is a standard single-digit number, not a master number. However, if your birth date reduces to 10, that 10 reduces to 1 and you're still a life path 1. The master number distinction applies to 11 (which doesn't get reduced to 2), 22 (not reduced to 4), and 33 (not reduced to 6).",
+ },
+ ].map(item => (
+ <details>
+   <summary>
+     {item.q}
+     <svg class="faq-chevron" xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="6 9 12 15 18 9"/></svg>
+   </summary>
+   <div class="faq-answer">{item.a}</div>
+ </details>
+ ))}
+ </div>
+ </section>
+
+ <!-- Related guides -->
+ <section id="related" style="margin-bottom:2.5rem;">
+ <h2 class="section-h2">Keep reading</h2>
+
+ <div class="grid sm:grid-cols-2 gap-4">
+ <a href="/learn/life-path-number/" class="card-light overflow-hidden group block">
+ <img src="/images/learn/Life Path Number 1 - Hero.webp" alt="Life Path Numbers" loading="lazy" class="w-full object-cover aspect-[2/3]" />
+ <div class="p-5">
+ <div class="text-xs text-violet font-semibold uppercase tracking-wider mb-2">Life Path Numbers</div>
+ <div class="font-bold font-[family-name:var(--font-family-heading)] text-body-text group-hover:text-violet transition-colors leading-tight mb-2">Life Path Number: Complete Guide</div>
+ <div class="text-xs text-muted-text">The full overview of what life paths are, how the system works, and what each number means.</div>
+ <div class="mt-3 text-xs font-semibold text-violet">Read guide
+ <svg xmlns="http://www.w3.org/2000/svg" width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" class="inline ml-1" aria-hidden="true"><polyline points="9 18 15 12 9 6"/></svg>
+ </div>
+ </div>
+ </a>
+ <a href="/learn/how-to-calculate-life-path-number/" class="card-light overflow-hidden group block">
+ <img src="/images/learn/Life Path Number Calculation.webp" alt="How to Calculate Life Path Number" loading="lazy" class="w-full object-cover aspect-[2/3]" />
+ <div class="p-5">
+ <div class="text-xs text-violet font-semibold uppercase tracking-wider mb-2">Calculation</div>
+ <div class="font-bold font-[family-name:var(--font-family-heading)] text-body-text group-hover:text-violet transition-colors leading-tight mb-2">How to Calculate Your Life Path Number</div>
+ <div class="text-xs text-muted-text">Step-by-step walkthrough with worked examples and master number rules explained.</div>
+ <div class="mt-3 text-xs font-semibold text-violet">Read guide
+ <svg xmlns="http://www.w3.org/2000/svg" width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" class="inline ml-1" aria-hidden="true"><polyline points="9 18 15 12 9 6"/></svg>
+ </div>
+ </div>
+ </a>
+ </div>
+ </section>
+
+ <!-- Cross-links to other number types -->
+ <section id="other-numbers" style="margin-bottom:2.5rem;">
+ <h2 class="section-h2">Explore your other numbers</h2>
+ <p class="text-sm text-muted-text mb-5">Your life path number is the foundation - but your full chart has more to say. These three numbers come from your birth name and reveal different layers of who you are.</p>
+ <div class="grid sm:grid-cols-3 gap-4 mt-4">
+  <a href="/learn/expression-number/" class="card-light overflow-hidden group block">
+    <img src="/images/learn/Expression Numbers - Tile.webp" alt="Expression Numbers" loading="lazy" class="w-full object-cover aspect-[2/3]" />
+    <div class="p-5">
+      <div class="text-xs text-violet font-semibold uppercase tracking-wider mb-2">Your Name</div>
+      <div class="font-bold font-[family-name:var(--font-family-heading)] text-body-text group-hover:text-violet transition-colors leading-tight mb-2">Expression Numbers</div>
+      <div class="text-xs text-muted-text">Your full birth name reveals the talents and abilities you're meant to develop.</div>
+      <div class="mt-3 text-xs font-semibold text-violet">Explore &rarr;</div>
+    </div>
+  </a>
+  <a href="/learn/soul-urge-number/" class="card-light overflow-hidden group block">
+    <img src="/images/learn/Soul Urge Numbers - Tile.webp" alt="Soul Urge Numbers" loading="lazy" class="w-full object-cover aspect-[2/3]" />
+    <div class="p-5">
+      <div class="text-xs text-violet font-semibold uppercase tracking-wider mb-2">Your Heart</div>
+      <div class="font-bold font-[family-name:var(--font-family-heading)] text-body-text group-hover:text-violet transition-colors leading-tight mb-2">Soul Urge Numbers</div>
+      <div class="text-xs text-muted-text">The vowels in your name reveal your deepest inner motivations and desires.</div>
+      <div class="mt-3 text-xs font-semibold text-violet">Explore &rarr;</div>
+    </div>
+  </a>
+  <a href="/learn/personality-number/" class="card-light overflow-hidden group block">
+    <img src="/images/learn/Personality Numbers - Tile.webp" alt="Personality Numbers" loading="lazy" class="w-full object-cover aspect-[2/3]" />
+    <div class="p-5">
+      <div class="text-xs text-violet font-semibold uppercase tracking-wider mb-2">Your Outer Self</div>
+      <div class="font-bold font-[family-name:var(--font-family-heading)] text-body-text group-hover:text-violet transition-colors leading-tight mb-2">Personality Numbers</div>
+      <div class="text-xs text-muted-text">How the world sees you first - calculated from the consonants in your name.</div>
+      <div class="mt-3 text-xs font-semibold text-violet">Explore &rarr;</div>
+    </div>
+  </a>
+ </div>
+ </section>
+
+ </div>
+ </article>
+
+   </div><!-- end main content column -->
+   <SidebarCTA />
+ </div><!-- end flex wrapper -->
+
+ <!-- Bottom CTA -->
+ <section style="background:var(--color-midnight);padding:5.5rem 1.5rem;position:relative;overflow:hidden;text-align:center;">
+   <div style="position:absolute;inset:0;background:radial-gradient(ellipse at 50% 120%,rgba(124,92,191,0.18) 0%,transparent 70%);pointer-events:none;"></div>
+   <div style="position:relative;z-index:1;max-width:560px;margin:0 auto;">
+     <p class="p-label">Numerologist.com</p>
+     <div class="p-divider" style="margin:1rem auto;"></div>
+     <h2 style="font-family:var(--font-family-heading);font-size:clamp(1.85rem,4vw,2.9rem);font-weight:700;color:var(--color-starlight);margin:1rem 0;line-height:1.2;">Ready to see what your numbers actually say?</h2>
+     <p style="color:rgba(235,232,247,0.5);font-size:0.95rem;line-height:1.8;margin-bottom:2.5rem;">Enter your name and birthdate. Get a free video reading built around you.</p>
+     <a href="https://8904b5z1168aar3k8annz7y61n.hop.clickbank.net" target="_blank" rel="noopener sponsored" style="display:inline-flex;align-items:center;gap:0.5rem;background:var(--color-soft-gold);color:var(--color-midnight);font-weight:700;font-size:0.95rem;padding:0.875rem 1.75rem;border-radius:6px;text-decoration:none;margin:0 auto;transition:opacity 0.2s;">
+       Get your free reading at Numerologist.com
+       <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="9 18 15 12 9 6"/></svg>
+     </a>
+   </div>
+ </section>
+
+</Layout>

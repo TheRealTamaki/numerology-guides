@@ -1,0 +1,294 @@
+﻿---
+import Layout from '../../layouts/Layout.astro';
+import SidebarCTA from '../../components/SidebarCTA.astro';
+
+const articles = [
+  {
+    category: "Life Path Numbers",
+    badge: "PILLAR",
+    href: "/learn/life-path-number/",
+    title: "Life Path Number: Complete Guide to Finding & Understanding Yours",
+    excerpt: "The most important number in your chart. What it is, what it means, and how all 12 life path numbers work, the starting point for everything else.",
+    keyword: "life path number",
+    readTime: "12 min read",
+    icon: `<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="text-violet mx-auto mb-2" aria-hidden="true"><line x1="4" y1="9" x2="20" y2="9"/><line x1="4" y1="15" x2="20" y2="15"/><line x1="10" y1="3" x2="8" y2="21"/><line x1="16" y1="3" x2="14" y2="21"/></svg>`,
+  },
+  {
+    category: "Life Path Numbers",
+    badge: "GUIDE",
+    href: "/learn/how-to-calculate-life-path-number/",
+    title: "How to Calculate Your Life Path Number (Step-by-Step)",
+    excerpt: "Step-by-step method with worked examples, including master numbers 11, 22, and 33. Takes about two minutes once you know the rules.",
+    keyword: "how to calculate life path number",
+    readTime: "8 min read",
+    icon: `<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="text-violet mx-auto mb-2" aria-hidden="true"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>`,
+  },
+  {
+    category: "Life Path Numbers",
+    badge: "GUIDE",
+    href: "/learn/life-path-number-1/",
+    title: "Life Path Number 1: The Leader - Traits, Careers & Compatibility",
+    excerpt: "Independent, driven, and built to lead, but not always easy to be around. Traits, love life, career strengths, and the lessons LP1 keeps coming back to.",
+    keyword: "life path number 1",
+    readTime: "9 min read",
+    icon: `<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="text-violet mx-auto mb-2" aria-hidden="true"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>`,
+  },
+  {
+    category: "Life Path Numbers",
+    badge: "GUIDE",
+    href: "/learn/life-path-number-2/",
+    title: "Life Path Number 2: The Peacemaker - Traits, Careers & Compatibility",
+    excerpt: "Empathetic, diplomatic, and most alive in partnership. The 2 is the most relationship-oriented number in the chart. Traits, compatibility, career, and where this energy needs to watch itself.",
+    keyword: "life path number 2",
+    readTime: "9 min read",
+    icon: `<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="text-violet mx-auto mb-2" aria-hidden="true"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>`,
+  },
+];
+
+const coreNumbers = [
+  {
+    href: "/learn/life-path-number/",
+    label: "Life Path",
+    count: "12 numbers",
+    desc: "Your primary chart number - the most important one. Calculated from your full birth date.",
+    image: "/images/learn/Life Path Numbers - Tile.webp",
+  },
+  {
+    href: "/learn/expression-number/",
+    label: "Expression",
+    count: "12 numbers",
+    desc: "Your destiny direction - what you're moving toward. Calculated from your full birth name.",
+    image: "/images/learn/Expression Numbers - Tile.webp",
+  },
+  {
+    href: "/learn/soul-urge-number/",
+    label: "Soul Urge",
+    count: "12 numbers",
+    desc: "Your inner motivation - the private drive behind your choices. From the vowels in your name.",
+    image: "/images/learn/Soul Urge Numbers - Tile.webp",
+  },
+  {
+    href: "/learn/personality-number/",
+    label: "Personality",
+    count: "9 numbers",
+    desc: "Your outer impression - the first thing people perceive before they know you well. From consonants in your name.",
+    image: "/images/learn/Personality Numbers - Tile.webp",
+  },
+  {
+    href: "/learn/birthday-number/",
+    label: "Birthday",
+    count: "31 days",
+    desc: "Your birth day influence - a consistent background quality tied to the day of the month you were born.",
+    image: "/images/learn/Birthday Numbers - Tile.webp",
+  },
+];
+
+const silos = [
+  { image: "/images/learn/Life Path Numbers - Tile.webp", label: "Life Path Numbers", count: 15, href: "/learn/life-path-number/", desc: "Your core number" },
+  { image: "/images/learn/Expression Numbers - Tile.webp", label: "Expression Numbers", count: 12, href: "/learn/expression-number/", desc: "Your destiny direction" },
+  { image: "/images/learn/Soul Urge Numbers - Tile.webp", label: "Soul Urge Numbers", count: 12, href: "/learn/soul-urge-number/", desc: "Your inner motivation" },
+  { image: "/images/learn/Personality Numbers - Tile.webp", label: "Personality Numbers", count: 9, href: "/learn/personality-number/", desc: "Your outer impression" },
+  { image: "/images/learn/Birthday Numbers - Tile.webp", label: "Birthday Numbers", count: 31, href: "/learn/birthday-number/", desc: "Your birth day influence" },
+  { image: "/images/learn/Master Numbers - Tile.webp", label: "Master Numbers", count: 5, href: "/learn/master-numbers/", desc: "11, 22 & 33 explained" },
+  { image: "/images/learn/Personal Year Numbers - Tile.webp", label: "Personal Year", count: 9, href: "/learn/personal-year-number/", desc: "Your current cycle" },
+  { image: "/images/learn/Angel Numbers - Tile.webp", label: "Angel Numbers", count: 10, href: "/learn/angel-numbers/", desc: "111, 222, 333 & more" },
+  { image: "/images/learn/Numerology Compatibility - Tile.webp", label: "Life Path Compatibility", count: 78, href: "/learn/life-path-compatibility/", desc: "All 78 pair matchups" },
+  { image: "/images/learn/Name Numerology - Tile.webp", label: "Name Numerology", count: 4, href: "/learn/name-numerology/", desc: "Your name's hidden numbers" },
+  { image: "/images/learn/Karmic Debt Numbers - Tile.webp", label: "Karmic Debt Numbers", count: 5, href: "/learn/karmic-debt-numbers/", desc: "13, 14, 16 & 19 explained" },
+  { image: "/images/learn/Maturity Number - Tile.webp", label: "Maturity Number", count: 1, href: "/learn/maturity-number/", desc: "Your second-half blueprint" },
+  { image: "/images/learn/Pinnacle Numbers - Tile.webp", label: "Pinnacle Numbers", count: 1, href: "/learn/pinnacle-numbers/", desc: "Your 4 life cycles" },
+  { image: "/images/learn/Challenge Numbers - Tile.webp", label: "Challenge Numbers", count: 1, href: "/learn/challenge-numbers/", desc: "Your 4 growth cycles" },
+  { image: "/images/learn/House Number Numerology - Tile.webp", label: "House Number Numerology", count: 12, href: "/learn/house-number-numerology/", desc: "What your address means" },
+];
+---
+
+<link slot="head" rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400;1,600&display=swap" />
+<style>
+  :root { --font-family-heading: 'Cormorant Garamond', Georgia, serif; }
+  .p-label { font-size:0.7rem; letter-spacing:0.18em; text-transform:uppercase; color:var(--color-soft-gold); font-weight:600; }
+  .p-divider { width:48px; height:2px; background:var(--color-soft-gold); margin:0 auto; }
+  .section-h2 { font-family:var(--font-family-heading); font-size:clamp(1.6rem,3.5vw,2.25rem); font-weight:700; color:var(--color-body-text); margin:0 0 1.25rem; }
+
+  /* Portrait silo tiles */
+  .silo-grid { display:grid; grid-template-columns:repeat(4,1fr); gap:0.875rem; }
+  @media (max-width:900px) { .silo-grid { grid-template-columns:repeat(3,1fr); } }
+  @media (max-width:540px) { .silo-grid { grid-template-columns:repeat(2,1fr); gap:0.625rem; } }
+
+  .silo-tile { position:relative; overflow:hidden; border-radius:8px; display:block; aspect-ratio:2/3; text-decoration:none; }
+  .silo-tile img { width:100%; height:100%; object-fit:cover; transition:transform 0.6s; }
+  .silo-tile:hover img { transform:scale(1.07); }
+  .silo-overlay { position:absolute; inset:0; background:linear-gradient(to top, rgba(7,7,26,0.92) 0%, rgba(7,7,26,0.38) 55%, transparent 100%); transition:background 0.3s; }
+  .silo-tile:hover .silo-overlay { background:linear-gradient(to top, rgba(7,7,26,0.96) 0%, rgba(7,7,26,0.58) 65%, transparent 100%); }
+  .silo-content { position:absolute; bottom:0; left:0; right:0; padding:0.875rem 0.75rem; }
+  .silo-name { font-family:var(--font-family-heading); font-size:clamp(0.95rem,1.4vw,1.1rem); font-weight:700; color:#f5f0e8; line-height:1.2; margin-bottom:0.3rem; }
+  .silo-sub { font-size:0.65rem; text-transform:uppercase; letter-spacing:0.1em; color:rgba(235,232,247,0.6); font-weight:600; }
+  .silo-badge { display:inline-block; margin-top:0.4rem; font-size:0.6rem; letter-spacing:0.08em; text-transform:uppercase; color:var(--color-soft-gold); font-weight:600; border:1px solid rgba(196,162,78,0.35); border-radius:999px; padding:0.15rem 0.5rem; }
+</style>
+
+<Layout
+  title="Numerology Learning Hub - Guides, Meanings & Deep Dives | Numerology Guides"
+  description="Your complete numerology education hub. From life path numbers to angel numbers, compatibility, and core chart meanings - everything explained clearly."
+>
+  <!-- Hero -->
+  <section style="background:var(--color-light-bg);padding:4rem 1.5rem 3.5rem;position:relative;overflow:hidden;border-bottom:1px solid var(--color-border);">
+    <div style="position:absolute;inset:0;background-image:radial-gradient(circle,rgba(124,92,191,0.07) 1px,transparent 1px);background-size:28px 28px;pointer-events:none;"></div>
+    <div style="position:relative;z-index:1;max-width:56rem;margin:0 auto;text-align:center;">
+      <span class="p-label" style="display:inline-block;margin-bottom:1rem;">Numerology Learning Hub</span>
+      <h1 style="font-family:var(--font-family-heading);font-size:clamp(2rem,5vw,3.5rem);font-weight:700;color:var(--color-body-text);margin:0 0 1.25rem;line-height:1.12;">
+        Learn <span style="color:var(--color-soft-gold);">Numerology</span>
+      </h1>
+      <p style="font-size:1.0625rem;color:var(--color-muted-text);max-width:36rem;margin:0 auto;line-height:1.7;">
+        Free guides to life path numbers, angel numbers, compatibility, and everything in between. Start anywhere, but if you're new, your Life Path Number is the place to begin.
+      </p>
+    </div>
+  </section>
+
+  <!-- Silo quick-nav -->
+  <section style="padding:3.5rem 1rem;background:var(--color-light-bg);border-top:1px solid var(--color-border);">
+    <div style="max-width:72rem;margin:0 auto;">
+      <div style="text-align:center;margin-bottom:2.5rem;">
+        <p class="p-label" style="margin-bottom:0.75rem;">Everything covered</p>
+        <h2 style="font-family:var(--font-family-heading);font-size:clamp(1.6rem,3.5vw,2.25rem);font-weight:700;color:var(--color-body-text);margin:0 0 0.5rem;">Browse by <em style="color:var(--color-violet);font-style:italic;">Topic</em></h2>
+        <div class="p-divider" style="margin-top:0.75rem;"></div>
+      </div>
+      <div class="silo-grid">
+        {silos.map(silo => (
+          <a href={silo.href} class="silo-tile">
+            <img src={silo.image} alt={silo.label} loading="lazy" decoding="async" />
+            <div class="silo-overlay"></div>
+            <div class="silo-content">
+              <div class="silo-name">{silo.label}</div>
+              <div class="silo-sub">{silo.desc}</div>
+              <span class="silo-badge">{silo.count} guides</span>
+            </div>
+          </a>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- Content + Sticky sidebar wrapper -->
+  <div class="xl:flex xl:gap-6 xl:max-w-[1200px] xl:mx-auto xl:px-4 xl:pt-10">
+    <!-- Main content column -->
+    <div class="xl:flex-1 xl:min-w-0">
+
+  <!-- Core chart numbers -->
+  <section class="py-10 px-4">
+    <div class="max-w-5xl mx-auto xl:mx-0 xl:max-w-none">
+      <div class="text-center mb-10">
+        <span class="p-label" style="display:inline-block;margin-bottom:1rem;">Core Chart Numbers</span>
+        <h2 class="text-2xl md:text-3xl font-bold font-[family-name:var(--font-family-heading)] text-body-text">
+          The Five Numbers in Your Numerology Chart
+        </h2>
+        <p class="text-muted-text mt-3 max-w-2xl mx-auto">A complete numerology chart has five core numbers. Each one comes from a different source - birth date, full name, vowels only, consonants only, and birth day - and each one describes a different layer of who you are.</p>
+      </div>
+      <div class="grid sm:grid-cols-2 md:grid-cols-3 gap-6">
+        {coreNumbers.map(cn => (
+          <a href={cn.href} class="group block rounded-xl overflow-hidden shadow-md hover:shadow-xl hover:-translate-y-1 transition-all duration-300 bg-white border border-gray-100">
+            <div class="relative aspect-[2/3] overflow-hidden">
+              <img src={cn.image} alt={`${cn.label} Number`} class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105" loading="lazy" />
+            </div>
+            <div class="p-5">
+              <div class="flex items-center gap-2 mb-2">
+                <div class="text-lg font-bold font-[family-name:var(--font-family-heading)] text-body-text leading-tight group-hover:text-violet transition-colors">{cn.label} Number</div>
+                <span style="background:var(--color-light-bg);border:1px solid var(--color-border);border-radius:999px;padding:0.25rem 0.75rem;font-size:0.75rem;margin-left:auto;">{cn.count}</span>
+              </div>
+              <p class="text-sm text-muted-text leading-relaxed">{cn.desc}</p>
+              <div class="mt-4 text-sm font-semibold text-violet group-hover:text-soft-violet transition-colors">
+                Browse all {cn.label.toLowerCase()} numbers →
+              </div>
+            </div>
+          </a>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- Tools & More -->
+  <section style="padding:2.5rem 1rem;background:var(--color-light-bg);border-top:1px solid var(--color-border);border-bottom:1px solid var(--color-border);">
+    <div class="max-w-5xl mx-auto xl:mx-0 xl:max-w-none">
+      <div class="text-center mb-10">
+        <span class="p-label" style="display:inline-block;margin-bottom:1rem;">Tools &amp; Resources</span>
+        <h2 class="text-2xl md:text-3xl font-bold font-[family-name:var(--font-family-heading)] text-body-text">
+          Interactive Numerology Tools
+        </h2>
+        <p class="text-muted-text mt-3 max-w-2xl mx-auto">Calculate your numbers, check compatibility, and explore the full language of numerology.</p>
+      </div>
+      <div class="grid sm:grid-cols-2 md:grid-cols-3 gap-5">
+        <a href="/calculator/" style="display:block;background:var(--color-card-bg);border:1px solid var(--color-border);border-radius:0.75rem;padding:1.5rem;text-decoration:none;transition:box-shadow 0.2s,transform 0.2s;" class="group">
+          <div class="flex items-center gap-3 mb-3">
+            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="text-violet" aria-hidden="true"><rect x="4" y="2" width="16" height="20" rx="2"/><line x1="8" y1="6" x2="16" y2="6"/><line x1="8" y1="10" x2="10" y2="10"/><line x1="14" y1="10" x2="16" y2="10"/><line x1="8" y1="14" x2="10" y2="14"/><line x1="14" y1="14" x2="16" y2="14"/><line x1="8" y1="18" x2="16" y2="18"/></svg>
+            <span style="background:var(--color-light-bg);border:1px solid var(--color-border);border-radius:999px;padding:0.25rem 0.75rem;font-size:0.75rem;">TOOL</span>
+          </div>
+          <div class="font-bold text-lg text-body-text group-hover:text-violet transition-colors mb-2">Numerology Calculator</div>
+          <p class="text-sm text-muted-text leading-relaxed">Enter your name and birthday to calculate all five core numbers at once.</p>
+          <div class="mt-4 text-sm font-semibold text-violet group-hover:text-soft-violet transition-colors">Try the calculator →</div>
+        </a>
+        <a href="/learn/compatibility/" style="display:block;background:var(--color-card-bg);border:1px solid var(--color-border);border-radius:0.75rem;padding:1.5rem;text-decoration:none;transition:box-shadow 0.2s,transform 0.2s;" class="group">
+          <div class="flex items-center gap-3 mb-3">
+            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="text-violet" aria-hidden="true"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>
+            <span style="background:var(--color-light-bg);border:1px solid var(--color-border);border-radius:999px;padding:0.25rem 0.75rem;font-size:0.75rem;">TOOL</span>
+          </div>
+          <div class="font-bold text-lg text-body-text group-hover:text-violet transition-colors mb-2">Compatibility Checker</div>
+          <p class="text-sm text-muted-text leading-relaxed">See how any two life path numbers work together in love, friendship, and business.</p>
+          <div class="mt-4 text-sm font-semibold text-violet group-hover:text-soft-violet transition-colors">Check compatibility →</div>
+        </a>
+        <a href="/learn/glossary/" style="display:block;background:var(--color-card-bg);border:1px solid var(--color-border);border-radius:0.75rem;padding:1.5rem;text-decoration:none;transition:box-shadow 0.2s,transform 0.2s;" class="group">
+          <div class="flex items-center gap-3 mb-3">
+            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="text-violet" aria-hidden="true"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/></svg>
+            <span style="background:var(--color-light-bg);border:1px solid var(--color-border);border-radius:999px;padding:0.25rem 0.75rem;font-size:0.75rem;">REFERENCE</span>
+          </div>
+          <div class="font-bold text-lg text-body-text group-hover:text-violet transition-colors mb-2">Numerology Glossary</div>
+          <p class="text-sm text-muted-text leading-relaxed">Quick definitions for every numerology term you'll come across on this site.</p>
+          <div class="mt-4 text-sm font-semibold text-violet group-hover:text-soft-violet transition-colors">Browse terms →</div>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Articles -->
+  <section style="padding:2.5rem 1rem;background:white;">
+    <div class="max-w-5xl mx-auto xl:mx-0 xl:max-w-none">
+      <h2 class="section-h2">Latest Guides</h2>
+
+      <div class="grid md:grid-cols-2 gap-6">
+        {articles.map(article => (
+          <a href={article.href} class="card-light p-6 group block">
+            <div class="flex items-center gap-2 mb-3">
+              <span class="flex items-center" set:html={article.icon}></span>
+              <span style="background:var(--color-light-bg);border:1px solid var(--color-border);border-radius:999px;padding:0.25rem 0.75rem;font-size:0.75rem;">{article.badge}</span>
+              <span class="text-xs text-muted-text ml-auto">{article.readTime}</span>
+            </div>
+            <div class="text-xs text-violet font-semibold uppercase tracking-wider mb-2">{article.category}</div>
+            <h3 class="text-lg font-bold font-[family-name:var(--font-family-heading)] text-body-text group-hover:text-violet transition-colors leading-tight mb-3">
+              {article.title}
+            </h3>
+            <p class="text-sm text-muted-text leading-relaxed">{article.excerpt}</p>
+            <div class="mt-4 text-sm font-semibold text-violet group-hover:text-soft-violet transition-colors">
+              Read guide →
+            </div>
+          </a>
+        ))}
+      </div>
+    </div>
+  </section>
+
+    </div><!-- end main content column -->
+    <SidebarCTA />
+  </div><!-- end flex wrapper -->
+
+  <!-- CTA -->
+  <section style="background:var(--color-midnight);padding:5rem 1.5rem;text-align:center;">
+    <div style="max-width:36rem;margin:0 auto;">
+      <p class="p-label" style="color:rgba(196,162,78,0.7);margin-bottom:0.75rem;">Free Reading</p>
+      <h2 style="font-family:var(--font-family-heading);font-size:clamp(1.75rem,4vw,2.5rem);font-weight:700;color:var(--color-starlight);margin:0 0 1rem;">Want to See Your Numbers Applied to You Specifically?</h2>
+      <p style="color:rgba(255,255,255,0.65);font-size:1rem;line-height:1.75;margin:0 0 2rem;">
+        Numerologist.com takes your name and birthdate and builds a free personalized video reading around them. A good next step once you know what you're looking at.
+      </p>
+      <a href="https://8904b5z1168aar3k8annz7y61n.hop.clickbank.net" target="_blank" rel="noopener sponsored"
+        style="display:inline-block;background:var(--color-soft-gold);color:var(--color-midnight);font-weight:700;font-size:1.05rem;padding:1rem 2.25rem;border-radius:0.5rem;text-decoration:none;letter-spacing:0.02em;">
+        Get your free reading at Numerologist.com →
+      </a>
+    </div>
+  </section>
+</Layout>

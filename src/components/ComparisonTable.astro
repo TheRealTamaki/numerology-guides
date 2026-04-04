@@ -1,0 +1,63 @@
+---
+import StarRating from './StarRating.astro';
+
+interface Product {
+  name: string;
+  slug: string;
+  rating: number;
+  price: string;
+  avgCommission: string;
+  personalization: string;
+  readingTypes: string;
+  bestFor: string;
+}
+
+interface Props {
+  products: Product[];
+}
+
+const { products } = Astro.props;
+---
+
+<div class="overflow-x-auto">
+  <table class="w-full text-sm border-collapse rpg-table">
+    <thead>
+      <tr>
+        <th class="text-left py-4 px-4 font-semibold uppercase tracking-wider text-xs">Service</th>
+        <th class="text-left py-4 px-4 font-semibold uppercase tracking-wider text-xs">HP</th>
+        <th class="text-left py-4 px-4 font-semibold uppercase tracking-wider text-xs">Cost</th>
+        <th class="text-left py-4 px-4 font-semibold uppercase tracking-wider text-xs hidden md:table-cell">Power</th>
+        <th class="text-left py-4 px-4 font-semibold uppercase tracking-wider text-xs hidden lg:table-cell">Abilities</th>
+        <th class="text-left py-4 px-4 font-semibold uppercase tracking-wider text-xs">Class</th>
+        <th class="text-center py-4 px-4 font-semibold uppercase tracking-wider text-xs"></th>
+      </tr>
+    </thead>
+    <tbody>
+      {products.map((product, i) => (
+        <tr class:list={[
+          "border-b-2 border-rpg-tan/30 transition-colors",
+          i === 0 && "bg-gold/5"
+        ]}>
+          <td class="py-4 px-4">
+            <div class="font-semibold text-body-text">{product.name}</div>
+            {i === 0 && (
+              <span class="rpg-badge text-xs mt-1 inline-block"><svg xmlns="http://www.w3.org/2000/svg" width="9" height="9" viewBox="0 0 24 24" fill="currentColor" stroke="none" class="inline mr-1" aria-hidden="true"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>Top Pick</span>
+            )}
+          </td>
+          <td class="py-4 px-4">
+            <StarRating rating={product.rating} size="sm" />
+          </td>
+          <td class="py-4 px-4 text-violet font-semibold">{product.price}</td>
+          <td class="py-4 px-4 text-muted-text hidden md:table-cell">{product.personalization}</td>
+          <td class="py-4 px-4 text-muted-text hidden lg:table-cell">{product.readingTypes}</td>
+          <td class="py-4 px-4 text-muted-text">{product.bestFor}</td>
+          <td class="py-4 px-4 text-center">
+            <a href={`/reviews/${product.slug}/`} class="text-violet hover:text-soft-gold transition-colors text-xs font-semibold">
+              View <svg xmlns="http://www.w3.org/2000/svg" width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" class="inline" aria-hidden="true"><polyline points="9 18 15 12 9 6"/></svg>
+            </a>
+          </td>
+        </tr>
+      ))}
+    </tbody>
+  </table>
+</div>

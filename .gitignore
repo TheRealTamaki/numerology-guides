@@ -22,3 +22,21 @@ pnpm-debug.log*
 
 # jetbrains setting folder
 .idea/
+
+# Claude / project tools
+.claude/
+CLAUDE.md
+*.skill
+*.skill.zip
+tarot-imagegen.skill/
+
+# Prototype / scratch files
+public/prototype.html
+src/pages/prototype.astro
+site-architecture.html
+style-guide.md
+
+# Misc
+NumerologyCompared_Content_Silo_Plan.xlsx
+scripts/
+soul urge.jpeg

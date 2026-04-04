@@ -1,0 +1,585 @@
+﻿---
+import Layout from '../../../layouts/Layout.astro';
+import SidebarCTA from '../../../components/SidebarCTA.astro';
+---
+
+<link slot="head" rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400;1,600&display=swap" />
+<style>
+  :root { --font-family-heading: 'Cormorant Garamond', Georgia, serif; }
+  .p-label { font-size:0.7rem; letter-spacing:0.18em; text-transform:uppercase; color:var(--color-soft-gold); font-weight:600; }
+  .p-divider { width:48px; height:2px; background:var(--color-soft-gold); margin:0 auto; }
+  .section-h2 { font-family:var(--font-family-heading); font-size:clamp(1.6rem,3.5vw,2.25rem); font-weight:700; color:var(--color-body-text); margin:0 0 1.25rem; }
+</style>
+
+<Layout
+  title="How to Calculate Your Life Path Number (Step-by-Step Guide)"
+  description="Learn exactly how to calculate your life path number from your birth date. Step-by-step examples, master numbers 11, 22 and 33 explained, plus a free interactive calculator."
+>
+
+  <!-- Hero -->
+  <section style="position:relative;overflow:hidden;padding:6rem 1.5rem 5rem;text-align:center;min-height:480px;display:flex;align-items:center;">
+    <div style="position:absolute;inset:0;z-index:0;">
+      <img
+        src="/images/learn/How to Calculate Pillar Hero.webp"
+        alt=""
+        aria-hidden="true"
+        fetchpriority="high"
+        style="width:100%;height:100%;object-fit:cover;object-position:center 30%;display:block;"
+      />
+      <div style="position:absolute;inset:0;background:linear-gradient(to bottom, rgba(14,10,26,0.75) 0%, rgba(14,10,26,0.58) 45%, rgba(14,10,26,0.80) 100%);"></div>
+      <div style="position:absolute;inset:0;background-image:radial-gradient(circle,rgba(196,162,78,0.08) 1px,transparent 1px);background-size:28px 28px;pointer-events:none;"></div>
+    </div>
+    <div style="position:relative;z-index:1;max-width:56rem;margin:0 auto;text-align:center;">
+      <nav style="font-size:0.875rem;color:var(--color-muted-text);margin-bottom:1.5rem;display:flex;justify-content:center;gap:0.5rem;">
+        <a href="/" style="color:var(--color-muted-text);text-decoration:none;">Home</a>
+        <span><svg xmlns="http://www.w3.org/2000/svg" width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="display:inline;"><polyline points="9 18 15 12 9 6"/></svg></span>
+        <a href="/learn/" style="color:var(--color-muted-text);text-decoration:none;">Learn</a>
+        <span><svg xmlns="http://www.w3.org/2000/svg" width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="display:inline;"><polyline points="9 18 15 12 9 6"/></svg></span>
+        <span>Calculate Your Life Path Number</span>
+      </nav>
+      <span class="p-label" style="display:inline-block;margin-bottom:1rem;">Free Calculator</span>
+      <h1 style="font-family:var(--font-family-heading);font-size:clamp(2rem,5vw,3.25rem);font-weight:700;color:var(--color-body-text);margin:0 0 1.25rem;line-height:1.15;">
+        Calculate Your <span style="color:var(--color-soft-gold);">Life Path Number</span>
+      </h1>
+      <p style="font-size:1.0625rem;color:var(--color-muted-text);max-width:36rem;margin:0 auto 2rem;line-height:1.7;">
+        Enter your birth date below. The calculator shows your number instantly, with the full working so you can see exactly how it's derived.
+      </p>
+      <a href="#calculator" style="display:inline-flex;align-items:center;gap:0.5rem;background:var(--color-violet);color:white;font-weight:700;font-size:1rem;padding:0.875rem 2rem;border-radius:6px;text-decoration:none;">See the Method + Calculator ↓</a>
+    </div>
+  </section>
+
+  <!-- Author byline -->
+  <div style="background:var(--color-light-bg);padding:1.25rem 1.5rem;">
+    <div style="max-width:1100px;margin:0 auto;display:flex;align-items:center;gap:1rem;">
+      <img src="/images/author-maddi-green.webp" alt="Maddie Greene" style="width:2.75rem;height:2.75rem;border-radius:50%;object-fit:cover;flex-shrink:0;border:2px solid rgba(124,92,191,0.2);" />
+      <div>
+        <p style="color:var(--color-body-text);font-size:0.875rem;font-weight:600;margin:0 0 0.1rem;">Written by <strong>Maddie Greene</strong></p>
+        <p style="color:var(--color-muted-text);font-size:0.78rem;margin:0;">Numerology writer &amp; researcher</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- Content + Sticky sidebar wrapper -->
+  <div class="xl:flex xl:gap-6 xl:max-w-[1200px] xl:mx-auto xl:px-4">
+    <!-- Main content column -->
+    <div class="xl:flex-1 xl:min-w-0">
+
+  <!-- How it works - step by step + calculator -->
+  <section class="pt-6 pb-10 px-4" id="calculator">
+    <div class="max-w-3xl mx-auto xl:mx-0 xl:max-w-none">
+
+      <h2 class="text-2xl md:text-3xl font-bold font-[family-name:var(--font-family-heading)] text-body-text mb-3">
+        How to Calculate Your Life Path Number
+      </h2>
+      <p class="text-muted-text leading-relaxed mb-8 text-base">
+        The calculation is simpler than it looks. You reduce your full date of birth to a single digit (or a master number) by adding each component separately. Here's how it works.
+      </p>
+
+      <!-- Calculator -->
+      <div class="card-light p-6 md:p-8 mb-10">
+
+          <!-- Inputs -->
+          <div class="grid grid-cols-3 gap-4 mb-6">
+            <div>
+              <label class="block text-sm font-semibold text-body-text mb-2" for="calc-month">Month</label>
+              <select id="calc-month" class="w-full p-3 text-base text-body-text bg-white border-2 border-border rounded-lg focus:outline-none focus:border-violet transition-colors">
+                <option value="">Month</option>
+                <option value="1">January</option>
+                <option value="2">February</option>
+                <option value="3">March</option>
+                <option value="4">April</option>
+                <option value="5">May</option>
+                <option value="6">June</option>
+                <option value="7">July</option>
+                <option value="8">August</option>
+                <option value="9">September</option>
+                <option value="10">October</option>
+                <option value="11">November</option>
+                <option value="12">December</option>
+              </select>
+            </div>
+            <div>
+              <label class="block text-sm font-semibold text-body-text mb-2" for="calc-day">Day</label>
+              <input type="number" id="calc-day" min="1" max="31" placeholder="e.g. 15"
+                class="w-full p-3 text-base text-body-text bg-white border-2 border-border rounded-lg focus:outline-none focus:border-violet transition-colors" />
+            </div>
+            <div>
+              <label class="block text-sm font-semibold text-body-text mb-2" for="calc-year">Year</label>
+              <input type="number" id="calc-year" min="1900" max="2025" placeholder="e.g. 1990"
+                class="w-full p-3 text-base text-body-text bg-white border-2 border-border rounded-lg focus:outline-none focus:border-violet transition-colors" />
+            </div>
+          </div>
+
+          <button id="calc-btn" style="display:block;width:100%;text-align:center;background:var(--color-violet);color:white;font-weight:700;font-size:1.125rem;padding:0.875rem 2rem;border-radius:6px;border:none;cursor:pointer;margin-bottom:0.5rem;">Calculate My Life Path Number</button>
+          <div id="calc-error" class="hidden text-center text-sm text-red-500 mt-3 mb-2"></div>
+
+          <!-- Result panel - hidden until calculated -->
+          <div id="calc-result" class="hidden mt-6">
+
+            <!-- Step-by-step working -->
+            <div class="bg-deep-purple/5 border border-border/60 rounded-xl p-5 mb-6">
+              <p class="text-xs font-semibold text-violet uppercase tracking-widest mb-4">How your number was calculated</p>
+              <div class="space-y-3 font-mono text-sm" id="working-steps"></div>
+            </div>
+
+            <!-- Big result -->
+            <div class="text-center py-6 border-t border-border/40">
+              <p class="text-base text-muted-text mb-2">Your Life Path Number is</p>
+              <div id="result-number" class="text-8xl font-bold font-[family-name:var(--font-family-heading)] text-violet leading-none mb-3"></div>
+              <div id="result-label" style="display:inline-block;margin-bottom:1.25rem;background:var(--color-light-bg);border:1px solid var(--color-border);border-radius:999px;padding:0.25rem 0.75rem;font-size:0.8rem;"></div>
+              <p class="text-base text-muted-text leading-relaxed mb-5 max-w-sm mx-auto" id="result-blurb"></p>
+              <div class="flex flex-col sm:flex-row gap-3 justify-center">
+                <a id="result-guide-link" href="#" style="display:inline-block;background:var(--color-soft-gold);color:var(--color-midnight);font-weight:700;font-size:1rem;padding:0.875rem 2rem;border-radius:0.5rem;text-decoration:none;">
+                  Read Your Life Path Guide →
+                </a>
+                <a href="https://8904b5z1168aar3k8annz7y61n.hop.clickbank.net" target="_blank" rel="noopener sponsored"
+                  class="btn-secondary text-sm">
+                  Get a Free Full Reading
+                </a>
+              </div>
+              <p class="text-xs text-muted-text mt-3">Free reading via Numerologist.com - no payment required</p>
+            </div>
+
+          </div>
+      </div>
+
+      <!-- Steps -->
+      <div class="space-y-4 mb-10">
+
+        <div class="card-light p-6" style="border-left: 4px solid var(--color-violet);">
+          <div class="flex items-start gap-4">
+            <div class="w-10 h-10 shrink-0 rounded-lg bg-violet/10 flex items-center justify-center text-violet font-bold text-lg font-[family-name:var(--font-family-heading)]">1</div>
+            <div>
+              <h3 class="font-bold text-body-text text-base mb-2">Separate your birth date into DD / MM / YYYY</h3>
+              <p class="text-muted-text text-base leading-relaxed">
+                Write out your full date of birth as three separate components: the day, the month, and the year. For example: born 15 March 1990 = Day: 15 | Month: 03 | Year: 1990.
+              </p>
+            </div>
+          </div>
+        </div>
+
+        <div class="card-light p-6" style="border-left: 4px solid var(--color-violet);">
+          <div class="flex items-start gap-4">
+            <div class="w-10 h-10 shrink-0 rounded-lg bg-violet/10 flex items-center justify-center text-violet font-bold text-lg font-[family-name:var(--font-family-heading)]">2</div>
+            <div>
+              <h3 class="font-bold text-body-text text-base mb-2">Reduce each component to a single digit</h3>
+              <p class="text-muted-text text-base leading-relaxed mb-3">
+                Add the digits of each component until you reach a single digit <em>or</em> a master number (11 or 22).
+              </p>
+              <div class="bg-deep-purple/5 border border-border/60 rounded-lg p-4 font-mono text-sm leading-relaxed">
+                <div>Day: <span class="text-muted-text">15</span> → 1+5 = <strong class="text-body-text">6</strong></div>
+                <div>Month: <span class="text-muted-text">03</span> → <strong class="text-body-text">3</strong></div>
+                <div>Year: <span class="text-muted-text">1990</span> → 1+9+9+0 = 19 → 1+9 = <strong class="text-body-text">10</strong> → 1+0 = <strong class="text-body-text">1</strong></div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="card-light p-6" style="border-left: 4px solid var(--color-violet);">
+          <div class="flex items-start gap-4">
+            <div class="w-10 h-10 shrink-0 rounded-lg bg-violet/10 flex items-center justify-center text-violet font-bold text-lg font-[family-name:var(--font-family-heading)]">3</div>
+            <div>
+              <h3 class="font-bold text-body-text text-base mb-2">Add the three results together - then reduce again</h3>
+              <p class="text-muted-text text-base leading-relaxed mb-3">
+                Add your three reduced numbers. If the result is a two-digit number that isn't a master number, reduce again to reach a single digit.
+              </p>
+              <div class="bg-deep-purple/5 border border-border/60 rounded-lg p-4 font-mono text-sm">
+                6 + 3 + 1 = <strong class="text-body-text">10</strong> → 1+0 = <strong class="text-violet">Life Path 1</strong>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="card-light p-6" style="border-left: 4px solid var(--color-gold);">
+          <div class="flex items-start gap-4">
+            <div class="w-10 h-10 shrink-0 rounded-lg bg-gold/10 flex items-center justify-center text-gold font-bold text-lg font-[family-name:var(--font-family-heading)]">!</div>
+            <div>
+              <h3 class="font-bold text-body-text text-base mb-2">Stop at 11, 22, or 33 - these are master numbers</h3>
+              <p class="text-muted-text text-base leading-relaxed">
+                Master number 11, master number 22, and master number 33 are never reduced further. If your final total reaches 11, 22, or 33 at any stage of the addition, keep it. These are special vibrations in numerology that carry amplified energy and responsibility.
+              </p>
+            </div>
+          </div>
+        </div>
+
+      </div>
+
+      <!-- Three worked examples -->
+      <h3 class="text-xl font-bold font-[family-name:var(--font-family-heading)] text-body-text mb-5">
+        Three Worked Examples
+      </h3>
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-4 mb-4">
+        <div class="card-light p-5">
+          <p class="text-xs text-violet font-semibold uppercase tracking-wider mb-2">Example 1</p>
+          <p class="font-bold text-body-text mb-4 text-base">July 4, 1985</p>
+          <div class="space-y-1.5 text-sm text-muted-text font-mono">
+            <p>Month: 7</p>
+            <p>Day: 4</p>
+            <p>Year: 1+9+8+5 = 23 → 2+3 = <strong class="text-body-text">5</strong></p>
+            <p>Total: 7+4+5 = 16 → 1+6 = <strong class="text-body-text">7</strong></p>
+          </div>
+          <div class="mt-4 pt-3 border-t border-border/40">
+            <span class="text-violet font-bold text-base">Life Path 7 - The Seeker</span>
+          </div>
+        </div>
+
+        <div class="card-light p-5">
+          <p class="text-xs text-violet font-semibold uppercase tracking-wider mb-2">Example 2</p>
+          <p class="font-bold text-body-text mb-4 text-base">November 29, 1992</p>
+          <div class="space-y-1.5 text-sm text-muted-text font-mono">
+            <p>Month: 1+1 = <strong class="text-body-text">2</strong></p>
+            <p>Day: 2+9 = 11 → <strong class="text-body-text">2</strong></p>
+            <p>Year: 1+9+9+2 = 21 → 2+1 = <strong class="text-body-text">3</strong></p>
+            <p>Total: 2+2+3 = <strong class="text-body-text">7</strong></p>
+          </div>
+          <div class="mt-4 pt-3 border-t border-border/40">
+            <span class="text-violet font-bold text-base">Life Path 7 - The Seeker</span>
+          </div>
+        </div>
+
+        <div class="card-light p-5">
+          <p class="text-xs text-violet font-semibold uppercase tracking-wider mb-2">Example 3 - Master Number</p>
+          <p class="font-bold text-body-text mb-4 text-base">February 9, 1975</p>
+          <div class="space-y-1.5 text-sm text-muted-text font-mono">
+            <p>Month: 2</p>
+            <p>Day: 9</p>
+            <p>Year: 1+9+7+5 = 22 → <strong class="text-body-text">22</strong> (keep)</p>
+            <p>Total: 2+9+4 = 15 → 1+5 = <strong class="text-body-text">6</strong></p>
+          </div>
+          <div class="mt-4 pt-3 border-t border-border/40">
+            <span class="text-violet font-bold text-base">Life Path 6 - The Nurturer</span>
+          </div>
+        </div>
+      </div>
+      <p class="text-sm text-muted-text leading-relaxed">
+        Note: in Example 3, the year reduces to 22, a master number, but when added to the other components in the final step, it's treated as 4 (its reduced form). Only the <em>final total</em> gets the master number treatment.
+      </p>
+
+    </div>
+  </section>
+
+  <!-- Master Numbers -->
+  <section style="background:var(--color-card-bg);padding:3rem 1.5rem;border-top:1px solid var(--color-border);">
+    <div style="max-width:48rem;margin:0 auto;">
+      <h2 style="font-family:var(--font-family-heading);font-size:clamp(1.6rem,3.5vw,2.25rem);font-weight:700;color:var(--color-body-text);margin:0 0 1rem;">
+        The Master Numbers: <span style="color:var(--color-soft-gold);">11, 22, and 33</span>
+      </h2>
+      <p class="text-starlight/70 leading-relaxed mb-6 text-base">
+        When your final calculation produces 11, 22, or 33, you stop. These are master numbers. They're never reduced further. Each one carries a heightened vibration and a more demanding life purpose than any standard single digit.
+      </p>
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-4 mb-6">
+        <div class="card-light p-5">
+          <div class="text-3xl font-bold text-violet mb-2 font-[family-name:var(--font-family-heading)]">11</div>
+          <h3 class="font-bold text-body-text mb-2">The Intuitive</h3>
+          <p class="text-sm text-muted-text leading-relaxed">
+            The most intuitive of all life paths. If you're an 11, you probably already sense that something's different about you. Most numerologists treat it as its own vibration - not simply a 2.
+          </p>
+        </div>
+        <div class="card-light p-5">
+          <div class="text-3xl font-bold text-violet mb-2 font-[family-name:var(--font-family-heading)]">22</div>
+          <h3 class="font-bold text-body-text mb-2">The Master Builder</h3>
+          <p class="text-sm text-muted-text leading-relaxed">
+            The most powerful of the master numbers. Life path 22 combines the intuition of 11 with the practicality of 4. The rare ability to turn large-scale vision into reality.
+          </p>
+        </div>
+        <div class="card-light p-5">
+          <div class="text-3xl font-bold text-violet mb-2 font-[family-name:var(--font-family-heading)]">33</div>
+          <h3 class="font-bold text-body-text mb-2">The Master Teacher</h3>
+          <p class="text-sm text-muted-text leading-relaxed">
+            The rarest of the master numbers. Life path 33 is associated with selfless service, compassion, and teaching. A genuine 33 in the final total is uncommon. Confirm the calculation twice before taking it as your number.
+          </p>
+        </div>
+      </div>
+      <div class="card-light p-5">
+        <p class="text-sm text-muted-text leading-relaxed">
+          <strong class="text-body-text">The key rule:</strong> master numbers only apply to the final total, not intermediate steps. If your day or year reduces to 11 or 22 mid-calculation, you use the reduced form (2 or 4) when adding to the other components. Only when the grand total itself is 11, 22, or 33 do you keep it as a master number.
+        </p>
+      </div>
+  </section>
+
+  <!-- All Life Paths Quick Reference -->
+  <section style="padding:2.5rem 1rem;background:white;">
+    <div class="max-w-3xl mx-auto xl:mx-0 xl:max-w-none">
+      <h2 class="text-2xl md:text-3xl font-bold font-[family-name:var(--font-family-heading)] text-body-text mb-3">
+        What Each Life Path Number Means
+      </h2>
+      <p class="text-muted-text mb-8 leading-relaxed text-base">
+        Once you have your number, here's a quick overview of what each one means. Click through to any life path for a full guide.
+      </p>
+
+      <div class="space-y-3">
+        {[
+          { n: "1", title: "The Leader", href: "/learn/life-path-number-1/", desc: "Independent, driven, and built to initiate. The 1 is here to forge their own path and lead by example." },
+          { n: "2", title: "The Peacemaker", href: "/learn/life-path-number-2/", desc: "Empathetic, diplomatic, and most alive in partnership. The 2 is the most relationship-oriented number in the chart." },
+          { n: "3", title: "The Communicator", href: "/learn/life-path-number-3/", desc: "Creative, expressive, and magnetic. The 3 is driven by a need to connect, create, and bring joy into the world." },
+          { n: "4", title: "The Builder", href: "/learn/life-path-number-4/", desc: "Practical, disciplined, and reliable. The 4 is here to create structure and lasting foundations." },
+          { n: "5", title: "The Adventurer", href: "/learn/life-path-number-5/", desc: "Freedom-seeking, curious, and adaptable. Change isn't a challenge for the 5 - it's oxygen." },
+          { n: "6", title: "The Nurturer", href: "/learn/life-path-number-6/", desc: "Caring, responsible, and community-minded. The 6's purpose centres on family, service, and creating beauty." },
+          { n: "7", title: "The Seeker", href: "/learn/life-path-number-7/", desc: "Analytical, introspective, and relentlessly curious. The 7 is driven by a need to understand what's beneath the surface." },
+          { n: "8", title: "The Powerhouse", href: "/learn/life-path-number-8/", desc: "Ambitious, authoritative, and materially focused. The 8 is the number of achievement and understanding how power works." },
+          { n: "9", title: "The Humanitarian", href: "/learn/life-path-number-9/", desc: "Compassionate, wise, and big-picture minded. The 9 is here to serve. Their greatest growth comes from releasing the personal for the universal." },
+          { n: "11", title: "The Intuitive - Master Number", href: "/learn/life-path-number-11/", desc: "Visionary and spiritually sensitive. The 11 carries a more demanding purpose than a standard 2, with a far more intense inner life." },
+          { n: "22", title: "The Master Builder", href: "/learn/life-path-number-22/", desc: "Visionary and pragmatic in equal measure. The 22 is here to build something that outlasts them." },
+          { n: "33", title: "The Master Teacher", href: "/learn/life-path-number-33/", desc: "The rarest life path. The 33 carries an extraordinary capacity for compassion, healing, and spiritual guidance." },
+        ].map(lp => (
+          <div class="card-light p-5 flex items-start gap-4">
+            <div class="w-12 h-12 shrink-0 rounded-lg bg-violet/10 flex items-center justify-center text-violet font-bold text-lg font-[family-name:var(--font-family-heading)]">{lp.n}</div>
+            <div>
+              <h3 class="font-bold text-body-text mb-1 text-base">Life Path {lp.n}: {lp.title}</h3>
+              <p class="text-sm text-muted-text leading-relaxed mb-2">{lp.desc}</p>
+              <a href={lp.href} class="text-xs text-violet hover:underline font-semibold">Full guide →</a>
+            </div>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- FAQ -->
+  <section class="py-10 px-4">
+    <div class="max-w-3xl mx-auto xl:mx-0 xl:max-w-none">
+      <h2 class="text-2xl md:text-3xl font-bold font-[family-name:var(--font-family-heading)] text-body-text mb-8">
+        Common questions
+      </h2>
+
+      <div class="space-y-4">
+        {[
+          {
+            q: "What if 11 or 22 appears in the middle of my calculation - do I keep it?",
+            a: "No. The master number rule only applies to the final total. If your day or year reduces to 11 or 22 as an intermediate step, use the reduced form (2 or 4) when adding everything together. Only if the grand total of month + day + year equals 11, 22, or 33 do you stop and keep it as your life path number.",
+          },
+          {
+            q: "Is life path 11 really a 2?",
+            a: "Technically, 11 and 2 share the same base. But most numerologists treat 11 as its own distinct vibration - not a 2 with extra steps. The 11 carries a deeper spiritual calling and a heavier emotional weight than a standard 2. If you calculate to 11, read both - the 11 energy, and the 2 qualities beneath it.",
+          },
+          {
+            q: "Why does my number differ from another site?",
+            a: "Usually because of how master numbers are handled mid-calculation. Some systems keep 11 and 22 as master numbers throughout every step; others reduce them in the intermediate steps and only preserve them in the final total. This site uses the standard modern method: reduce mid-steps, preserve master numbers only in the final total.",
+          },
+          {
+            q: "Which life path number is considered the most powerful?",
+            a: "Birth dates that land on a master number (11, 22, or 33) are considered the most intensely charged, carrying amplified energy and a more demanding life purpose. Among single digits, life path 8 is most associated with worldly power and material achievement. Most numerologists give 22 the top spot overall: the Master Builder combines vision with the rare ability to actually build the thing.",
+          },
+          {
+            q: "How do I calculate life path 33?",
+            a: "To get a final total of 33, your reduced month, day, and year digits must add to exactly 33. Genuine life path 33 birth dates are uncommon. If your calculation produces 33, confirm it twice using the step-by-step method before taking it as your number.",
+          },
+          {
+            q: "What does the free reading at Numerologist.com cover?",
+            a: "The free video reading covers your Life Path Number, Expression Number (from your name), and Soul Urge Number, and how all three interact. It uses your actual name and birthdate to produce a personalised analysis, not a generic overview. A paid Deluxe Report adds pinnacle periods, challenge numbers, and personal year forecasts.",
+          },
+        ].map(item => (
+          <details class="card-light group">
+            <summary class="p-5 cursor-pointer flex items-center justify-between gap-3 list-none font-semibold text-body-text hover:text-violet transition-colors">
+              <span class="text-base">{item.q}</span>
+              <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" class="shrink-0 group-open:rotate-180 transition-transform" aria-hidden="true"><polyline points="6 9 12 15 18 9"/></svg>
+            </summary>
+            <div class="px-5 pb-5 text-base text-muted-text leading-relaxed border-t border-border/40 pt-4">
+              {item.a}
+            </div>
+          </details>
+        ))}
+      </div>
+    </div>
+  </section>
+
+    </div><!-- end main content column -->
+    <SidebarCTA />
+  </div><!-- end flex wrapper -->
+
+  <!-- Bottom CTA -->
+  <section style="background:var(--color-midnight);padding:5rem 1.5rem;text-align:center;">
+    <div style="max-width:36rem;margin:0 auto;">
+      <p class="p-label" style="color:rgba(196,162,78,0.7);margin-bottom:0.75rem;">Go Deeper</p>
+      <h2 style="font-family:var(--font-family-heading);font-size:clamp(1.75rem,4vw,2.5rem);font-weight:700;color:var(--color-starlight);margin:0 0 1rem;">Want to go deeper than the number?</h2>
+      <p style="color:rgba(255,255,255,0.65);font-size:1rem;line-height:1.75;margin:0 0 2rem;">
+        Numerologist.com's free video reading applies your name and birthdate to cover your Life Path, Expression Number, and Soul Urge in depth — and how all three work together. Over 2.3 million readings delivered since 1999.
+      </p>
+      <a href="https://8904b5z1168aar3k8annz7y61n.hop.clickbank.net" target="_blank" rel="noopener sponsored"
+        style="display:inline-block;background:var(--color-soft-gold);color:var(--color-midnight);font-weight:700;font-size:1.05rem;padding:1rem 2.25rem;border-radius:0.5rem;text-decoration:none;letter-spacing:0.02em;">
+        Get Your Free Numerology Reading →
+      </a>
+      <p style="color:rgba(255,255,255,0.3);font-size:0.75rem;margin-top:1rem;">Free - no payment required. Affiliate link.</p>
+    </div>
+  </section>
+
+</Layout>
+
+<script>
+  const LABELS: Record<string, string> = {
+    "1": "The Leader",
+    "2": "The Peacemaker",
+    "3": "The Communicator",
+    "4": "The Builder",
+    "5": "The Adventurer",
+    "6": "The Nurturer",
+    "7": "The Seeker",
+    "8": "The Powerhouse",
+    "9": "The Humanitarian",
+    "11": "The Intuitive - Master Number",
+    "22": "The Master Builder - Master Number",
+    "33": "The Master Teacher - Master Number",
+  };
+
+  const BLURBS: Record<string, string> = {
+    "1": "Independent, driven, and built to lead. The 1 is here to forge their own path - and they usually do.",
+    "2": "Empathetic, diplomatic, and most alive in partnership. The most relationship-oriented number in the chart.",
+    "3": "Creative, expressive, and magnetic. The 3 is driven by a deep need to connect and communicate.",
+    "4": "Practical, disciplined, and reliable. The 4 builds things that last - systems, structures, foundations.",
+    "5": "Freedom-seeking, curious, and adaptable. For the 5, change isn't a challenge - it's oxygen.",
+    "6": "Caring, responsible, and community-minded. The 6's purpose centres on family, service, and creating beauty.",
+    "7": "Analytical, introspective, and relentlessly curious. The 7 needs to understand what's beneath the surface.",
+    "8": "Ambitious, authoritative, and materially focused. The 8 understands how power and resources work.",
+    "9": "Compassionate, wise, and big-picture minded. The 9 is here to serve - the most selfless number.",
+    "11": "Visionary and spiritually sensitive. The 11 carries intense intuition and a demanding inner life.",
+    "22": "Visionary and pragmatic in equal measure. The 22 is built to construct something that outlasts them.",
+    "33": "The rarest life path. Extraordinary compassion, healing instinct, and spiritual depth.",
+  };
+
+  function digitSum(n: number): number {
+    return String(n).split('').reduce((a, d) => a + parseInt(d), 0);
+  }
+
+  function reduceWithSteps(n: number): { value: number; steps: string } {
+    if (n <= 9) return { value: n, steps: String(n) };
+    const digits = String(n).split('').join('+');
+    let sum = digitSum(n);
+    if (sum === 11 || sum === 22 || sum === 33) {
+      return { value: sum, steps: `${n} → ${digits} = ${sum}` };
+    }
+    if (sum <= 9) return { value: sum, steps: `${n} → ${digits} = ${sum}` };
+    // Need another reduction
+    const final = digitSum(sum);
+    const steps2 = String(sum).split('').join('+');
+    return { value: final, steps: `${n} → ${digits} = ${sum} → ${steps2} = ${final}` };
+  }
+
+  function reduceYear(year: number): { value: number; steps: string } {
+    const digits = String(year).split('').join('+');
+    let sum = digitSum(year);
+    if (sum === 11 || sum === 22 || sum === 33) {
+      return { value: sum, steps: `${year} → ${digits} = ${sum}` };
+    }
+    if (sum <= 9) return { value: sum, steps: `${year} → ${digits} = ${sum}` };
+    const digits2 = String(sum).split('').join('+');
+    let sum2 = digitSum(sum);
+    if (sum2 === 11 || sum2 === 22 || sum2 === 33) {
+      return { value: sum2, steps: `${year} → ${digits} = ${sum} → ${digits2} = ${sum2}` };
+    }
+    if (sum2 <= 9) return { value: sum2, steps: `${year} → ${digits} = ${sum} → ${digits2} = ${sum2}` };
+    const digits3 = String(sum2).split('').join('+');
+    const sum3 = digitSum(sum2);
+    return { value: sum3, steps: `${year} → ${digits} = ${sum} → ${digits2} = ${sum2} → ${digits3} = ${sum3}` };
+  }
+
+  function toAddend(n: number): number {
+    if (n === 11) return 2;
+    if (n === 22) return 4;
+    if (n === 33) return 6;
+    return n;
+  }
+
+  function reduceFinal(n: number): { value: number; steps: string } {
+    if (n === 11 || n === 22 || n === 33) return { value: n, steps: String(n) };
+    if (n <= 9) return { value: n, steps: String(n) };
+    const digits = String(n).split('').join('+');
+    const sum = digitSum(n);
+    if (sum === 11 || sum === 22 || sum === 33) {
+      return { value: sum, steps: `${n} → ${digits} = ${sum}` };
+    }
+    if (sum <= 9) return { value: sum, steps: `${n} → ${digits} = ${sum}` };
+    const digits2 = String(sum).split('').join('+');
+    const sum2 = digitSum(sum);
+    return { value: sum2, steps: `${n} → ${digits} = ${sum} → ${digits2} = ${sum2}` };
+  }
+
+  function calculate() {
+    const monthEl = document.getElementById('calc-month') as HTMLSelectElement;
+    const dayEl = document.getElementById('calc-day') as HTMLInputElement;
+    const yearEl = document.getElementById('calc-year') as HTMLInputElement;
+    const errorEl = document.getElementById('calc-error')!;
+    const resultEl = document.getElementById('calc-result')!;
+
+    const month = parseInt(monthEl.value);
+    const day = parseInt(dayEl.value);
+    const year = parseInt(yearEl.value);
+
+    errorEl.classList.add('hidden');
+    resultEl.classList.add('hidden');
+
+    if (!month || !day || !year || day < 1 || day > 31 || year < 1900 || year > 2025) {
+      errorEl.textContent = 'Please enter a valid date of birth to calculate.';
+      errorEl.classList.remove('hidden');
+      return;
+    }
+
+    const monthNames = ['','January','February','March','April','May','June','July','August','September','October','November','December'];
+
+    const mResult = reduceWithSteps(month);
+    const dResult = reduceWithSteps(day);
+    const yResult = reduceYear(year);
+
+    const mAdd = toAddend(mResult.value);
+    const dAdd = toAddend(dResult.value);
+    const yAdd = toAddend(yResult.value);
+    const total = mAdd + dAdd + yAdd;
+    const finalResult = reduceFinal(total);
+
+    // Build working steps HTML
+    const mNote = mResult.value !== month ? `` : ``;
+    const mMasterNote = (mResult.value === 11 || mResult.value === 22 || mResult.value === 33) ? ` <span style="color:var(--color-gold)">(master - used as ${mAdd})</span>` : '';
+    const dMasterNote = (dResult.value === 11 || dResult.value === 22 || dResult.value === 33) ? ` <span style="color:var(--color-gold)">(master - used as ${dAdd})</span>` : '';
+    const yMasterNote = (yResult.value === 11 || yResult.value === 22 || yResult.value === 33) ? ` <span style="color:var(--color-gold)">(master - used as ${yAdd})</span>` : '';
+
+    const isMasterFinal = finalResult.value === 11 || finalResult.value === 22 || finalResult.value === 33;
+
+    const stepsHTML = `
+      <div class="flex items-baseline gap-2 flex-wrap">
+        <span style="color:var(--color-violet);font-weight:700;width:4.5rem;shrink:0">Month:</span>
+        <span>${monthNames[month]} (${month})</span>
+        ${mResult.steps !== String(month) ? `<span style="color:var(--color-muted-text)">→ ${mResult.steps}</span>` : ''}
+        ${mMasterNote}
+        <span style="color:var(--color-body-text);font-weight:700">= ${mResult.value}</span>
+      </div>
+      <div class="flex items-baseline gap-2 flex-wrap">
+        <span style="color:var(--color-violet);font-weight:700;width:4.5rem;shrink:0">Day:</span>
+        <span>${day}</span>
+        ${dResult.steps !== String(day) ? `<span style="color:var(--color-muted-text)">→ ${dResult.steps}</span>` : ''}
+        ${dMasterNote}
+        <span style="color:var(--color-body-text);font-weight:700">= ${dResult.value}</span>
+      </div>
+      <div class="flex items-baseline gap-2 flex-wrap">
+        <span style="color:var(--color-violet);font-weight:700;width:4.5rem;shrink:0">Year:</span>
+        <span>${yResult.steps}</span>
+        ${yMasterNote}
+        <span style="color:var(--color-body-text);font-weight:700">= ${yResult.value}</span>
+      </div>
+      <div style="border-top:1px solid var(--color-border);margin-top:0.5rem;padding-top:0.75rem" class="flex items-baseline gap-2 flex-wrap">
+        <span style="color:var(--color-violet);font-weight:700;width:4.5rem;shrink:0">Total:</span>
+        <span>${mAdd} + ${dAdd} + ${yAdd} = ${total}</span>
+        ${finalResult.steps !== String(total) ? `<span style="color:var(--color-muted-text)">→ ${finalResult.steps.replace(/^\d+ → /,'')}</span>` : ''}
+        <span style="color:var(--color-gold);font-weight:800;font-size:1.1em">= ${finalResult.value}${isMasterFinal ? ' ✦' : ''}</span>
+      </div>
+    `;
+
+    document.getElementById('working-steps')!.innerHTML = stepsHTML;
+
+    const key = String(finalResult.value);
+    document.getElementById('result-number')!.textContent = key;
+    document.getElementById('result-label')!.textContent = LABELS[key] || '';
+    document.getElementById('result-blurb')!.textContent = BLURBS[key] || '';
+    (document.getElementById('result-guide-link') as HTMLAnchorElement).href = `/learn/life-path-number-${key}/`;
+
+    resultEl.classList.remove('hidden');
+    resultEl.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+  }
+
+  document.getElementById('calc-btn')?.addEventListener('click', calculate);
+
+  // Also calculate on Enter key in inputs
+  ['calc-day','calc-year'].forEach(id => {
+    document.getElementById(id)?.addEventListener('keydown', (e) => {
+      if ((e as KeyboardEvent).key === 'Enter') calculate();
+    });
+  });
+</script>

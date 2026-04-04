@@ -1,0 +1,366 @@
+﻿---
+import Layout from '../../../layouts/Layout.astro';
+import SidebarCTA from '../../../components/SidebarCTA.astro';
+import { compatibilityData, allNumbers } from '../../../data/compatibility';
+
+const faqSchema = {
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "What does life path compatibility in numerology mean?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Compatibility in numerology is about how two life path energies interact. It's not a prediction of whether you'll stay together - it's more like a weather forecast of the energy between you. Some numbers naturally complement each other (like 2 and 9, both compassionate), while others create more friction (like two 8s competing for control). Knowing your compatibility can help you understand relationship dynamics and where you might need to work harder."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Can incompatible life path numbers make a relationship work?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Absolutely. Numerology shows you the energy you're working with, not a sentence. Two life path numbers marked as 'challenging' can build something beautiful if both people understand the friction points and choose to work through them. The 'strong' matches feel easier, sure. But challenging doesn't mean impossible - it just means you're learning something."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Is life path number the only thing that matters for compatibility?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "No. Your life path number is just one piece. Your expression number, soul urge number, and personality number all add dimension. Plus, real relationships are built on communication, shared values, and genuine effort - not just numerology. Think of this as a helpful lens, not the whole picture."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "What makes a 'strong' compatibility match in numerology?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Strong matches usually have complementary energies: one person brings what the other needs. For example, 2 (the empathic listener) with 1 (the independent leader) - they balance each other naturally. Or 6 and 9, both compassionate and service-oriented. The energy flows without constant friction."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "What does 'challenging' compatibility mean?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "A challenging match means the two energies naturally create friction. Two 8s (both ambitious and control-oriented) will likely clash over who's leading. Two 2s (both sensitive and people-pleasing) might become codependent. It doesn't mean the relationship will fail - it means you're learning something specific together, usually around boundaries or ego."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "How can I improve compatibility with a challenging life path number?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Understand where the friction is and lean into your strengths. If you're a 1 with an 8 partner, you both need to respect that you're both leaders - and that you can lead different areas. If you're two 6s, you both need to learn that giving to yourself isn't selfish. The challenge itself is the teacher."
+      }
+    }
+  ]
+};
+
+const breadcrumbSchema = {
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://numerologyguides.blog/" },
+    { "@type": "ListItem", "position": 2, "name": "Learn", "item": "https://numerologyguides.blog/learn/" },
+    { "@type": "ListItem", "position": 3, "name": "Compatibility" }
+  ]
+};
+---
+
+<link slot="head" rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400;1,600&display=swap" />
+<style>
+  :root { --font-family-heading: 'Cormorant Garamond', Georgia, serif; }
+  .p-label { font-size:0.7rem; letter-spacing:0.18em; text-transform:uppercase; color:var(--color-soft-gold); font-weight:600; }
+  .p-divider { width:48px; height:2px; background:var(--color-soft-gold); margin:0 auto; }
+  .section-h2 { font-family:var(--font-family-heading); font-size:clamp(1.6rem,3.5vw,2.25rem); font-weight:700; color:var(--color-body-text); margin:0 0 1.25rem; }
+</style>
+
+<Layout
+  schema={[faqSchema, breadcrumbSchema]}
+  title="Life Path Compatibility Calculator - Check Your Numerology Match | Numerology Guides"
+  description="Free numerology compatibility checker. See how your life path number matches with any other number. Explore detailed compatibility ratings and insights for all 12 life path numbers."
+>
+
+  <!-- Breadcrumb -->
+  <nav style="background:var(--color-card-bg);border-bottom:1px solid var(--color-border);padding:0.75rem 1.5rem;" aria-label="Breadcrumb">
+    <div class="max-w-5xl mx-auto flex items-center gap-2 text-xs text-muted-text">
+      <a href="/" class="hover:text-violet transition-colors">Home</a>
+      <svg xmlns="http://www.w3.org/2000/svg" width="8" height="8" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="9 18 15 12 9 6"/></svg>
+      <a href="/learn/" class="hover:text-violet transition-colors">Learn</a>
+      <svg xmlns="http://www.w3.org/2000/svg" width="8" height="8" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="9 18 15 12 9 6"/></svg>
+      <span class="text-body-text font-semibold">Compatibility</span>
+    </div>
+  </nav>
+
+  <!-- Hero -->
+  <section style="background:var(--color-light-bg);padding:4rem 1.5rem 3.5rem;position:relative;overflow:hidden;border-bottom:1px solid var(--color-border);">
+    <div style="position:absolute;inset:0;background-image:radial-gradient(circle,rgba(124,92,191,0.07) 1px,transparent 1px);background-size:28px 28px;pointer-events:none;"></div>
+    <div style="position:relative;z-index:1;max-width:56rem;margin:0 auto;text-align:center;">
+      <span class="p-label" style="display:inline-block;margin-bottom:1rem;">Interactive Tool</span>
+      <h1 style="font-family:var(--font-family-heading);font-size:clamp(2rem,5vw,3.25rem);font-weight:700;color:var(--color-body-text);margin:0 0 1.25rem;line-height:1.15;">
+        Life Path <span style="color:var(--color-soft-gold);">Compatibility</span> Checker
+      </h1>
+      <p style="font-size:1.0625rem;color:var(--color-muted-text);max-width:36rem;margin:0 auto;line-height:1.7;">
+        See how two life path numbers interact. Every pairing has a story - strong connections, complementary growth, and the challenges that teach you the most.
+      </p>
+    </div>
+  </section>
+
+  <!-- Author byline -->
+  <div style="background:var(--color-light-bg);padding:1.25rem 1.5rem;">
+    <div style="max-width:1100px;margin:0 auto;display:flex;align-items:center;gap:1rem;">
+      <img src="/images/author-maddi-green.webp" alt="Maddie Greene" style="width:2.75rem;height:2.75rem;border-radius:50%;object-fit:cover;flex-shrink:0;border:2px solid rgba(124,92,191,0.2);" />
+      <div>
+        <p style="color:var(--color-body-text);font-size:0.875rem;font-weight:600;margin:0 0 0.1rem;">Written by <strong>Maddie Greene</strong></p>
+        <p style="color:var(--color-muted-text);font-size:0.78rem;margin:0;">Numerology writer &amp; researcher</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- Content + Sticky sidebar wrapper -->
+  <div class="xl:flex xl:gap-6 xl:max-w-[1200px] xl:mx-auto xl:px-4">
+    <!-- Main content column -->
+    <div class="xl:flex-1 xl:min-w-0">
+
+  <!-- Main content -->
+  <article style="padding:1.5rem 1rem 2.5rem;background:white;">
+    <div class="max-w-3xl mx-auto xl:mx-0 xl:max-w-none">
+
+      <!-- Interactive tool -->
+      <section id="checker" class="mb-10">
+        <div class="card-light p-8 mb-8">
+          <h2 class="text-2xl font-bold font-[family-name:var(--font-family-heading)] text-body-text mb-6">Check Your Match</h2>
+
+          <div class="grid md:grid-cols-2 gap-6 mb-6">
+            <div>
+              <label for="number1" class="block text-sm font-semibold text-body-text mb-2">Your Life Path Number</label>
+              <select id="number1" class="w-full px-4 py-2 border border-border rounded-lg bg-white text-body-text focus:outline-none focus:ring-2 focus:ring-violet">
+                <option value="">Select your number</option>
+                {allNumbers.map(num => <option value={num}>{num}</option>)}
+              </select>
+            </div>
+            <div>
+              <label for="number2" class="block text-sm font-semibold text-body-text mb-2">Their Life Path Number</label>
+              <select id="number2" class="w-full px-4 py-2 border border-border rounded-lg bg-white text-body-text focus:outline-none focus:ring-2 focus:ring-violet">
+                <option value="">Select their number</option>
+                {allNumbers.map(num => <option value={num}>{num}</option>)}
+              </select>
+            </div>
+          </div>
+
+          <button id="checkBtn" style="display:inline-flex;align-items:center;gap:0.5rem;background:var(--color-violet);color:white;font-weight:700;font-size:1rem;padding:0.875rem 2rem;border-radius:6px;border:none;cursor:pointer;width:100%;" onmouseover="this.style.opacity='0.9'" onmouseout="this.style.opacity='1'">Check Compatibility</button>
+        </div>
+
+        <!-- Results area -->
+        <div id="results" class="hidden mb-8">
+          <div style="background:rgba(255,255,255,0.04);border:1px solid rgba(196,162,78,0.2);border-radius:10px;padding:2rem;">
+            <div class="flex items-center gap-4 mb-6">
+              <div class="text-5xl font-bold font-[family-name:var(--font-family-heading)] text-gold"><span id="resultNum1">-</span></div>
+              <div class="text-2xl text-muted-text">+</div>
+              <div class="text-5xl font-bold font-[family-name:var(--font-family-heading)] text-gold"><span id="resultNum2">-</span></div>
+            </div>
+
+            <div class="mb-4">
+              <div class="flex items-center gap-2 mb-3">
+                <span id="resultStars" class="text-2xl text-soft-gold">★★★☆☆</span>
+              </div>
+              <h3 id="resultType" class="text-xl font-bold text-body-text mb-2">Match Type</h3>
+              <p id="resultDescription" class="text-body-text leading-relaxed"></p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- How compatibility works -->
+      <section id="howit" class="mb-10">
+        <h2 class="section-h2">How compatibility works</h2>
+
+        <p class="text-body-text leading-relaxed mb-4">
+          Numerology doesn't predict relationships. It describes energy. When two life path numbers come together, they bring different frequencies - and those frequencies either harmonize easily, complement each other with some friction, or create active tension.
+        </p>
+
+        <p class="text-body-text leading-relaxed mb-4">
+          A 'strong' match (like 2 and 9) doesn't mean the relationship is guaranteed. A 'challenging' match (like 1 and 8) doesn't mean it's doomed. What it means is what you're learning together. The 1 and 8 might teach each other about ego and collaboration. The 2 and 9 might naturally support each other's compassion without having to work as hard at it.
+        </p>
+
+        <p class="text-body-text leading-relaxed mb-4">
+          Think of it less like astrology (which reads fate) and more like a personality framework. You use it to understand where friction shows up, so you can navigate it intentionally. The best relationships aren't always the easiest ones - they're the ones where both people understand what they're learning.
+        </p>
+
+        <p class="text-body-text leading-relaxed">
+          Your compatibility score is based on your life path number alone. But numerology has other layers: expression number, soul urge, personality number. A challenging life path match can be softened (or complicated) by other numbers in your charts. This is just the baseline.
+        </p>
+      </section>
+
+      <!-- Full compatibility matrix -->
+      <section id="matrix" class="mb-10">
+        <h2 class="section-h2">Full compatibility matrix</h2>
+
+        <div class="overflow-x-auto">
+          <table class="w-full border-collapse text-sm">
+            <thead>
+              <tr class="bg-cosmic-blue">
+                <th class="border border-nebula px-3 py-2 text-starlight font-semibold text-left">Your #</th>
+                {allNumbers.map(num => (
+                  <th class="border border-nebula px-2 py-2 text-starlight font-semibold text-center">{num}</th>
+                ))}
+              </tr>
+            </thead>
+            <tbody>
+              {allNumbers.map(num1 => (
+                <tr>
+                  <td class="border border-nebula px-3 py-2 bg-cosmic-blue text-starlight font-semibold">{num1}</td>
+                  {allNumbers.map(num2 => {
+                    const compat = compatibilityData[num1][num2];
+                    const colorClass = compat.match === 'strong' ? 'text-rpg-green bg-rpg-green/5' :
+                                      compat.match === 'good' ? 'text-soft-gold bg-gold/5' :
+                                      'text-red-400 bg-red-500/5';
+                    return (
+                      <td class={`border border-nebula px-2 py-2 text-center text-xs font-semibold ${colorClass} cursor-help`} title={compat.verdict}>
+                        {compat.match === 'strong' ? '★★★★★' : compat.match === 'good' ? '★★★★☆' : '★★★☆☆'}
+                      </td>
+                    );
+                  })}
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </div>
+
+        <div class="mt-4 flex items-center justify-center gap-6 text-sm">
+          <div class="flex items-center gap-2">
+            <span class="text-rpg-green font-bold">★★★★★</span>
+            <span class="text-muted-text">Strong</span>
+          </div>
+          <div class="flex items-center gap-2">
+            <span class="text-soft-gold font-bold">★★★★☆</span>
+            <span class="text-muted-text">Good</span>
+          </div>
+          <div class="flex items-center gap-2">
+            <span class="text-red-400 font-bold">★★★☆☆</span>
+            <span class="text-muted-text">Challenging</span>
+          </div>
+        </div>
+      </section>
+
+      <!-- FAQ -->
+      <section id="faq" class="mb-10">
+        <h2 class="section-h2">Questions</h2>
+
+        <div class="space-y-4">
+          {[
+            {
+              q: "What does life path compatibility in numerology mean?",
+              a: "Compatibility in numerology is about how two life path energies interact. It's not a prediction of whether you'll stay together - it's more like a weather forecast of the energy between you. Some numbers naturally complement each other (like 2 and 9, both compassionate), while others create more friction (like two 8s competing for control). Knowing your compatibility can help you understand relationship dynamics and where you might need to work harder."
+            },
+            {
+              q: "Can incompatible life path numbers make a relationship work?",
+              a: "Absolutely. Numerology shows you the energy you're working with, not a sentence. Two life path numbers marked as 'challenging' can build something beautiful if both people understand the friction points and choose to work through them. The 'strong' matches feel easier, sure. But challenging doesn't mean impossible - it just means you're learning something."
+            },
+            {
+              q: "Is life path number the only thing that matters for compatibility?",
+              a: "No. Your life path number is just one piece. Your expression number, soul urge number, and personality number all add dimension. Plus, real relationships are built on communication, shared values, and genuine effort - not just numerology. Think of this as a helpful lens, not the whole picture."
+            },
+            {
+              q: "What makes a 'strong' compatibility match in numerology?",
+              a: "Strong matches usually have complementary energies: one person brings what the other needs. For example, 2 (the empathic listener) with 1 (the independent leader) - they balance each other naturally. Or 6 and 9, both compassionate and service-oriented. The energy flows without constant friction."
+            },
+            {
+              q: "What does 'challenging' compatibility mean?",
+              a: "A challenging match means the two energies naturally create friction. Two 8s (both ambitious and control-oriented) will likely clash over who's leading. Two 2s (both sensitive and people-pleasing) might become codependent. It doesn't mean the relationship will fail - it means you're learning something specific together, usually around boundaries or ego."
+            },
+            {
+              q: "How can I improve compatibility with a challenging life path number?",
+              a: "Understand where the friction is and lean into your strengths. If you're a 1 with an 8 partner, you both need to respect that you're both leaders - and that you can lead different areas. If you're two 6s, you both need to learn that giving to yourself isn't selfish. The challenge itself is the teacher."
+            }
+          ].map(item => (
+            <details class="card-light p-4 cursor-pointer group">
+              <summary class="font-semibold text-body-text flex justify-between items-center">
+                {item.q}
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="group-open:rotate-180 transition-transform" aria-hidden="true"><polyline points="6 9 12 15 18 9"/></svg>
+              </summary>
+              <p class="text-muted-text text-sm mt-4 leading-relaxed">{item.a}</p>
+            </details>
+          ))}
+        </div>
+      </section>
+
+      <!-- Related guides -->
+      <section id="related" class="mb-10">
+        <h2 class="section-h2">Related guides</h2>
+
+        <div class="grid sm:grid-cols-2 md:grid-cols-3 gap-5">
+          <a href="/learn/life-path-number/" class="card-light overflow-hidden hover:border-violet/60 hover:-translate-y-0.5 transition-all duration-200 group block">
+            <img src="/images/learn/Life Path Numbers - Tile.webp" alt="Life Path Numbers" class="w-full aspect-[2/3] object-cover transition-transform duration-500 group-hover:scale-105" loading="lazy" />
+            <div class="p-4">
+              <h3 class="font-bold text-body-text group-hover:text-violet transition-colors mb-1">Life Path Numbers</h3>
+              <p class="text-xs text-muted-text">Find your number and understand what it means.</p>
+            </div>
+          </a>
+          <a href="/learn/expression-number/" class="card-light overflow-hidden hover:border-violet/60 hover:-translate-y-0.5 transition-all duration-200 group block">
+            <img src="/images/learn/Expression Numbers - Tile.webp" alt="Expression Numbers" class="w-full aspect-[2/3] object-cover transition-transform duration-500 group-hover:scale-105" loading="lazy" />
+            <div class="p-4">
+              <h3 class="font-bold text-body-text group-hover:text-violet transition-colors mb-1">Expression Numbers</h3>
+              <p class="text-xs text-muted-text">Learn your natural talents and communication style.</p>
+            </div>
+          </a>
+          <a href="/learn/soul-urge-number/" class="card-light overflow-hidden hover:border-violet/60 hover:-translate-y-0.5 transition-all duration-200 group block">
+            <img src="/images/learn/Soul Urge Numbers - Tile.webp" alt="Soul Urge Numbers" class="w-full aspect-[2/3] object-cover transition-transform duration-500 group-hover:scale-105" loading="lazy" />
+            <div class="p-4">
+              <h3 class="font-bold text-body-text group-hover:text-violet transition-colors mb-1">Soul Urge Numbers</h3>
+              <p class="text-xs text-muted-text">Discover your deepest desires and motivations.</p>
+            </div>
+          </a>
+          <a href="/learn/personality-number/" class="card-light overflow-hidden hover:border-violet/60 hover:-translate-y-0.5 transition-all duration-200 group block">
+            <img src="/images/learn/Personality Numbers - Tile.webp" alt="Personality Numbers" class="w-full aspect-[2/3] object-cover transition-transform duration-500 group-hover:scale-105" loading="lazy" />
+            <div class="p-4">
+              <h3 class="font-bold text-body-text group-hover:text-violet transition-colors mb-1">Personality Numbers</h3>
+              <p class="text-xs text-muted-text">See how others perceive you on first meeting.</p>
+            </div>
+          </a>
+        </div>
+      </section>
+
+    </div>
+  </article>
+
+    </div><!-- end main content column -->
+    <SidebarCTA />
+  </div><!-- end flex wrapper -->
+
+  <!-- Bottom CTA -->
+  <section id="cta" style="background:var(--color-midnight);padding:5rem 1.5rem;text-align:center;">
+    <div class="max-w-2xl mx-auto">
+      <h2 style="font-family:var(--font-family-heading);font-size:clamp(1.75rem,4vw,2.5rem);font-weight:700;color:var(--color-starlight);margin:0 0 1rem;">Ready for deeper insight?</h2>
+      <p style="color:rgba(255,255,255,0.65);font-size:1rem;line-height:1.75;margin:0 0 2rem;">Get a full personalized numerology reading with your complete chart - including life path, expression, soul urge, and more.</p>
+      <a href="https://8904b5z1168aar3k8annz7y61n.hop.clickbank.net" rel="noopener sponsored" style="display:inline-block;background:var(--color-soft-gold);color:var(--color-midnight);font-weight:700;font-size:1.05rem;padding:1rem 2.25rem;border-radius:0.5rem;text-decoration:none;letter-spacing:0.02em;">Get Your Free Reading</a>
+    </div>
+  </section>
+
+</Layout>
+
+<script>
+  const compatibilityData = {
+    1: { 1: { match: 3, stars: 3, verdict: "Power struggles likely", description: "Two independent leaders in one space often creates friction over who sets direction." }, 2: { match: 5, stars: 5, verdict: "Natural balance", description: "2 provides emotional warmth that 1 needs, without competing for control." }, 3: { match: 5, stars: 5, verdict: "Great pairing", description: "3's creativity feeds 1's drive. Good blend of innovation and execution." }, 4: { match: 4, stars: 4, verdict: "Practical match", description: "4 grounds 1's vision. Both are goal-oriented but with different paces." }, 5: { match: 4, stars: 4, verdict: "Freedom-focused", description: "Both value independence. Can work if neither tries to lead the other." }, 6: { match: 5, stars: 5, verdict: "Complementary", description: "6 brings warmth and loyalty. 1 brings direction and protection." }, 7: { match: 4, stars: 4, verdict: "Intellectually stimulating", description: "Both prefer space and independence. Good if neither expects constant togetherness." }, 8: { match: 3, stars: 3, verdict: "Ambitious clash", description: "Two power-driven numbers often compete rather than collaborate." }, 9: { match: 4, stars: 4, verdict: "Shared vision", description: "9's broader perspective softens 1's edges. 1's drive helps 9 take action." }, 11: { match: 4, stars: 4, verdict: "Interesting mix", description: "1's directness and 11's intuition can complement if 11 feels heard." }, 22: { match: 3, stars: 3, verdict: "Too much leadership", description: "Both want to be in charge. Power struggles are common." }, 33: { match: 4, stars: 4, verdict: "Supportive", description: "33's teaching nature can help 1 develop emotional intelligence." } }, 2: { 1: { match: 5, stars: 5, verdict: "Natural balance", description: "2 provides emotional warmth that 1 needs, without competing for control." }, 2: { match: 3, stars: 3, verdict: "Two empaths", description: "Lots of feeling, not much doing. Can become codependent." }, 3: { match: 4, stars: 4, verdict: "Harmonious", description: "3's lightness brings joy to 2's depth. Both are creative." }, 4: { match: 4, stars: 4, verdict: "Steady partnership", description: "4 appreciates 2's loyalty. 2 feels safe with 4's stability." }, 5: { match: 4, stars: 4, verdict: "Growth potential", description: "2 grounds the flighty 5. 5 helps 2 build independence." }, 6: { match: 5, stars: 5, verdict: "Kindred spirits", description: "Both nurturers with similar values. Naturally compassionate together." }, 7: { match: 4, stars: 4, verdict: "Quiet understanding", description: "Both introspective. Good for intellectual and emotional depth." }, 8: { match: 3, stars: 3, verdict: "Imbalance risk", description: "2's softness can be overwhelmed by 8's intensity and ambition." }, 9: { match: 5, stars: 5, verdict: "Spiritual bond", description: "Both compassionate and idealistic. Natural emotional attunement." }, 11: { match: 5, stars: 5, verdict: "Intuitive connection", description: "2 and 11 both operate from deep intuition. Very natural pairing." }, 22: { match: 4, stars: 4, verdict: "Complementary", description: "22's vision gets warmed by 2's heart. Both are builders." }, 33: { match: 5, stars: 5, verdict: "Beautiful union", description: "Both nurturing. 33's teaching energy resonates with 2's supportive nature." } }, 3: { 1: { match: 5, stars: 5, verdict: "Great pairing", description: "3's creativity feeds 1's drive. Good blend of innovation and execution." }, 2: { match: 4, stars: 4, verdict: "Harmonious", description: "3's lightness brings joy to 2's depth. Both are creative." }, 3: { match: 4, stars: 4, verdict: "Creative chaos", description: "Both expressive. Fun but can scatter. Needs grounding from other numbers." }, 4: { match: 3, stars: 3, verdict: "Different speeds", description: "3's scattered energy frustrates 4's need for structure." }, 5: { match: 5, stars: 5, verdict: "Fun partnership", description: "Both love freedom and novelty. Never dull together." }, 6: { match: 4, stars: 4, verdict: "Playful care", description: "3 brings lightness to 6's seriousness. 6 provides emotional safety." }, 7: { match: 4, stars: 4, verdict: "Interesting contrast", description: "3's social energy and 7's introspection can complement." }, 8: { match: 4, stars: 4, verdict: "Good balance", description: "8 respects 3's talent. 3 brings joy to 8's intensity." }, 9: { match: 5, stars: 5, verdict: "Inspiring together", description: "Both creative and idealistic. Natural creative collaboration." }, 11: { match: 4, stars: 4, verdict: "Expressive intuition", description: "3's expression and 11's intuition blend well." }, 22: { match: 4, stars: 4, verdict: "Visionary duo", description: "3's creativity supports 22's big vision." }, 33: { match: 5, stars: 5, verdict: "Natural teachers", description: "Both expressive. 33's wisdom and 3's communication are aligned." } }, 4: { 1: { match: 4, stars: 4, verdict: "Practical match", description: "4 grounds 1's vision. Both are goal-oriented but with different paces." }, 2: { match: 4, stars: 4, verdict: "Steady partnership", description: "4 appreciates 2's loyalty. 2 feels safe with 4's stability." }, 3: { match: 3, stars: 3, verdict: "Different speeds", description: "3's scattered energy frustrates 4's need for structure." }, 4: { match: 4, stars: 4, verdict: "Stable foundation", description: "Two practical builders. Can work if they respect each other's methods." }, 5: { match: 3, stars: 3, verdict: "Restrictive to 5", description: "4's need for stability feels limiting to free-spirited 5." }, 6: { match: 5, stars: 5, verdict: "Domestic bliss", description: "Both value home and family. Naturally aligned in life goals." }, 7: { match: 4, stars: 4, verdict: "Respectful", description: "Both introspective. 4 appreciates 7's depth." }, 8: { match: 5, stars: 5, verdict: "Power team", description: "4's discipline meets 8's vision. Both building something real." }, 9: { match: 4, stars: 4, verdict: "Purposeful", description: "9's vision benefits from 4's practical structure." }, 11: { match: 4, stars: 4, verdict: "Grounded intuition", description: "4 provides structure. 11 brings spiritual insight." }, 22: { match: 5, stars: 5, verdict: "Master builders", description: "4 and 22 both love structure. Natural collaborators." }, 33: { match: 4, stars: 4, verdict: "Purposeful structure", description: "33's teaching and 4's discipline work well together." } }, 5: { 1: { match: 4, stars: 4, verdict: "Freedom-focused", description: "Both value independence. Can work if neither tries to lead the other." }, 2: { match: 4, stars: 4, verdict: "Growth potential", description: "2 grounds the flighty 5. 5 helps 2 build independence." }, 3: { match: 5, stars: 5, verdict: "Fun partnership", description: "Both love freedom and novelty. Never dull together." }, 4: { match: 3, stars: 3, verdict: "Restrictive to 5", description: "4's need for stability feels limiting to free-spirited 5." }, 5: { match: 3, stars: 3, verdict: "Too much freedom", description: "No anchor. Both restless. Can feel unstable." }, 6: { match: 4, stars: 4, verdict: "Playful stability", description: "6's home-base helps 5 not drift. 5 brings excitement." }, 7: { match: 4, stars: 4, verdict: "Independent spirits", description: "Both need space. Respect each other's autonomy." }, 8: { match: 4, stars: 4, verdict: "Ambitious freedom", description: "5's adaptability helps 8's rigid plans. 8 grounds 5's restlessness." }, 9: { match: 5, stars: 5, verdict: "Expansive together", description: "Both see possibilities. 9's wisdom steadies 5's scattered energy." }, 11: { match: 4, stars: 4, verdict: "Intuitive freedom", description: "Both unconventional. 11's intuition guides 5's wandering." }, 22: { match: 4, stars: 4, verdict: "Dynamic partnership", description: "5's adaptability helps 22's grand visions stay flexible." }, 33: { match: 4, stars: 4, verdict: "Inspired connection", description: "33's teaching helps 5 channel energy toward purpose." } }, 6: { 1: { match: 5, stars: 5, verdict: "Complementary", description: "6 brings warmth and loyalty. 1 brings direction and protection." }, 2: { match: 5, stars: 5, verdict: "Kindred spirits", description: "Both nurturers with similar values. Naturally compassionate together." }, 3: { match: 4, stars: 4, verdict: "Playful care", description: "3 brings lightness to 6's seriousness. 6 provides emotional safety." }, 4: { match: 5, stars: 5, verdict: "Domestic bliss", description: "Both value home and family. Naturally aligned in life goals." }, 5: { match: 4, stars: 4, verdict: "Playful stability", description: "6's home-base helps 5 not drift. 5 brings excitement." }, 6: { match: 3, stars: 3, verdict: "Caretaker overload", description: "Both give too much. Risk of mutual depletion." }, 7: { match: 4, stars: 4, verdict: "Deep care", description: "6's warmth melts 7's reserve. 7 appreciates the loyalty." }, 8: { match: 4, stars: 4, verdict: "Power and heart", description: "8 respects 6's strength. 6 softens 8's edges." }, 9: { match: 5, stars: 5, verdict: "Perfect match", description: "Both compassionate and idealistic. Natural soul-level alignment." }, 11: { match: 5, stars: 5, verdict: "Intuitive care", description: "6 and 11 both feel deeply. Natural emotional harmony." }, 22: { match: 4, stars: 4, verdict: "Vision with heart", description: "22's building supported by 6's nurturing." }, 33: { match: 5, stars: 5, verdict: "Teaching and healing", description: "33 and 6 both serve. Naturally aligned mission." } }, 7: { 1: { match: 4, stars: 4, verdict: "Intellectually stimulating", description: "Both prefer space and independence. Good if neither expects constant togetherness." }, 2: { match: 4, stars: 4, verdict: "Quiet understanding", description: "Both introspective. Good for intellectual and emotional depth." }, 3: { match: 4, stars: 4, verdict: "Interesting contrast", description: "3's social energy and 7's introspection can complement." }, 4: { match: 4, stars: 4, verdict: "Respectful", description: "Both introspective. 4 appreciates 7's depth." }, 5: { match: 4, stars: 4, verdict: "Independent spirits", description: "Both need space. Respect each other's autonomy." }, 6: { match: 4, stars: 4, verdict: "Deep care", description: "6's warmth melts 7's reserve. 7 appreciates the loyalty." }, 7: { match: 3, stars: 3, verdict: "Too much isolation", description: "Both withdrawn. Can become lonely together." }, 8: { match: 4, stars: 4, verdict: "Respect and mystery", description: "8 respects 7's intellect. 7 appreciates 8's confidence." }, 9: { match: 4, stars: 4, verdict: "Philosophical bond", description: "Both seeking deeper truth. Intellectually aligned." }, 11: { match: 5, stars: 5, verdict: "Spiritual seekers", description: "7 and 11 both intuitive and introspective. Natural fit." }, 22: { match: 4, stars: 4, verdict: "Wise builders", description: "7's wisdom supports 22's vision." }, 33: { match: 4, stars: 4, verdict: "Spiritual teaching", description: "33's wisdom resonates with 7's seeking." } }, 8: { 1: { match: 3, stars: 3, verdict: "Ambitious clash", description: "Two power-driven numbers often compete rather than collaborate." }, 2: { match: 3, stars: 3, verdict: "Imbalance risk", description: "2's softness can be overwhelmed by 8's intensity and ambition." }, 3: { match: 4, stars: 4, verdict: "Good balance", description: "8 respects 3's talent. 3 brings joy to 8's intensity." }, 4: { match: 5, stars: 5, verdict: "Power team", description: "4's discipline meets 8's vision. Both building something real." }, 5: { match: 4, stars: 4, verdict: "Ambitious freedom", description: "5's adaptability helps 8's rigid plans. 8 grounds 5's restlessness." }, 6: { match: 4, stars: 4, verdict: "Power and heart", description: "8 respects 6's strength. 6 softens 8's edges." }, 7: { match: 4, stars: 4, verdict: "Respect and mystery", description: "8 respects 7's intellect. 7 appreciates 8's confidence." }, 8: { match: 3, stars: 3, verdict: "Too much ambition", description: "Both intense. Power struggles common." }, 9: { match: 4, stars: 4, verdict: "Vision and impact", description: "8's power and 9's vision create social impact." }, 11: { match: 4, stars: 4, verdict: "Powerful intuition", description: "8's drive balanced by 11's insight." }, 22: { match: 5, stars: 5, verdict: "Visionary empire", description: "8 and 22 both ambitious builders. Rare powerful match." }, 33: { match: 4, stars: 4, verdict: "Powerful teaching", description: "33's wisdom guides 8's ambition toward service." } }, 9: { 1: { match: 4, stars: 4, verdict: "Shared vision", description: "9's broader perspective softens 1's edges. 1's drive helps 9 take action." }, 2: { match: 5, stars: 5, verdict: "Spiritual bond", description: "Both compassionate and idealistic. Natural emotional attunement." }, 3: { match: 5, stars: 5, verdict: "Inspiring together", description: "Both creative and idealistic. Natural creative collaboration." }, 4: { match: 4, stars: 4, verdict: "Purposeful", description: "9's vision benefits from 4's practical structure." }, 5: { match: 5, stars: 5, verdict: "Expansive together", description: "Both see possibilities. 9's wisdom steadies 5's scattered energy." }, 6: { match: 5, stars: 5, verdict: "Perfect match", description: "Both compassionate and idealistic. Natural soul-level alignment." }, 7: { match: 4, stars: 4, verdict: "Philosophical bond", description: "Both seeking deeper truth. Intellectually aligned." }, 8: { match: 4, stars: 4, verdict: "Vision and impact", description: "8's power and 9's vision create social impact." }, 9: { match: 3, stars: 3, verdict: "Too much giving", description: "Both service-oriented. Risk of mutual depletion or codependency." }, 11: { match: 5, stars: 5, verdict: "Spiritual partners", description: "9 and 11 both intuitive and idealistic. Natural alignment." }, 22: { match: 5, stars: 5, verdict: "Visionary change", description: "9's vision and 22's building power create real-world impact." }, 33: { match: 5, stars: 5, verdict: "Healing partnership", description: "9 and 33 both teachers and healers. Aligned mission." } }, 11: { 1: { match: 4, stars: 4, verdict: "Interesting mix", description: "1's directness and 11's intuition can complement if 11 feels heard." }, 2: { match: 5, stars: 5, verdict: "Intuitive connection", description: "2 and 11 both operate from deep intuition. Very natural pairing." }, 3: { match: 4, stars: 4, verdict: "Expressive intuition", description: "3's expression and 11's intuition blend well." }, 4: { match: 4, stars: 4, verdict: "Grounded intuition", description: "4 provides structure. 11 brings spiritual insight." }, 5: { match: 4, stars: 4, verdict: "Intuitive freedom", description: "Both unconventional. 11's intuition guides 5's wandering." }, 6: { match: 5, stars: 5, verdict: "Intuitive care", description: "6 and 11 both feel deeply. Natural emotional harmony." }, 7: { match: 5, stars: 5, verdict: "Spiritual seekers", description: "7 and 11 both intuitive and introspective. Natural fit." }, 8: { match: 4, stars: 4, verdict: "Powerful intuition", description: "8's drive balanced by 11's insight." }, 9: { match: 5, stars: 5, verdict: "Spiritual partners", description: "9 and 11 both intuitive and idealistic. Natural alignment." }, 11: { match: 3, stars: 3, verdict: "Two mystics", description: "Both intuitive. Can be dreamy and impractical together." }, 22: { match: 4, stars: 4, verdict: "Visionary balance", description: "11's intuition guides 22's building ambition." }, 33: { match: 5, stars: 5, verdict: "Master alignment", description: "11 and 33 both master numbers. Rare spiritual connection." } }, 22: { 1: { match: 3, stars: 3, verdict: "Too much leadership", description: "Both want to be in charge. Power struggles are common." }, 2: { match: 4, stars: 4, verdict: "Complementary", description: "22's vision gets warmed by 2's heart. Both are builders." }, 3: { match: 4, stars: 4, verdict: "Visionary duo", description: "3's creativity supports 22's big vision." }, 4: { match: 5, stars: 5, verdict: "Master builders", description: "4 and 22 both love structure. Natural collaborators." }, 5: { match: 4, stars: 4, verdict: "Dynamic partnership", description: "5's adaptability helps 22's grand visions stay flexible." }, 6: { match: 4, stars: 4, verdict: "Vision with heart", description: "22's building supported by 6's nurturing." }, 7: { match: 4, stars: 4, verdict: "Wise builders", description: "7's wisdom supports 22's vision." }, 8: { match: 5, stars: 5, verdict: "Visionary empire", description: "8 and 22 both ambitious builders. Rare powerful match." }, 9: { match: 5, stars: 5, verdict: "Visionary change", description: "9's vision and 22's building power create real-world impact." }, 11: { match: 4, stars: 4, verdict: "Visionary balance", description: "11's intuition guides 22's building ambition." }, 22: { match: 3, stars: 3, verdict: "Two visionaries", description: "Both want to build empires. Power dynamics complex." }, 33: { match: 4, stars: 4, verdict: "Master builders and teachers", description: "22 and 33 both masters. Complementary gifts." } }, 33: { 1: { match: 4, stars: 4, verdict: "Supportive", description: "33's teaching nature can help 1 develop emotional intelligence." }, 2: { match: 5, stars: 5, verdict: "Beautiful union", description: "Both nurturing. 33's teaching energy resonates with 2's supportive nature." }, 3: { match: 5, stars: 5, verdict: "Natural teachers", description: "Both expressive. 33's wisdom and 3's communication are aligned." }, 4: { match: 4, stars: 4, verdict: "Purposeful structure", description: "33's teaching and 4's discipline work well together." }, 5: { match: 4, stars: 4, verdict: "Inspired connection", description: "33's teaching helps 5 channel energy toward purpose." }, 6: { match: 5, stars: 5, verdict: "Teaching and healing", description: "33 and 6 both serve. Naturally aligned mission." }, 7: { match: 4, stars: 4, verdict: "Spiritual teaching", description: "33's wisdom resonates with 7's seeking." }, 8: { match: 4, stars: 4, verdict: "Powerful teaching", description: "33's wisdom guides 8's ambition toward service." }, 9: { match: 5, stars: 5, verdict: "Healing partnership", description: "9 and 33 both teachers and healers. Aligned mission." }, 11: { match: 5, stars: 5, verdict: "Master alignment", description: "11 and 33 both master numbers. Rare spiritual connection." }, 22: { match: 4, stars: 4, verdict: "Master builders and teachers", description: "22 and 33 both masters. Complementary gifts." }, 33: { match: 3, stars: 3, verdict: "Two healers", description: "Both service-oriented teachers. Can overlap in purpose." } }
+  };
+
+  document.getElementById('checkBtn')?.addEventListener('click', () => {
+    const num1 = document.getElementById('number1')?.value;
+    const num2 = document.getElementById('number2')?.value;
+
+    if (num1 && num2) {
+      const data = compatibilityData[num1]?.[num2];
+      if (data) {
+        document.getElementById('resultNum1').textContent = num1;
+        document.getElementById('resultNum2').textContent = num2;
+        document.getElementById('resultStars').textContent = '★'.repeat(data.stars) + '☆'.repeat(5 - data.stars);
+        document.getElementById('resultType').textContent = data.verdict;
+        document.getElementById('resultDescription').textContent = data.description;
+        document.getElementById('results').classList.remove('hidden');
+        document.getElementById('results')?.scrollIntoView({ behavior: 'smooth' });
+      }
+    }
+  });
+</script>

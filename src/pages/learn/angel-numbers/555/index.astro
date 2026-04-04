@@ -1,0 +1,328 @@
+---
+import Layout from '../../../../layouts/Layout.astro';
+import SidebarCTA from '../../../../components/SidebarCTA.astro';
+
+const otherAngel = [
+  { number: "111", title: "New Beginnings", href: "/learn/angel-numbers/111/", image: "/images/Angel Number 111.webp" },
+  { number: "222", title: "Trust & Balance", href: "/learn/angel-numbers/222/", image: "/images/Angel Number 222.webp" },
+  { number: "333", title: "Creative Expression", href: "/learn/angel-numbers/333/", image: "/images/Angel Number 333.webp" },
+  { number: "444", title: "Stability & Protection", href: "/learn/angel-numbers/444/", image: "/images/Angel Number 444.webp" },
+  { number: "666", title: "Realignment", href: "/learn/angel-numbers/666/", image: "/images/Angel Number 666.webp" },
+  { number: "777", title: "Spiritual Alignment", href: "/learn/angel-numbers/777/", image: "/images/Angel Number 777.webp" },
+  { number: "888", title: "Abundance & Power", href: "/learn/angel-numbers/888/", image: "/images/Angel Number 888.webp" },
+  { number: "999", title: "Completion & Release", href: "/learn/angel-numbers/999/", image: "/images/Angel Number 999.webp" },
+  { number: "000", title: "Infinite Potential", href: "/learn/angel-numbers/000/", image: "/images/Angel Number 000.webp" },
+];
+
+const faqSchema = {
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "What does 555 mean in numerology?",
+      "acceptedAnswer": { "@type": "Answer", "text": "In numerology, 555 is the number 5 amplified three times. The number 5 represents change, freedom, adventure, and adaptability. When it appears as 555, the message is that major change is either happening or about to happen. Not small adjustments, but the kind of shift that rearranges how your life looks. It's the most dynamic angel number, and it signals that the status quo is ending." }
+    },
+    {
+      "@type": "Question",
+      "name": "Why do I keep seeing 555?",
+      "acceptedAnswer": { "@type": "Answer", "text": "Seeing 555 repeatedly usually means you're in the middle of a significant transition, or right on the edge of one. Something in your life is ready to shift. A job, a relationship, a living situation, a mindset. The number shows up most when you've been feeling restless or stuck, and it confirms what you already sense: something needs to change. 555 doesn't always mean the change will be comfortable. But it does mean the change is necessary and aligned with your growth." }
+    },
+    {
+      "@type": "Question",
+      "name": "Is 555 a good sign or a warning?",
+      "acceptedAnswer": { "@type": "Answer", "text": "Both, honestly. 555 is a good sign in the sense that the change coming is aligned with your growth. It's moving you somewhere better. It's a warning in the sense that change is disruptive, and you should prepare for things to feel unstable for a while. The number isn't saying something bad is happening. It's saying something big is happening. Whether you experience that as good or bad depends largely on how comfortable you are with uncertainty." }
+    },
+    {
+      "@type": "Question",
+      "name": "What does 555 mean in love?",
+      "acceptedAnswer": { "@type": "Answer", "text": "In love, 555 signals a major shift in your love life. If you're single, it could mean meeting someone who changes your perspective on what you want. If you're in a relationship, it often points to a turning point: a conversation, a decision, or a change in dynamic that alters the shape of the relationship. 555 in love isn't gentle. It's the number that shakes things up so they can resettle in a better configuration. If a relationship is solid, 555 makes it evolve. If it's been held together by avoidance, 555 tends to expose that." }
+    },
+    {
+      "@type": "Question",
+      "name": "What should I do when I see 555?",
+      "acceptedAnswer": { "@type": "Answer", "text": "Prepare for change rather than resisting it. 555 is telling you that something is shifting whether you initiate it or not, so you might as well work with the energy instead of against it. Practically: if you've been putting off a change you know you need to make, this is the push. If change is happening to you, focus on what you can control and stay flexible on the rest. The 5 thrives in motion. Rigidity is the only thing that makes 555 energy painful." }
+    },
+    {
+      "@type": "Question",
+      "name": "Does 555 mean a breakup?",
+      "acceptedAnswer": { "@type": "Answer", "text": "Not necessarily. 555 means change, and change in a relationship can take many forms. It could mean a breakup, but it could also mean a major honest conversation, a move to a new city together, deciding to have kids, or fundamentally shifting how you relate to each other. 555 disrupts the current dynamic. What replaces it depends on the relationship. If the relationship is healthy but stagnant, 555 brings evolution. If the relationship is held together by avoidance or fear, 555 brings the reckoning." }
+    }
+  ]
+};
+
+const breadcrumbSchema = {
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://numerologyguides.blog/" },
+    { "@type": "ListItem", "position": 2, "name": "Learn", "item": "https://numerologyguides.blog/learn/" },
+    { "@type": "ListItem", "position": 3, "name": "Angel Numbers", "item": "https://numerologyguides.blog/learn/angel-numbers/" },
+    { "@type": "ListItem", "position": 4, "name": "555" }
+  ]
+};
+---
+
+<Layout
+  title="Angel Number 555 Meaning: Major Change, Freedom & Transformation"
+  description="Angel number 555 signals major change is coming. Learn what it means when you keep seeing 555, how it affects love and career, and how to work with the energy of transformation."
+  schema={[faqSchema, breadcrumbSchema]}
+>
+  <link slot="head" rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400;1,600&display=swap" />
+  <style>
+    :root { --font-family-heading: 'Cormorant Garamond', Georgia, serif; }
+    .p-label { font-size:0.7rem; letter-spacing:0.18em; text-transform:uppercase; color:var(--color-soft-gold); font-weight:600; }
+    .p-divider { width:48px; height:2px; background:var(--color-soft-gold); margin:0 auto; }
+    .section-h2 { font-family:var(--font-family-heading); font-size:clamp(1.6rem,3.5vw,2.25rem); font-weight:700; color:var(--color-body-text); margin:0 0 1.25rem; }
+    .faq-list details { border-top:1px solid var(--color-border); }
+    .faq-list details:last-child { border-bottom:1px solid var(--color-border); }
+    .faq-list summary { padding:1.3rem 0; cursor:pointer; display:flex; align-items:center; justify-content:space-between; gap:1rem; font-weight:600; font-size:1rem; color:var(--color-body-text); list-style:none; transition:color 0.2s; }
+    .faq-list summary::-webkit-details-marker { display:none; }
+    .faq-list details[open] summary { color:var(--color-violet); }
+    .faq-chevron { flex-shrink:0; transition:transform 0.25s; }
+    .faq-list details[open] .faq-chevron { transform:rotate(180deg); }
+    .faq-answer { padding-bottom:1.3rem; font-size:0.9rem; color:var(--color-muted-text); line-height:1.8; }
+  </style>
+
+  <!-- Breadcrumb -->
+  <nav style="background:var(--color-card-bg);border-bottom:1px solid var(--color-border);padding:0.75rem 1.5rem;" aria-label="Breadcrumb">
+    <div style="max-width:1100px;margin:0 auto;display:flex;align-items:center;gap:0.5rem;font-size:0.75rem;color:var(--color-muted-text);">
+      <a href="/" style="color:inherit;text-decoration:none;transition:color 0.2s;" onmouseover="this.style.color='var(--color-violet)'" onmouseout="this.style.color='var(--color-muted-text)'">Home</a>
+      <svg xmlns="http://www.w3.org/2000/svg" width="8" height="8" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="9 18 15 12 9 6"/></svg>
+      <a href="/learn/" style="color:inherit;text-decoration:none;transition:color 0.2s;" onmouseover="this.style.color='var(--color-violet)'" onmouseout="this.style.color='var(--color-muted-text)'">Learn</a>
+      <svg xmlns="http://www.w3.org/2000/svg" width="8" height="8" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="9 18 15 12 9 6"/></svg>
+      <a href="/learn/angel-numbers/" style="color:inherit;text-decoration:none;transition:color 0.2s;" onmouseover="this.style.color='var(--color-violet)'" onmouseout="this.style.color='var(--color-muted-text)'">Angel Numbers</a>
+      <svg xmlns="http://www.w3.org/2000/svg" width="8" height="8" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="9 18 15 12 9 6"/></svg>
+      <span style="color:var(--color-body-text);font-weight:600;">555</span>
+    </div>
+  </nav>
+
+  <!-- Hero -->
+  <section style="position:relative;overflow:hidden;background:var(--color-midnight,#0e0a1a);">
+    <div aria-hidden="true" style="position:absolute;inset:0;background-image:radial-gradient(circle,rgba(196,162,78,0.07) 1px,transparent 1px);background-size:28px 28px;pointer-events:none;z-index:0;"></div>
+    <div aria-hidden="true" style="position:absolute;top:-10%;left:-5%;width:55%;height:120%;background:radial-gradient(ellipse at center,rgba(124,92,191,0.18) 0%,transparent 70%);pointer-events:none;z-index:0;"></div>
+    <div style="position:relative;z-index:1;max-width:1100px;margin:0 auto;padding:4rem 1.5rem;display:flex;align-items:center;gap:3rem;flex-wrap:wrap;">
+      <div style="flex:1;min-width:280px;">
+        <p class="p-label" style="margin-bottom:1.1rem;color:var(--color-soft-gold);opacity:0.9;">Angel Number</p>
+        <div class="p-divider" style="margin:0 0 1.6rem;"></div>
+        <h1 style="font-family:var(--font-family-heading);font-size:clamp(2.8rem,6vw,5rem);font-weight:700;line-height:1.06;color:#f5f0e8;letter-spacing:-0.02em;margin:0 0 1.25rem;">
+          Angel Number <em style="color:#c8a8f0;font-style:italic;">555</em>: Major Change &amp; Transformation
+        </h1>
+        <p style="font-size:1.05rem;line-height:1.8;color:rgba(240,234,255,0.78);max-width:460px;margin:0 0 2rem;">555 doesn't whisper. It announces. If this number keeps showing up in your life, something significant is shifting, or about to. Here's what that means and how to move with it.</p>
+        <div style="display:flex;flex-wrap:wrap;gap:0.875rem;">
+          <a href="https://8904b5z1168aar3k8annz7y61n.hop.clickbank.net" target="_blank" rel="noopener sponsored" style="display:inline-flex;align-items:center;gap:0.5rem;background:var(--color-violet);color:white;font-weight:700;font-size:1rem;padding:0.875rem 2rem;border-radius:6px;text-decoration:none;transition:background 0.2s,transform 0.15s;box-shadow:0 4px 20px rgba(124,92,191,0.45);" onmouseover="this.style.background='#6a4eab';this.style.transform='translateY(-1px)'" onmouseout="this.style.background='var(--color-violet)';this.style.transform='none'">Get My Free Reading →</a>
+          <a href="#meaning" style="display:inline-flex;align-items:center;gap:0.5rem;background:rgba(255,255,255,0.08);backdrop-filter:blur(6px);color:#f5f0e8;font-weight:600;font-size:1rem;padding:0.875rem 1.75rem;border-radius:6px;text-decoration:none;border:1.5px solid rgba(255,255,255,0.2);transition:border-color 0.2s,background 0.2s;" onmouseover="this.style.background='rgba(255,255,255,0.15)';this.style.borderColor='rgba(255,255,255,0.4)'" onmouseout="this.style.background='rgba(255,255,255,0.08)';this.style.borderColor='rgba(255,255,255,0.2)'">What It Means ↓</a>
+        </div>
+      </div>
+      <div style="flex-shrink:0;width:clamp(200px,28vw,300px);filter:drop-shadow(0 8px 40px rgba(196,162,78,0.25)) drop-shadow(0 2px 12px rgba(0,0,0,0.6));">
+        <img
+          src="/images/learn/angel-numbers/Angel Number - 555.webp"
+          alt="Angel Number 555 — Major Change &amp; Transformation"
+          fetchpriority="high"
+          style="width:100%;border-radius:6px;display:block;"
+        />
+      </div>
+    </div>
+  </section>
+
+  <!-- Author byline -->
+  <div style="background:var(--color-card-bg);padding:1.75rem 1.5rem;border-bottom:1px solid var(--color-border);">
+    <div style="max-width:1200px;margin:0 auto;display:flex;align-items:center;gap:1rem;">
+      <img src="/images/author-maddi-green.webp" alt="Maddie Greene" style="width:52px;height:52px;border-radius:50%;object-fit:cover;flex-shrink:0;border:2px solid var(--color-border);" />
+      <div>
+        <p style="font-size:0.95rem;font-weight:600;color:var(--color-body-text);margin:0;">Written by <strong>Maddie Greene</strong></p>
+        <p style="font-size:0.8rem;color:var(--color-muted-text);margin:0;">Numerology writer &amp; researcher</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- Content + Sticky sidebar wrapper -->
+  <div class="xl:flex xl:gap-6 xl:max-w-[1200px] xl:mx-auto xl:px-4">
+    <div class="xl:flex-1 xl:min-w-0">
+
+  <section style="background:var(--color-card-bg);padding:2.5rem 1.5rem 3rem;">
+    <div style="max-width:760px;margin:0 auto;">
+      <h2 class="section-h2">What does angel number 555 mean?</h2>
+      <p style="font-size:0.95rem;color:var(--color-muted-text);line-height:1.8;margin:0 0 1rem;">
+        The number 5 is the most restless number in numerology. It craves freedom, movement, variety, and experience. People with strong 5 energy are the ones who can't sit still, who need to try everything, who suffocate in routine. When that energy triples into 555, it's not a subtle signal. It's a tectonic shift.
+      </p>
+      <p style="font-size:0.95rem;color:var(--color-muted-text);line-height:1.8;margin:0 0 1rem;">
+        555 means change is happening. Not the kind you plan for on a spreadsheet. The kind that rearranges the furniture of your life. A job that ends. A relationship that transforms. A move you didn't see coming. An internal shift that makes your old way of living suddenly feel too small. 555 is the number that shows up when the current version of your life has reached its expiry date.
+      </p>
+      <p style="font-size:0.95rem;color:var(--color-muted-text);line-height:1.8;margin:0 0 1rem;">
+        Here's the thing that matters: 555 isn't a bad omen. Change feels destabilizing, and the 5 energy is genuinely chaotic, but the direction of the change is forward. 555 disrupts things that have stagnated. It breaks patterns that stopped serving you. It creates space for something that fits better. The uncomfortable part is the transition itself, not where you end up.
+      </p>
+      <p style="font-size:0.95rem;color:var(--color-muted-text);line-height:1.8;margin:0 0 1.5rem;">
+        The biggest mistake people make with 555 is trying to hold on. Gripping tighter to a job that's ending, a relationship that's outgrown, a version of yourself that doesn't fit anymore. The 5 doesn't respond well to control. It moves. You can move with it, or you can be dragged. Those are the two options.
+      </p>
+      <div style="background:var(--color-light-bg);border:1px solid var(--color-border);border-left:4px solid var(--color-soft-gold);border-radius:8px;padding:1.25rem 1.5rem;">
+        <p style="font-size:0.9rem;color:var(--color-muted-text);line-height:1.8;margin:0;">
+          <strong style="color:var(--color-body-text);">The core message of 555:</strong> Major change is here or arriving fast. Don't resist it. The disruption is clearing space for something better. Stay flexible, release what's expired, and trust the forward motion.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <section style="background:white;padding:3rem 1.5rem;">
+    <div style="max-width:760px;margin:0 auto;">
+      <h2 class="section-h2">When does 555 show up?</h2>
+      <div style="display:flex;flex-direction:column;gap:1rem;">
+        <div class="card-light p-5">
+          <h3 style="font-weight:700;color:var(--color-body-text);margin:0 0 0.5rem;">When you've been stuck and know it</h3>
+          <p style="font-size:0.875rem;color:var(--color-muted-text);line-height:1.7;margin:0;">That job you've outgrown. That relationship running on inertia. That city that stopped feeling like home a year ago. 555 shows up when the stagnation has lasted too long and something needs to break open. It's the number that confirms what your gut has been telling you.</p>
+        </div>
+        <div class="card-light p-5">
+          <h3 style="font-weight:700;color:var(--color-body-text);margin:0 0 0.5rem;">When unexpected change hits</h3>
+          <p style="font-size:0.875rem;color:var(--color-muted-text);line-height:1.7;margin:0;">Sometimes 555 appears after the change, not before. You get laid off, a relationship ends, something falls apart. 555 in this context is reassurance: this wasn't random destruction. It was necessary clearing. What comes next will make more sense than what you lost.</p>
+        </div>
+        <div class="card-light p-5">
+          <h3 style="font-weight:700;color:var(--color-body-text);margin:0 0 0.5rem;">When you're about to make a bold move</h3>
+          <p style="font-size:0.875rem;color:var(--color-muted-text);line-height:1.7;margin:0;">You're considering leaving something, starting something, or doing something that scares you. 555 is the green light. The energy is behind you. The risk you're calculating isn't as risky as staying still.</p>
+        </div>
+        <div class="card-light p-5">
+          <h3 style="font-weight:700;color:var(--color-body-text);margin:0 0 0.5rem;">When you're feeling restless for no clear reason</h3>
+          <p style="font-size:0.875rem;color:var(--color-muted-text);line-height:1.7;margin:0;">Sometimes the change 555 signals is internal. You haven't been fired, nobody's leaving, nothing external has shifted, but something inside you is different. Your interests are changing. Your tolerance for certain things is dropping. That restlessness is the 5 energy preparing you for what's next.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section style="background:var(--color-card-bg);padding:3rem 1.5rem;">
+    <div style="max-width:760px;margin:0 auto;">
+      <h2 class="section-h2">555 in love &amp; relationships</h2>
+      <p style="font-size:0.95rem;color:var(--color-muted-text);line-height:1.8;margin:0 0 1rem;">
+        555 in love is intense. The 5 is the number of freedom and change, and when it triples, relationships feel it. This isn't the gentle "let's talk about our feelings" energy of <a href="/learn/angel-numbers/222/" style="color:var(--color-violet);text-decoration:none;font-weight:500;">222</a>. This is "something is about to shift fundamentally."
+      </p>
+      <p style="font-size:0.95rem;color:var(--color-muted-text);line-height:1.8;margin:0 0 1rem;">
+        <strong style="color:var(--color-body-text);">If you're single:</strong> 555 often precedes meeting someone who disrupts your usual type. Not a safe, predictable connection — someone who changes how you think about relationships. Be open to people who don't fit your checklist. The 5 brings unexpected encounters that lead somewhere real.
+      </p>
+      <p style="font-size:0.95rem;color:var(--color-muted-text);line-height:1.8;margin:0 0 1rem;">
+        <strong style="color:var(--color-body-text);">If you're in a relationship:</strong> 555 signals a turning point. The relationship is going to change. That doesn't automatically mean it ends, but it does mean the dynamic is going to shift. Maybe you finally have the conversation you've been avoiding. Maybe someone's needs have evolved and the relationship needs to evolve with them. The relationships that survive 555 come out stronger because they adapted. The ones that don't survive weren't meant to stay in their current form.
+      </p>
+      <p style="font-size:0.95rem;color:var(--color-muted-text);line-height:1.8;margin:0;">
+        <strong style="color:var(--color-body-text);">The honest truth:</strong> 555 does sometimes precede breakups. If a relationship has been held together by comfort, fear, or avoidance rather than genuine connection, 555 tends to expose that. It's not cruel. It's clearing. What leaves during a 555 period was already leaving. The number just accelerates the timeline.
+      </p>
+    </div>
+  </section>
+
+  <section style="background:white;padding:3rem 1.5rem;">
+    <div style="max-width:760px;margin:0 auto;">
+      <h2 class="section-h2">555 in career &amp; money</h2>
+      <p style="font-size:0.95rem;color:var(--color-muted-text);line-height:1.8;margin:0 0 1rem;">
+        The <a href="/learn/life-path-number-5/" style="color:var(--color-violet);text-decoration:none;font-weight:500;">5 energy</a> is entrepreneurial, adaptable, and allergic to stagnation. In a career context, 555 means your work life is about to look different. This could be a job change, a pivot, a promotion that changes everything, or a decision to finally pursue the thing you've been putting off.
+      </p>
+      <p style="font-size:0.95rem;color:var(--color-muted-text);line-height:1.8;margin:0 0 1rem;">
+        If your current work feels like a cage, 555 is the signal to plan your exit. Not impulsively — the 5 is adaptable, not reckless. But deliberately. The energy supports bold career moves right now, especially ones that give you more freedom and variety.
+      </p>
+      <p style="font-size:0.95rem;color:var(--color-muted-text);line-height:1.8;margin:0 0 1rem;">
+        Financially, 555 is volatile. The 5 doesn't do "steady and predictable". It does "feast or famine" if you're not careful. During a 555 period, money may come from unexpected sources or leave through unexpected expenses. The smart move is to stay flexible and avoid over-committing to financial plans that assume everything stays the same. It won't.
+      </p>
+      <p style="font-size:0.95rem;color:var(--color-muted-text);line-height:1.8;margin:0;">
+        The career opportunity in 555 is reinvention. If you've ever wanted to completely change what you do for a living, this is one of the most supportive energies for that kind of leap.
+      </p>
+    </div>
+  </section>
+
+  <section style="background:var(--color-card-bg);padding:3rem 1.5rem;">
+    <div style="max-width:760px;margin:0 auto;">
+      <h2 class="section-h2">The spiritual meaning of 555</h2>
+      <p style="font-size:0.95rem;color:var(--color-muted-text);line-height:1.8;margin:0 0 1rem;">
+        Spiritually, 555 is about evolution through disruption. The comfortable patterns that have kept you safe are also the patterns keeping you small. 555 comes in to break what needs breaking so something truer can take its place.
+      </p>
+      <p style="font-size:0.95rem;color:var(--color-muted-text);line-height:1.8;margin:0 0 1rem;">
+        This number often shows up during what spiritual traditions call a "dark night of the soul" — a period where everything feels uncertain, where old beliefs are falling away, where you don't know who you are anymore. If that's where you are, 555 is the signal that the dismantling is purposeful. You're not falling apart. You're being reconstructed.
+      </p>
+      <p style="font-size:0.95rem;color:var(--color-muted-text);line-height:1.8;margin:0;">
+        The spiritual lesson of 555 is surrender. Not passivity, but the willingness to release your grip on how things are supposed to look. The universe has a plan that's bigger than your current understanding. 555 asks you to trust that, even when the ride gets bumpy.
+      </p>
+    </div>
+  </section>
+
+  <!-- What to do section -->
+  <section style="background:var(--color-light-bg);padding:3rem 1.5rem;">
+    <div style="max-width:760px;margin:0 auto;">
+      <h2 class="section-h2" style="text-align:center;">What to do when you see 555</h2>
+      <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:1rem;">
+        <div style="background:white;border:1px solid var(--color-border);border-radius:12px;padding:1.25rem 1.5rem;">
+          <div style="font-size:0.8rem;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;color:var(--color-soft-gold);margin-bottom:0.5rem;">Stop resisting</div>
+          <p style="font-size:0.9rem;color:var(--color-muted-text);line-height:1.7;margin:0;">If change is happening, let it. Fighting 5 energy only makes the transition harder. The direction is forward, lean into it.</p>
+        </div>
+        <div style="background:white;border:1px solid var(--color-border);border-radius:12px;padding:1.25rem 1.5rem;">
+          <div style="font-size:0.8rem;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;color:var(--color-soft-gold);margin-bottom:0.5rem;">Make the move</div>
+          <p style="font-size:0.9rem;color:var(--color-muted-text);line-height:1.7;margin:0;">If you've been putting off a change you know you need to make, 555 is the green light. The energy supports bold action right now.</p>
+        </div>
+        <div style="background:white;border:1px solid var(--color-border);border-radius:12px;padding:1.25rem 1.5rem;">
+          <div style="font-size:0.8rem;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;color:var(--color-soft-gold);margin-bottom:0.5rem;">Stay flexible</div>
+          <p style="font-size:0.9rem;color:var(--color-muted-text);line-height:1.7;margin:0;">Plans may change. Timelines may shift. The 5 doesn't follow a script. Hold your goals loosely and be willing to take a different path to them.</p>
+        </div>
+        <div style="background:white;border:1px solid var(--color-border);border-radius:12px;padding:1.25rem 1.5rem;">
+          <div style="font-size:0.8rem;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;color:var(--color-soft-gold);margin-bottom:0.5rem;">Trust the disruption</div>
+          <p style="font-size:0.9rem;color:var(--color-muted-text);line-height:1.7;margin:0;">What's falling away needed to fall away. What's arriving will make more sense once the dust settles. The chaos is temporary. The growth is permanent.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FAQ -->
+  <section style="background:white;padding:3rem 1.5rem;">
+    <div style="max-width:760px;margin:0 auto;">
+      <h2 class="section-h2" style="text-align:center;">Common questions about 555</h2>
+      <div class="faq-list">
+        {faqSchema.mainEntity.map(item => (
+          <details>
+            <summary>
+              {item.name}
+              <svg class="faq-chevron" xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="6 9 12 15 18 9"/></svg>
+            </summary>
+            <div class="faq-answer">{item.acceptedAnswer.text}</div>
+          </details>
+        ))}
+      </div>
+    </div>
+  </section>
+
+    </div>
+    <SidebarCTA />
+  </div>
+
+  <!-- Other angel numbers -->
+  <section style="background:var(--color-light-bg);padding:3rem 1.5rem;border-top:1px solid var(--color-border);">
+    <div style="max-width:1100px;margin:0 auto;">
+      <p class="p-label" style="text-align:center;margin-bottom:0.75rem;">Explore More</p>
+      <h2 style="font-family:var(--font-family-heading);font-size:clamp(1.5rem,3vw,2rem);font-weight:700;color:var(--color-body-text);text-align:center;margin:0 0 2rem;">Other Angel Numbers</h2>
+      <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(140px,1fr));gap:1rem;">
+        {otherAngel.map(an => (
+          <a href={an.href} style="text-decoration:none;display:block;" class="group">
+            <div style="overflow:hidden;border-radius:8px;border:1px solid var(--color-border);transition:border-color 0.2s,transform 0.2s;background:white;" class="group-hover:border-violet/60 group-hover:-translate-y-1">
+              <img
+                src={`/images/learn/angel-numbers/Angel Number - ${an.number}.webp`}
+                alt={`Angel Number ${an.number}`}
+                loading="lazy"
+                decoding="async"
+                style="width:100%;aspect-ratio:2/3;object-fit:cover;display:block;transition:transform 0.5s;"
+                class="group-hover:scale-105"
+              />
+              <div style="padding:0.75rem 0.5rem;text-align:center;">
+                <div style="font-family:var(--font-family-heading);font-size:1.1rem;font-weight:700;color:var(--color-body-text);margin-bottom:0.2rem;" class="group-hover:text-violet transition-colors">{an.number}</div>
+                <p style="font-size:0.72rem;color:var(--color-muted-text);line-height:1.4;margin:0;">{an.title}</p>
+              </div>
+            </div>
+          </a>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- Bottom CTA -->
+  <section style="background:var(--color-midnight);padding:5.5rem 1.5rem;text-align:center;position:relative;overflow:hidden;">
+    <div style="position:absolute;inset:0;background:radial-gradient(ellipse at 50% 120%,rgba(124,92,191,0.18) 0%,transparent 70%);pointer-events:none;"></div>
+    <div style="position:relative;z-index:1;max-width:560px;margin:0 auto;">
+      <p class="p-label">Numerologist.com</p>
+      <div class="p-divider" style="margin:1rem auto;"></div>
+      <h2 style="font-family:var(--font-family-heading);font-size:clamp(1.75rem,4vw,2.5rem);font-weight:700;color:var(--color-starlight);margin:0 0 1.25rem;line-height:1.2;">Want to know what your numbers say about you?</h2>
+      <p style="font-size:0.95rem;color:rgba(235,232,247,0.5);line-height:1.7;margin:0 0 2rem;">Angel numbers tell you what's happening now. A full numerology reading tells you why and what's coming next. Get a free personalized video reading based on your name and birth date.</p>
+      <a href="https://8904b5z1168aar3k8annz7y61n.hop.clickbank.net" target="_blank" rel="noopener sponsored" style="display:inline-block;background:var(--color-soft-gold);color:var(--color-midnight);font-weight:700;font-size:1rem;padding:1rem 2rem;border-radius:8px;text-decoration:none;letter-spacing:0.02em;">Get your free reading at Numerologist.com →</a>
+    </div>
+  </section>
+
+</Layout>

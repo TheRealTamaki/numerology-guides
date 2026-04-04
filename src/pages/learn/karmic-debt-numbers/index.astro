@@ -1,0 +1,400 @@
+---
+import Layout from '../../../layouts/Layout.astro';
+import SidebarCTA from '../../../components/SidebarCTA.astro';
+
+const faqSchema = {
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "What are karmic debt numbers in numerology?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Karmic debt numbers are 13, 14, 16, and 19. They appear in your numerology chart when a core number reduces through one of these four numbers on the way to its single digit. They indicate past-life patterns that are being worked through in this lifetime - not as punishment, but as intensified lessons in specific areas like effort, freedom, ego, or independence."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "How do I find my karmic debt numbers?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Check each of your core numerology numbers - life path, expression, soul urge, and personality. If any of these reduce through 13, 14, 16, or 19 on the way to their single digit, you carry that karmic debt. For example, a life path that passes through 19 before reaching 1 carries the karmic debt of independence. Not every 1, 4, 5, or 7 has karmic debt - only those that reduce through these specific numbers."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Are karmic debt numbers bad?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "No. Karmic debt numbers aren't bad luck or cosmic punishment. They're intensified lessons - areas where you have extra growth to do because of unresolved patterns. Think of them as the universe highlighting specific skills you're here to develop. The challenges are real, but so are the strengths that come from working through them."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Can you have more than one karmic debt number?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Yes. Different core numbers in your chart can each carry their own karmic debt. Your life path might reduce through 13 while your expression number reduces through 19. Having multiple karmic debts doesn't mean you're cosmically burdened - it means you have several specific areas where growth is being emphasized in this lifetime."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "What's the difference between karmic debt and karmic lessons?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Karmic debt numbers (13, 14, 16, 19) relate to past-life patterns that need correcting - specific behaviors from previous incarnations that created an imbalance. Karmic lessons are identified by missing numbers in your birth name and represent qualities you didn't develop in past lives. Debts are about correcting old patterns. Lessons are about developing new skills."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Can karmic debt be cleared or resolved?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Yes. Karmic debt resolves through living the lesson - not through any ritual or shortcut. For 13, that means developing genuine discipline. For 14, learning responsible freedom. For 16, releasing ego attachment. For 19, embracing interdependence. The debt doesn't disappear from your chart, but its grip loosens as you integrate the lesson. The challenges become less intense and the strengths become more accessible."
+      }
+    }
+  ]
+};
+
+const breadcrumbSchema = {
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://numerologyguides.blog/" },
+    { "@type": "ListItem", "position": 2, "name": "Learn", "item": "https://numerologyguides.blog/learn/" },
+    { "@type": "ListItem", "position": 3, "name": "Karmic Debt Numbers" }
+  ]
+};
+
+---
+
+<Layout
+  schema={[faqSchema, breadcrumbSchema]}
+  title="Karmic Debt Numbers 13, 14, 16, 19: What They Mean | Numerology Guides"
+  description="Karmic debt numbers 13, 14, 16, and 19 point to past-life patterns you're clearing in this lifetime. Learn what each one means, how to find yours, and what the lessons actually look like."
+>
+
+  <link slot="head" rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400;1,600&display=swap" />
+  <style>
+    :root { --font-family-heading: 'Cormorant Garamond', Georgia, serif; }
+    .p-label { font-size:0.7rem; letter-spacing:0.18em; text-transform:uppercase; color:var(--color-soft-gold); font-weight:600; }
+    .p-divider { width:48px; height:2px; background:var(--color-soft-gold); margin:0 auto; }
+    .section-h2 { font-family:var(--font-family-heading); font-size:clamp(1.6rem,3.5vw,2.25rem); font-weight:700; color:var(--color-body-text); margin:0 0 1.25rem; }
+    .faq-list details { border-top:1px solid var(--color-border); }
+    .faq-list details:last-child { border-bottom:1px solid var(--color-border); }
+    .faq-list summary { padding:1.3rem 0; cursor:pointer; display:flex; align-items:center; justify-content:space-between; gap:1rem; font-weight:600; font-size:1rem; color:var(--color-body-text); list-style:none; transition:color 0.2s; }
+    .faq-list summary::-webkit-details-marker { display:none; }
+    .faq-list details[open] summary { color:var(--color-violet); }
+    .faq-chevron { flex-shrink:0; transition:transform 0.25s; }
+    .faq-list details[open] .faq-chevron { transform:rotate(180deg); }
+    .faq-answer { padding-bottom:1.3rem; font-size:0.9rem; color:var(--color-muted-text); line-height:1.8; }
+  </style>
+
+  <!-- Breadcrumb -->
+  <nav style="background:var(--color-card-bg);border-bottom:1px solid var(--color-border);padding:0.75rem 1.5rem;" aria-label="Breadcrumb">
+    <div style="max-width:1100px;margin:0 auto;display:flex;align-items:center;gap:0.5rem;font-size:0.75rem;color:var(--color-muted-text);">
+      <a href="/" style="color:var(--color-muted-text);text-decoration:none;transition:color 0.2s;" onmouseover="this.style.color='var(--color-violet)'" onmouseout="this.style.color='var(--color-muted-text)'">Home</a>
+      <svg xmlns="http://www.w3.org/2000/svg" width="8" height="8" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="9 18 15 12 9 6"/></svg>
+      <a href="/learn/" style="color:var(--color-muted-text);text-decoration:none;transition:color 0.2s;" onmouseover="this.style.color='var(--color-violet)'" onmouseout="this.style.color='var(--color-muted-text)'">Learn</a>
+      <svg xmlns="http://www.w3.org/2000/svg" width="8" height="8" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="9 18 15 12 9 6"/></svg>
+      <span style="color:var(--color-body-text);font-weight:600;">Karmic Debt Numbers</span>
+    </div>
+  </nav>
+
+  <!-- Hero -->
+  <section style="position:relative;overflow:hidden;padding:6rem 1.5rem 5rem;text-align:center;min-height:480px;display:flex;align-items:center;">
+    <div style="position:absolute;inset:0;z-index:0;">
+      <img
+        src="/images/learn/Karmic Debt Numbers Pillar Hero.webp"
+        alt=""
+        aria-hidden="true"
+        fetchpriority="high"
+        style="width:100%;height:100%;object-fit:cover;object-position:center 30%;display:block;"
+      />
+      <div style="position:absolute;inset:0;background:linear-gradient(to bottom, rgba(14,10,26,0.75) 0%, rgba(14,10,26,0.58) 45%, rgba(14,10,26,0.80) 100%);"></div>
+      <div style="position:absolute;inset:0;background-image:radial-gradient(circle,rgba(196,162,78,0.08) 1px,transparent 1px);background-size:28px 28px;pointer-events:none;"></div>
+    </div>
+    <div aria-hidden="true" style="position:absolute;left:-1rem;top:0.5rem;z-index:1;font-family:var(--font-family-heading);font-size:clamp(10rem,20vw,16rem);font-weight:700;line-height:1;color:transparent;-webkit-text-stroke:1px rgba(196,162,78,0.18);pointer-events:none;user-select:none;">K</div>
+    <div aria-hidden="true" style="position:absolute;right:-0.5rem;bottom:-1.5rem;z-index:1;font-family:var(--font-family-heading);font-size:clamp(12rem,24vw,20rem);font-weight:700;line-height:1;color:transparent;-webkit-text-stroke:1px rgba(124,92,191,0.15);pointer-events:none;user-select:none;">D</div>
+    <div style="position:relative;z-index:2;max-width:760px;margin:0 auto;width:100%;">
+      <p class="p-label" style="margin-bottom:1.25rem;color:var(--color-soft-gold);opacity:0.9;">Advanced Numerology</p>
+      <div class="p-divider" style="margin-bottom:1.75rem;"></div>
+      <h1 style="font-family:var(--font-family-heading);font-size:clamp(2.6rem,6.5vw,4.75rem);font-weight:700;line-height:1.08;color:#f5f0e8;letter-spacing:-0.02em;margin:0 0 1.5rem;text-shadow:0 2px 20px rgba(14,10,26,0.6);">
+        Karmic Debt Numbers in<br><em style="color:#c8a8f0;font-style:italic;">Numerology</em>
+      </h1>
+      <p style="font-size:1.05rem;line-height:1.8;color:rgba(240,234,255,0.82);max-width:560px;margin:0 auto 2.5rem;text-shadow:0 1px 8px rgba(14,10,26,0.5);">
+        Four numbers that point to past-life patterns you're actively clearing. Not punishment. Not bad luck. Just the specific lessons the universe is making sure you don't skip this time around.
+      </p>
+      <div style="display:flex;flex-wrap:wrap;gap:0.875rem;justify-content:center;">
+        <a href="https://8904b5z1168aar3k8annz7y61n.hop.clickbank.net" target="_blank" rel="noopener sponsored" style="display:inline-flex;align-items:center;gap:0.5rem;background:var(--color-violet);color:white;font-weight:700;font-size:1rem;padding:0.875rem 2rem;border-radius:6px;text-decoration:none;transition:background 0.2s,transform 0.15s;box-shadow:0 4px 20px rgba(124,92,191,0.45);" onmouseover="this.style.background='#6a4eab';this.style.transform='translateY(-1px)'" onmouseout="this.style.background='var(--color-violet)';this.style.transform='none'">Get My Free Reading →</a>
+        <a href="#what" style="display:inline-flex;align-items:center;gap:0.5rem;background:rgba(255,255,255,0.08);backdrop-filter:blur(6px);color:#f5f0e8;font-weight:600;font-size:1rem;padding:0.875rem 1.75rem;border-radius:6px;text-decoration:none;border:1.5px solid rgba(255,255,255,0.2);transition:border-color 0.2s,background 0.2s;" onmouseover="this.style.background='rgba(255,255,255,0.15)';this.style.borderColor='rgba(255,255,255,0.4)'" onmouseout="this.style.background='rgba(255,255,255,0.08)';this.style.borderColor='rgba(255,255,255,0.2)'">Explore ↓</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Author byline -->
+  <div style="background:var(--color-light-bg);padding:1.25rem 1.5rem;">
+    <div style="max-width:1100px;margin:0 auto;display:flex;align-items:center;gap:1rem;">
+      <img src="/images/author-maddi-green.webp" alt="Maddie Greene" style="width:2.75rem;height:2.75rem;border-radius:50%;object-fit:cover;flex-shrink:0;border:2px solid rgba(124,92,191,0.2);" />
+      <div>
+        <p style="color:var(--color-body-text);font-size:0.875rem;font-weight:600;margin:0 0 0.1rem;">Written by <strong>Maddie Greene</strong></p>
+        <p style="color:var(--color-muted-text);font-size:0.78rem;margin:0;">Numerology writer &amp; researcher</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- Content + Sticky sidebar wrapper -->
+  <div class="xl:flex xl:gap-6 xl:max-w-[1200px] xl:mx-auto xl:px-4">
+    <!-- Main content column -->
+    <div class="xl:flex-1 xl:min-w-0">
+
+  <!-- Main content -->
+  <article style="padding:2.5rem 1.5rem 3rem;background:white;">
+    <div style="max-width:48rem;margin:0 auto;">
+
+      <!-- What are karmic debt numbers -->
+      <section id="what" style="margin-bottom:3rem;">
+        <h2 class="section-h2">What are karmic debt numbers?</h2>
+
+        <p style="color:var(--color-body-text);line-height:1.8;margin-bottom:1rem;">
+          Most numbers in your chart just describe energy — tendencies, strengths, directions. But four numbers do something extra. Karmic debt numbers — 13, 14, 16, and 19 — show up when a core number in your chart reduces <em>through</em> one of these on the way to its final digit. And when they appear, they bring a specific past-life pattern that's asking to be resolved.
+        </p>
+
+        <p style="color:var(--color-body-text);line-height:1.8;margin-bottom:1rem;">
+          Here's the thing: karmic debt isn't what most people think. It's not the universe punishing you for something your soul did three lifetimes ago. It's more like unfinished homework. You had a pattern — laziness, misused freedom, ego inflation, selfishness — and you didn't work through it. So it's back, and this time the lesson is more direct.
+        </p>
+
+        <p style="color:var(--color-body-text);line-height:1.8;margin-bottom:1rem;">
+          Each karmic debt number reduces to a single digit: 13 becomes 4, 14 becomes 5, 16 becomes 7, and 19 becomes 1. The single digit tells you what energy you're working with. The karmic debt number tells you that the path to that energy involves extra friction, extra growth, and ultimately extra depth.
+        </p>
+
+        <p style="color:var(--color-body-text);line-height:1.8;">
+          So what does that mean for you? If you carry a karmic debt number, it means one specific area of your life has a higher degree of difficulty — and a higher reward for getting it right. The challenges are real. But so is the version of you that emerges when you stop fighting the lesson and start learning from it.
+        </p>
+      </section>
+
+      <!-- How to find yours -->
+      <section id="how" style="margin-bottom:3rem;padding-top:2rem;border-top:1px solid var(--color-border);">
+        <h2 class="section-h2">How to find your karmic debt numbers</h2>
+
+        <p style="color:var(--color-body-text);line-height:1.8;margin-bottom:1rem;">
+          Karmic debt shows up in the <em>reduction process</em> of your core numbers. When you calculate your life path, expression, soul urge, or personality number, watch what the number passes through on the way to its final single digit.
+        </p>
+
+        <p style="color:var(--color-body-text);line-height:1.8;margin-bottom:1rem;">
+          If the number reduces through 13, 14, 16, or 19 at any point, you carry that karmic debt in that position. A life path that reduces through 19 before reaching 1 carries the debt of independence. An expression number that passes through 13 before landing on 4 carries the debt of hard work.
+        </p>
+
+        <p style="color:var(--color-body-text);line-height:1.8;margin-bottom:1rem;">
+          The key distinction: not every 1, 4, 5, or 7 has karmic debt. A life path that adds to 28 and then reduces to 10 and then to 1 has no karmic debt. But a life path that adds to 19 and then reduces to 10 and then to 1 does. The route matters, not just the destination.
+        </p>
+
+        <p style="color:var(--color-body-text);line-height:1.8;">
+          If the math feels confusing, a full numerology reading will identify any karmic debts automatically. The calculation is precise — there's no guesswork involved.
+        </p>
+      </section>
+
+      <!-- Grid of all 4 karmic debt numbers -->
+      <section id="numbers" style="margin-bottom:3rem;padding-top:2rem;border-top:1px solid var(--color-border);">
+        <h2 class="section-h2">The four karmic debt numbers</h2>
+
+        <div class="grid md:grid-cols-2 gap-6" style="margin-bottom:2rem;">
+          <!-- 13 -->
+          <a href="/learn/karmic-debt-numbers/13/" class="card-light overflow-hidden hover:border-violet/60 hover:-translate-y-0.5 transition-all duration-200 group block" style="text-decoration:none;">
+            <div style="position:relative;overflow:hidden;">
+              <img src="/images/learn/karmic-debt-numbers/Karmic Debt Number - The Debt of Hard Work.webp" alt="Karmic Debt Number 13" class="w-full" style="aspect-ratio:2/3;object-fit:cover;display:block;width:100%;" loading="lazy" decoding="async" />
+            </div>
+            <div class="p-6">
+              <div style="display:flex;align-items:center;gap:1rem;margin-bottom:1rem;">
+                <div style="font-family:var(--font-family-heading);font-size:3rem;font-weight:700;color:var(--color-soft-gold);line-height:1;flex-shrink:0;">13</div>
+                <div>
+                  <h3 style="font-family:var(--font-family-heading);font-size:1.25rem;font-weight:700;color:var(--color-body-text);margin:0 0 0.2rem;" class="group-hover:text-violet transition-colors">The Debt of Hard Work</h3>
+                  <p style="font-size:0.8rem;color:var(--color-muted-text);margin:0;">Reduces to 4 &middot; Lesson: sustained effort</p>
+                </div>
+              </div>
+              <p style="color:var(--color-body-text);line-height:1.8;font-size:0.9rem;margin-bottom:0.75rem;">
+                Past-life pattern of laziness or cutting corners. The lesson is learning that real results come from sustained effort — not brilliance, not luck, not finding the hack.
+              </p>
+              <span style="display:inline-block;color:var(--color-soft-gold);font-weight:600;font-size:0.9rem;">Read the full guide &rarr;</span>
+            </div>
+          </a>
+
+          <!-- 14 -->
+          <a href="/learn/karmic-debt-numbers/14/" class="card-light overflow-hidden hover:border-violet/60 hover:-translate-y-0.5 transition-all duration-200 group block" style="text-decoration:none;">
+            <div style="position:relative;overflow:hidden;">
+              <img src="/images/learn/karmic-debt-numbers/Karmic Debt Number - The Debt of Freedom.webp" alt="Karmic Debt Number 14" class="w-full" style="aspect-ratio:2/3;object-fit:cover;display:block;width:100%;" loading="lazy" decoding="async" />
+            </div>
+            <div class="p-6">
+              <div style="display:flex;align-items:center;gap:1rem;margin-bottom:1rem;">
+                <div style="font-family:var(--font-family-heading);font-size:3rem;font-weight:700;color:var(--color-soft-gold);line-height:1;flex-shrink:0;">14</div>
+                <div>
+                  <h3 style="font-family:var(--font-family-heading);font-size:1.25rem;font-weight:700;color:var(--color-body-text);margin:0 0 0.2rem;" class="group-hover:text-violet transition-colors">The Debt of Freedom</h3>
+                  <p style="font-size:0.8rem;color:var(--color-muted-text);margin:0;">Reduces to 5 &middot; Lesson: responsible freedom</p>
+                </div>
+              </div>
+              <p style="color:var(--color-body-text);line-height:1.8;font-size:0.9rem;margin-bottom:0.75rem;">
+                Past-life pattern of misusing freedom or controlling others. The lesson is learning to use freedom responsibly — enjoying life without letting excess run the show.
+              </p>
+              <span style="display:inline-block;color:var(--color-soft-gold);font-weight:600;font-size:0.9rem;">Read the full guide &rarr;</span>
+            </div>
+          </a>
+
+          <!-- 16 -->
+          <a href="/learn/karmic-debt-numbers/16/" class="card-light overflow-hidden hover:border-violet/60 hover:-translate-y-0.5 transition-all duration-200 group block" style="text-decoration:none;">
+            <div style="position:relative;overflow:hidden;">
+              <img src="/images/learn/karmic-debt-numbers/Karmic Debt Number - The Debt of the Ego.webp" alt="Karmic Debt Number 16" class="w-full" style="aspect-ratio:2/3;object-fit:cover;display:block;width:100%;" loading="lazy" decoding="async" />
+            </div>
+            <div class="p-6">
+              <div style="display:flex;align-items:center;gap:1rem;margin-bottom:1rem;">
+                <div style="font-family:var(--font-family-heading);font-size:3rem;font-weight:700;color:var(--color-soft-gold);line-height:1;flex-shrink:0;">16</div>
+                <div>
+                  <h3 style="font-family:var(--font-family-heading);font-size:1.25rem;font-weight:700;color:var(--color-body-text);margin:0 0 0.2rem;" class="group-hover:text-violet transition-colors">The Debt of the Ego</h3>
+                  <p style="font-size:0.8rem;color:var(--color-muted-text);margin:0;">Reduces to 7 &middot; Lesson: authentic identity</p>
+                </div>
+              </div>
+              <p style="color:var(--color-body-text);line-height:1.8;font-size:0.9rem;margin-bottom:0.75rem;">
+                Past-life pattern of ego inflation or vanity. The lesson is the "tower moment" — ego structures need to fall so something more authentic can be built in their place.
+              </p>
+              <span style="display:inline-block;color:var(--color-soft-gold);font-weight:600;font-size:0.9rem;">Read the full guide &rarr;</span>
+            </div>
+          </a>
+
+          <!-- 19 -->
+          <a href="/learn/karmic-debt-numbers/19/" class="card-light overflow-hidden hover:border-violet/60 hover:-translate-y-0.5 transition-all duration-200 group block" style="text-decoration:none;">
+            <div style="position:relative;overflow:hidden;">
+              <img src="/images/learn/karmic-debt-numbers/Karmic Debt Number - The Debt of Independence.webp" alt="Karmic Debt Number 19" class="w-full" style="aspect-ratio:2/3;object-fit:cover;display:block;width:100%;" loading="lazy" decoding="async" />
+            </div>
+            <div class="p-6">
+              <div style="display:flex;align-items:center;gap:1rem;margin-bottom:1rem;">
+                <div style="font-family:var(--font-family-heading);font-size:3rem;font-weight:700;color:var(--color-soft-gold);line-height:1;flex-shrink:0;">19</div>
+                <div>
+                  <h3 style="font-family:var(--font-family-heading);font-size:1.25rem;font-weight:700;color:var(--color-body-text);margin:0 0 0.2rem;" class="group-hover:text-violet transition-colors">The Debt of Independence</h3>
+                  <p style="font-size:0.8rem;color:var(--color-muted-text);margin:0;">Reduces to 1 &middot; Lesson: interdependence</p>
+                </div>
+              </div>
+              <p style="color:var(--color-body-text);line-height:1.8;font-size:0.9rem;margin-bottom:0.75rem;">
+                Past-life pattern of selfishness or refusing to help others. The lesson is learning that true independence includes interdependence — you can stand alone, but the real strength is choosing not to.
+              </p>
+              <span style="display:inline-block;color:var(--color-soft-gold);font-weight:600;font-size:0.9rem;">Read the full guide &rarr;</span>
+            </div>
+          </a>
+        </div>
+      </section>
+
+      <!-- Are karmic debts bad? -->
+      <section id="reframe" style="margin-bottom:3rem;padding-top:2rem;border-top:1px solid var(--color-border);">
+        <h2 class="section-h2">Are karmic debts bad?</h2>
+
+        <p style="color:var(--color-body-text);line-height:1.8;margin-bottom:1rem;">
+          This is the question everyone asks, and the answer is no — but it deserves more than one word. Karmic debts aren't bad. They're specific. They're areas where the universe has turned up the difficulty setting because the growth in that area matters more for you than for someone without the debt.
+        </p>
+
+        <p style="color:var(--color-body-text);line-height:1.8;margin-bottom:1rem;">
+          Think of it this way: a person with no karmic debt in the area of work ethic might develop discipline naturally. Fine. But a person with karmic debt 13 who develops that same discipline? They earned it through repeated rounds of the lesson. The discipline is deeper, more conscious, more tested. The difficulty is the forge, not the punishment.
+        </p>
+
+        <p style="color:var(--color-body-text);line-height:1.8;margin-bottom:1rem;">
+          The word "debt" is part of the problem. It sounds financial — like you owe something and have to pay it back. A better way to think about it: you have a pattern that's asking to be completed. Not paid off. Completed. You're not settling a score with the universe. You're finishing something you started.
+        </p>
+
+        <p style="color:var(--color-body-text);line-height:1.8;">
+          And the strengths that come from working through karmic debt are genuine. The discipline of an integrated 13. The freedom-wisdom of an integrated 14. The spiritual depth of an integrated 16. The connected leadership of an integrated 19. These aren't consolation prizes. They're the point.
+        </p>
+      </section>
+
+      <!-- FAQ -->
+      <section id="faq" style="margin-bottom:3rem;padding-top:2rem;border-top:1px solid var(--color-border);">
+        <h2 class="section-h2" style="text-align:center;">Frequently Asked Questions</h2>
+        <div class="faq-list">
+          <details>
+            <summary>
+              What are karmic debt numbers in numerology?
+              <svg class="faq-chevron" xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="6 9 12 15 18 9"/></svg>
+            </summary>
+            <p class="faq-answer">Karmic debt numbers are 13, 14, 16, and 19. They appear in your numerology chart when a core number reduces through one of these four numbers on the way to its single digit. They indicate past-life patterns that are being worked through in this lifetime — not as punishment, but as intensified lessons in specific areas like effort, freedom, ego, or independence.</p>
+          </details>
+          <details>
+            <summary>
+              How do I find my karmic debt numbers?
+              <svg class="faq-chevron" xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="6 9 12 15 18 9"/></svg>
+            </summary>
+            <p class="faq-answer">Check each of your core numerology numbers — life path, expression, soul urge, and personality. If any of these reduce through 13, 14, 16, or 19 on the way to their single digit, you carry that karmic debt. For example, a life path that passes through 19 before reaching 1 carries the karmic debt of independence. Not every 1, 4, 5, or 7 has karmic debt — only those that reduce through these specific numbers.</p>
+          </details>
+          <details>
+            <summary>
+              Are karmic debt numbers bad?
+              <svg class="faq-chevron" xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="6 9 12 15 18 9"/></svg>
+            </summary>
+            <p class="faq-answer">No. Karmic debt numbers aren't bad luck or cosmic punishment. They're intensified lessons — areas where you have extra growth to do because of unresolved patterns. Think of them as the universe highlighting specific skills you're here to develop. The challenges are real, but so are the strengths that come from working through them.</p>
+          </details>
+          <details>
+            <summary>
+              Can you have more than one karmic debt number?
+              <svg class="faq-chevron" xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="6 9 12 15 18 9"/></svg>
+            </summary>
+            <p class="faq-answer">Yes. Different core numbers in your chart can each carry their own karmic debt. Your life path might reduce through 13 while your expression number reduces through 19. Having multiple karmic debts doesn't mean you're cosmically burdened — it means you have several specific areas where growth is being emphasized in this lifetime.</p>
+          </details>
+          <details>
+            <summary>
+              What's the difference between karmic debt and karmic lessons?
+              <svg class="faq-chevron" xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="6 9 12 15 18 9"/></svg>
+            </summary>
+            <p class="faq-answer">Karmic debt numbers (13, 14, 16, 19) relate to past-life patterns that need correcting — specific behaviors from previous incarnations that created an imbalance. Karmic lessons are identified by missing numbers in your birth name and represent qualities you didn't develop in past lives. Debts are about correcting old patterns. Lessons are about developing new skills.</p>
+          </details>
+          <details>
+            <summary>
+              Can karmic debt be cleared or resolved?
+              <svg class="faq-chevron" xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="6 9 12 15 18 9"/></svg>
+            </summary>
+            <p class="faq-answer">Yes. Karmic debt resolves through living the lesson — not through any ritual or shortcut. For 13, that means developing genuine discipline. For 14, learning responsible freedom. For 16, releasing ego attachment. For 19, embracing interdependence. The debt doesn't disappear from your chart, but its grip loosens as you integrate the lesson. The challenges become less intense and the strengths become more accessible.</p>
+          </details>
+        </div>
+      </section>
+
+      <!-- Related guides -->
+      <section id="related" style="margin-bottom:1rem;padding-top:2rem;border-top:1px solid var(--color-border);">
+        <h2 class="section-h2">Related guides</h2>
+        <div class="grid sm:grid-cols-2 md:grid-cols-3 gap-5">
+          <a href="/learn/life-path-number/" class="card-light overflow-hidden hover:border-violet/60 hover:-translate-y-0.5 transition-all duration-200 group block" style="text-decoration:none;">
+            <img src="/images/learn/Life Path Numbers - Tile.webp" alt="Life Path Numbers guide" class="w-full object-cover transition-transform duration-500 group-hover:scale-105" style="aspect-ratio:2/3;display:block;" loading="lazy" />
+            <div style="padding:1.25rem;">
+              <h3 class="font-bold text-body-text group-hover:text-violet transition-colors mb-1">Life Path Numbers</h3>
+              <p class="text-xs text-muted-text">Your core number — and where karmic debt often shows up first</p>
+            </div>
+          </a>
+          <a href="/learn/master-numbers/" class="card-light overflow-hidden hover:border-violet/60 hover:-translate-y-0.5 transition-all duration-200 group block" style="text-decoration:none;">
+            <img src="/images/learn/Master Numbers - Tile.webp" alt="Master Numbers guide" class="w-full object-cover transition-transform duration-500 group-hover:scale-105" style="aspect-ratio:2/3;display:block;" loading="lazy" />
+            <div style="padding:1.25rem;">
+              <h3 class="font-bold text-body-text group-hover:text-violet transition-colors mb-1">Master Numbers</h3>
+              <p class="text-xs text-muted-text">11, 22, 33 — the other special numbers in numerology</p>
+            </div>
+          </a>
+          <a href="/learn/expression-number/" class="card-light overflow-hidden hover:border-violet/60 hover:-translate-y-0.5 transition-all duration-200 group block" style="text-decoration:none;">
+            <img src="/images/learn/Expression Numbers - Tile.webp" alt="Expression Numbers guide" class="w-full object-cover transition-transform duration-500 group-hover:scale-105" style="aspect-ratio:2/3;display:block;" loading="lazy" />
+            <div style="padding:1.25rem;">
+              <h3 class="font-bold text-body-text group-hover:text-violet transition-colors mb-1">Expression Numbers</h3>
+              <p class="text-xs text-muted-text">Another place karmic debt can appear in your chart</p>
+            </div>
+          </a>
+        </div>
+      </section>
+
+    </div>
+  </article>
+
+    </div><!-- end main content column -->
+    <SidebarCTA />
+  </div><!-- end flex wrapper -->
+
+  <!-- Bottom CTA -->
+  <section style="background:var(--color-midnight);padding:5rem 1.5rem;text-align:center;">
+    <div style="max-width:36rem;margin:0 auto;">
+      <p class="p-label" style="color:rgba(196,162,78,0.7);margin-bottom:0.75rem;">Go Deeper</p>
+      <h2 style="font-family:var(--font-family-heading);font-size:clamp(1.75rem,4vw,2.5rem);font-weight:700;color:var(--color-starlight);margin:0 0 1rem;">Want to see your full chart?</h2>
+      <p style="color:rgba(255,255,255,0.65);font-size:1rem;line-height:1.75;margin-bottom:2rem;">Karmic debt is one piece of the picture. A full reading shows how it interacts with your life path, expression number, soul urge, and more.</p>
+      <a href="https://8904b5z1168aar3k8annz7y61n.hop.clickbank.net" rel="noopener sponsored" style="display:inline-block;background:var(--color-soft-gold);color:var(--color-midnight);font-weight:700;font-size:1rem;padding:0.9rem 2.25rem;border-radius:6px;text-decoration:none;letter-spacing:0.02em;transition:opacity 0.2s;" onmouseover="this.style.opacity='0.88'" onmouseout="this.style.opacity='1'">Get Your Free Reading</a>
+    </div>
+  </section>
+
+</Layout>

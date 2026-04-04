@@ -1,0 +1,312 @@
+---
+import Layout from '../../../../layouts/Layout.astro';
+import SidebarCTA from '../../../../components/SidebarCTA.astro';
+
+const otherAngel = [
+  { number: "111", title: "New Beginnings", href: "/learn/angel-numbers/111/", image: "/images/Angel Number 111.webp" },
+  { number: "222", title: "Trust & Balance", href: "/learn/angel-numbers/222/", image: "/images/Angel Number 222.webp" },
+  { number: "333", title: "Creative Expression", href: "/learn/angel-numbers/333/", image: "/images/Angel Number 333.webp" },
+  { number: "444", title: "Stability & Protection", href: "/learn/angel-numbers/444/", image: "/images/Angel Number 444.webp" },
+  { number: "555", title: "Major Change", href: "/learn/angel-numbers/555/", image: "/images/Angel Number 555.webp" },
+  { number: "666", title: "Realignment & Balance", href: "/learn/angel-numbers/666/", image: "/images/Angel Number 666.webp" },
+  { number: "777", title: "Spiritual Alignment", href: "/learn/angel-numbers/777/", image: "/images/Angel Number 777.webp" },
+  { number: "888", title: "Abundance & Power", href: "/learn/angel-numbers/888/", image: "/images/Angel Number 888.webp" },
+  { number: "999", title: "Completion & Release", href: "/learn/angel-numbers/999/", image: "/images/Angel Number 999.webp" },
+];
+
+const faqSchema = {
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "What does 000 mean in numerology?",
+      "acceptedAnswer": { "@type": "Answer", "text": "In numerology, 000 is the rarest and most spiritually charged angel number. Zero itself is unique, it represents both nothing and everything simultaneously. It's the void, the source, the infinite potential before anything has taken shape. 000 amplifies this energy three times, creating a complete reset signal. It's not about ending (that's 999) and it's not about starting something specific (that's 111). It's the space between, pure possibility, a blank canvas where any direction becomes available. 000 is the number of oneness and connection to the infinite." }
+    },
+    {
+      "@type": "Question",
+      "name": "Why do I keep seeing 000?",
+      "acceptedAnswer": { "@type": "Answer", "text": "You're at a threshold. 000 appears when you've reached a point where the old patterns no longer apply and the new ones haven't formed yet. It shows up after major endings, at life crossroads, during spiritual awakening, or when you feel directionless (which is actually the whole point). The emptiness isn't failure or loss; it's potential. You might see 000 when you're being asked to let go of limiting beliefs, to stop trying to control what comes next, or to connect more deeply with something larger than yourself. The universe is saying: the slate is clean. What do you want to create?" }
+    },
+    {
+      "@type": "Question",
+      "name": "Is 000 a real angel number?",
+      "acceptedAnswer": { "@type": "Answer", "text": "Yes, though it's the least common of the repeating angel numbers. Many people never see 000, which actually makes it more significant when you do. It's so rare that when it appears on a digital clock, a receipt, a page number, it carries extra weight. The rarity itself is part of the message. You're experiencing something uncommon. Something is shifting at a fundamental level. Zero can feel scary because it represents the unknown and the unformed, but in numerology, it's one of the most spiritually powerful numbers because it's closest to the source energy of the universe." }
+    },
+    {
+      "@type": "Question",
+      "name": "What does 000 mean in love?",
+      "acceptedAnswer": { "@type": "Answer", "text": "In love, 000 brings radical openness and no inherited patterns. If you're single, it means you're free to create something entirely new. Not based on past templates or old wounds. You're starting from a blank page. In existing relationships, 000 signals a reset where you can relate to each other fresh, without accumulated resentment or old patterns. It's an invitation to ask: who are we to each other right now, not who have we been? The vulnerability of zero, not knowing what comes next, is actually where real intimacy happens. You're both starting fresh." }
+    },
+    {
+      "@type": "Question",
+      "name": "What should I do when I see 000?",
+      "acceptedAnswer": { "@type": "Answer", "text": "Don't rush to fill the void. That's the whole point of 000: to sit in the openness without immediately closing it with a decision or action. Get present. Meditate. Notice what arises when you stop trying to control the narrative. Set intentions from a place of freedom, not fear. Ask yourself: if anything were possible and I knew I couldn't fail, what would I create? Listen. The space 000 creates is where you can actually hear what your deepest self wants, without the noise of old patterns. Then take aligned action, not desperate action, but clear action from that centered place." }
+    },
+    {
+      "@type": "Question",
+      "name": "What does 0 mean in numerology?",
+      "acceptedAnswer": { "@type": "Answer", "text": "Zero is the paradox number. In traditional numerology, it's considered the most spiritual digit because it contains infinite potential. Unlike other numbers which represent specific qualities or archetypes, zero is the absence that becomes presence, the void that contains everything. It's associated with the source energy, the divine, oneness, and wholeness. Zero amplifies whatever number it appears with, but on its own, it represents pure potential, the starting point, cycles, and the eternal. It's literally a circle, the symbol for completion and continuity and the infinite. When zero appears once you're at a turning point. When it appears three times, you're being called to a deeper spiritual opening." }
+    }
+  ]
+};
+
+const breadcrumbSchema = {
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://numerologyguides.blog/" },
+    { "@type": "ListItem", "position": 2, "name": "Learn", "item": "https://numerologyguides.blog/learn/" },
+    { "@type": "ListItem", "position": 3, "name": "Angel Numbers", "item": "https://numerologyguides.blog/learn/angel-numbers/" },
+    { "@type": "ListItem", "position": 4, "name": "000" }
+  ]
+};
+---
+
+<Layout
+  title="Angel Number 000 Meaning: Infinite Potential, Reset & Spiritual Connection"
+  description="Angel number 000 is the rarest angel number and represents pure potential, complete reset, and oneness. Learn what 000 means for your spiritual path, love, and life direction."
+  schema={[faqSchema, breadcrumbSchema]}
+>
+  <link slot="head" rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400;1,600&display=swap" />
+  <style>
+    :root { --font-family-heading: 'Cormorant Garamond', Georgia, serif; }
+    .p-label { font-size:0.7rem; letter-spacing:0.18em; text-transform:uppercase; color:var(--color-soft-gold); font-weight:600; }
+    .p-divider { width:48px; height:2px; background:var(--color-soft-gold); margin:0 auto; }
+    .section-h2 { font-family:var(--font-family-heading); font-size:clamp(1.6rem,3.5vw,2.25rem); font-weight:700; color:var(--color-body-text); margin:0 0 1.25rem; }
+    .faq-list details { border-top:1px solid var(--color-border); }
+    .faq-list details:last-child { border-bottom:1px solid var(--color-border); }
+    .faq-list summary { padding:1.3rem 0; cursor:pointer; display:flex; align-items:center; justify-content:space-between; gap:1rem; font-weight:600; font-size:1rem; color:var(--color-body-text); list-style:none; transition:color 0.2s; }
+    .faq-list summary::-webkit-details-marker { display:none; }
+    .faq-list details[open] summary { color:var(--color-violet); }
+    .faq-chevron { flex-shrink:0; transition:transform 0.25s; }
+    .faq-list details[open] .faq-chevron { transform:rotate(180deg); }
+    .faq-answer { padding-bottom:1.3rem; font-size:0.9rem; color:var(--color-muted-text); line-height:1.8; }
+  </style>
+
+  <!-- Breadcrumb -->
+  <nav style="background:var(--color-card-bg);border-bottom:1px solid var(--color-border);padding:0.75rem 1.5rem;" aria-label="Breadcrumb">
+    <div style="max-width:1100px;margin:0 auto;display:flex;align-items:center;gap:0.5rem;font-size:0.75rem;color:var(--color-muted-text);">
+      <a href="/" style="color:inherit;text-decoration:none;transition:color 0.2s;" onmouseover="this.style.color='var(--color-violet)'" onmouseout="this.style.color='var(--color-muted-text)'">Home</a>
+      <svg xmlns="http://www.w3.org/2000/svg" width="8" height="8" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="9 18 15 12 9 6"/></svg>
+      <a href="/learn/" style="color:inherit;text-decoration:none;transition:color 0.2s;" onmouseover="this.style.color='var(--color-violet)'" onmouseout="this.style.color='var(--color-muted-text)'">Learn</a>
+      <svg xmlns="http://www.w3.org/2000/svg" width="8" height="8" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="9 18 15 12 9 6"/></svg>
+      <a href="/learn/angel-numbers/" style="color:inherit;text-decoration:none;transition:color 0.2s;" onmouseover="this.style.color='var(--color-violet)'" onmouseout="this.style.color='var(--color-muted-text)'">Angel Numbers</a>
+      <svg xmlns="http://www.w3.org/2000/svg" width="8" height="8" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="9 18 15 12 9 6"/></svg>
+      <span style="color:var(--color-body-text);font-weight:600;">000</span>
+    </div>
+  </nav>
+
+  <!-- Hero -->
+  <section style="position:relative;overflow:hidden;background:var(--color-midnight,#0e0a1a);">
+    <div aria-hidden="true" style="position:absolute;inset:0;background-image:radial-gradient(circle,rgba(196,162,78,0.07) 1px,transparent 1px);background-size:28px 28px;pointer-events:none;z-index:0;"></div>
+    <div aria-hidden="true" style="position:absolute;top:-10%;left:-5%;width:55%;height:120%;background:radial-gradient(ellipse at center,rgba(124,92,191,0.18) 0%,transparent 70%);pointer-events:none;z-index:0;"></div>
+    <div style="position:relative;z-index:1;max-width:1100px;margin:0 auto;padding:4rem 1.5rem;display:flex;align-items:center;gap:3rem;flex-wrap:wrap;">
+      <div style="flex:1;min-width:280px;">
+        <p class="p-label" style="margin-bottom:1.1rem;color:var(--color-soft-gold);opacity:0.9;">Angel Number</p>
+        <div class="p-divider" style="margin:0 0 1.6rem;"></div>
+        <h1 style="font-family:var(--font-family-heading);font-size:clamp(2.8rem,6vw,5rem);font-weight:700;line-height:1.06;color:#f5f0e8;letter-spacing:-0.02em;margin:0 0 1.25rem;">
+          Angel Number <em style="color:#c8a8f0;font-style:italic;">000</em>: Infinite Potential &amp; New Cycles
+        </h1>
+        <p style="font-size:1.05rem;line-height:1.8;color:rgba(240,234,255,0.78);max-width:460px;margin:0 0 2rem;">The rarest of all angel numbers. 000 is the universe saying: everything is possible right now. Nothing is decided. You're standing at the threshold between what was and what could be.</p>
+        <div style="display:flex;flex-wrap:wrap;gap:0.875rem;">
+          <a href="https://8904b5z1168aar3k8annz7y61n.hop.clickbank.net" target="_blank" rel="noopener sponsored" style="display:inline-flex;align-items:center;gap:0.5rem;background:var(--color-violet);color:white;font-weight:700;font-size:1rem;padding:0.875rem 2rem;border-radius:6px;text-decoration:none;transition:background 0.2s,transform 0.15s;box-shadow:0 4px 20px rgba(124,92,191,0.45);" onmouseover="this.style.background='#6a4eab';this.style.transform='translateY(-1px)'" onmouseout="this.style.background='var(--color-violet)';this.style.transform='none'">Get My Free Reading →</a>
+          <a href="#meaning" style="display:inline-flex;align-items:center;gap:0.5rem;background:rgba(255,255,255,0.08);backdrop-filter:blur(6px);color:#f5f0e8;font-weight:600;font-size:1rem;padding:0.875rem 1.75rem;border-radius:6px;text-decoration:none;border:1.5px solid rgba(255,255,255,0.2);transition:border-color 0.2s,background 0.2s;" onmouseover="this.style.background='rgba(255,255,255,0.15)';this.style.borderColor='rgba(255,255,255,0.4)'" onmouseout="this.style.background='rgba(255,255,255,0.08)';this.style.borderColor='rgba(255,255,255,0.2)'">What It Means ↓</a>
+        </div>
+      </div>
+      <div style="flex-shrink:0;width:clamp(200px,28vw,300px);filter:drop-shadow(0 8px 40px rgba(196,162,78,0.25)) drop-shadow(0 2px 12px rgba(0,0,0,0.6));">
+        <img
+          src="/images/learn/angel-numbers/Angel Number - 000.webp"
+          alt="Angel Number 000 — Infinite Potential &amp; New Cycles"
+          fetchpriority="high"
+          style="width:100%;border-radius:6px;display:block;"
+        />
+      </div>
+    </div>
+  </section>
+
+  <!-- Author byline -->
+  <div style="background:var(--color-card-bg);padding:1.75rem 1.5rem;border-bottom:1px solid var(--color-border);">
+    <div style="max-width:1200px;margin:0 auto;display:flex;align-items:center;gap:1rem;">
+      <img src="/images/author-maddi-green.webp" alt="Maddie Greene" style="width:52px;height:52px;border-radius:50%;object-fit:cover;flex-shrink:0;border:2px solid var(--color-border);" />
+      <div>
+        <p style="font-size:0.95rem;font-weight:600;color:var(--color-body-text);margin:0;">Written by <strong>Maddie Greene</strong></p>
+        <p style="font-size:0.8rem;color:var(--color-muted-text);margin:0;">Numerology writer &amp; researcher</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="xl:flex xl:gap-6 xl:max-w-[1200px] xl:mx-auto xl:px-4">
+    <div class="xl:flex-1 xl:min-w-0">
+
+  <section style="background:var(--color-card-bg);padding:2.5rem 1.5rem 3rem;">
+    <div style="max-width:760px;margin:0 auto;">
+      <h2 class="section-h2">What does angel number 000 actually mean?</h2>
+      <p style="font-size:0.95rem;color:var(--color-muted-text);line-height:1.8;margin:0 0 1rem;">
+        Zero is the paradox number. In numerology, it's the only digit that represents nothing and everything at the same time. It's a circle — the symbol for wholeness, infinity, and completion. When zero appears once, you're at a turning point. When it appears three times as 000, you've entered the most open and undefined space in the entire number system.
+      </p>
+      <p style="font-size:0.95rem;color:var(--color-muted-text);line-height:1.8;margin:0 0 1rem;">
+        Most angel numbers tell you something specific: move forward, rebalance, release the past, step into power. 000 is different. It doesn't tell you what to do. It tells you that anything is possible. And right now, you get to decide.
+      </p>
+      <p style="font-size:0.95rem;color:var(--color-muted-text);line-height:1.8;margin:0 0 1rem;">
+        This is the blank canvas number. The moment before creation. 000 appears when you've reached a complete reset point. Not the end of something (that's 999) and not the beginning of something specific (that's 111). It's the space between. The void that holds infinite potential. It's spiritually the closest you can get to source energy — to the oneness that everything emerges from.
+      </p>
+      <p style="font-size:0.95rem;color:var(--color-muted-text);line-height:1.8;margin:0 0 1.5rem;">
+        The thing that makes 000 so rare is that most people's lives are full of momentum, direction, and structure. 000 only shows up when all that has cleared. You've completed a cycle. You've released old patterns. You're standing in emptiness. And emptiness, it turns out, is where the most freedom lives.
+      </p>
+      <div style="background:var(--color-light-bg);border:1px solid var(--color-border);border-left:4px solid var(--color-soft-gold);border-radius:8px;padding:1.25rem 1.5rem;">
+        <p style="font-size:0.9rem;color:var(--color-muted-text);line-height:1.8;margin:0;">
+          <strong style="color:var(--color-body-text);">The core message of 000:</strong> You're at a zero point. The slate is completely clean. No inheritance from the past, no predetermined future. Everything is available to you. The question isn't "what will happen?" It's "what do you want to create?"
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <section style="background:white;padding:3rem 1.5rem;">
+    <div style="max-width:760px;margin:0 auto;">
+      <h2 class="section-h2">When does 000 show up?</h2>
+      <div style="display:flex;flex-direction:column;gap:1rem;">
+        <div class="card-light p-5">
+          <h3 style="font-weight:700;color:var(--color-body-text);margin:0 0 0.5rem;">After a major ending</h3>
+          <p style="font-size:0.875rem;color:var(--color-muted-text);line-height:1.7;margin:0;">The relationship ended. The job is over. The chapter closed. 000 appears after things have finished falling apart, after you've processed the grief, when you're finally ready to open to what's next. Not to rush in, just to be open.</p>
+        </div>
+        <div class="card-light p-5">
+          <h3 style="font-weight:700;color:var(--color-body-text);margin:0 0 0.5rem;">At a genuine crossroads</h3>
+          <p style="font-size:0.875rem;color:var(--color-muted-text);line-height:1.7;margin:0;">You have no idea which way to go. Left or right. Stay or go. Career change or status quo. Neither option feels predetermined, both feel genuinely possible. That's 000 territory. You're at the point where you actually get to choose.</p>
+        </div>
+        <div class="card-light p-5">
+          <h3 style="font-weight:700;color:var(--color-body-text);margin:0 0 0.5rem;">During spiritual awakening</h3>
+          <p style="font-size:0.875rem;color:var(--color-muted-text);line-height:1.7;margin:0;">You're waking up to a larger reality. Old beliefs are dissolving. You're feeling less separate, more connected to something vast. 000 appears when you're ready to drop into the infinite — when individual identity is becoming less interesting than the universal energy beneath it.</p>
+        </div>
+        <div class="card-light p-5">
+          <h3 style="font-weight:700;color:var(--color-body-text);margin:0 0 0.5rem;">When feeling blank or directionless</h3>
+          <p style="font-size:0.875rem;color:var(--color-muted-text);line-height:1.7;margin:0;">You feel empty. Lost. Like you don't know who you are or what you're supposed to do. This can feel scary. Until you realize that emptiness is the whole point. You're not broken. You're being asked to sit in the openness without rushing to fill it.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section style="background:var(--color-card-bg);padding:3rem 1.5rem;">
+    <div style="max-width:760px;margin:0 auto;">
+      <h2 class="section-h2">000 in love &amp; relationships</h2>
+      <p style="font-size:0.95rem;color:var(--color-muted-text);line-height:1.8;margin:0 0 1rem;">
+        Zero energy in love is radical openness. No baggage, no inherited patterns, no karmic debt. It's the cleanest possible slate.
+      </p>
+      <p style="font-size:0.95rem;color:var(--color-muted-text);line-height:1.8;margin:0 0 1rem;">
+        <strong style="color:var(--color-body-text);">If you're single:</strong> 000 means you have zero relationship blueprints to work from right now. The way your parents loved, the way past partners hurt you, the beliefs you picked up along the way — they've all been stripped away. You're free to create something entirely new. Not based on old templates. Not born from old wounds. Something uniquely yours. The emptiness here is the gift.
+      </p>
+      <p style="font-size:0.95rem;color:var(--color-muted-text);line-height:1.8;margin:0 0 1rem;">
+        <strong style="color:var(--color-body-text);">If you're in a relationship:</strong> 000 is the reset button. It says: who are we to each other right now, not who have we been? Forget the accumulated resentments, the old arguments, the patterns that formed three years ago. You get to relate to each other fresh. No history, just presence. It's vulnerable because you don't know what will happen next. But that vulnerability is where real intimacy lives.
+      </p>
+      <p style="font-size:0.95rem;color:var(--color-muted-text);line-height:1.8;margin:0;">
+        <strong style="color:var(--color-body-text);">The 000 relationship lesson:</strong> Love doesn't need a blueprint. It just needs two people willing to be present, without the noise of what used to be.
+      </p>
+    </div>
+  </section>
+
+  <section style="background:white;padding:3rem 1.5rem;">
+    <div style="max-width:760px;margin:0 auto;">
+      <h2 class="section-h2">000 in career &amp; life direction</h2>
+      <p style="font-size:0.95rem;color:var(--color-muted-text);line-height:1.8;margin:0 0 1rem;">
+        When 000 shows up around your career, it means you're at a genuine blank-slate moment. Everything is available. Nothing is predetermined.
+      </p>
+      <p style="font-size:0.95rem;color:var(--color-muted-text);line-height:1.8;margin:0 0 1rem;">
+        You might have just left a job that no longer fit. Or you're stepping out of an identity you've outgrown. Or you've completed a major project and you're asking: what now? 000 is saying: you have zero obligations to your past self. You don't have to do what you've always done.
+      </p>
+      <p style="font-size:0.95rem;color:var(--color-muted-text);line-height:1.8;margin:0 0 1rem;">
+        The key here is not to panic and grab the first thing that looks like stability. The whole point of 000 is that you're being asked to stay in the openness long enough to actually hear what calls you. Most people rush to fill the void because the void feels scary. But the void is where possibility lives.
+      </p>
+      <p style="font-size:0.95rem;color:var(--color-muted-text);line-height:1.8;margin:0;">
+        Career-wise, 000 favors completely new directions rather than incremental changes. Starting from scratch isn't something to fear. It's an opportunity. You're not stuck in a groove. You're not repeating a tired pattern. You're genuinely free to go anywhere.
+      </p>
+    </div>
+  </section>
+
+  <!-- What to do section -->
+  <section style="background:var(--color-light-bg);padding:3rem 1.5rem;">
+    <div style="max-width:760px;margin:0 auto;">
+      <h2 class="section-h2" style="text-align:center;">What to do when you see 000</h2>
+      <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:1rem;">
+        <div style="background:white;border:1px solid var(--color-border);border-radius:12px;padding:1.25rem 1.5rem;">
+          <div style="font-size:0.8rem;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;color:var(--color-soft-gold);margin-bottom:0.5rem;">Sit in the openness</div>
+          <p style="font-size:0.9rem;color:var(--color-muted-text);line-height:1.7;margin:0;">Don't rush to decide or act. The whole point of 000 is the emptiness. Be still. Notice what it feels like to have no obligation to the past.</p>
+        </div>
+        <div style="background:white;border:1px solid var(--color-border);border-radius:12px;padding:1.25rem 1.5rem;">
+          <div style="font-size:0.8rem;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;color:var(--color-soft-gold);margin-bottom:0.5rem;">Meditate or get present</div>
+          <p style="font-size:0.9rem;color:var(--color-muted-text);line-height:1.7;margin:0;">Zero is the most spiritual number. Use this moment to connect deeply with something larger than yourself. Listen without agenda.</p>
+        </div>
+        <div style="background:white;border:1px solid var(--color-border);border-radius:12px;padding:1.25rem 1.5rem;">
+          <div style="font-size:0.8rem;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;color:var(--color-soft-gold);margin-bottom:0.5rem;">Set intentions from freedom</div>
+          <p style="font-size:0.9rem;color:var(--color-muted-text);line-height:1.7;margin:0;">Not from fear or desperation. Ask: if anything were possible and I knew I couldn't fail, what would I create? Let that answer come from the openness.</p>
+        </div>
+        <div style="background:white;border:1px solid var(--color-border);border-radius:12px;padding:1.25rem 1.5rem;">
+          <div style="font-size:0.8rem;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;color:var(--color-soft-gold);margin-bottom:0.5rem;">Then move aligned</div>
+          <p style="font-size:0.9rem;color:var(--color-muted-text);line-height:1.7;margin:0;">Once clarity comes, take clear action. Not desperate action. Not following old patterns. Just the obvious next step from that centered place.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FAQ -->
+  <section style="background:white;padding:3rem 1.5rem;">
+    <div style="max-width:760px;margin:0 auto;">
+      <h2 class="section-h2" style="text-align:center;">Common questions about 000</h2>
+      <div class="faq-list">
+        {faqSchema.mainEntity.map(item => (
+          <details>
+            <summary>
+              {item.name}
+              <svg class="faq-chevron" xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="6 9 12 15 18 9"/></svg>
+            </summary>
+            <div class="faq-answer">{item.acceptedAnswer.text}</div>
+          </details>
+        ))}
+      </div>
+    </div>
+  </section>
+
+    </div>
+    <SidebarCTA />
+  </div>
+
+  <!-- Other angel numbers -->
+  <section style="background:var(--color-light-bg);padding:3rem 1.5rem;border-top:1px solid var(--color-border);">
+    <div style="max-width:1100px;margin:0 auto;">
+      <p class="p-label" style="text-align:center;margin-bottom:0.75rem;">Explore More</p>
+      <h2 style="font-family:var(--font-family-heading);font-size:clamp(1.5rem,3vw,2rem);font-weight:700;color:var(--color-body-text);text-align:center;margin:0 0 2rem;">Other Angel Numbers</h2>
+      <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(140px,1fr));gap:1rem;">
+        {otherAngel.map(an => (
+          <a href={an.href} style="text-decoration:none;display:block;" class="group">
+            <div style="overflow:hidden;border-radius:8px;border:1px solid var(--color-border);transition:border-color 0.2s,transform 0.2s;background:white;" class="group-hover:border-violet/60 group-hover:-translate-y-1">
+              <img
+                src={`/images/learn/angel-numbers/Angel Number - ${an.number}.webp`}
+                alt={`Angel Number ${an.number}`}
+                loading="lazy"
+                decoding="async"
+                style="width:100%;aspect-ratio:2/3;object-fit:cover;display:block;transition:transform 0.5s;"
+                class="group-hover:scale-105"
+              />
+              <div style="padding:0.75rem 0.5rem;text-align:center;">
+                <div style="font-family:var(--font-family-heading);font-size:1.1rem;font-weight:700;color:var(--color-body-text);margin-bottom:0.2rem;" class="group-hover:text-violet transition-colors">{an.number}</div>
+                <p style="font-size:0.72rem;color:var(--color-muted-text);line-height:1.4;margin:0;">{an.title}</p>
+              </div>
+            </div>
+          </a>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- Bottom CTA -->
+  <section style="background:var(--color-midnight);padding:5.5rem 1.5rem;text-align:center;position:relative;overflow:hidden;">
+    <div style="position:absolute;inset:0;background:radial-gradient(ellipse at 50% 120%,rgba(124,92,191,0.18) 0%,transparent 70%);pointer-events:none;"></div>
+    <div style="position:relative;z-index:1;max-width:560px;margin:0 auto;">
+      <p class="p-label">Numerologist.com</p>
+      <div class="p-divider" style="margin:1rem auto;"></div>
+      <h2 style="font-family:var(--font-family-heading);font-size:clamp(1.75rem,4vw,2.5rem);font-weight:700;color:var(--color-starlight);margin:0 0 1.25rem;line-height:1.2;">Want to know what your numbers say about you?</h2>
+      <p style="font-size:0.95rem;color:rgba(235,232,247,0.5);line-height:1.7;margin:0 0 2rem;">Angel numbers tell you what's happening now. A full numerology reading tells you why and what's coming next. Get a free personalized video reading based on your name and birth date.</p>
+      <a href="https://8904b5z1168aar3k8annz7y61n.hop.clickbank.net" target="_blank" rel="noopener sponsored" style="display:inline-block;background:var(--color-soft-gold);color:var(--color-midnight);font-weight:700;font-size:1rem;padding:1rem 2rem;border-radius:8px;text-decoration:none;letter-spacing:0.02em;">Get your free reading at Numerologist.com →</a>
+    </div>
+  </section>
+
+</Layout>

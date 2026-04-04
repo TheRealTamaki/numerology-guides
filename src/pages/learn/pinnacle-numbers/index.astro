@@ -1,0 +1,415 @@
+---
+import Layout from '../../../layouts/Layout.astro';
+import SidebarCTA from '../../../components/SidebarCTA.astro';
+
+const faqSchema = {
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "What are pinnacle numbers in numerology?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Pinnacle numbers are four numbers calculated from your birth date that map out the major phases of your life. Each pinnacle represents a different cycle with its own theme, energy, and opportunities. Think of them as the seasons of your life, each one has a purpose, and they unfold in a specific order based on your date of birth."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "How do I calculate my pinnacle numbers?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "You need your birth month, day, and year, each reduced to a single digit (or master number). First Pinnacle = month + day. Second Pinnacle = day + year. Third Pinnacle = first pinnacle + second pinnacle. Fourth Pinnacle = month + year. Reduce each sum to a single digit unless it's 11, 22, or 33."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "How long does each pinnacle cycle last?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "The first pinnacle lasts from birth until age 36 minus your life path number. The second and third pinnacles each last 9 years. The fourth pinnacle runs from the end of the third until the end of your life. So for a life path 1, the first pinnacle ends at age 35. For a life path 9, it ends at age 27."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "What happens when I change pinnacle cycles?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Pinnacle transitions often feel like a major shift in your life direction. You might change careers, move, end or start relationships, or feel a strong pull toward something new. The transition isn't always dramatic on the outside, but internally you'll feel the energy change. It's like the background music of your life switches to a different key."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Can pinnacle numbers be master numbers?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Yes. If the sum of your pinnacle calculation adds to 11, 22, or 33, you don't reduce it further. A master number pinnacle carries more intense energy during that cycle. It means that phase of your life has amplified spiritual potential, and usually amplified challenges to match."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "What's the difference between pinnacle numbers and personal year numbers?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Personal year numbers change every year and tell you about the energy of that specific 12-month period. Pinnacle numbers cover much longer stretches, decades in some cases, and describe the broader theme of an entire life phase. Your personal year operates within your current pinnacle. Think of pinnacles as the chapter and personal years as the pages within it."
+      }
+    }
+  ]
+};
+
+const breadcrumbSchema = {
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://numerologyguides.blog/" },
+    { "@type": "ListItem", "position": 2, "name": "Learn", "item": "https://numerologyguides.blog/learn/" },
+    { "@type": "ListItem", "position": 3, "name": "Pinnacle Numbers" }
+  ]
+};
+---
+
+<Layout
+  schema={[faqSchema, breadcrumbSchema]}
+  title="Pinnacle Numbers in Numerology: Your 4 Life Cycles Explained | Numerology Guides"
+  description="Pinnacle numbers reveal the four major phases of your life, each with its own theme and energy. Learn how to calculate your pinnacles, what each cycle means, and how to work with them."
+>
+
+  <link slot="head" rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400;1,600&display=swap" />
+  <style>
+    :root { --font-family-heading: 'Cormorant Garamond', Georgia, serif; }
+    .p-label { font-size:0.7rem; letter-spacing:0.18em; text-transform:uppercase; color:var(--color-soft-gold); font-weight:600; }
+    .p-divider { width:48px; height:2px; background:var(--color-soft-gold); margin:0 auto; }
+    .section-h2 { font-family:var(--font-family-heading); font-size:clamp(1.6rem,3.5vw,2.25rem); font-weight:700; color:var(--color-body-text); margin:0 0 1.25rem; }
+    .faq-list details { border-top:1px solid var(--color-border); }
+    .faq-list details:last-child { border-bottom:1px solid var(--color-border); }
+    .faq-list summary { padding:1.3rem 0; cursor:pointer; display:flex; align-items:center; justify-content:space-between; gap:1rem; font-weight:600; font-size:1rem; color:var(--color-body-text); list-style:none; transition:color 0.2s; }
+    .faq-list summary::-webkit-details-marker { display:none; }
+    .faq-list details[open] summary { color:var(--color-violet); }
+    .faq-chevron { flex-shrink:0; transition:transform 0.25s; }
+    .faq-list details[open] .faq-chevron { transform:rotate(180deg); }
+    .faq-answer { padding-bottom:1.3rem; font-size:0.9rem; color:var(--color-muted-text); line-height:1.8; }
+  </style>
+
+  <!-- Breadcrumb -->
+  <nav style="background:var(--color-card-bg);border-bottom:1px solid var(--color-border);padding:0.75rem 1.5rem;" aria-label="Breadcrumb">
+    <div style="max-width:1100px;margin:0 auto;display:flex;align-items:center;gap:0.5rem;font-size:0.75rem;color:var(--color-muted-text);">
+      <a href="/" style="color:var(--color-muted-text);text-decoration:none;transition:color 0.2s;" onmouseover="this.style.color='var(--color-violet)'" onmouseout="this.style.color='var(--color-muted-text)'">Home</a>
+      <svg xmlns="http://www.w3.org/2000/svg" width="8" height="8" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="9 18 15 12 9 6"/></svg>
+      <a href="/learn/" style="color:var(--color-muted-text);text-decoration:none;transition:color 0.2s;" onmouseover="this.style.color='var(--color-violet)'" onmouseout="this.style.color='var(--color-muted-text)'">Learn</a>
+      <svg xmlns="http://www.w3.org/2000/svg" width="8" height="8" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="9 18 15 12 9 6"/></svg>
+      <span style="color:var(--color-body-text);font-weight:600;">Pinnacle Numbers</span>
+    </div>
+  </nav>
+
+  <!-- Hero -->
+  <section style="position:relative;overflow:hidden;padding:6rem 1.5rem 5rem;text-align:center;min-height:480px;display:flex;align-items:center;">
+    <div style="position:absolute;inset:0;z-index:0;">
+      <img
+        src="/images/learn/Pinnacle Numbers Pillar Hero.webp"
+        alt=""
+        aria-hidden="true"
+        fetchpriority="high"
+        style="width:100%;height:100%;object-fit:cover;object-position:center 30%;display:block;"
+      />
+      <div style="position:absolute;inset:0;background:linear-gradient(to bottom, rgba(14,10,26,0.75) 0%, rgba(14,10,26,0.58) 45%, rgba(14,10,26,0.80) 100%);"></div>
+      <div style="position:absolute;inset:0;background-image:radial-gradient(circle,rgba(196,162,78,0.08) 1px,transparent 1px);background-size:28px 28px;pointer-events:none;"></div>
+    </div>
+    <div aria-hidden="true" style="position:absolute;left:-1rem;top:0.5rem;z-index:1;font-family:var(--font-family-heading);font-size:clamp(10rem,20vw,16rem);font-weight:700;line-height:1;color:transparent;-webkit-text-stroke:1px rgba(196,162,78,0.18);pointer-events:none;user-select:none;">P</div>
+    <div aria-hidden="true" style="position:absolute;right:-0.5rem;bottom:-1.5rem;z-index:1;font-family:var(--font-family-heading);font-size:clamp(12rem,24vw,20rem);font-weight:700;line-height:1;color:transparent;-webkit-text-stroke:1px rgba(124,92,191,0.15);pointer-events:none;user-select:none;">N</div>
+    <div style="position:relative;z-index:2;max-width:760px;margin:0 auto;width:100%;">
+      <p class="p-label" style="margin-bottom:1.25rem;color:var(--color-soft-gold);opacity:0.9;">Life Cycles</p>
+      <div class="p-divider" style="margin-bottom:1.75rem;"></div>
+      <h1 style="font-family:var(--font-family-heading);font-size:clamp(2.6rem,6.5vw,4.75rem);font-weight:700;line-height:1.08;color:#f5f0e8;letter-spacing:-0.02em;margin:0 0 1.5rem;text-shadow:0 2px 20px rgba(14,10,26,0.6);">
+        Pinnacle Numbers in<br><em style="color:#c8a8f0;font-style:italic;">Numerology</em>
+      </h1>
+      <p style="font-size:1.05rem;line-height:1.8;color:rgba(240,234,255,0.82);max-width:560px;margin:0 auto 2.5rem;text-shadow:0 1px 8px rgba(14,10,26,0.5);">
+        Your life has four major cycles, each with its own theme. Pinnacle numbers tell you what energy is running in the background during each phase — and what opportunities are on the table.
+      </p>
+      <div style="display:flex;flex-wrap:wrap;gap:0.875rem;justify-content:center;">
+        <a href="https://8904b5z1168aar3k8annz7y61n.hop.clickbank.net" target="_blank" rel="noopener sponsored" style="display:inline-flex;align-items:center;gap:0.5rem;background:var(--color-violet);color:white;font-weight:700;font-size:1rem;padding:0.875rem 2rem;border-radius:6px;text-decoration:none;transition:background 0.2s,transform 0.15s;box-shadow:0 4px 20px rgba(124,92,191,0.45);" onmouseover="this.style.background='#6a4eab';this.style.transform='translateY(-1px)'" onmouseout="this.style.background='var(--color-violet)';this.style.transform='none'">Get My Free Reading →</a>
+        <a href="#what" style="display:inline-flex;align-items:center;gap:0.5rem;background:rgba(255,255,255,0.08);backdrop-filter:blur(6px);color:#f5f0e8;font-weight:600;font-size:1rem;padding:0.875rem 1.75rem;border-radius:6px;text-decoration:none;border:1.5px solid rgba(255,255,255,0.2);transition:border-color 0.2s,background 0.2s;" onmouseover="this.style.background='rgba(255,255,255,0.15)';this.style.borderColor='rgba(255,255,255,0.4)'" onmouseout="this.style.background='rgba(255,255,255,0.08)';this.style.borderColor='rgba(255,255,255,0.2)'">Explore ↓</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Author byline -->
+  <div style="background:var(--color-light-bg);padding:1.25rem 1.5rem;">
+    <div style="max-width:1100px;margin:0 auto;display:flex;align-items:center;gap:1rem;">
+      <img src="/images/author-maddi-green.webp" alt="Maddie Greene" style="width:2.75rem;height:2.75rem;border-radius:50%;object-fit:cover;flex-shrink:0;border:2px solid rgba(124,92,191,0.2);" />
+      <div>
+        <p style="color:var(--color-body-text);font-size:0.875rem;font-weight:600;margin:0 0 0.1rem;">Written by <strong>Maddie Greene</strong></p>
+        <p style="color:var(--color-muted-text);font-size:0.78rem;margin:0;">Numerology writer &amp; researcher</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- Content + Sticky sidebar wrapper -->
+  <div class="xl:flex xl:gap-6 xl:max-w-[1200px] xl:mx-auto xl:px-4">
+    <!-- Main content column -->
+    <div class="xl:flex-1 xl:min-w-0">
+
+  <article style="padding:2.5rem 1.5rem 3rem;background:white;">
+    <div style="max-width:48rem;margin:0 auto;">
+
+      <!-- What are pinnacle numbers -->
+      <section id="what" style="margin-bottom:3rem;">
+        <h2 class="section-h2">What are pinnacle numbers?</h2>
+
+        <p style="color:var(--color-body-text);line-height:1.8;margin-bottom:1rem;">
+          Your life isn't one long stretch of the same energy. It moves in phases. Pinnacle numbers are how numerology maps those phases — four distinct cycles, each with its own number, its own theme, and its own set of opportunities.
+        </p>
+
+        <p style="color:var(--color-body-text);line-height:1.8;margin-bottom:1rem;">
+          Here's the thing. Your <a href="/learn/life-path-number/" style="color:var(--color-soft-gold);">life path number</a> stays the same your whole life. It's the big picture. But within that big picture, the energy shifts. Your first pinnacle might be about independence and learning to stand on your own. Your second might be about building relationships. Your third could push you toward your peak personal power. And your fourth is where it all integrates.
+        </p>
+
+        <p style="color:var(--color-body-text);line-height:1.8;margin-bottom:1rem;">
+          Think of pinnacles as the seasons of your life, except they're not equal in length. The first one covers your formative years, sometimes well into your thirties. The middle two are nine years each. And the fourth runs from late middle age onward.
+        </p>
+
+        <p style="color:var(--color-body-text);line-height:1.8;">
+          What makes pinnacle numbers practical is timing. When you know what cycle you're in and what number is running, you can work with that energy instead of against it. A pinnacle 4 isn't the time to chase freedom and spontaneity. It's the time to build. A pinnacle 5 isn't the time to settle into routine. It's the time to move. The number tells you what the energy supports.
+        </p>
+      </section>
+
+      <!-- How to calculate -->
+      <section id="calculate" style="margin-bottom:3rem;padding-top:2rem;border-top:1px solid var(--color-border);">
+        <h2 class="section-h2">How to calculate your pinnacle numbers</h2>
+
+        <p style="color:var(--color-body-text);line-height:1.8;margin-bottom:1.5rem;">
+          You need three things: your birth month, birth day, and birth year. Reduce each one to a single digit first (unless it's a master number — 11, 22, or 33).
+        </p>
+
+        <div class="card-light p-6" style="margin-bottom:1rem;">
+          <h3 style="font-family:var(--font-family-heading);font-weight:700;color:var(--color-body-text);margin:0 0 0.75rem;">The four pinnacle formulas</h3>
+          <ul style="list-style:none;padding:0;margin:0;display:flex;flex-direction:column;gap:0.4rem;">
+            <li style="color:var(--color-body-text);font-size:0.9rem;"><strong>First Pinnacle</strong> = Birth Month + Birth Day (reduced)</li>
+            <li style="color:var(--color-body-text);font-size:0.9rem;"><strong>Second Pinnacle</strong> = Birth Day + Birth Year (reduced)</li>
+            <li style="color:var(--color-body-text);font-size:0.9rem;"><strong>Third Pinnacle</strong> = First Pinnacle + Second Pinnacle (reduced)</li>
+            <li style="color:var(--color-body-text);font-size:0.9rem;"><strong>Fourth Pinnacle</strong> = Birth Month + Birth Year (reduced)</li>
+          </ul>
+        </div>
+
+        <div class="card-light p-6" style="margin-bottom:1rem;">
+          <h3 style="font-family:var(--font-family-heading);font-weight:700;color:var(--color-body-text);margin:0 0 0.75rem;">Timing: when each cycle starts and ends</h3>
+          <ul style="list-style:none;padding:0;margin:0;display:flex;flex-direction:column;gap:0.4rem;">
+            <li style="color:var(--color-body-text);font-size:0.9rem;"><strong>First Pinnacle:</strong> Birth to age (36 minus your life path number)</li>
+            <li style="color:var(--color-body-text);font-size:0.9rem;"><strong>Second Pinnacle:</strong> 9 years after the first ends</li>
+            <li style="color:var(--color-body-text);font-size:0.9rem;"><strong>Third Pinnacle:</strong> 9 years after the second ends</li>
+            <li style="color:var(--color-body-text);font-size:0.9rem;"><strong>Fourth Pinnacle:</strong> From the end of the third to the rest of your life</li>
+          </ul>
+        </div>
+
+        <div class="card-light p-6">
+          <h3 style="font-family:var(--font-family-heading);font-weight:700;color:var(--color-body-text);margin:0 0 0.75rem;">Worked example: March 15, 1990</h3>
+          <p style="color:var(--color-body-text);font-size:0.9rem;line-height:1.7;margin:0 0 0.75rem;">
+            First, find the life path number: 3 + 1 + 5 + 1 + 9 + 9 + 0 = 28. Then 2 + 8 = 10. Then 1 + 0 = <strong>1</strong>.
+          </p>
+          <p style="color:var(--color-body-text);font-size:0.9rem;line-height:1.7;margin:0 0 0.75rem;">
+            Month = 3. Day = 1 + 5 = 6. Year = 1 + 9 + 9 + 0 = 19, then 1 + 9 = 10, then 1 + 0 = 1.
+          </p>
+          <ul style="list-style:none;padding:0;margin:0 0 0.75rem;display:flex;flex-direction:column;gap:0.4rem;">
+            <li style="color:var(--color-body-text);font-size:0.9rem;"><strong>First Pinnacle:</strong> 3 + 6 = <strong>9</strong>, lasts from birth to age 35 (36 − 1)</li>
+            <li style="color:var(--color-body-text);font-size:0.9rem;"><strong>Second Pinnacle:</strong> 6 + 1 = <strong>7</strong>, lasts from age 35 to 44</li>
+            <li style="color:var(--color-body-text);font-size:0.9rem;"><strong>Third Pinnacle:</strong> 9 + 7 = 16, then 1 + 6 = <strong>7</strong>, lasts from age 44 to 53</li>
+            <li style="color:var(--color-body-text);font-size:0.9rem;"><strong>Fourth Pinnacle:</strong> 3 + 1 = <strong>4</strong>, lasts from age 53 onward</li>
+          </ul>
+          <p style="color:var(--color-muted-text);font-size:0.85rem;line-height:1.7;margin:0;">
+            So this person spends their first 35 years in a 9 energy (completion, humanitarianism), then shifts into two back-to-back 7 cycles (introspection, spiritual growth), and finishes with a 4 (building, stability). That's a very specific life arc, and knowing it in advance changes how you approach each phase.
+          </p>
+        </div>
+      </section>
+
+      <!-- The four pinnacle cycles -->
+      <section id="cycles" style="margin-bottom:3rem;padding-top:2rem;border-top:1px solid var(--color-border);">
+        <h2 class="section-h2">The four pinnacle cycles</h2>
+
+        <div style="display:flex;flex-direction:column;gap:1.5rem;">
+          <div class="card-light p-6">
+            <div style="display:flex;align-items:center;gap:1rem;margin-bottom:1rem;">
+              <div style="font-family:var(--font-family-heading);font-size:2.5rem;font-weight:700;color:var(--color-soft-gold);line-height:1;flex-shrink:0;">1st</div>
+              <div>
+                <h3 style="font-family:var(--font-family-heading);font-size:1.2rem;font-weight:700;color:var(--color-body-text);margin:0 0 0.2rem;">First Pinnacle — The Formative Years</h3>
+                <p style="font-size:0.8rem;color:var(--color-muted-text);margin:0;">Birth to approximately your mid-thirties</p>
+              </div>
+            </div>
+            <p style="color:var(--color-body-text);line-height:1.8;font-size:0.9rem;margin-bottom:0.75rem;">
+              This is the longest pinnacle for most people, and it covers the years when you're figuring out who you are. Childhood, adolescence, early adulthood — all of it falls under your first pinnacle's energy.
+            </p>
+            <p style="color:var(--color-body-text);line-height:1.8;font-size:0.9rem;">
+              The number here shapes your early experiences and the lessons you learn before you even know you're learning them. A first pinnacle 1 means you were pushed toward independence early. A first pinnacle 6 means family and responsibility dominated your formative years. You don't choose this energy. You grow up inside it.
+            </p>
+          </div>
+
+          <div class="card-light p-6">
+            <div style="display:flex;align-items:center;gap:1rem;margin-bottom:1rem;">
+              <div style="font-family:var(--font-family-heading);font-size:2.5rem;font-weight:700;color:var(--color-soft-gold);line-height:1;flex-shrink:0;">2nd</div>
+              <div>
+                <h3 style="font-family:var(--font-family-heading);font-size:1.2rem;font-weight:700;color:var(--color-body-text);margin:0 0 0.2rem;">Second Pinnacle — Building &amp; Connecting</h3>
+                <p style="font-size:0.8rem;color:var(--color-muted-text);margin:0;">9 years after the first ends</p>
+              </div>
+            </div>
+            <p style="color:var(--color-body-text);line-height:1.8;font-size:0.9rem;margin-bottom:0.75rem;">
+              The second pinnacle is where you take what you learned in the first cycle and start applying it. This is often the phase where careers solidify, relationships deepen, and you start building the life you actually want rather than the one you inherited.
+            </p>
+            <p style="color:var(--color-body-text);line-height:1.8;font-size:0.9rem;">
+              The energy shift can feel abrupt. If your first pinnacle was a quiet 7 and your second is a driven 8, the change is real. Pay attention to what starts showing up in your life around the transition — new opportunities, new people, new restlessness. That's the new pinnacle energy arriving.
+            </p>
+          </div>
+
+          <div class="card-light p-6">
+            <div style="display:flex;align-items:center;gap:1rem;margin-bottom:1rem;">
+              <div style="font-family:var(--font-family-heading);font-size:2.5rem;font-weight:700;color:var(--color-soft-gold);line-height:1;flex-shrink:0;">3rd</div>
+              <div>
+                <h3 style="font-family:var(--font-family-heading);font-size:1.2rem;font-weight:700;color:var(--color-body-text);margin:0 0 0.2rem;">Third Pinnacle — Peak Power</h3>
+                <p style="font-size:0.8rem;color:var(--color-muted-text);margin:0;">9 years after the second ends</p>
+              </div>
+            </div>
+            <p style="color:var(--color-body-text);line-height:1.8;font-size:0.9rem;margin-bottom:0.75rem;">
+              The third pinnacle is often called the peak of personal power, and for good reason. By this point you've got the experience of two full cycles behind you. You know who you are. You know what works and what doesn't.
+            </p>
+            <p style="color:var(--color-body-text);line-height:1.8;font-size:0.9rem;">
+              This is where many people do their most significant work — whether that's career achievements, creative projects, or spiritual development. The third pinnacle number tells you what area of life gets that concentrated energy. A 3 here means creative breakthroughs. An 8 means material success. A 9 means giving back.
+            </p>
+          </div>
+
+          <div class="card-light p-6">
+            <div style="display:flex;align-items:center;gap:1rem;margin-bottom:1rem;">
+              <div style="font-family:var(--font-family-heading);font-size:2.5rem;font-weight:700;color:var(--color-soft-gold);line-height:1;flex-shrink:0;">4th</div>
+              <div>
+                <h3 style="font-family:var(--font-family-heading);font-size:1.2rem;font-weight:700;color:var(--color-body-text);margin:0 0 0.2rem;">Fourth Pinnacle — Integration &amp; Legacy</h3>
+                <p style="font-size:0.8rem;color:var(--color-muted-text);margin:0;">From the end of the third to the rest of your life</p>
+              </div>
+            </div>
+            <p style="color:var(--color-body-text);line-height:1.8;font-size:0.9rem;margin-bottom:0.75rem;">
+              The fourth pinnacle is your final cycle. It doesn't have an end date. This is the phase where everything you've built, learned, and become gets integrated into something whole.
+            </p>
+            <p style="color:var(--color-body-text);line-height:1.8;font-size:0.9rem;">
+              Some people find their fourth pinnacle restful. Others find it's when they finally hit their stride. A fourth pinnacle 1 means you might start something entirely new in your later years. A fourth pinnacle 7 means you turn inward, toward wisdom and reflection. There's no "retirement" energy in numerology — just a shift in what the energy is asking of you.
+            </p>
+          </div>
+        </div>
+      </section>
+
+      <!-- Pinnacle number meanings -->
+      <section id="meanings" style="margin-bottom:3rem;padding-top:2rem;border-top:1px solid var(--color-border);">
+        <h2 class="section-h2">Pinnacle number meanings</h2>
+
+        <p style="color:var(--color-body-text);line-height:1.8;margin-bottom:2rem;">
+          The number of each pinnacle tells you the theme of that life phase. Here's what each one means when it shows up as a pinnacle.
+        </p>
+
+        <div style="display:flex;flex-direction:column;gap:1.5rem;">
+          {[
+            { num: "1", title: "Independence & New Beginnings", p1: "A pinnacle 1 pushes you to stand on your own. This cycle is about self-reliance, initiative, and finding the courage to go first. Leadership opportunities show up whether you're ready for them or not.", p2: "If this is your first pinnacle, you probably had to grow up fast or figure things out without much help. In a later pinnacle, it's a signal to start something new — a business, a project, a complete reinvention. The energy doesn't wait for permission. It wants action." },
+            { num: "2", title: "Cooperation & Patience", p1: "A pinnacle 2 slows things down, on purpose. This cycle is about relationships, diplomacy, and learning to work with others. Things move at their own pace here, and pushing harder doesn't help.", p2: "The connections you build during a 2 pinnacle are the real ones. Partnerships, close friendships, collaborations. This is the energy that supports depth over speed. If you're impatient by nature, a 2 pinnacle will test you. But what you build in this phase lasts because it's built on trust." },
+            { num: "3", title: "Self-Expression & Creativity", p1: "A pinnacle 3 is a social, creative cycle. Communication opens up. You feel drawn to express yourself — through writing, art, speaking, performing, or just being more visible in your world.", p2: "This is a lighter energy than most pinnacles. Joy, humor, and connection are the themes. But the shadow side of a 3 pinnacle is scattering your energy across too many things. The challenge is to actually finish what you start and channel that creative fire into something real." },
+            { num: "4", title: "Hard Work & Foundation-Building", p1: "A pinnacle 4 demands discipline. This is not a flashy cycle. It's the one where you put your head down, do the work, and build something that will hold weight for years to come.", p2: "Expect structure, routine, and practical demands. It can feel restrictive if you're someone who craves freedom. But here's what makes it worth it: whatever you build during a 4 pinnacle has staying power. The house, the career, the financial foundation, the habits. This is where lasting things get made." },
+            { num: "5", title: "Change & Freedom", p1: "A pinnacle 5 shakes things up. Travel, moves, career changes, unexpected turns. This cycle's energy wants motion. If your life has been stable, a 5 pinnacle disrupts it. If your life has been stuck, a 5 pinnacle breaks it open.", p2: "The thing is, you can't fight a 5 pinnacle. Trying to hold everything in place during this cycle creates more stress than rolling with the changes. The freedom here isn't reckless. It's about expanding your experience and learning to adapt. The people who thrive in a 5 pinnacle are the ones who say yes to what shows up." },
+            { num: "6", title: "Responsibility & Family", p1: "A pinnacle 6 centers on home, family, and service. This is the cycle where people get married, have children, care for aging parents, or take on community roles. The energy pulls you toward others who need you.", p2: "It's warm energy, but it's demanding. The challenge of a 6 pinnacle is boundaries — knowing the difference between serving others and losing yourself in the process. When you get the balance right, this is one of the most fulfilling pinnacle cycles. You build something real for the people who matter most." },
+            { num: "7", title: "Introspection & Spiritual Growth", p1: "A pinnacle 7 is a quiet cycle. Study, solitude, and inner development take priority. This is not the time for aggressive external ambition. It's the time to go deep. You might pursue education, a spiritual practice, or simply need more time alone than usual.", p2: "People in a 7 pinnacle often feel out of step with the world around them. Friends might wonder why you've gotten so quiet. That's normal. The work is internal, and it's real work. What you understand about yourself during a 7 pinnacle becomes the foundation for everything that follows." },
+            { num: "8", title: "Achievement & Power", p1: "A pinnacle 8 brings material success opportunities. Business, finance, authority, and recognition are the themes. This is the cycle where ambition has the wind behind it. Promotions happen, investments pay off, and you step into positions of influence.", p2: "But an 8 pinnacle also tests your relationship with power. Can you handle authority without becoming controlling? Can you build wealth without letting it define you? The energy supports achievement, but the lesson is about integrity. The people who get this right during an 8 pinnacle build something that matters — not just something that pays." },
+            { num: "9", title: "Completion & Release", p1: "A pinnacle 9 asks you to let go. Relationships end. Projects wrap up. Chapters close. This can feel like loss, but it's actually clearing space. The 9 energy is about completion — finishing what's been started so something new can begin.", p2: "Humanitarian impulses get stronger during a 9 pinnacle. You feel pulled to give back, to be of service, to care about something bigger than yourself. The challenge is the letting go part. Clinging to things that have run their course makes a 9 pinnacle painful. Releasing them makes it powerful." },
+            { num: "11", title: "Spiritual Awakening", subLabel: "Master Number", p1: "An 11 pinnacle is intense. This is a cycle of intuitive development, spiritual awakening, and illumination. You might develop psychic abilities, discover a spiritual practice, or simply start seeing the world in a completely different way.", p2: "The intensity of an 11 pinnacle can be overwhelming. Sensitivity increases. You pick up on things you never noticed before. The challenge is grounding all that heightened awareness into something practical. An 11 pinnacle that stays in the clouds leads to anxiety and overwhelm. An 11 pinnacle that gets grounded leads to genuine wisdom." },
+            { num: "22", title: "Master Building", subLabel: "Master Number", p1: "A 22 pinnacle gives you the capacity to build something with lasting impact. This is the master builder energy at work in your life — big vision combined with practical execution. Think large-scale projects, organizations, systems that serve many people.", p2: "Not everyone with a 22 pinnacle builds a company or starts a movement. Sometimes the 'building' is personal — a family structure, a body of work, a community role. What makes it a 22 is the scale and the intention behind it. The challenge is not letting the size of the vision paralyze you. Start where you are. Build what's in front of you. The rest follows." },
+            { num: "33", title: "Master Teaching", subLabel: "Master Number", p1: "A 33 pinnacle calls you to serve and heal on a broader scale. This is the rarest pinnacle number, and it carries the energy of compassion, teaching, and selfless service. You feel pulled to help others see their own potential.", p2: "The 33 pinnacle often shows up in the lives of counselors, teachers, healers, and mentors — but not always in a professional sense. Sometimes it means you become the person everyone turns to. The challenge is the same one every 33 faces: giving so much that you run empty. Protect your energy during this cycle. You can't teach from an empty cup." },
+          ].map(item => (
+            <div class="card-light p-6">
+              <div style="display:flex;align-items:center;gap:1rem;margin-bottom:1rem;">
+                <div style="font-family:var(--font-family-heading);font-size:3rem;font-weight:700;color:var(--color-soft-gold);line-height:1;flex-shrink:0;">{item.num}</div>
+                <div>
+                  <h3 style="font-family:var(--font-family-heading);font-size:1.2rem;font-weight:700;color:var(--color-body-text);margin:0 0 0.15rem;">{item.title}</h3>
+                  {item.subLabel && <p style="font-size:0.75rem;color:var(--color-muted-text);margin:0;">{item.subLabel}</p>}
+                </div>
+              </div>
+              <p style="color:var(--color-body-text);line-height:1.8;font-size:0.9rem;margin-bottom:0.75rem;">{item.p1}</p>
+              <p style="color:var(--color-body-text);line-height:1.8;font-size:0.9rem;">{item.p2}</p>
+            </div>
+          ))}
+        </div>
+      </section>
+
+      <!-- FAQ -->
+      <section id="faq" style="margin-bottom:3rem;padding-top:2rem;border-top:1px solid var(--color-border);">
+        <h2 class="section-h2" style="text-align:center;">Frequently Asked Questions</h2>
+        <div class="faq-list">
+          <details>
+            <summary>What are pinnacle numbers in numerology?<svg class="faq-chevron" xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="6 9 12 15 18 9"/></svg></summary>
+            <p class="faq-answer">Pinnacle numbers are four numbers calculated from your birth date that map out the major phases of your life. Each pinnacle represents a different cycle with its own theme, energy, and opportunities. Think of them as the seasons of your life — each one has a purpose, and they unfold in a specific order based on your date of birth.</p>
+          </details>
+          <details>
+            <summary>How do I calculate my pinnacle numbers?<svg class="faq-chevron" xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="6 9 12 15 18 9"/></svg></summary>
+            <p class="faq-answer">You need your birth month, day, and year, each reduced to a single digit (or master number). First Pinnacle = month + day. Second Pinnacle = day + year. Third Pinnacle = first pinnacle + second pinnacle. Fourth Pinnacle = month + year. Reduce each sum to a single digit unless it's 11, 22, or 33.</p>
+          </details>
+          <details>
+            <summary>How long does each pinnacle cycle last?<svg class="faq-chevron" xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="6 9 12 15 18 9"/></svg></summary>
+            <p class="faq-answer">The first pinnacle lasts from birth until age 36 minus your life path number. The second and third pinnacles each last 9 years. The fourth pinnacle runs from the end of the third until the end of your life. So for a life path 1, the first pinnacle ends at age 35. For a life path 9, it ends at age 27.</p>
+          </details>
+          <details>
+            <summary>What happens when I change pinnacle cycles?<svg class="faq-chevron" xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="6 9 12 15 18 9"/></svg></summary>
+            <p class="faq-answer">Pinnacle transitions often feel like a major shift in your life direction. You might change careers, move, end or start relationships, or feel a strong pull toward something new. The transition isn't always dramatic on the outside, but internally you'll feel the energy change. It's like the background music of your life switches to a different key.</p>
+          </details>
+          <details>
+            <summary>Can pinnacle numbers be master numbers?<svg class="faq-chevron" xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="6 9 12 15 18 9"/></svg></summary>
+            <p class="faq-answer">Yes. If the sum of your pinnacle calculation adds to 11, 22, or 33, you don't reduce it further. A master number pinnacle carries more intense energy during that cycle. It means that phase of your life has amplified spiritual potential — and usually amplified challenges to match.</p>
+          </details>
+          <details>
+            <summary>What's the difference between pinnacle numbers and personal year numbers?<svg class="faq-chevron" xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="6 9 12 15 18 9"/></svg></summary>
+            <p class="faq-answer">Personal year numbers change every year and tell you about the energy of that specific 12-month period. Pinnacle numbers cover much longer stretches — decades in some cases — and describe the broader theme of an entire life phase. Your personal year operates within your current pinnacle. Think of pinnacles as the chapter and personal years as the pages within it.</p>
+          </details>
+        </div>
+      </section>
+
+      <!-- Related guides -->
+      <section id="related" style="margin-bottom:1rem;padding-top:2rem;border-top:1px solid var(--color-border);">
+        <h2 class="section-h2">Related guides</h2>
+        <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:1.25rem;">
+          <a href="/learn/life-path-number/" class="card-light overflow-hidden hover:border-violet/60 hover:-translate-y-0.5 transition-all duration-200 group block">
+            <img src="/images/learn/Life Path Numbers - Tile.webp" alt="Life Path Numbers guide" class="w-full aspect-[2/3] object-cover transition-transform duration-500 group-hover:scale-105" loading="lazy" />
+            <div class="p-4">
+              <h3 class="font-bold text-body-text group-hover:text-violet transition-colors mb-1">Life Path Numbers</h3>
+              <p class="text-xs text-muted-text">Your core number — the foundation everything else builds on</p>
+            </div>
+          </a>
+          <a href="/learn/challenge-numbers/" class="card-light overflow-hidden hover:border-violet/60 hover:-translate-y-0.5 transition-all duration-200 group block">
+            <img src="/images/learn/Challenge Numbers - Tile.webp" alt="Challenge Numbers guide" class="w-full aspect-[2/3] object-cover transition-transform duration-500 group-hover:scale-105" loading="lazy" />
+            <div class="p-4">
+              <h3 class="font-bold text-body-text group-hover:text-violet transition-colors mb-1">Challenge Numbers</h3>
+              <p class="text-xs text-muted-text">The obstacles each life phase asks you to overcome</p>
+            </div>
+          </a>
+          <a href="/learn/personal-year-number/" class="card-light overflow-hidden hover:border-violet/60 hover:-translate-y-0.5 transition-all duration-200 group block">
+            <img src="/images/learn/Personal Year Numbers - Tile.webp" alt="Personal Year Numbers guide" class="w-full aspect-[2/3] object-cover transition-transform duration-500 group-hover:scale-105" loading="lazy" />
+            <div class="p-4">
+              <h3 class="font-bold text-body-text group-hover:text-violet transition-colors mb-1">Personal Year Numbers</h3>
+              <p class="text-xs text-muted-text">The energy of your current 12-month cycle</p>
+            </div>
+          </a>
+          <a href="/learn/master-numbers/" class="card-light overflow-hidden hover:border-violet/60 hover:-translate-y-0.5 transition-all duration-200 group block">
+            <img src="/images/learn/Master Numbers - Tile.webp" alt="Master Numbers guide" class="w-full aspect-[2/3] object-cover transition-transform duration-500 group-hover:scale-105" loading="lazy" />
+            <div class="p-4">
+              <h3 class="font-bold text-body-text group-hover:text-violet transition-colors mb-1">Master Numbers</h3>
+              <p class="text-xs text-muted-text">11, 22, and 33 — the high-voltage numbers</p>
+            </div>
+          </a>
+        </div>
+      </section>
+
+    </div>
+  </article>
+
+    </div><!-- end main content column -->
+    <SidebarCTA />
+  </div><!-- end flex wrapper -->
+
+  <!-- Bottom CTA -->
+  <section style="background:var(--color-midnight);padding:5rem 1.5rem;text-align:center;">
+    <div style="max-width:36rem;margin:0 auto;">
+      <p class="p-label" style="color:rgba(196,162,78,0.7);margin-bottom:0.75rem;">Go Deeper</p>
+      <h2 style="font-family:var(--font-family-heading);font-size:clamp(1.75rem,4vw,2.5rem);font-weight:700;color:var(--color-starlight);margin:0 0 1rem;">Want to see your full numerology chart?</h2>
+      <p style="color:rgba(255,255,255,0.65);font-size:1rem;line-height:1.75;margin-bottom:2rem;">Pinnacle numbers are one piece of the picture. Get a free reading that includes your life path, expression number, soul urge, and more.</p>
+      <a href="https://8904b5z1168aar3k8annz7y61n.hop.clickbank.net" rel="noopener sponsored" style="display:inline-block;background:var(--color-soft-gold);color:var(--color-midnight);font-weight:700;font-size:1rem;padding:0.9rem 2.25rem;border-radius:6px;text-decoration:none;letter-spacing:0.02em;transition:opacity 0.2s;" onmouseover="this.style.opacity='0.88'" onmouseout="this.style.opacity='1'">Get Your Free Reading</a>
+    </div>
+  </section>
+
+</Layout>

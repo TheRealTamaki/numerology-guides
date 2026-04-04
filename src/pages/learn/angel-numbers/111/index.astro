@@ -1,0 +1,364 @@
+---
+import Layout from '../../../../layouts/Layout.astro';
+import SidebarCTA from '../../../../components/SidebarCTA.astro';
+
+const defined = {
+  number: "111",
+  title: "New Beginnings & Manifestation",
+  rootDigit: "1",
+  rootMeaning: "independence, initiative, new starts",
+};
+
+const otherAngel = [
+  { number: "222", title: "Trust & Balance", href: "/learn/angel-numbers/222/", image: "/images/Angel Number 222.webp" },
+  { number: "333", title: "Creative Expression", href: "/learn/angel-numbers/333/", image: "/images/Angel Number 333.webp" },
+  { number: "444", title: "Stability & Protection", href: "/learn/angel-numbers/444/", image: "/images/Angel Number 444.webp" },
+  { number: "555", title: "Major Change", href: "/learn/angel-numbers/555/", image: "/images/Angel Number 555.webp" },
+  { number: "666", title: "Realignment", href: "/learn/angel-numbers/666/", image: "/images/Angel Number 666.webp" },
+  { number: "777", title: "Spiritual Alignment", href: "/learn/angel-numbers/777/", image: "/images/Angel Number 777.webp" },
+  { number: "888", title: "Abundance & Power", href: "/learn/angel-numbers/888/", image: "/images/Angel Number 888.webp" },
+  { number: "999", title: "Completion & Release", href: "/learn/angel-numbers/999/", image: "/images/Angel Number 999.webp" },
+  { number: "000", title: "Infinite Potential", href: "/learn/angel-numbers/000/", image: "/images/Angel Number 000.webp" },
+];
+
+const faqSchema = {
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "What does 111 mean in numerology?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "In numerology, 111 is the number 1 amplified three times. The number 1 represents independence, initiative, and new beginnings. When it repeats as 111, that energy is magnified. It's a signal that your thoughts are aligning with reality unusually fast and that this is a powerful moment to set intentions. Most practitioners interpret 111 as a manifestation number: what you're focusing on right now has a higher-than-usual chance of materializing."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Why do I keep seeing 111 everywhere?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "If you keep seeing 111, it usually means you're at the beginning of something. A new chapter, a new mindset, a new direction. The number shows up most often during periods of transition or when you're about to make a decision. It's a signal to pay close attention to your thoughts, because 1 energy is about initiation and whatever you're mentally focused on has momentum behind it. Some practitioners say 111 is a reminder that you're a co-creator: the universe is responding to your focus, so make sure you're pointed at what you actually want."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Is 111 a lucky number?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "It's not about luck in the lottery sense. 111 is a timing signal. It means the energy around you is ripe for new starts and that your current thoughts have unusual creative power. Whether that's 'lucky' depends on what you do with it. If you're focused on something positive and you see 111, the energy is working in your favour. If you're stuck in worry or negativity, it's a warning to redirect your focus. The number itself is neutral. Your mindset determines whether it works for you or against you."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "What does 111 mean in love?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "In a love context, 111 usually signals a new beginning. If you're single, it could mean a new relationship is forming or that you're entering a period where your energy is particularly magnetic. If you're in a relationship, it often points to a fresh chapter, a renewed sense of connection, a shift in dynamic, or a decision that changes the shape of things. The key message is the same: what you focus on grows. If you want deeper connection, focus on that. If you're unsure about someone, 111 is asking you to get clear on what you actually want before the energy locks in."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "What should I do when I see 111?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Pause and notice what you were just thinking about. That's the most practical thing you can do. 111 is a manifestation number, so whatever was on your mind in that moment has extra energy behind it. If you were thinking about something you want, good, lean into it. If you were spiralling into worry, take it as a cue to consciously redirect. Some people use 111 sightings as a prompt to set a quick intention: one sentence about what they want to create or attract. Not a wish. An intention. There's a difference."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "What's the difference between 111 and 1111?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Both carry the energy of the number 1 (new beginnings, manifestation, leadership) but 1111 is considered even more potent. Think of 111 as a strong signal and 1111 as the same signal at maximum volume. The number 11 is also a master number in numerology, so 1111 contains two layers of master number energy (11 + 11). In practice, most people interpret both the same way: pay attention to your thoughts, set clear intentions, and recognise that you're at a starting point. The difference is intensity, not kind."
+      }
+    }
+  ]
+};
+
+const breadcrumbSchema = {
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://numerologyguides.blog/" },
+    { "@type": "ListItem", "position": 2, "name": "Learn", "item": "https://numerologyguides.blog/learn/" },
+    { "@type": "ListItem", "position": 3, "name": "Angel Numbers", "item": "https://numerologyguides.blog/learn/angel-numbers/" },
+    { "@type": "ListItem", "position": 4, "name": "111" }
+  ]
+};
+---
+
+<Layout
+  title="Angel Number 111 Meaning: New Beginnings, Manifestation & What To Do"
+  description="Angel number 111 is a powerful manifestation signal in numerology. Learn what it means when you keep seeing 111, what to do about it, and how it applies to love, career, and spiritual growth."
+  schema={[faqSchema, breadcrumbSchema]}
+>
+  <link slot="head" rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400;1,600&display=swap" />
+  <style>
+    :root { --font-family-heading: 'Cormorant Garamond', Georgia, serif; }
+    .p-label { font-size:0.7rem; letter-spacing:0.18em; text-transform:uppercase; color:var(--color-soft-gold); font-weight:600; }
+    .p-divider { width:48px; height:2px; background:var(--color-soft-gold); margin:0 auto; }
+    .section-h2 { font-family:var(--font-family-heading); font-size:clamp(1.6rem,3.5vw,2.25rem); font-weight:700; color:var(--color-body-text); margin:0 0 1.25rem; }
+    .faq-list details { border-top:1px solid var(--color-border); }
+    .faq-list details:last-child { border-bottom:1px solid var(--color-border); }
+    .faq-list summary { padding:1.3rem 0; cursor:pointer; display:flex; align-items:center; justify-content:space-between; gap:1rem; font-weight:600; font-size:1rem; color:var(--color-body-text); list-style:none; transition:color 0.2s; }
+    .faq-list summary::-webkit-details-marker { display:none; }
+    .faq-list details[open] summary { color:var(--color-violet); }
+    .faq-chevron { flex-shrink:0; transition:transform 0.25s; }
+    .faq-list details[open] .faq-chevron { transform:rotate(180deg); }
+    .faq-answer { padding-bottom:1.3rem; font-size:0.9rem; color:var(--color-muted-text); line-height:1.8; }
+  </style>
+
+  <!-- Breadcrumb -->
+  <nav style="background:var(--color-card-bg);border-bottom:1px solid var(--color-border);padding:0.75rem 1.5rem;" aria-label="Breadcrumb">
+    <div style="max-width:1100px;margin:0 auto;display:flex;align-items:center;gap:0.5rem;font-size:0.75rem;color:var(--color-muted-text);">
+      <a href="/" style="color:inherit;text-decoration:none;transition:color 0.2s;" onmouseover="this.style.color='var(--color-violet)'" onmouseout="this.style.color='var(--color-muted-text)'">Home</a>
+      <svg xmlns="http://www.w3.org/2000/svg" width="8" height="8" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="9 18 15 12 9 6"/></svg>
+      <a href="/learn/" style="color:inherit;text-decoration:none;transition:color 0.2s;" onmouseover="this.style.color='var(--color-violet)'" onmouseout="this.style.color='var(--color-muted-text)'">Learn</a>
+      <svg xmlns="http://www.w3.org/2000/svg" width="8" height="8" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="9 18 15 12 9 6"/></svg>
+      <a href="/learn/angel-numbers/" style="color:inherit;text-decoration:none;transition:color 0.2s;" onmouseover="this.style.color='var(--color-violet)'" onmouseout="this.style.color='var(--color-muted-text)'">Angel Numbers</a>
+      <svg xmlns="http://www.w3.org/2000/svg" width="8" height="8" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="9 18 15 12 9 6"/></svg>
+      <span style="color:var(--color-body-text);font-weight:600;">111</span>
+    </div>
+  </nav>
+
+  <!-- Hero -->
+  <section style="position:relative;overflow:hidden;background:var(--color-midnight,#0e0a1a);">
+    <div aria-hidden="true" style="position:absolute;inset:0;background-image:radial-gradient(circle,rgba(196,162,78,0.07) 1px,transparent 1px);background-size:28px 28px;pointer-events:none;z-index:0;"></div>
+    <div aria-hidden="true" style="position:absolute;top:-10%;left:-5%;width:55%;height:120%;background:radial-gradient(ellipse at center,rgba(124,92,191,0.18) 0%,transparent 70%);pointer-events:none;z-index:0;"></div>
+    <div style="position:relative;z-index:1;max-width:1100px;margin:0 auto;padding:4rem 1.5rem;display:flex;align-items:center;gap:3rem;flex-wrap:wrap;">
+      <div style="flex:1;min-width:280px;">
+        <p class="p-label" style="margin-bottom:1.1rem;color:var(--color-soft-gold);opacity:0.9;">Angel Number</p>
+        <div class="p-divider" style="margin:0 0 1.6rem;"></div>
+        <h1 style="font-family:var(--font-family-heading);font-size:clamp(2.8rem,6vw,5rem);font-weight:700;line-height:1.06;color:#f5f0e8;letter-spacing:-0.02em;margin:0 0 1.25rem;">
+          Angel Number <em style="color:#c8a8f0;font-style:italic;">111</em>: New Beginnings &amp; Manifestation
+        </h1>
+        <p style="font-size:1.05rem;line-height:1.8;color:rgba(240,234,255,0.78);max-width:460px;margin:0 0 2rem;">You keep seeing 111. On the clock, on receipts, on random license plates. Here's what that number means, why it keeps showing up, and what to actually do with it.</p>
+        <div style="display:flex;flex-wrap:wrap;gap:0.875rem;">
+          <a href="https://8904b5z1168aar3k8annz7y61n.hop.clickbank.net" target="_blank" rel="noopener sponsored" style="display:inline-flex;align-items:center;gap:0.5rem;background:var(--color-violet);color:white;font-weight:700;font-size:1rem;padding:0.875rem 2rem;border-radius:6px;text-decoration:none;transition:background 0.2s,transform 0.15s;box-shadow:0 4px 20px rgba(124,92,191,0.45);" onmouseover="this.style.background='#6a4eab';this.style.transform='translateY(-1px)'" onmouseout="this.style.background='var(--color-violet)';this.style.transform='none'">Get My Free Reading →</a>
+          <a href="#meaning" style="display:inline-flex;align-items:center;gap:0.5rem;background:rgba(255,255,255,0.08);backdrop-filter:blur(6px);color:#f5f0e8;font-weight:600;font-size:1rem;padding:0.875rem 1.75rem;border-radius:6px;text-decoration:none;border:1.5px solid rgba(255,255,255,0.2);transition:border-color 0.2s,background 0.2s;" onmouseover="this.style.background='rgba(255,255,255,0.15)';this.style.borderColor='rgba(255,255,255,0.4)'" onmouseout="this.style.background='rgba(255,255,255,0.08)';this.style.borderColor='rgba(255,255,255,0.2)'">What It Means ↓</a>
+        </div>
+      </div>
+      <div style="flex-shrink:0;width:clamp(200px,28vw,300px);filter:drop-shadow(0 8px 40px rgba(196,162,78,0.25)) drop-shadow(0 2px 12px rgba(0,0,0,0.6));">
+        <img
+          src="/images/learn/angel-numbers/Angel Number - 111.webp"
+          alt="Angel Number 111 — New Beginnings &amp; Manifestation"
+          fetchpriority="high"
+          style="width:100%;border-radius:6px;display:block;"
+        />
+      </div>
+    </div>
+  </section>
+
+  <!-- Author byline -->
+  <div style="background:var(--color-card-bg);padding:1.25rem 1.5rem;border-bottom:1px solid var(--color-border);">
+    <div style="max-width:1200px;margin:0 auto;display:flex;align-items:center;gap:1rem;">
+      <img src="/images/author-maddi-green.webp" alt="Maddie Greene" style="width:3rem;height:3rem;border-radius:50%;object-fit:cover;flex-shrink:0;border:2px solid rgba(124,92,191,0.2);" />
+      <div>
+        <p style="font-size:0.875rem;font-weight:600;color:var(--color-body-text);margin:0 0 0.1rem;">Written by <strong>Maddie Greene</strong></p>
+        <p style="font-size:0.75rem;color:var(--color-muted-text);margin:0;">Numerology writer &amp; researcher</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- Content + Sidebar wrapper -->
+  <div class="xl:flex xl:gap-6 xl:max-w-[1200px] xl:mx-auto xl:px-4">
+    <div class="xl:flex-1 xl:min-w-0">
+
+  <!-- Core meaning -->
+  <section style="background:var(--color-card-bg);padding:3rem 1.5rem 2.5rem;">
+    <div style="max-width:760px;margin:0 auto;">
+      <h2 class="section-h2">What does angel number 111 mean?</h2>
+      <p style="color:var(--color-muted-text);line-height:1.8;margin-bottom:1rem;">
+        Start with the root. In numerology, the number 1 is the number of beginnings: independence, initiative, the energy of starting something. It's the first number in the cycle, and it carries the charge of creation. When that 1 shows up three times in a row, the energy triples.
+      </p>
+      <p style="color:var(--color-muted-text);line-height:1.8;margin-bottom:1rem;">
+        111 is what practitioners call a manifestation number. The idea is straightforward: your thoughts are aligning with reality faster than usual. Whatever you're focused on, whether it's something you want or something you're worried about, has extra momentum behind it right now. That's why 111 is both encouraging and a gentle warning. It's encouraging because it means your creative power is running high. It's a warning because that power doesn't distinguish between "I want this" and "I'm afraid of this". It just amplifies whatever has your attention.
+      </p>
+      <p style="color:var(--color-muted-text);line-height:1.8;margin-bottom:1rem;">
+        Most people see 111 during transitions. Starting a new job, beginning a relationship, launching a project, even just shifting out of a mental rut. The number tends to show up right at the edge, the moment where the old thing is done and the new thing hasn't fully formed yet. If that sounds like where you are, the message is clear: you're at a starting line, and what you focus on from here is going to matter.
+      </p>
+      <p style="color:var(--color-muted-text);line-height:1.8;margin-bottom:1.5rem;">
+        The common mistake with 111 is treating it like a wish-granting signal. It's not. It's an awareness signal. It's telling you that the energy around you is aligned for creation, but creation requires your participation. Seeing 111 and then going back to doom-scrolling isn't going to manifest anything. Seeing 111, recognising the energy, and then pointing your attention deliberately at what you want? That's the move.
+      </p>
+      <div style="background:var(--color-light-bg);border:1px solid var(--color-border);border-left:4px solid var(--color-soft-gold);border-radius:8px;padding:1.25rem 1.5rem;">
+        <p style="font-size:0.9rem;color:var(--color-muted-text);line-height:1.8;margin:0;">
+          <strong style="color:var(--color-body-text);">The core message of 111:</strong> Your thoughts have unusual creative power right now. Be intentional about where you point them. This is a beginning, and beginnings are where the direction gets set.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- When you see it -->
+  <section style="background:white;padding:3rem 1.5rem;">
+    <div style="max-width:760px;margin:0 auto;">
+      <h2 class="section-h2">When does 111 show up?</h2>
+      <p style="color:var(--color-muted-text);line-height:1.8;margin-bottom:1.5rem;">
+        111 isn't random. It tends to appear in specific patterns. Here are the situations where people report seeing it most often:
+      </p>
+      <div style="display:flex;flex-direction:column;gap:1rem;margin-bottom:2rem;">
+        <div class="card-light p-5">
+          <h3 style="font-weight:700;color:var(--color-body-text);margin:0 0 0.5rem;">When you're about to start something</h3>
+          <p style="font-size:0.9rem;color:var(--color-muted-text);line-height:1.7;margin:0;">A new relationship, a business idea, a creative project, a move. 111 shows up at launch points, moments where something is forming but hasn't fully taken shape yet. If you're on the fence about beginning something, this number is often interpreted as confirmation that the timing is right.</p>
+        </div>
+        <div class="card-light p-5">
+          <h3 style="font-weight:700;color:var(--color-body-text);margin:0 0 0.5rem;">When your thoughts are running on a loop</h3>
+          <p style="font-size:0.9rem;color:var(--color-muted-text);line-height:1.7;margin:0;">This is the shadow side of 111. If you've been stuck in anxious thinking, worrying about the same thing over and over, seeing 111 is a flag. It's saying: "whatever you're giving mental energy to right now is getting amplified." Sometimes the most useful thing 111 can do is snap you out of a negative thought spiral.</p>
+        </div>
+        <div class="card-light p-5">
+          <h3 style="font-weight:700;color:var(--color-body-text);margin:0 0 0.5rem;">When you need to step into leadership</h3>
+          <p style="font-size:0.9rem;color:var(--color-muted-text);line-height:1.7;margin:0;">The number 1 is the leader's number. Seeing 111 can be a signal that it's time to take initiative, to stop waiting for someone else to go first. This doesn't always mean a grand gesture. Sometimes it's as small as speaking up in a meeting, making a phone call you've been avoiding, or making a decision you've been deferring.</p>
+        </div>
+        <div class="card-light p-5">
+          <h3 style="font-weight:700;color:var(--color-body-text);margin:0 0 0.5rem;">After you've set a clear intention</h3>
+          <p style="font-size:0.9rem;color:var(--color-muted-text);line-height:1.7;margin:0;">People who work deliberately with intentions (writing them down, speaking them aloud, meditating on them) often report seeing 111 shortly after. The interpretation is encouraging: the energy is aligned with what you've asked for. Keep going.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Love & Relationships -->
+  <section style="background:var(--color-card-bg);padding:3rem 1.5rem;">
+    <div style="max-width:760px;margin:0 auto;">
+      <h2 class="section-h2">111 in love &amp; relationships</h2>
+      <p style="color:var(--color-muted-text);line-height:1.8;margin-bottom:1rem;">
+        In a relationship context, 111 almost always signals a new chapter. What that chapter looks like depends on where you are.
+      </p>
+      <p style="color:var(--color-muted-text);line-height:1.8;margin-bottom:1rem;">
+        <strong style="color:var(--color-body-text);">If you're single:</strong> 111 suggests your energy is magnetic right now. It's not a guarantee that someone specific is about to show up, but it does mean you're in a period where new connections form more easily. The important thing is clarity. 111 amplifies what you're focused on, so if you're clear on the kind of relationship you want, that clarity is working in your favour. If you're fixated on an ex or on loneliness, that's getting amplified too.
+      </p>
+      <p style="color:var(--color-muted-text);line-height:1.8;margin-bottom:1rem;">
+        <strong style="color:var(--color-body-text);">If you're in a relationship:</strong> 111 usually points to a fresh start within the partnership. A new phase of communication, a shift in dynamic, a decision that changes things. It doesn't necessarily mean something dramatic. Sometimes it's as simple as finally having a conversation you've been putting off. The number encourages initiative: don't wait for your partner to bring it up. Be the 1.
+      </p>
+      <p style="color:var(--color-muted-text);line-height:1.8;margin-bottom:0;">
+        <strong style="color:var(--color-body-text);">If you're going through a breakup:</strong> Seeing 111 after a breakup is one of the more hopeful signals in angel number work. It means the ending is clearing space for something new. Not a replacement. A genuinely new chapter. The energy is forward-facing: this isn't the time to look back. Let the 1 energy do what it does and initiate what comes next.
+      </p>
+    </div>
+  </section>
+
+  <!-- Career & Money -->
+  <section style="background:white;padding:3rem 1.5rem;">
+    <div style="max-width:760px;margin:0 auto;">
+      <h2 class="section-h2">111 in career &amp; money</h2>
+      <p style="color:var(--color-muted-text);line-height:1.8;margin-bottom:1rem;">
+        The number 1 is entrepreneurial energy. It's about self-direction, initiative, and building things from scratch. When 111 shows up in a career context, it's usually pointing you toward action. Not more planning, not more research, but actual forward motion.
+      </p>
+      <p style="color:var(--color-muted-text);line-height:1.8;margin-bottom:1rem;">
+        If you've been thinking about starting a business, pitching an idea, asking for a raise, or changing direction entirely, 111 is the universe's version of "go." Not recklessly. But decisively. The energy supports bold moves right now, especially ones that put you in a more independent position.
+      </p>
+      <p style="color:var(--color-muted-text);line-height:1.8;margin-bottom:1rem;">
+        On the money side, 111 is about abundance through creation. This isn't "money is coming to you while you sleep" energy. It's "the thing you're building has real potential" energy. Financial opportunities during a 111 period usually come through initiative: launching something, negotiating something, or positioning yourself somewhere new. The money follows the action, not the other way around.
+      </p>
+      <p style="color:var(--color-muted-text);line-height:1.8;margin-bottom:0;">
+        The trap to watch for: 1 energy can be impatient. If you see 111 and immediately want to burn everything down and start fresh, slow down by one beat. The number is saying "initiate," not "be impulsive." There's a difference.
+      </p>
+    </div>
+  </section>
+
+  <!-- Spiritual meaning -->
+  <section style="background:var(--color-card-bg);padding:3rem 1.5rem;">
+    <div style="max-width:760px;margin:0 auto;">
+      <h2 class="section-h2">The spiritual meaning of 111</h2>
+      <p style="color:var(--color-muted-text);line-height:1.8;margin-bottom:1rem;">
+        On a spiritual level, 111 is about alignment between your inner world and your outer reality. Practitioners often describe it as a moment where the veil between thought and form is thinner than usual, where what you're thinking and what's happening around you are more connected than they normally appear to be.
+      </p>
+      <p style="color:var(--color-muted-text);line-height:1.8;margin-bottom:1rem;">
+        This is why 111 is sometimes called a "gateway number." It marks an opening. Not a conclusion, not a warning, but a doorway. Something new is available to you that wasn't before, or that you weren't ready for before. Whether you walk through it is up to you.
+      </p>
+      <p style="color:var(--color-muted-text);line-height:1.8;margin-bottom:1rem;">
+        The spiritual lesson of 111 is responsibility. Not in the heavy, guilt-laden sense. In the creative sense. You are an active participant in your reality, not a passive observer of it. 111 shows up to remind you of that, especially in moments where you've forgotten or where you've been letting life happen to you instead of through you.
+      </p>
+      <p style="color:var(--color-muted-text);line-height:1.8;margin-bottom:0;">
+        If you have a meditation practice, a journaling habit, or any kind of intentional inner work, a 111 period is when that work becomes especially potent. Whatever you're building on the inside is more likely to show up on the outside right now.
+      </p>
+    </div>
+  </section>
+
+  <!-- What to do -->
+  <section style="background:var(--color-light-bg);padding:3rem 1.5rem;">
+    <div style="max-width:760px;margin:0 auto;">
+      <h2 class="section-h2" style="text-align:center;">What to do when you see 111</h2>
+      <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:1rem;">
+        <div style="background:white;border:1px solid var(--color-border);border-radius:12px;padding:1.25rem 1.5rem;">
+          <div style="font-size:0.8rem;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;color:var(--color-soft-gold);margin-bottom:0.5rem;">Check your thoughts</div>
+          <p style="font-size:0.9rem;color:var(--color-muted-text);line-height:1.7;margin:0;">What were you thinking about in the moment you saw it? That's the thing getting amplified. If it's positive, lean in. If it's anxious, redirect.</p>
+        </div>
+        <div style="background:white;border:1px solid var(--color-border);border-radius:12px;padding:1.25rem 1.5rem;">
+          <div style="font-size:0.8rem;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;color:var(--color-soft-gold);margin-bottom:0.5rem;">Set one clear intention</div>
+          <p style="font-size:0.9rem;color:var(--color-muted-text);line-height:1.7;margin:0;">Not a vague wish. One specific thing you want to create or move toward. Write it down. Say it out loud. The energy is listening.</p>
+        </div>
+        <div style="background:white;border:1px solid var(--color-border);border-radius:12px;padding:1.25rem 1.5rem;">
+          <div style="font-size:0.8rem;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;color:var(--color-soft-gold);margin-bottom:0.5rem;">Take initiative</div>
+          <p style="font-size:0.9rem;color:var(--color-muted-text);line-height:1.7;margin:0;">111 is a 1-energy number. It rewards action, not waiting. If there's a step you've been putting off (a message to send, a decision to make) this is the nudge.</p>
+        </div>
+        <div style="background:white;border:1px solid var(--color-border);border-radius:12px;padding:1.25rem 1.5rem;">
+          <div style="font-size:0.8rem;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;color:var(--color-soft-gold);margin-bottom:0.5rem;">Release what's old</div>
+          <p style="font-size:0.9rem;color:var(--color-muted-text);line-height:1.7;margin:0;">New beginnings require space. If something in your life has run its course (a habit, a dynamic, a belief) 111 is asking you to let it go so the new thing can arrive.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FAQ -->
+  <section style="background:white;padding:3rem 1.5rem;">
+    <div style="max-width:760px;margin:0 auto;">
+      <h2 class="section-h2" style="text-align:center;">Common questions about 111</h2>
+      <div class="faq-list">
+        {faqSchema.mainEntity.map(item => (
+          <details>
+            <summary>
+              {item.name}
+              <svg class="faq-chevron" xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="6 9 12 15 18 9"/></svg>
+            </summary>
+            <div class="faq-answer">{item.acceptedAnswer.text}</div>
+          </details>
+        ))}
+      </div>
+    </div>
+  </section>
+
+    </div>
+    <SidebarCTA />
+  </div>
+
+  <!-- Other angel numbers -->
+  <section style="background:var(--color-light-bg);padding:3rem 1.5rem;border-top:1px solid var(--color-border);">
+    <div style="max-width:1100px;margin:0 auto;">
+      <p class="p-label" style="text-align:center;margin-bottom:0.75rem;">Explore More</p>
+      <h2 style="font-family:var(--font-family-heading);font-size:clamp(1.5rem,3vw,2rem);font-weight:700;color:var(--color-body-text);text-align:center;margin:0 0 2rem;">Other Angel Numbers</h2>
+      <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(140px,1fr));gap:1rem;">
+        {otherAngel.map(an => (
+          <a href={an.href} style="text-decoration:none;display:block;" class="group">
+            <div style="overflow:hidden;border-radius:8px;border:1px solid var(--color-border);transition:border-color 0.2s,transform 0.2s;background:white;" class="group-hover:border-violet/60 group-hover:-translate-y-1">
+              <img
+                src={`/images/learn/angel-numbers/Angel Number - ${an.number}.webp`}
+                alt={`Angel Number ${an.number}`}
+                loading="lazy"
+                decoding="async"
+                style="width:100%;aspect-ratio:2/3;object-fit:cover;display:block;transition:transform 0.5s;"
+                class="group-hover:scale-105"
+              />
+              <div style="padding:0.75rem 0.5rem;text-align:center;">
+                <div style="font-family:var(--font-family-heading);font-size:1.1rem;font-weight:700;color:var(--color-body-text);margin-bottom:0.2rem;" class="group-hover:text-violet transition-colors">{an.number}</div>
+                <p style="font-size:0.72rem;color:var(--color-muted-text);line-height:1.4;margin:0;">{an.title}</p>
+              </div>
+            </div>
+          </a>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- Bottom CTA -->
+  <section style="background:var(--color-midnight);padding:5.5rem 1.5rem;text-align:center;position:relative;overflow:hidden;">
+    <div style="position:absolute;inset:0;background:radial-gradient(ellipse at 50% 120%,rgba(124,92,191,0.18) 0%,transparent 70%);pointer-events:none;"></div>
+    <div style="position:relative;z-index:1;max-width:560px;margin:0 auto;">
+      <p class="p-label">Numerologist.com</p>
+      <div class="p-divider" style="margin:1rem auto;"></div>
+      <h2 style="font-family:var(--font-family-heading);font-size:clamp(1.6rem,3.5vw,2.25rem);font-weight:700;color:var(--color-starlight);margin:0 0 1rem;line-height:1.25;">Want to know what your numbers say about you?</h2>
+      <p style="color:rgba(235,232,247,0.5);font-size:1rem;line-height:1.7;margin:0 0 2rem;">Angel numbers tell you what's happening now. A full numerology reading tells you why, and what's coming next. Get a free personalized video reading based on your name and birth date.</p>
+      <a href="https://8904b5z1168aar3k8annz7y61n.hop.clickbank.net" target="_blank" rel="noopener sponsored" style="display:inline-block;background:var(--color-soft-gold);color:var(--color-midnight);font-weight:700;font-size:1rem;padding:1rem 2.25rem;border-radius:8px;text-decoration:none;letter-spacing:0.02em;">Get your free reading at Numerologist.com →</a>
+    </div>
+  </section>
+
+</Layout>

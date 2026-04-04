@@ -217,7 +217,7 @@ const faqSchema = {
           <!-- Soul Urge -->
           <div class="bg-white rounded-xl overflow-hidden shadow-md text-center">
             <div class="aspect-[16/10] overflow-hidden">
-              <img src="/images/learn/soul-urge-numbers/Soul Urge Number - Inner Fire.webp" alt="Soul Urge Number" class="w-full h-full object-cover" loading="lazy" />
+              <img id="soulUrgeImg" src="/images/learn/soul-urge-numbers/Soul Urge Number - The Independent.webp" alt="Soul Urge Number" class="w-full h-full object-cover" loading="lazy" />
             </div>
             <div class="p-4">
               <p class="text-xs text-muted-text font-semibold uppercase tracking-widest mb-2">Soul Urge</p>
@@ -230,7 +230,7 @@ const faqSchema = {
           <!-- Personality -->
           <div class="bg-white rounded-xl overflow-hidden shadow-md text-center">
             <div class="aspect-[16/10] overflow-hidden">
-              <img src="/images/learn/personality-numbers/Personality Number - The Arrival.webp" alt="Personality Number" class="w-full h-full object-cover" loading="lazy" />
+              <img id="personalityImg" src="/images/learn/personality-numbers/Personality Number - The Pioneer.webp" alt="Personality Number" class="w-full h-full object-cover" loading="lazy" />
             </div>
             <div class="p-4">
               <p class="text-xs text-muted-text font-semibold uppercase tracking-widest mb-2">Personality</p>
@@ -681,6 +681,26 @@ const faqSchema = {
       const soulUrgeResult = calculateSoulUrge(nameInput);
       const personalityResult = calculatePersonality(nameInput);
       const birthdayResult = calculateBirthday(dateInput);
+
+      // Image title maps (number → image filename title segment)
+      const soulUrgeTitles = {
+        1: 'The Independent', 2: 'The Connector', 3: 'The Expressive',
+        4: 'The Stabilizer', 5: 'The Seeker', 6: 'The Nurturer',
+        7: 'The Thinker', 8: 'The Achiever', 9: 'The Idealist',
+        11: 'The Illuminator', 22: 'The Builder', 33: 'The Compassionate',
+      };
+      const personalityTitles = {
+        1: 'The Pioneer', 2: 'The Diplomat', 3: 'The Charmer',
+        4: 'The Reliable', 5: 'The Magnetic', 6: 'The Caregiver',
+        7: 'The Mysterious', 8: 'The Authority', 9: 'The Wise',
+      };
+
+      // Update card images to match computed numbers
+      const suTitle = soulUrgeTitles[soulUrgeResult.number];
+      if (suTitle) document.getElementById('soulUrgeImg').src = `/images/learn/soul-urge-numbers/Soul Urge Number - ${suTitle}.webp`;
+
+      const pTitle = personalityTitles[personalityResult.number];
+      if (pTitle) document.getElementById('personalityImg').src = `/images/learn/personality-numbers/Personality Number - ${pTitle}.webp`;
 
       // Display results
       document.getElementById('lifePathNumber').textContent = lifePathResult.number;

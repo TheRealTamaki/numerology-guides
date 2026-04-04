@@ -530,18 +530,22 @@ const faqSchema = {
     return numberMap[number] ? `${baseUrl}${numberMap[number]}` : null;
   }
 
-  // Loading animation steps
+  // Loading animation steps — 14 steps × ~370ms avg ≈ 5 seconds
   const loadingSteps = [
-    { text: "Reducing birth date digits...", calc: "month + day + year", pct: 10 },
-    { text: "Extracting Pythagorean values from name...", calc: "", pct: 20 },
-    { text: "Calculating Life Path Number...", calc: "", pct: 30 },
-    { text: "Mapping letter values A=1 through Z=8...", calc: "", pct: 45 },
-    { text: "Calculating Expression Number...", calc: "", pct: 55 },
-    { text: "Separating vowels for Soul Urge...", calc: "", pct: 65 },
-    { text: "Isolating consonants for Personality...", calc: "", pct: 75 },
-    { text: "Reducing Birthday to single digit...", calc: "", pct: 85 },
-    { text: "Checking for master numbers 11, 22, 33...", calc: "", pct: 92 },
-    { text: "Finalizing your chart...", calc: "", pct: 100 },
+    { text: "Reading your birth date...", pct: 7 },
+    { text: "Splitting digits: month + day + year...", pct: 14 },
+    { text: "Summing date components...", pct: 21 },
+    { text: "Reducing to single digit for Life Path...", pct: 29 },
+    { text: "Checking for master numbers 11, 22, 33...", pct: 36 },
+    { text: "Mapping your name to Pythagorean values...", pct: 43 },
+    { text: "Totalling all letter values...", pct: 51 },
+    { text: "Reducing Expression Number...", pct: 58 },
+    { text: "Filtering vowels for Soul Urge...", pct: 65 },
+    { text: "Summing vowel values...", pct: 72 },
+    { text: "Filtering consonants for Personality...", pct: 79 },
+    { text: "Isolating your Birthday Number...", pct: 86 },
+    { text: "Cross-checking all five core numbers...", pct: 93 },
+    { text: "Your chart is ready.", pct: 100 },
   ];
 
   function showLoading(dateInput, nameInput, callback) {
@@ -554,34 +558,73 @@ const faqSchema = {
 
     resultsSection.classList.add('hidden');
     overlay.classList.remove('hidden');
-    // Stay where the user is - no scrolling
 
-    // Generate dynamic calc strings from actual input
+    // Build real arithmetic expressions from actual user input
     const [year, month, day] = dateInput.split('-');
     const cleaned = nameInput.replace(/[^a-zA-Z]/g, '').toUpperCase();
-    const sampleCalcs = [
-      `${month} + ${day} + ${year}`,
-      cleaned.slice(0,6).split('').map(l => `${l}=${letterValues[l]||'?'}`).join('  '),
-      `${reduce(parseInt(month))} + ${reduce(parseInt(day))} + ${reduce(Array.from(year).map(Number).reduce((a,b)=>a+b,0))}`,
-      cleaned.split('').slice(0,8).map(l => `${letterValues[l]||0}`).join(' + '),
-      cleaned.split('').map(l => letterValues[l]||0).reduce((a,b)=>a+b,0) + ` → reduce`,
-      cleaned.split('').filter(l => vowels.includes(l)).map(l => `${l}(${letterValues[l]})`).join(' + '),
-      cleaned.split('').filter(l => consonants.includes(l)).slice(0,6).map(l => `${l}(${letterValues[l]})`).join(' + '),
-      `Day ${day} → ${reduce(parseInt(day))}`,
-      `11? 22? 33? → checking reductions`,
-      `5 core numbers ready`,
+    const yDigits = Array.from(year).map(Number);
+    const ySum = yDigits.reduce((a, b) => a + b, 0);
+    const allVals = cleaned.split('').map(l => letterValues[l] || 0);
+    const totalVal = allVals.reduce((a, b) => a + b, 0);
+    const vowelList = cleaned.split('').filter(l => vowels.includes(l));
+    const vowelVals = vowelList.map(l => letterValues[l] || 0);
+    const vowelSum = vowelVals.reduce((a, b) => a + b, 0);
+    const consoVals = cleaned.split('').filter(l => consonants.includes(l)).slice(0, 6).map(l => letterValues[l] || 0);
+    const consoSum = consoVals.reduce((a, b) => a + b, 0);
+    const rawLP = parseInt(month) + parseInt(day) + ySum;
+
+    // Step-specific calc expressions shown as each step appears
+    const stepCalcs = [
+      `${month}/${day}/${year}`,
+      `${parseInt(month)} + ${parseInt(day)} + ${yDigits.join('+')} = ${rawLP}`,
+      `month(${parseInt(month)}) + day(${parseInt(day)}) + year(${ySum}) = ${rawLP}`,
+      `${rawLP} → ${rawLP > 9 ? rawLP.toString().split('').join('+') + ' = ' + reduce(rawLP) : rawLP}`,
+      `11 · 22 · 33 → master number check`,
+      cleaned.slice(0, 7).split('').map(l => `${l}=${letterValues[l] || 0}`).join(' '),
+      allVals.slice(0, 8).join(' + ') + ` = ${totalVal}`,
+      `${totalVal} → reduce → ${reduce(totalVal)}`,
+      `vowels: ${vowelList.slice(0, 7).join(' ')}`,
+      vowelVals.slice(0, 6).join(' + ') + ` = ${vowelSum} → ${reduce(vowelSum)}`,
+      consoVals.join(' + ') + ` = ${consoSum} → ${reduce(consoSum)}`,
+      `day ${parseInt(day)} → ${reduce(parseInt(day))}`,
+      `LP · Exp · SU · Per · BD → verifying`,
+      `5 core numbers confirmed ✓`,
     ];
 
-    // Cycle random numbers in the circle
-    const masterNums = [1,2,3,4,5,6,7,8,9,11,22,33];
+    // Micro-ticker calcs that rapidly cycle in the calc line between steps
+    const microCalcs = [
+      ...allVals.slice(0, 9).map((v, i) => `${cleaned[i] || '?'}=${v}`),
+      `${parseInt(month)} + ${parseInt(day)} = ${parseInt(month) + parseInt(day)}`,
+      `${rawLP} → reduce`, `total: ${totalVal}`,
+      `vowel sum: ${vowelSum}`, `consonant sum: ${consoSum}`,
+      `reduce(${totalVal}) = ${reduce(totalVal)}`,
+      `checking 11...`, `checking 22...`, `checking 33...`,
+    ];
+
+    let tickIdx = 0;
+    let currentStepCalc = stepCalcs[0];
+
+    // Number circle spins rapidly
+    const masterNums = [1, 2, 3, 4, 5, 6, 7, 8, 9, 11, 22, 33];
     let numInterval = setInterval(() => {
       loadingNum.textContent = masterNums[Math.floor(Math.random() * masterNums.length)];
-    }, 120);
+    }, 100);
+
+    // Calc line ticker: flashes real arithmetic every 85ms
+    let calcInterval = setInterval(() => {
+      if (tickIdx % 5 === 0) {
+        loadingCalc.textContent = currentStepCalc;
+      } else {
+        loadingCalc.textContent = microCalcs[tickIdx % microCalcs.length];
+      }
+      tickIdx++;
+    }, 85);
 
     let step = 0;
     function nextStep() {
       if (step >= loadingSteps.length) {
         clearInterval(numInterval);
+        clearInterval(calcInterval);
         overlay.classList.add('hidden');
         callback();
         return;
@@ -590,10 +633,10 @@ const faqSchema = {
       const s = loadingSteps[step];
       loadingStep.textContent = s.text;
       loadingBar.style.width = s.pct + '%';
-      loadingCalc.textContent = sampleCalcs[step] || '';
+      currentStepCalc = stepCalcs[step] || '';
 
       step++;
-      const delay = 250 + Math.random() * 200;
+      const delay = 340 + Math.random() * 80;
       setTimeout(nextStep, delay);
     }
 

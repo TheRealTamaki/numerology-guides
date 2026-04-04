@@ -153,6 +153,27 @@ const breadcrumbSchema = {
           <button id="checkBtn" style="display:inline-flex;align-items:center;gap:0.5rem;background:var(--color-violet);color:white;font-weight:700;font-size:1rem;padding:0.875rem 2rem;border-radius:6px;border:none;cursor:pointer;width:100%;" onmouseover="this.style.opacity='0.9'" onmouseout="this.style.opacity='1'">Check Compatibility</button>
         </div>
 
+        <!-- Loading overlay -->
+        <div id="loadingOverlay" class="hidden mb-8">
+          <div style="background:rgba(255,255,255,0.04);border:1px solid rgba(196,162,78,0.2);border-radius:10px;padding:2.5rem;text-align:center;">
+            <div class="mb-5">
+              <div class="inline-flex items-center justify-center gap-5">
+                <span id="loadNum1" class="font-bold font-[family-name:var(--font-family-heading)] transition-all duration-75" style="font-size:3.5rem;color:var(--color-soft-gold);">?</span>
+                <span style="font-size:1.5rem;color:var(--color-muted-text);">+</span>
+                <span id="loadNum2" class="font-bold font-[family-name:var(--font-family-heading)] transition-all duration-75" style="font-size:3.5rem;color:var(--color-soft-gold);">?</span>
+              </div>
+            </div>
+            <h3 class="text-lg font-bold font-[family-name:var(--font-family-heading)] text-body-text mb-2">Analysing Compatibility</h3>
+            <p id="loadStep" class="text-sm text-muted-text mb-5">Cross-referencing number energies...</p>
+            <div style="max-width:18rem;margin:0 auto 0.75rem;">
+              <div class="h-1.5 bg-gray-100 rounded-full overflow-hidden">
+                <div id="loadBar" class="h-full rounded-full transition-all duration-500 ease-out" style="width:0%;background:linear-gradient(90deg,var(--color-violet),var(--color-soft-gold));"></div>
+              </div>
+            </div>
+            <p id="loadCalc" class="font-mono text-xs text-muted-text/60 h-5"></p>
+          </div>
+        </div>
+
         <!-- Results area -->
         <div id="results" class="hidden mb-8">
           <div style="background:rgba(255,255,255,0.04);border:1px solid rgba(196,162,78,0.2);border-radius:10px;padding:2rem;">
@@ -346,21 +367,124 @@ const breadcrumbSchema = {
     1: { 1: { match: 3, stars: 3, verdict: "Power struggles likely", description: "Two independent leaders in one space often creates friction over who sets direction." }, 2: { match: 5, stars: 5, verdict: "Natural balance", description: "2 provides emotional warmth that 1 needs, without competing for control." }, 3: { match: 5, stars: 5, verdict: "Great pairing", description: "3's creativity feeds 1's drive. Good blend of innovation and execution." }, 4: { match: 4, stars: 4, verdict: "Practical match", description: "4 grounds 1's vision. Both are goal-oriented but with different paces." }, 5: { match: 4, stars: 4, verdict: "Freedom-focused", description: "Both value independence. Can work if neither tries to lead the other." }, 6: { match: 5, stars: 5, verdict: "Complementary", description: "6 brings warmth and loyalty. 1 brings direction and protection." }, 7: { match: 4, stars: 4, verdict: "Intellectually stimulating", description: "Both prefer space and independence. Good if neither expects constant togetherness." }, 8: { match: 3, stars: 3, verdict: "Ambitious clash", description: "Two power-driven numbers often compete rather than collaborate." }, 9: { match: 4, stars: 4, verdict: "Shared vision", description: "9's broader perspective softens 1's edges. 1's drive helps 9 take action." }, 11: { match: 4, stars: 4, verdict: "Interesting mix", description: "1's directness and 11's intuition can complement if 11 feels heard." }, 22: { match: 3, stars: 3, verdict: "Too much leadership", description: "Both want to be in charge. Power struggles are common." }, 33: { match: 4, stars: 4, verdict: "Supportive", description: "33's teaching nature can help 1 develop emotional intelligence." } }, 2: { 1: { match: 5, stars: 5, verdict: "Natural balance", description: "2 provides emotional warmth that 1 needs, without competing for control." }, 2: { match: 3, stars: 3, verdict: "Two empaths", description: "Lots of feeling, not much doing. Can become codependent." }, 3: { match: 4, stars: 4, verdict: "Harmonious", description: "3's lightness brings joy to 2's depth. Both are creative." }, 4: { match: 4, stars: 4, verdict: "Steady partnership", description: "4 appreciates 2's loyalty. 2 feels safe with 4's stability." }, 5: { match: 4, stars: 4, verdict: "Growth potential", description: "2 grounds the flighty 5. 5 helps 2 build independence." }, 6: { match: 5, stars: 5, verdict: "Kindred spirits", description: "Both nurturers with similar values. Naturally compassionate together." }, 7: { match: 4, stars: 4, verdict: "Quiet understanding", description: "Both introspective. Good for intellectual and emotional depth." }, 8: { match: 3, stars: 3, verdict: "Imbalance risk", description: "2's softness can be overwhelmed by 8's intensity and ambition." }, 9: { match: 5, stars: 5, verdict: "Spiritual bond", description: "Both compassionate and idealistic. Natural emotional attunement." }, 11: { match: 5, stars: 5, verdict: "Intuitive connection", description: "2 and 11 both operate from deep intuition. Very natural pairing." }, 22: { match: 4, stars: 4, verdict: "Complementary", description: "22's vision gets warmed by 2's heart. Both are builders." }, 33: { match: 5, stars: 5, verdict: "Beautiful union", description: "Both nurturing. 33's teaching energy resonates with 2's supportive nature." } }, 3: { 1: { match: 5, stars: 5, verdict: "Great pairing", description: "3's creativity feeds 1's drive. Good blend of innovation and execution." }, 2: { match: 4, stars: 4, verdict: "Harmonious", description: "3's lightness brings joy to 2's depth. Both are creative." }, 3: { match: 4, stars: 4, verdict: "Creative chaos", description: "Both expressive. Fun but can scatter. Needs grounding from other numbers." }, 4: { match: 3, stars: 3, verdict: "Different speeds", description: "3's scattered energy frustrates 4's need for structure." }, 5: { match: 5, stars: 5, verdict: "Fun partnership", description: "Both love freedom and novelty. Never dull together." }, 6: { match: 4, stars: 4, verdict: "Playful care", description: "3 brings lightness to 6's seriousness. 6 provides emotional safety." }, 7: { match: 4, stars: 4, verdict: "Interesting contrast", description: "3's social energy and 7's introspection can complement." }, 8: { match: 4, stars: 4, verdict: "Good balance", description: "8 respects 3's talent. 3 brings joy to 8's intensity." }, 9: { match: 5, stars: 5, verdict: "Inspiring together", description: "Both creative and idealistic. Natural creative collaboration." }, 11: { match: 4, stars: 4, verdict: "Expressive intuition", description: "3's expression and 11's intuition blend well." }, 22: { match: 4, stars: 4, verdict: "Visionary duo", description: "3's creativity supports 22's big vision." }, 33: { match: 5, stars: 5, verdict: "Natural teachers", description: "Both expressive. 33's wisdom and 3's communication are aligned." } }, 4: { 1: { match: 4, stars: 4, verdict: "Practical match", description: "4 grounds 1's vision. Both are goal-oriented but with different paces." }, 2: { match: 4, stars: 4, verdict: "Steady partnership", description: "4 appreciates 2's loyalty. 2 feels safe with 4's stability." }, 3: { match: 3, stars: 3, verdict: "Different speeds", description: "3's scattered energy frustrates 4's need for structure." }, 4: { match: 4, stars: 4, verdict: "Stable foundation", description: "Two practical builders. Can work if they respect each other's methods." }, 5: { match: 3, stars: 3, verdict: "Restrictive to 5", description: "4's need for stability feels limiting to free-spirited 5." }, 6: { match: 5, stars: 5, verdict: "Domestic bliss", description: "Both value home and family. Naturally aligned in life goals." }, 7: { match: 4, stars: 4, verdict: "Respectful", description: "Both introspective. 4 appreciates 7's depth." }, 8: { match: 5, stars: 5, verdict: "Power team", description: "4's discipline meets 8's vision. Both building something real." }, 9: { match: 4, stars: 4, verdict: "Purposeful", description: "9's vision benefits from 4's practical structure." }, 11: { match: 4, stars: 4, verdict: "Grounded intuition", description: "4 provides structure. 11 brings spiritual insight." }, 22: { match: 5, stars: 5, verdict: "Master builders", description: "4 and 22 both love structure. Natural collaborators." }, 33: { match: 4, stars: 4, verdict: "Purposeful structure", description: "33's teaching and 4's discipline work well together." } }, 5: { 1: { match: 4, stars: 4, verdict: "Freedom-focused", description: "Both value independence. Can work if neither tries to lead the other." }, 2: { match: 4, stars: 4, verdict: "Growth potential", description: "2 grounds the flighty 5. 5 helps 2 build independence." }, 3: { match: 5, stars: 5, verdict: "Fun partnership", description: "Both love freedom and novelty. Never dull together." }, 4: { match: 3, stars: 3, verdict: "Restrictive to 5", description: "4's need for stability feels limiting to free-spirited 5." }, 5: { match: 3, stars: 3, verdict: "Too much freedom", description: "No anchor. Both restless. Can feel unstable." }, 6: { match: 4, stars: 4, verdict: "Playful stability", description: "6's home-base helps 5 not drift. 5 brings excitement." }, 7: { match: 4, stars: 4, verdict: "Independent spirits", description: "Both need space. Respect each other's autonomy." }, 8: { match: 4, stars: 4, verdict: "Ambitious freedom", description: "5's adaptability helps 8's rigid plans. 8 grounds 5's restlessness." }, 9: { match: 5, stars: 5, verdict: "Expansive together", description: "Both see possibilities. 9's wisdom steadies 5's scattered energy." }, 11: { match: 4, stars: 4, verdict: "Intuitive freedom", description: "Both unconventional. 11's intuition guides 5's wandering." }, 22: { match: 4, stars: 4, verdict: "Dynamic partnership", description: "5's adaptability helps 22's grand visions stay flexible." }, 33: { match: 4, stars: 4, verdict: "Inspired connection", description: "33's teaching helps 5 channel energy toward purpose." } }, 6: { 1: { match: 5, stars: 5, verdict: "Complementary", description: "6 brings warmth and loyalty. 1 brings direction and protection." }, 2: { match: 5, stars: 5, verdict: "Kindred spirits", description: "Both nurturers with similar values. Naturally compassionate together." }, 3: { match: 4, stars: 4, verdict: "Playful care", description: "3 brings lightness to 6's seriousness. 6 provides emotional safety." }, 4: { match: 5, stars: 5, verdict: "Domestic bliss", description: "Both value home and family. Naturally aligned in life goals." }, 5: { match: 4, stars: 4, verdict: "Playful stability", description: "6's home-base helps 5 not drift. 5 brings excitement." }, 6: { match: 3, stars: 3, verdict: "Caretaker overload", description: "Both give too much. Risk of mutual depletion." }, 7: { match: 4, stars: 4, verdict: "Deep care", description: "6's warmth melts 7's reserve. 7 appreciates the loyalty." }, 8: { match: 4, stars: 4, verdict: "Power and heart", description: "8 respects 6's strength. 6 softens 8's edges." }, 9: { match: 5, stars: 5, verdict: "Perfect match", description: "Both compassionate and idealistic. Natural soul-level alignment." }, 11: { match: 5, stars: 5, verdict: "Intuitive care", description: "6 and 11 both feel deeply. Natural emotional harmony." }, 22: { match: 4, stars: 4, verdict: "Vision with heart", description: "22's building supported by 6's nurturing." }, 33: { match: 5, stars: 5, verdict: "Teaching and healing", description: "33 and 6 both serve. Naturally aligned mission." } }, 7: { 1: { match: 4, stars: 4, verdict: "Intellectually stimulating", description: "Both prefer space and independence. Good if neither expects constant togetherness." }, 2: { match: 4, stars: 4, verdict: "Quiet understanding", description: "Both introspective. Good for intellectual and emotional depth." }, 3: { match: 4, stars: 4, verdict: "Interesting contrast", description: "3's social energy and 7's introspection can complement." }, 4: { match: 4, stars: 4, verdict: "Respectful", description: "Both introspective. 4 appreciates 7's depth." }, 5: { match: 4, stars: 4, verdict: "Independent spirits", description: "Both need space. Respect each other's autonomy." }, 6: { match: 4, stars: 4, verdict: "Deep care", description: "6's warmth melts 7's reserve. 7 appreciates the loyalty." }, 7: { match: 3, stars: 3, verdict: "Too much isolation", description: "Both withdrawn. Can become lonely together." }, 8: { match: 4, stars: 4, verdict: "Respect and mystery", description: "8 respects 7's intellect. 7 appreciates 8's confidence." }, 9: { match: 4, stars: 4, verdict: "Philosophical bond", description: "Both seeking deeper truth. Intellectually aligned." }, 11: { match: 5, stars: 5, verdict: "Spiritual seekers", description: "7 and 11 both intuitive and introspective. Natural fit." }, 22: { match: 4, stars: 4, verdict: "Wise builders", description: "7's wisdom supports 22's vision." }, 33: { match: 4, stars: 4, verdict: "Spiritual teaching", description: "33's wisdom resonates with 7's seeking." } }, 8: { 1: { match: 3, stars: 3, verdict: "Ambitious clash", description: "Two power-driven numbers often compete rather than collaborate." }, 2: { match: 3, stars: 3, verdict: "Imbalance risk", description: "2's softness can be overwhelmed by 8's intensity and ambition." }, 3: { match: 4, stars: 4, verdict: "Good balance", description: "8 respects 3's talent. 3 brings joy to 8's intensity." }, 4: { match: 5, stars: 5, verdict: "Power team", description: "4's discipline meets 8's vision. Both building something real." }, 5: { match: 4, stars: 4, verdict: "Ambitious freedom", description: "5's adaptability helps 8's rigid plans. 8 grounds 5's restlessness." }, 6: { match: 4, stars: 4, verdict: "Power and heart", description: "8 respects 6's strength. 6 softens 8's edges." }, 7: { match: 4, stars: 4, verdict: "Respect and mystery", description: "8 respects 7's intellect. 7 appreciates 8's confidence." }, 8: { match: 3, stars: 3, verdict: "Too much ambition", description: "Both intense. Power struggles common." }, 9: { match: 4, stars: 4, verdict: "Vision and impact", description: "8's power and 9's vision create social impact." }, 11: { match: 4, stars: 4, verdict: "Powerful intuition", description: "8's drive balanced by 11's insight." }, 22: { match: 5, stars: 5, verdict: "Visionary empire", description: "8 and 22 both ambitious builders. Rare powerful match." }, 33: { match: 4, stars: 4, verdict: "Powerful teaching", description: "33's wisdom guides 8's ambition toward service." } }, 9: { 1: { match: 4, stars: 4, verdict: "Shared vision", description: "9's broader perspective softens 1's edges. 1's drive helps 9 take action." }, 2: { match: 5, stars: 5, verdict: "Spiritual bond", description: "Both compassionate and idealistic. Natural emotional attunement." }, 3: { match: 5, stars: 5, verdict: "Inspiring together", description: "Both creative and idealistic. Natural creative collaboration." }, 4: { match: 4, stars: 4, verdict: "Purposeful", description: "9's vision benefits from 4's practical structure." }, 5: { match: 5, stars: 5, verdict: "Expansive together", description: "Both see possibilities. 9's wisdom steadies 5's scattered energy." }, 6: { match: 5, stars: 5, verdict: "Perfect match", description: "Both compassionate and idealistic. Natural soul-level alignment." }, 7: { match: 4, stars: 4, verdict: "Philosophical bond", description: "Both seeking deeper truth. Intellectually aligned." }, 8: { match: 4, stars: 4, verdict: "Vision and impact", description: "8's power and 9's vision create social impact." }, 9: { match: 3, stars: 3, verdict: "Too much giving", description: "Both service-oriented. Risk of mutual depletion or codependency." }, 11: { match: 5, stars: 5, verdict: "Spiritual partners", description: "9 and 11 both intuitive and idealistic. Natural alignment." }, 22: { match: 5, stars: 5, verdict: "Visionary change", description: "9's vision and 22's building power create real-world impact." }, 33: { match: 5, stars: 5, verdict: "Healing partnership", description: "9 and 33 both teachers and healers. Aligned mission." } }, 11: { 1: { match: 4, stars: 4, verdict: "Interesting mix", description: "1's directness and 11's intuition can complement if 11 feels heard." }, 2: { match: 5, stars: 5, verdict: "Intuitive connection", description: "2 and 11 both operate from deep intuition. Very natural pairing." }, 3: { match: 4, stars: 4, verdict: "Expressive intuition", description: "3's expression and 11's intuition blend well." }, 4: { match: 4, stars: 4, verdict: "Grounded intuition", description: "4 provides structure. 11 brings spiritual insight." }, 5: { match: 4, stars: 4, verdict: "Intuitive freedom", description: "Both unconventional. 11's intuition guides 5's wandering." }, 6: { match: 5, stars: 5, verdict: "Intuitive care", description: "6 and 11 both feel deeply. Natural emotional harmony." }, 7: { match: 5, stars: 5, verdict: "Spiritual seekers", description: "7 and 11 both intuitive and introspective. Natural fit." }, 8: { match: 4, stars: 4, verdict: "Powerful intuition", description: "8's drive balanced by 11's insight." }, 9: { match: 5, stars: 5, verdict: "Spiritual partners", description: "9 and 11 both intuitive and idealistic. Natural alignment." }, 11: { match: 3, stars: 3, verdict: "Two mystics", description: "Both intuitive. Can be dreamy and impractical together." }, 22: { match: 4, stars: 4, verdict: "Visionary balance", description: "11's intuition guides 22's building ambition." }, 33: { match: 5, stars: 5, verdict: "Master alignment", description: "11 and 33 both master numbers. Rare spiritual connection." } }, 22: { 1: { match: 3, stars: 3, verdict: "Too much leadership", description: "Both want to be in charge. Power struggles are common." }, 2: { match: 4, stars: 4, verdict: "Complementary", description: "22's vision gets warmed by 2's heart. Both are builders." }, 3: { match: 4, stars: 4, verdict: "Visionary duo", description: "3's creativity supports 22's big vision." }, 4: { match: 5, stars: 5, verdict: "Master builders", description: "4 and 22 both love structure. Natural collaborators." }, 5: { match: 4, stars: 4, verdict: "Dynamic partnership", description: "5's adaptability helps 22's grand visions stay flexible." }, 6: { match: 4, stars: 4, verdict: "Vision with heart", description: "22's building supported by 6's nurturing." }, 7: { match: 4, stars: 4, verdict: "Wise builders", description: "7's wisdom supports 22's vision." }, 8: { match: 5, stars: 5, verdict: "Visionary empire", description: "8 and 22 both ambitious builders. Rare powerful match." }, 9: { match: 5, stars: 5, verdict: "Visionary change", description: "9's vision and 22's building power create real-world impact." }, 11: { match: 4, stars: 4, verdict: "Visionary balance", description: "11's intuition guides 22's building ambition." }, 22: { match: 3, stars: 3, verdict: "Two visionaries", description: "Both want to build empires. Power dynamics complex." }, 33: { match: 4, stars: 4, verdict: "Master builders and teachers", description: "22 and 33 both masters. Complementary gifts." } }, 33: { 1: { match: 4, stars: 4, verdict: "Supportive", description: "33's teaching nature can help 1 develop emotional intelligence." }, 2: { match: 5, stars: 5, verdict: "Beautiful union", description: "Both nurturing. 33's teaching energy resonates with 2's supportive nature." }, 3: { match: 5, stars: 5, verdict: "Natural teachers", description: "Both expressive. 33's wisdom and 3's communication are aligned." }, 4: { match: 4, stars: 4, verdict: "Purposeful structure", description: "33's teaching and 4's discipline work well together." }, 5: { match: 4, stars: 4, verdict: "Inspired connection", description: "33's teaching helps 5 channel energy toward purpose." }, 6: { match: 5, stars: 5, verdict: "Teaching and healing", description: "33 and 6 both serve. Naturally aligned mission." }, 7: { match: 4, stars: 4, verdict: "Spiritual teaching", description: "33's wisdom resonates with 7's seeking." }, 8: { match: 4, stars: 4, verdict: "Powerful teaching", description: "33's wisdom guides 8's ambition toward service." }, 9: { match: 5, stars: 5, verdict: "Healing partnership", description: "9 and 33 both teachers and healers. Aligned mission." }, 11: { match: 5, stars: 5, verdict: "Master alignment", description: "11 and 33 both master numbers. Rare spiritual connection." }, 22: { match: 4, stars: 4, verdict: "Master builders and teachers", description: "22 and 33 both masters. Complementary gifts." }, 33: { match: 3, stars: 3, verdict: "Two healers", description: "Both service-oriented teachers. Can overlap in purpose." } }
   };
 
+  function showCompatibilityLoading(n1, n2, callback) {
+    const overlay = document.getElementById('loadingOverlay');
+    const loadStep = document.getElementById('loadStep');
+    const loadBar = document.getElementById('loadBar');
+    const loadCalc = document.getElementById('loadCalc');
+    const loadN1 = document.getElementById('loadNum1');
+    const loadN2 = document.getElementById('loadNum2');
+
+    document.getElementById('results').classList.add('hidden');
+    overlay.classList.remove('hidden');
+
+    const num1 = parseInt(n1);
+    const num2 = parseInt(n2);
+    const sum = num1 + num2;
+    const product = num1 * num2;
+    const diff = Math.abs(num1 - num2);
+    const reduced = sum > 9 ? sum.toString().split('').map(Number).reduce((a,b)=>a+b,0) : sum;
+
+    // 9 steps × ~370ms avg ≈ 5 seconds
+    const steps = [
+      { text: `Reading Life Path ${num1} energy...`, pct: 11 },
+      { text: `Reading Life Path ${num2} energy...`, pct: 22 },
+      { text: 'Cross-referencing Pythagorean patterns...', pct: 33 },
+      { text: 'Scanning all 78 possible pairings...', pct: 44 },
+      { text: 'Measuring harmonic resonance...', pct: 55 },
+      { text: 'Identifying shared strengths...', pct: 66 },
+      { text: 'Identifying friction points...', pct: 77 },
+      { text: 'Calculating compatibility score...', pct: 88 },
+      { text: 'Your result is ready.', pct: 100 },
+    ];
+
+    const stepCalcs = [
+      `LP${num1} → digit energy: ${num1}`,
+      `LP${num2} → digit energy: ${num2}`,
+      `${num1} + ${num2} = ${sum}`,
+      `${sum} → reduce → ${reduced}`,
+      `${num1} × ${num2} = ${product}`,
+      `|${num1} − ${num2}| = ${diff}`,
+      `pair [${num1}, ${num2}] in 78-matrix`,
+      `compatibility index: calculating...`,
+      `match confirmed ✓`,
+    ];
+
+    const microCalcs = [
+      `${num1} + ${num2} = ${sum}`,
+      `reduce(${sum}) = ${reduced}`,
+      `${num1} × ${num2} = ${product}`,
+      `|${num1} − ${num2}| = ${diff}`,
+      `LP${num1} frequency`,
+      `LP${num2} frequency`,
+      `resonance check`,
+      `harmonic index`,
+      `checking 11...`, `checking 22...`, `checking 33...`,
+    ];
+
+    // Numbers rapidly cycle in the display
+    const allNums = [1,2,3,4,5,6,7,8,9,11,22,33];
+    let numTicker = setInterval(() => {
+      loadN1.textContent = allNums[Math.floor(Math.random() * allNums.length)];
+      loadN2.textContent = allNums[Math.floor(Math.random() * allNums.length)];
+    }, 100);
+
+    // Calc line flashes arithmetic every 90ms
+    let tickIdx = 0;
+    let currentCalc = stepCalcs[0];
+    let calcTicker = setInterval(() => {
+      if (tickIdx % 5 === 0) {
+        loadCalc.textContent = currentCalc;
+      } else {
+        loadCalc.textContent = microCalcs[tickIdx % microCalcs.length];
+      }
+      tickIdx++;
+    }, 90);
+
+    let step = 0;
+    function nextStep() {
+      if (step >= steps.length) {
+        clearInterval(numTicker);
+        clearInterval(calcTicker);
+        loadN1.textContent = n1;
+        loadN2.textContent = n2;
+        overlay.classList.add('hidden');
+        callback();
+        return;
+      }
+      const s = steps[step];
+      loadStep.textContent = s.text;
+      loadBar.style.width = s.pct + '%';
+      currentCalc = stepCalcs[step] || '';
+      step++;
+      setTimeout(nextStep, 340 + Math.random() * 80);
+    }
+    nextStep();
+  }
+
   document.getElementById('checkBtn')?.addEventListener('click', () => {
     const num1 = document.getElementById('number1')?.value;
     const num2 = document.getElementById('number2')?.value;
 
     if (num1 && num2) {
-      const data = compatibilityData[num1]?.[num2];
-      if (data) {
-        document.getElementById('resultNum1').textContent = num1;
-        document.getElementById('resultNum2').textContent = num2;
-        document.getElementById('resultStars').textContent = '★'.repeat(data.stars) + '☆'.repeat(5 - data.stars);
-        document.getElementById('resultType').textContent = data.verdict;
-        document.getElementById('resultDescription').textContent = data.description;
-        document.getElementById('results').classList.remove('hidden');
-        document.getElementById('results')?.scrollIntoView({ behavior: 'smooth' });
-      }
+      const btn = document.getElementById('checkBtn');
+      btn.disabled = true;
+      btn.style.opacity = '0.6';
+
+      showCompatibilityLoading(num1, num2, () => {
+        const data = compatibilityData[num1]?.[num2];
+        if (data) {
+          document.getElementById('resultNum1').textContent = num1;
+          document.getElementById('resultNum2').textContent = num2;
+          document.getElementById('resultStars').textContent = '★'.repeat(data.stars) + '☆'.repeat(5 - data.stars);
+          document.getElementById('resultType').textContent = data.verdict;
+          document.getElementById('resultDescription').textContent = data.description;
+          document.getElementById('results').classList.remove('hidden');
+          document.getElementById('results')?.scrollIntoView({ behavior: 'smooth' });
+        }
+        btn.disabled = false;
+        btn.style.opacity = '1';
+      });
     }
   });
 </script>

@@ -16,27 +16,64 @@ const numbers = [
   { n: 33, title: "The Teacher",      img: "/images/learn/Master Number 33 - The Master Teacher.webp", master: true },
 ];
 
-const features = [
+const outerNums = [1,2,3,4,5,6,7,8,9];
+const innerGlyphs = ["☉","☽","✦","☿","♀","♂","♃","♄","✧","✶","✷","❉"];
+const tickCount = 60;
+
+const articles = [
   {
+    kicker: "Foundations",
+    title: "Life Path Number in Numerology",
+    dek: "The single most important number in your chart — what it means, how it's calculated, and what it actually says about you.",
+    read: "9 min read",
+    date: "Foundation",
+    tone: "ink",
     href: "/learn/life-path-number/",
-    img: "/images/learn/Life Path Numbers - Tile.webp",
-    label: "Foundation",
-    title: "Life Path Numbers",
-    desc: "The single most important number in your chart. It comes from your birth date and describes how you're fundamentally wired.",
   },
   {
-    href: "/learn/angel-numbers/",
-    img: "/images/learn/Angel Numbers - Tile.webp",
-    label: "Signs & Patterns",
-    title: "Angel Numbers",
-    desc: "Repeating sequences that show up when you're paying attention, like 111, 444, 777. What they mean and why you keep seeing them.",
-  },
-  {
+    kicker: "Compatibility",
+    title: "Life Path Compatibility",
+    dek: "How the nine life path numbers relate to each other — where the chemistry is, where the friction lives, and what to do with both.",
+    read: "6 min read",
+    date: "Relationships",
+    tone: "gold",
     href: "/learn/life-path-compatibility/",
-    img: "/images/learn/Numerology Compatibility - Tile.webp",
-    label: "Relationships",
-    title: "Compatibility",
-    desc: "How the nine life path numbers relate to each other, where the chemistry is, where the friction lives, and what to do with both.",
+  },
+  {
+    kicker: "Master Numbers",
+    title: "The Intuitive Master",
+    dek: "Life Path 11 — the gift that comes with a price. What it means to carry a master number and why it feels different from the start.",
+    read: "12 min read",
+    date: "Master numbers",
+    tone: "plum",
+    href: "/learn/life-path-number-11/",
+  },
+  {
+    kicker: "Cycles",
+    title: "Personal Year Numbers in Numerology",
+    dek: "Your chart changes every year. Find your current cycle, understand what it asks of you, and stop fighting the energy you're in.",
+    read: "8 min read",
+    date: "Timing",
+    tone: "ink",
+    href: "/learn/personal-year-number/",
+  },
+  {
+    kicker: "Expression",
+    title: "Expression Number in Numerology",
+    dek: "Comes from the letters in your full birth name. It describes your natural talents, your default way of showing up — and your blind spots.",
+    read: "7 min read",
+    date: "Name numbers",
+    tone: "gold",
+    href: "/learn/expression-number/",
+  },
+  {
+    kicker: "Angel Numbers",
+    title: "Angel Numbers: What They Mean",
+    dek: "The repeating sequences you keep seeing — 111, 444, 1111. What they are, why they show up, and what to actually do when you notice them.",
+    read: "5 min read",
+    date: "Signs",
+    tone: "sage",
+    href: "/learn/angel-numbers/",
   },
 ];
 
@@ -87,439 +124,982 @@ const faqs = [
   <link
     slot="head"
     rel="stylesheet"
-    href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400;1,600&display=swap"
+    href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Bodoni+Moda:ital,opsz,wght@0,6..96,400;0,6..96,500;0,6..96,600;1,6..96,400;1,6..96,500;1,6..96,600&family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400;1,600&display=swap"
   />
 
   <style>
-    /* Override heading font for this page only */
+    /* ── Almanac palette ─────────────────────────────────── */
     :root {
-      --font-family-heading: 'Cormorant Garamond', Georgia, 'Times New Roman', serif;
+      --hp-paper:       #f1ecdf;
+      --hp-paper-2:     #e9e2cf;
+      --hp-paper-3:     #ddd4bd;
+      --hp-ink:         #14172b;
+      --hp-ink-soft:    #2c2f48;
+      --hp-ink-mute:    #6b6c80;
+      --hp-gold:        #b08d3e;
+      --hp-gold-soft:   #c9a961;
+      --hp-accent:      #7b3f5c;
+      --hp-rule:        rgba(20,23,43,0.18);
+      --hp-rule-strong: rgba(20,23,43,0.42);
+      --hp-display:     'Bodoni Moda', 'Cormorant Garamond', Georgia, serif;
+      --hp-body:        'Inter', system-ui, -apple-system, sans-serif;
+      --hp-mono:        ui-monospace, 'JetBrains Mono', monospace;
+      --hp-ui:          'Inter', system-ui, -apple-system, sans-serif;
     }
 
-    /* ── Shared utilities ───────────────────── */
-    .p-label {
-      font-size: 0.7rem;
+    /* Override page background for this page only */
+    :global(body) { background-color: var(--hp-paper); }
+
+    .hp-page {
+      background: var(--hp-paper);
+      color: var(--hp-ink);
+      font-family: var(--hp-body);
+      font-size: 18px;
+      line-height: 1.55;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    /* ── Shared utilities ────────────────────────────────── */
+    .hp-eyebrow {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      font-family: var(--hp-mono);
+      font-size: 11px;
       letter-spacing: 0.18em;
       text-transform: uppercase;
-      color: var(--color-soft-gold);
-      font-weight: 600;
+      color: var(--hp-ink-mute);
     }
-    .p-divider {
-      width: 48px;
-      height: 2px;
-      background: var(--color-soft-gold);
-      margin: 0 auto;
+    .hp-dot {
+      width: 5px; height: 5px;
+      border-radius: 50%;
+      background: var(--hp-gold);
+      display: inline-block;
+      flex-shrink: 0;
+    }
+    .hp-rule-line {
+      flex: 1;
+      height: 1px;
+      background: var(--hp-rule);
+      min-width: 24px;
+    }
+    .hp-section-title {
+      font-family: var(--hp-display);
+      font-weight: 400;
+      font-size: clamp(2.25rem, 4.5vw, 4rem);
+      line-height: 1.02;
+      letter-spacing: -0.015em;
+      margin: 0 0 18px;
+      color: var(--hp-ink);
+    }
+    .hp-section-title em { color: var(--hp-gold); font-style: italic; }
+    .hp-section-lede {
+      font-size: 1.1rem;
+      color: var(--hp-ink-soft);
+      max-width: 58ch;
+      line-height: 1.7;
+      margin: 0;
     }
 
-    /* ── Hero ───────────────────────────────── */
-    .hero {
-      background: var(--color-card-bg);
-      padding: 5.5rem 1.5rem 4.5rem;
-      position: relative;
+
+    /* ══════════════════════════════════════════════════════
+       MARQUEE STRIP
+    ══════════════════════════════════════════════════════ */
+    .hp-marquee-wrap {
       overflow: hidden;
-      border-bottom: 1px solid var(--color-border);
-      text-align: center;
+      white-space: nowrap;
+      background: var(--hp-paper-2);
+      border-bottom: 1px solid var(--hp-rule);
+      font-family: var(--hp-mono);
+      font-size: 11px;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--hp-ink-mute);
+      padding: 10px 0;
     }
-    .hero-dots {
-      position: absolute;
-      inset: 0;
-      background-image: radial-gradient(circle, rgba(124,92,191,0.07) 1px, transparent 1px);
-      background-size: 28px 28px;
-      pointer-events: none;
+    .hp-marquee {
+      display: inline-flex;
+      gap: 0;
+      animation: hp-scroll 70s linear infinite;
     }
-    .hero-numeral {
-      position: absolute;
-      font-family: var(--font-family-heading);
-      font-weight: 700;
-      line-height: 1;
-      color: transparent;
-      pointer-events: none;
-      user-select: none;
+    .hp-marquee span { flex-shrink: 0; padding-left: 40px; }
+    @keyframes hp-scroll {
+      from { transform: translateX(0); }
+      to   { transform: translateX(-50%); }
     }
-    .hero-numeral-l {
-      left: -1rem;
-      top: 0.5rem;
-      font-size: clamp(10rem, 20vw, 16rem);
-      -webkit-text-stroke: 1px rgba(196,162,78,0.13);
+
+
+    /* ══════════════════════════════════════════════════════
+       HERO
+    ══════════════════════════════════════════════════════ */
+    .hp-hero {
+      background: linear-gradient(135deg, #07071a 0%, #130a2e 55%, #0d0a25 100%);
+      border-bottom: none;
+      padding: 64px 40px 80px;
     }
-    .hero-numeral-r {
-      right: -0.5rem;
-      bottom: -1.5rem;
-      font-size: clamp(12rem, 24vw, 20rem);
-      -webkit-text-stroke: 1px rgba(124,92,191,0.1);
-    }
-    .hero-inner {
-      position: relative;
-      z-index: 1;
-      max-width: 760px;
+    .hp-hero-inner {
+      max-width: 1440px;
       margin: 0 auto;
     }
-    .hero h1 {
-      font-family: var(--font-family-heading);
-      font-size: clamp(2.6rem, 6.5vw, 4.75rem);
+    /* hero text on dark bg */
+    .hp-hero .hp-hero-title           { color: #ebe8f7; }
+    .hp-hero .hp-hero-title em        { color: var(--hp-gold-soft); }
+    .hp-hero .hp-hero-sub             { color: rgba(235,232,247,0.65); }
+    .hp-hero .hp-hero-dek             { color: rgba(235,232,247,0.6); font-family: var(--hp-ui); font-size: 1.05rem; }
+    .hp-hero .hp-hero-stats           { border-top-color: rgba(235,232,247,0.15); }
+    .hp-hero .hp-stat-lbl             { color: rgba(235,232,247,0.45); }
+    .hp-hero .hp-stat-divider         { background: rgba(235,232,247,0.15); }
+    .hp-hero .hp-ornament             { color: rgba(235,232,247,0.9); }
+    .hp-hero .hp-today-card           { background: rgba(255,255,255,0.06); border-color: rgba(196,162,78,0.25); box-shadow: none; }
+    .hp-hero .hp-today-title          { color: #ebe8f7; }
+    .hp-hero .hp-today-keywords       { color: rgba(235,232,247,0.45); }
+    .hp-hero .hp-today-footer         { border-top-color: rgba(235,232,247,0.12); color: rgba(235,232,247,0.35); }
+    .hp-hero .hp-today-num            { color: #ebe8f7; }
+
+    .hp-btn-affiliate {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      font-family: var(--hp-ui);
+      font-size: 15px;
       font-weight: 700;
-      line-height: 1.08;
-      color: var(--color-body-text);
+      letter-spacing: 0.04em;
+      padding: 18px 36px;
+      border-radius: 999px;
+      background: var(--hp-gold);
+      color: #07071a;
+      text-decoration: none;
+      transition: opacity 0.2s, transform 0.15s;
+      border: none;
+    }
+    .hp-btn-affiliate:hover { opacity: 0.88; transform: translateY(-1px); }
+
+    .hp-hero-grid {
+      display: grid;
+      grid-template-columns: 1.05fr 1fr;
+      gap: 64px;
+      align-items: center;
+    }
+    .hp-hero-eyebrow {
+      margin-bottom: 32px;
+    }
+    .hp-hero-title {
+      font-family: var(--hp-display);
+      font-weight: 400;
+      font-size: clamp(3rem, 6.5vw, 6rem);
+      line-height: 0.96;
       letter-spacing: -0.02em;
-      margin: 0 0 1.5rem;
+      margin: 0 0 28px;
+      color: var(--hp-ink);
     }
-    .hero h1 em {
-      color: var(--color-violet);
+    .hp-hero-title em  { color: var(--hp-gold); font-style: italic; }
+    .hp-hero-sub {
+      display: block;
       font-style: italic;
+      color: var(--hp-ink-soft);
+      font-size: 0.7em;
+      font-weight: 300;
     }
-    .hero-sub {
-      font-size: 1.05rem;
-      line-height: 1.8;
-      color: var(--color-muted-text);
-      max-width: 540px;
-      margin: 0 auto 2.5rem;
+    .hp-hero-dek {
+      font-size: 1.2rem;
+      line-height: 1.6;
+      color: var(--hp-ink-soft);
+      max-width: 56ch;
+      margin: 0 0 40px;
     }
-    .hero-actions {
+    .hp-hero-actions {
       display: flex;
+      gap: 16px;
+      align-items: center;
+      margin-bottom: 56px;
       flex-wrap: wrap;
-      gap: 0.875rem;
+    }
+    /* legacy btn classes removed — see .hp-btn-affiliate */
+    .hp-hero-stats {
+      display: flex;
+      gap: 28px;
+      align-items: flex-end;
+      padding-top: 32px;
+      border-top: 1px solid var(--hp-rule);
+    }
+    .hp-stat-divider { width: 1px; background: var(--hp-rule); align-self: stretch; }
+    .hp-stat-num {
+      font-family: var(--hp-display);
+      font-style: italic;
+      font-size: 3rem;
+      line-height: 0.9;
+      color: var(--hp-gold);
+    }
+    .hp-stat-lbl {
+      font-family: var(--hp-mono);
+      font-size: 10px;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      color: var(--hp-ink-mute);
+      margin-top: 6px;
+    }
+
+    /* Ornament */
+    .hp-hero-right { position: relative; min-height: 520px; }
+    .hp-ornament {
+      position: absolute;
+      inset: 0;
+      color: var(--hp-ink);
+      pointer-events: none;
+    }
+    .hp-ornament svg { width: 100%; height: 100%; }
+
+    /* Today card */
+    .hp-today-card {
+      position: absolute;
+      bottom: 0;
+      left: -32px;
+      right: 32px;
+      background: var(--hp-paper-2);
+      border: 1px solid var(--hp-rule-strong);
+      padding: 22px 26px;
+      box-shadow: 0 30px 60px -30px rgba(20,23,43,0.3);
+    }
+    .hp-today-eyebrow {
+      font-family: var(--hp-mono);
+      font-size: 10px;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--hp-gold);
+      margin-bottom: 14px;
+    }
+    .hp-today-body { display: flex; gap: 20px; align-items: center; }
+    .hp-today-num {
+      font-family: var(--hp-display);
+      font-style: italic;
+      font-size: 4.5rem;
+      line-height: 0.9;
+      color: var(--hp-ink);
+      min-width: 56px;
+    }
+    .hp-today-title {
+      font-family: var(--hp-display);
+      font-size: 1.4rem;
+      font-style: italic;
+      line-height: 1.1;
+    }
+    .hp-today-keywords {
+      font-family: var(--hp-mono);
+      font-size: 10px;
+      text-transform: uppercase;
+      letter-spacing: 0.14em;
+      color: var(--hp-ink-mute);
+      margin-top: 8px;
+    }
+    .hp-today-footer {
+      margin-top: 14px;
+      padding-top: 12px;
+      border-top: 1px solid var(--hp-rule);
+      display: flex;
+      justify-content: space-between;
+      font-family: var(--hp-mono);
+      font-size: 10px;
+      letter-spacing: 0.12em;
+      color: var(--hp-ink-mute);
+    }
+    .hp-today-footer a { color: var(--hp-gold); text-decoration: none; }
+    .hp-today-footer a:hover { text-decoration: underline; }
+
+
+    /* ══════════════════════════════════════════════════════
+       LIFE PATH CALCULATOR
+    ══════════════════════════════════════════════════════ */
+    .hp-calc-section {
+      padding: 100px 40px;
+      background: var(--hp-paper-2);
+      border-bottom: 1px solid var(--hp-rule);
+    }
+    .hp-calc { max-width: 1100px; margin: 0 auto; }
+    .hp-calc-frame {
+      background: var(--hp-paper);
+      border: 1px solid var(--hp-rule-strong);
+      padding: 56px 64px;
+      position: relative;
+    }
+    .hp-calc-corners span {
+      position: absolute;
+      width: 14px; height: 14px;
+      border: 1px solid var(--hp-gold);
+    }
+    .hp-calc-corners span:nth-child(1) { top:-1px;left:-1px;border-right:none;border-bottom:none; }
+    .hp-calc-corners span:nth-child(2) { top:-1px;right:-1px;border-left:none;border-bottom:none; }
+    .hp-calc-corners span:nth-child(3) { bottom:-1px;left:-1px;border-right:none;border-top:none; }
+    .hp-calc-corners span:nth-child(4) { bottom:-1px;right:-1px;border-left:none;border-top:none; }
+
+    .hp-calc-head { text-align: center; margin-bottom: 40px; }
+    .hp-calc-eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 12px;
+      font-family: var(--hp-mono);
+      font-size: 11px;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--hp-ink-mute);
+      margin-bottom: 18px;
+    }
+    .hp-calc-title {
+      font-family: var(--hp-display);
+      font-weight: 400;
+      font-size: clamp(2.25rem, 4.2vw, 3.5rem);
+      line-height: 1.02;
+      margin: 0 0 16px;
+      color: var(--hp-ink);
+    }
+    .hp-calc-title em { color: var(--hp-gold); font-style: italic; }
+    .hp-calc-lede { font-size: 1.05rem; color: var(--hp-ink-soft); max-width: 56ch; margin: 0 auto; line-height: 1.65; }
+
+    .hp-stepper {
+      display: flex;
+      margin: 40px 0 48px;
+      border-top: 1px solid var(--hp-rule);
+      border-bottom: 1px solid var(--hp-rule);
+    }
+    .hp-step {
+      flex: 1;
+      background: transparent;
+      border: none;
+      border-right: 1px solid var(--hp-rule);
+      padding: 18px 16px;
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      color: var(--hp-ink-mute);
+      font-family: var(--hp-ui);
+      text-align: left;
+      cursor: pointer;
+      transition: all 0.2s;
+      position: relative;
+    }
+    .hp-step:last-child { border-right: none; }
+    .hp-step-num {
+      font-family: var(--hp-display);
+      font-style: italic;
+      font-size: 1.75rem;
+      line-height: 1;
+    }
+    .hp-step-label { font-size: 11px; letter-spacing: 0.18em; text-transform: uppercase; }
+    .hp-step.active { color: var(--hp-ink); background: var(--hp-paper-2); }
+    .hp-step.active::after {
+      content: '';
+      position: absolute;
+      bottom: -1px; left: 0; right: 0;
+      height: 2px;
+      background: var(--hp-gold);
+    }
+    .hp-step.done { color: var(--hp-gold); }
+    .hp-step:disabled { cursor: default; opacity: 0.5; }
+
+    .hp-calc-stage { min-height: 320px; }
+    .hp-stage-prompt {
+      font-family: var(--hp-display);
+      font-style: italic;
+      font-size: 1.6rem;
+      text-align: center;
+      margin: 0 0 28px;
+      color: var(--hp-ink-soft);
+    }
+
+    .hp-month-grid {
+      display: grid;
+      grid-template-columns: repeat(6, 1fr);
+      border: 1px solid var(--hp-rule);
+    }
+    .hp-month-cell {
+      background: transparent;
+      border: none;
+      border-right: 1px solid var(--hp-rule);
+      border-bottom: 1px solid var(--hp-rule);
+      padding: 22px 12px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 6px;
+      color: var(--hp-ink);
+      cursor: pointer;
+      transition: all 0.2s;
+    }
+    .hp-month-cell:nth-child(6n) { border-right: none; }
+    .hp-month-cell:nth-child(n+7) { border-bottom: none; }
+    .hp-month-cell:hover { background: var(--hp-paper-2); }
+    .hp-month-cell.selected { background: var(--hp-ink); color: var(--hp-paper); }
+    .hp-month-cell.selected .hp-month-num { color: var(--hp-gold-soft); }
+    .hp-month-num { font-family: var(--hp-display); font-style: italic; font-size: 1.5rem; color: var(--hp-gold); }
+    .hp-month-name { font-family: var(--hp-mono); font-size: 10px; letter-spacing: 0.14em; text-transform: uppercase; }
+
+    .hp-day-grid {
+      display: grid;
+      grid-template-columns: repeat(8, 1fr);
+      border: 1px solid var(--hp-rule);
+    }
+    .hp-day-cell {
+      background: transparent;
+      border: none;
+      border-right: 1px solid var(--hp-rule);
+      border-bottom: 1px solid var(--hp-rule);
+      padding: 14px 8px;
+      font-family: var(--hp-display);
+      font-style: italic;
+      font-size: 1.375rem;
+      color: var(--hp-ink);
+      cursor: pointer;
+      transition: all 0.2s;
+      text-align: center;
+    }
+    .hp-day-cell:hover { background: var(--hp-paper-2); color: var(--hp-gold); }
+    .hp-day-cell.selected { background: var(--hp-ink); color: var(--hp-paper); }
+
+    .hp-stage-year { text-align: center; padding: 30px 0; }
+    .hp-year-input-wrap { margin: 0 auto 32px; max-width: 280px; }
+    .hp-year-input {
+      width: 100%;
+      background: transparent;
+      border: none;
+      border-bottom: 2px solid var(--hp-rule-strong);
+      font-family: var(--hp-display);
+      font-style: italic;
+      font-size: 6rem;
+      text-align: center;
+      color: var(--hp-ink);
+      padding: 12px 0;
+      outline: none;
+      letter-spacing: 0.05em;
+    }
+    .hp-year-input::placeholder { color: var(--hp-ink-mute); opacity: 0.4; }
+    .hp-year-input:focus { border-color: var(--hp-gold); }
+    .hp-year-hint {
+      font-family: var(--hp-mono);
+      font-size: 11px;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--hp-ink-mute);
+      margin-top: 14px;
+    }
+    .hp-reveal-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 12px;
+      background: var(--hp-ink);
+      color: var(--hp-paper);
+      border: none;
+      padding: 18px 36px;
+      border-radius: 999px;
+      font-family: var(--hp-ui);
+      font-size: 13px;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      cursor: pointer;
+      transition: all 0.25s;
+    }
+    .hp-reveal-btn:hover:not(:disabled) { background: var(--hp-gold); }
+    .hp-reveal-btn:disabled { opacity: 0.35; cursor: not-allowed; }
+
+    .hp-calc-fade-in { animation: hp-calc-fade 0.35s ease-out; }
+    @keyframes hp-calc-fade {
+      from { opacity: 0; transform: translateY(8px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+    .hp-math-line {
+      display: flex;
+      align-items: flex-end;
+      justify-content: center;
+      gap: 24px;
+      flex-wrap: wrap;
+      padding: 24px 0 36px;
+      border-bottom: 1px dashed var(--hp-rule);
+      margin-bottom: 36px;
+      min-height: 100px;
+    }
+    .hp-date-part { text-align: center; }
+    .hp-dp-label {
+      font-family: var(--hp-mono);
+      font-size: 10px;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--hp-ink-mute);
+      margin-bottom: 6px;
+    }
+    .hp-dp-stack { display: flex; flex-direction: column; gap: 4px; align-items: center; }
+    .hp-dp-value {
+      font-family: var(--hp-display);
+      font-style: italic;
+      color: var(--hp-ink-soft);
+      transition: all 0.5s;
+      font-size: 1.75rem;
+      opacity: 0;
+    }
+    .hp-dp-value.raw   { font-size: 2.25rem; color: var(--hp-ink); opacity: 1; }
+    .hp-dp-value.gold  { color: var(--hp-gold); font-size: 2.75rem; opacity: 1; }
+    .hp-dp-value.shown { opacity: 1; }
+    .hp-op {
+      font-family: var(--hp-display);
+      font-style: italic;
+      font-size: 2.25rem;
+      color: var(--hp-ink-mute);
+      align-self: center;
+    }
+    .hp-op.equals { color: var(--hp-gold); }
+    .hp-sum-block { text-align: center; display: none; }
+    .hp-sum-block.shown { display: block; }
+    .hp-sum-label {
+      font-family: var(--hp-mono);
+      font-size: 10px;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--hp-ink-mute);
+      margin-bottom: 6px;
+    }
+    .hp-sum-value { font-family: var(--hp-display); font-style: italic; font-size: 3.5rem; color: var(--hp-gold); line-height: 1; }
+    .hp-sum-row { display: flex; align-items: baseline; gap: 10px; justify-content: center; }
+    .hp-sum-inline-trail { display: flex; align-items: baseline; gap: 8px; }
+    .hp-sum-arrow-inline { font-family: var(--hp-display); font-style: italic; font-size: 2rem; color: var(--hp-ink-mute); }
+    .hp-sum-final { font-family: var(--hp-display); font-style: italic; font-size: 3.5rem; color: var(--hp-gold); line-height: 1; }
+    .hp-op-sum { display: none; }
+    .hp-op-sum.shown { display: flex; align-items: center; }
+
+    .hp-revelation {
+      display: grid;
+      grid-template-columns: 1fr 1.4fr;
+      gap: 48px;
+      opacity: 0;
+      transform: translateY(20px);
+      transition: opacity 0.7s, transform 0.7s;
+    }
+    .hp-revelation.shown { opacity: 1; transform: translateY(0); }
+    .hp-rev-left { text-align: center; border-right: 1px solid var(--hp-rule); padding-right: 48px; }
+    .hp-rev-tag {
+      font-family: var(--hp-mono);
+      font-size: 10px;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--hp-ink-mute);
+      display: flex;
+      gap: 8px;
       justify-content: center;
       align-items: center;
-      margin-bottom: 1.75rem;
+      margin-bottom: 16px;
     }
-    .btn-primary {
+    .hp-master-tag { background: var(--hp-gold); color: var(--hp-paper); padding: 3px 8px; letter-spacing: 0.16em; margin-left: 6px; }
+    .hp-rev-number { font-family: var(--hp-display); font-style: italic; font-size: 11.25rem; line-height: 0.9; color: var(--hp-ink); display: block; }
+    .hp-rev-glyph { color: var(--hp-gold); opacity: 0.6; display: flex; justify-content: center; margin: 8px 0 12px; }
+    .hp-rev-title { font-family: var(--hp-display); font-style: italic; font-size: 2.1rem; line-height: 1; margin-bottom: 8px; color: var(--hp-ink); }
+    .hp-rev-archetype { font-family: var(--hp-mono); font-size: 11px; letter-spacing: 0.18em; text-transform: uppercase; color: var(--hp-gold); }
+    .hp-rev-right { display: flex; flex-direction: column; gap: 20px; }
+    .hp-rev-body { font-size: 1.15rem; line-height: 1.55; color: var(--hp-ink-soft); margin: 0; }
+    .hp-rev-traits { display: flex; flex-direction: column; gap: 14px; padding-top: 16px; border-top: 1px solid var(--hp-rule); }
+    .hp-trait { display: grid; grid-template-columns: 160px 1fr; gap: 18px; }
+    .hp-trait-label { font-family: var(--hp-mono); font-size: 10px; letter-spacing: 0.18em; text-transform: uppercase; color: var(--hp-ink-mute); padding-top: 4px; }
+    .hp-trait-text { font-size: 1.05rem; color: var(--hp-ink); }
+    .hp-rev-actions { display: flex; gap: 14px; padding-top: 18px; border-top: 1px solid var(--hp-rule); align-items: center; flex-wrap: wrap; }
+    .hp-link-btn {
       display: inline-flex;
       align-items: center;
-      gap: 0.5rem;
-      background: var(--color-violet);
-      color: white;
-      font-weight: 700;
-      font-size: 1rem;
-      padding: 0.875rem 2rem;
-      border-radius: 6px;
-      text-decoration: none;
-      transition: background 0.2s, transform 0.15s;
-      letter-spacing: 0.01em;
-    }
-    .btn-primary:hover { background: #6a4eab; transform: translateY(-1px); }
-    .btn-ghost {
-      display: inline-flex;
-      align-items: center;
-      gap: 0.5rem;
-      background: transparent;
-      color: var(--color-body-text);
+      gap: 8px;
+      padding: 13px 24px;
+      border-radius: 999px;
+      background: var(--hp-ink);
+      color: var(--hp-paper);
+      font-family: var(--hp-ui);
+      font-size: 12px;
       font-weight: 600;
-      font-size: 1rem;
-      padding: 0.875rem 1.75rem;
-      border-radius: 6px;
-      text-decoration: none;
-      border: 1.5px solid var(--color-border);
-      transition: border-color 0.2s, color 0.2s;
-    }
-    .btn-ghost:hover { border-color: var(--color-violet); color: var(--color-violet); }
-    .hero-trust { font-size: 0.74rem; color: var(--color-muted-text); letter-spacing: 0.04em; }
-
-    /* ── Finder ─────────────────────────────── */
-    .finder {
-      background: var(--color-deep-purple);
-      padding: 5rem 1.5rem;
-    }
-    .finder-inner { max-width: 520px; margin: 0 auto; text-align: center; }
-    .finder h2 {
-      font-family: var(--font-family-heading);
-      font-size: clamp(1.75rem, 4vw, 2.5rem);
-      font-weight: 700;
-      color: var(--color-starlight);
-      margin: 0.875rem 0 1rem;
-      line-height: 1.2;
-    }
-    .finder-sub { color: rgba(235,232,247,0.55); font-size: 0.95rem; line-height: 1.75; margin-bottom: 2rem; }
-    .finder-card {
-      background: rgba(255,255,255,0.04);
-      border: 1px solid rgba(196,162,78,0.2);
-      border-radius: 10px;
-      padding: 2rem;
-      text-align: left;
-    }
-    .finder-label {
-      display: block;
-      font-size: 0.75rem;
-      font-weight: 600;
-      color: rgba(235,232,247,0.55);
-      margin-bottom: 0.5rem;
-      letter-spacing: 0.07em;
+      letter-spacing: 0.08em;
       text-transform: uppercase;
-    }
-    .finder-input {
-      width: 100%;
-      padding: 0.75rem 1rem;
-      border-radius: 6px;
-      border: 1px solid rgba(196,162,78,0.25);
-      background: rgba(255,255,255,0.06);
-      color: var(--color-starlight);
-      font-size: 1rem;
-      margin-bottom: 1rem;
-      outline: none;
-      transition: border-color 0.2s;
-      color-scheme: dark;
-    }
-    .finder-input:focus { border-color: rgba(196,162,78,0.6); }
-    .finder-error { display: none; color: #f87171; font-size: 0.8rem; margin-bottom: 0.75rem; }
-    .btn-gold {
-      width: 100%;
-      padding: 0.875rem;
-      background: var(--color-soft-gold);
-      color: var(--color-midnight);
-      font-weight: 700;
-      font-size: 1rem;
-      border: none;
-      border-radius: 6px;
-      cursor: pointer;
-      transition: opacity 0.2s;
-      letter-spacing: 0.02em;
-    }
-    .btn-gold:hover { opacity: 0.88; }
-    .finder-result {
-      display: none;
-      margin-top: 1.5rem;
-      padding-top: 1.5rem;
-      border-top: 1px solid rgba(196,162,78,0.15);
-      text-align: center;
-    }
-    .result-subtitle { font-size: 0.72rem; text-transform: uppercase; letter-spacing: 0.12em; color: rgba(235,232,247,0.4); margin-bottom: 0.5rem; }
-    .result-number {
-      font-family: var(--font-family-heading);
-      font-size: 5.5rem;
-      font-weight: 700;
-      color: var(--color-soft-gold);
-      line-height: 1;
-      margin-bottom: 0.375rem;
-    }
-    .result-title {
-      font-family: var(--font-family-heading);
-      font-size: 1.2rem;
-      font-weight: 600;
-      font-style: italic;
-      color: var(--color-starlight);
-      margin-bottom: 1.25rem;
-    }
-    .result-actions { display: flex; flex-direction: column; gap: 0.625rem; }
-    .btn-violet-block {
-      display: block;
-      padding: 0.75rem;
-      background: var(--color-violet);
-      color: white;
-      font-weight: 600;
-      font-size: 0.9rem;
-      border-radius: 6px;
-      text-align: center;
       text-decoration: none;
-      transition: opacity 0.2s;
-    }
-    .btn-violet-block:hover { opacity: 0.88; }
-    .btn-ghost-dark {
-      display: block;
-      padding: 0.75rem;
-      background: rgba(255,255,255,0.05);
-      color: rgba(235,232,247,0.65);
-      font-size: 0.84rem;
-      border-radius: 6px;
-      text-align: center;
-      text-decoration: none;
-      border: 1px solid rgba(196,162,78,0.18);
-      transition: border-color 0.2s, color 0.2s;
-    }
-    .btn-ghost-dark:hover { border-color: rgba(196,162,78,0.4); color: var(--color-soft-gold); }
-    .restart-btn {
-      margin-top: 1rem;
-      background: none;
       border: none;
-      color: rgba(235,232,247,0.3);
-      font-size: 0.75rem;
       cursor: pointer;
-      text-decoration: underline;
+      transition: background 0.2s;
+      white-space: nowrap;
     }
-    .finder-note { margin-top: 1rem; font-size: 0.7rem; color: rgba(235,232,247,0.25); }
+    .hp-link-btn:hover { background: var(--hp-gold); color: var(--hp-paper) !important; }
+    .hp-calc-reset-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 13px 24px;
+      border-radius: 999px;
+      border: 1px solid var(--hp-rule-strong);
+      background: transparent;
+      color: var(--hp-ink-soft);
+      font-family: var(--hp-ui);
+      font-size: 12px;
+      font-weight: 600;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      cursor: pointer;
+      transition: all 0.2s;
+      white-space: nowrap;
+    }
+    .hp-calc-reset-btn:hover { border-color: var(--hp-gold); color: var(--hp-gold); }
+    /* intermediate reduction steps fade out after animation completes */
+    .hp-dp-value.faded { opacity: 0.1 !important; transition: opacity 0.8s; }
 
-    /* ── Numbers grid ───────────────────────── */
-    .numbers-section { background: var(--color-light-bg); padding: 5.5rem 1.5rem; }
-    .section-head { text-align: center; margin-bottom: 3rem; }
-    .section-head h2 {
-      font-family: var(--font-family-heading);
-      font-size: clamp(1.75rem, 4vw, 2.75rem);
-      font-weight: 700;
-      color: var(--color-body-text);
-      margin: 0.875rem 0 1.25rem;
-      line-height: 1.2;
+    @media (max-width: 900px) {
+      .hp-calc-frame { padding: 36px 24px; }
+      .hp-revelation { grid-template-columns: 1fr; }
+      .hp-rev-left { border-right: none; padding-right: 0; border-bottom: 1px solid var(--hp-rule); padding-bottom: 24px; }
+      .hp-rev-number { font-size: 8rem; }
+      .hp-trait { grid-template-columns: 1fr; gap: 4px; }
+      .hp-day-grid { grid-template-columns: repeat(7, 1fr); }
     }
-    .numbers-grid {
-      max-width: 1100px;
+    @media (max-width: 600px) {
+      .hp-calc-section { padding: 60px 16px; }
+      .hp-month-grid { grid-template-columns: repeat(3, 1fr); }
+      .hp-month-cell:nth-child(6n) { border-right: 1px solid var(--hp-rule); }
+      .hp-month-cell:nth-child(3n) { border-right: none; }
+      .hp-day-grid { grid-template-columns: repeat(5, 1fr); }
+      .hp-step-label { display: none; }
+    }
+
+
+    /* ══════════════════════════════════════════════════════
+       NUMBERS GRID
+    ══════════════════════════════════════════════════════ */
+    .hp-numbers {
+      max-width: 1440px;
       margin: 0 auto;
+      padding: 100px 40px;
+      border-bottom: 1px solid var(--hp-rule);
+    }
+    .hp-numbers-head {
+      text-align: center;
+      margin-bottom: 56px;
+    }
+    .hp-numbers-head .hp-eyebrow { justify-content: center; margin-bottom: 24px; }
+    .hp-numbers-grid {
       display: grid;
       grid-template-columns: repeat(4, 1fr);
-      gap: 1rem;
+      gap: 1px;
+      background: var(--hp-rule);
     }
-    .num-tile {
+    .hp-num-tile {
       position: relative;
       overflow: hidden;
-      border-radius: 8px;
       display: block;
       aspect-ratio: 2 / 3;
+      background: var(--hp-paper);
+      text-decoration: none;
     }
-    .num-tile img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.6s ease; }
-    .num-tile:hover img { transform: scale(1.07); }
-    .num-overlay {
+    .hp-num-tile img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.6s ease; display: block; }
+    .hp-num-tile:hover img { transform: scale(1.07); }
+    .hp-num-overlay {
       position: absolute;
       inset: 0;
-      background: linear-gradient(to top, rgba(7,7,26,0.92) 0%, rgba(7,7,26,0.35) 55%, transparent 100%);
+      background: linear-gradient(to top, rgba(20,23,43,0.88) 0%, rgba(20,23,43,0.28) 55%, transparent 100%);
       transition: background 0.3s;
     }
-    .num-tile:hover .num-overlay { background: linear-gradient(to top, rgba(7,7,26,0.96) 0%, rgba(7,7,26,0.55) 65%, transparent 100%); }
-    .num-content { position: absolute; bottom: 0; left: 0; right: 0; padding: 1rem 0.875rem; }
-    .num-n {
-      font-family: var(--font-family-heading);
+    .hp-num-tile:hover .hp-num-overlay {
+      background: linear-gradient(to top, rgba(20,23,43,0.95) 0%, rgba(20,23,43,0.55) 65%, transparent 100%);
+    }
+    .hp-num-content { position: absolute; bottom: 0; left: 0; right: 0; padding: 1rem 0.875rem; }
+    .hp-num-n {
+      font-family: var(--hp-display);
+      font-style: italic;
       font-size: 2.5rem;
-      font-weight: 700;
-      color: var(--color-soft-gold);
+      color: var(--hp-gold-soft);
       line-height: 1;
       margin-bottom: 0.2rem;
     }
-    .num-n.master { font-size: 1.9rem; }
-    .num-label { font-size: 0.68rem; text-transform: uppercase; letter-spacing: 0.12em; color: rgba(235,232,247,0.7); font-weight: 600; }
-    .master-badge { font-size: 0.58rem; letter-spacing: 0.1em; text-transform: uppercase; color: var(--color-soft-gold); margin-top: 0.2rem; font-weight: 600; display: block; }
-    .numbers-footer { text-align: center; margin-top: 2rem; font-size: 0.875rem; color: var(--color-muted-text); }
-    .numbers-footer a { color: var(--color-violet); font-weight: 600; text-decoration: none; }
+    .hp-num-n.master { font-size: 2rem; }
+    .hp-num-label {
+      font-size: 0.68rem;
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+      color: rgba(241,236,223,0.85);
+      font-weight: 600;
+      font-family: var(--hp-mono);
+    }
+    .hp-master-badge {
+      font-size: 0.56rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--hp-gold-soft);
+      margin-top: 0.25rem;
+      font-weight: 600;
+      display: block;
+      font-family: var(--hp-mono);
+    }
+    .hp-numbers-note {
+      text-align: center;
+      margin-top: 2rem;
+      font-family: var(--hp-mono);
+      font-size: 0.72rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--hp-ink-mute);
+    }
+    .hp-numbers-note a { color: var(--hp-gold); text-decoration: none; }
+    .hp-numbers-note a:hover { text-decoration: underline; }
 
-    /* ── Featured guides ────────────────────── */
-    .guides-section { background: white; padding: 5.5rem 1.5rem; border-top: 1px solid var(--color-border); }
-    .guides-inner { max-width: 1100px; margin: 0 auto; }
-    .guides-header {
+
+    /* ══════════════════════════════════════════════════════
+       METHOD
+    ══════════════════════════════════════════════════════ */
+    .hp-method {
+      background: var(--hp-ink);
+      color: var(--hp-paper);
+      padding: 100px 40px;
+    }
+    .hp-method-inner { max-width: 1200px; margin: 0 auto; }
+    .hp-method .hp-eyebrow { color: var(--hp-paper-3); margin-bottom: 0; }
+    .hp-method .hp-section-title { color: var(--hp-paper); margin-top: 24px; }
+    .hp-method .hp-section-title em { color: var(--hp-gold-soft); }
+    .hp-method-steps {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      margin: 56px 0 0;
+      border-top: 1px solid rgba(241,236,223,0.18);
+      border-bottom: 1px solid rgba(241,236,223,0.18);
+    }
+    .hp-method-step {
+      padding: 36px 32px;
+      border-right: 1px solid rgba(241,236,223,0.18);
+    }
+    .hp-method-step:last-child { border-right: none; }
+    .hp-method-num {
+      font-family: var(--hp-display);
+      font-style: italic;
+      font-size: 3.5rem;
+      color: var(--hp-gold-soft);
+      line-height: 1;
+      margin-bottom: 18px;
+    }
+    .hp-method-title {
+      font-family: var(--hp-display);
+      font-size: 1.35rem;
+      font-style: italic;
+      margin-bottom: 10px;
+      color: var(--hp-paper);
+    }
+    .hp-method-body { color: var(--hp-paper-3); font-size: 1rem; line-height: 1.55; }
+    .hp-method-example {
+      margin-top: 56px;
+      padding: 36px;
+      border: 1px solid rgba(241,236,223,0.22);
+      background: rgba(241,236,223,0.04);
+    }
+    .hp-ex-label {
+      font-family: var(--hp-mono);
+      font-size: 11px;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--hp-gold-soft);
+      margin-bottom: 22px;
+    }
+    .hp-ex-math {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 18px;
+      align-items: baseline;
+      font-family: var(--hp-display);
+      font-size: 1.35rem;
+      color: var(--hp-paper);
+      line-height: 1.5;
+    }
+    .hp-ex-math em { color: var(--hp-paper-3); font-style: italic; font-size: 1.1rem; }
+    .hp-ex-math strong { color: var(--hp-gold-soft); font-style: italic; font-weight: 400; font-size: 1.7rem; }
+    .hp-ex-final { font-size: 2.75rem !important; }
+    .hp-ex-op { color: var(--hp-paper-3); font-style: italic; }
+    .hp-ex-note { margin-top: 22px; font-style: italic; color: var(--hp-paper-3); font-size: 1.1rem; }
+
+
+    /* ══════════════════════════════════════════════════════
+       ARTICLES / JOURNAL
+    ══════════════════════════════════════════════════════ */
+    .hp-articles {
+      max-width: 1440px;
+      margin: 0 auto;
+      padding: 100px 40px;
+      border-bottom: 1px solid var(--hp-rule);
+    }
+    .hp-articles-head {
       display: flex;
       align-items: flex-end;
       justify-content: space-between;
       flex-wrap: wrap;
       gap: 1rem;
-      margin-bottom: 2.5rem;
+      margin-bottom: 56px;
     }
-    .guides-header h2 {
-      font-family: var(--font-family-heading);
-      font-size: clamp(1.6rem, 3.5vw, 2.5rem);
-      font-weight: 700;
-      color: var(--color-body-text);
-      line-height: 1.15;
-      margin-top: 0.625rem;
-    }
-    .link-underline {
-      font-size: 0.85rem;
-      font-weight: 600;
-      color: var(--color-violet);
-      padding-bottom: 0.125rem;
-      border-bottom: 1.5px solid var(--color-violet);
-      white-space: nowrap;
+    .hp-articles-head .hp-eyebrow { margin-bottom: 20px; }
+    .hp-link-underline {
+      font-family: var(--hp-mono);
+      font-size: 0.72rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--hp-gold);
       text-decoration: none;
+      border-bottom: 1px solid var(--hp-gold);
+      padding-bottom: 2px;
+      white-space: nowrap;
       transition: opacity 0.2s;
     }
-    .link-underline:hover { opacity: 0.75; }
-    .feat-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.5rem; margin-bottom: 1.25rem; }
-    .feat-card {
-      display: block;
-      background: white;
-      border: 1px solid var(--color-border);
-      border-radius: 8px;
-      overflow: hidden;
+    .hp-link-underline:hover { opacity: 0.75; }
+    .hp-article-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      border-top: 1px solid var(--hp-rule-strong);
+    }
+    .hp-article {
+      padding: 32px 28px 36px;
+      border-right: 1px solid var(--hp-rule);
+      border-bottom: 1px solid var(--hp-rule);
+      display: flex;
+      flex-direction: column;
       text-decoration: none;
-      transition: box-shadow 0.25s, transform 0.25s;
+      color: inherit;
+      transition: background 0.2s;
     }
-    .feat-card:hover { box-shadow: 0 12px 40px rgba(26,21,40,0.1); transform: translateY(-3px); }
-    .feat-img-wrap { overflow: hidden; aspect-ratio: 2/3; }
-    .feat-card img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.5s; }
-    .feat-card:hover img { transform: scale(1.05); }
-    .feat-body { padding: 1.5rem; }
-    .feat-body h3 {
-      font-family: var(--font-family-heading);
-      font-size: 1.3rem;
-      font-weight: 700;
-      color: var(--color-body-text);
-      margin: 0.5rem 0 0.625rem;
-      line-height: 1.25;
+    .hp-article:nth-child(3n) { border-right: none; }
+    .hp-article:nth-last-child(-n+3) { border-bottom: none; }
+    .hp-article:hover { background: var(--hp-paper-2); }
+    .hp-article-meta {
+      display: flex;
+      justify-content: space-between;
+      font-family: var(--hp-mono);
+      font-size: 10px;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--hp-ink-mute);
+      margin-bottom: 20px;
     }
-    .feat-body p { font-size: 0.875rem; color: var(--color-muted-text); line-height: 1.7; margin-bottom: 1.25rem; }
-    .feat-link { font-size: 0.8rem; font-weight: 700; color: var(--color-violet); letter-spacing: 0.04em; }
-    .mini-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 0.875rem; }
-    .mini-card {
-      display: block;
-      padding: 1rem 1.25rem;
-      background: var(--color-light-bg);
-      border: 1px solid var(--color-border);
-      border-radius: 6px;
-      text-decoration: none;
-      font-size: 0.875rem;
-      font-weight: 600;
-      color: var(--color-body-text);
-      transition: border-color 0.2s, color 0.2s;
+    .kicker-gold  { color: var(--hp-gold); }
+    .kicker-plum  { color: var(--hp-accent); }
+    .kicker-ink   { color: var(--hp-ink); }
+    .kicker-sage  { color: #5e7350; }
+    .hp-article-title {
+      font-family: var(--hp-display);
+      font-weight: 400;
+      font-style: italic;
+      font-size: 1.65rem;
+      line-height: 1.15;
+      margin: 0 0 12px;
+      color: var(--hp-ink);
     }
-    .mini-card:hover { border-color: var(--color-violet); color: var(--color-violet); }
-    .mini-card span { display: block; font-size: 0.75rem; font-weight: 400; color: var(--color-muted-text); margin-top: 0.2rem; }
+    .hp-article-dek { color: var(--hp-ink-soft); font-size: 0.95rem; line-height: 1.55; margin: 0 0 24px; flex: 1; }
+    .hp-article-foot {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding-top: 14px;
+      border-top: 1px solid var(--hp-rule);
+      font-family: var(--hp-mono);
+      font-size: 10px;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      color: var(--hp-ink-mute);
+    }
+    .hp-article-arrow { color: var(--hp-gold); transition: transform 0.25s; display: flex; align-items: center; }
+    .hp-article:hover .hp-article-arrow { transform: translateX(6px); }
 
-    /* ── Reading block ──────────────────────── */
-    .reading-section { background: var(--color-light-bg); padding: 5.5rem 1.5rem; border-top: 1px solid var(--color-border); }
-    .reading-inner { max-width: 1000px; margin: 0 auto; }
-    .reading-block {
-      background: var(--color-midnight);
-      border-radius: 12px;
-      overflow: hidden;
+
+    /* ══════════════════════════════════════════════════════
+       READING AFFILIATE BLOCK
+    ══════════════════════════════════════════════════════ */
+    .hp-reading {
+      background: var(--hp-paper-2);
+      border-bottom: 1px solid var(--hp-rule);
+      padding: 80px 40px;
+    }
+    .hp-reading-inner { max-width: 1100px; margin: 0 auto; }
+    .hp-reading-block {
+      background: var(--hp-ink);
       display: grid;
       grid-template-columns: 1fr 1fr;
+      overflow: hidden;
     }
-    .reading-left { padding: 3rem 2.75rem; display: flex; flex-direction: column; justify-content: center; }
-    .reading-left h2 {
-      font-family: var(--font-family-heading);
-      font-size: clamp(1.5rem, 3vw, 2.1rem);
-      font-weight: 700;
-      color: var(--color-starlight);
+    .hp-reading-left {
+      padding: 3rem 2.75rem;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+    }
+    .hp-reading-left .hp-eyebrow { color: var(--hp-paper-3); margin-bottom: 20px; }
+    .hp-reading-left h2 {
+      font-family: var(--hp-display);
+      font-weight: 400;
+      font-size: clamp(1.6rem, 3vw, 2.1rem);
+      color: var(--hp-paper);
       line-height: 1.25;
-      margin: 1rem 0;
+      margin: 0 0 1rem;
     }
-    .reading-left h2 em { font-style: italic; color: var(--color-soft-gold); }
-    .reading-left p { font-size: 0.9rem; line-height: 1.75; color: rgba(235,232,247,0.58); margin-bottom: 2rem; }
-    .btn-gold-inline {
+    .hp-reading-left h2 em { color: var(--hp-gold-soft); font-style: italic; }
+    .hp-reading-left > p {
+      font-size: 0.9rem;
+      line-height: 1.75;
+      color: rgba(241,236,223,0.58);
+      margin-bottom: 2rem;
+    }
+    .hp-btn-gold {
       display: inline-flex;
       align-items: center;
       gap: 0.5rem;
-      background: var(--color-soft-gold);
-      color: var(--color-midnight);
+      background: var(--hp-gold);
+      color: var(--hp-ink);
+      font-family: var(--hp-ui);
       font-weight: 700;
-      font-size: 0.95rem;
+      font-size: 0.9rem;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
       padding: 0.875rem 1.75rem;
-      border-radius: 6px;
+      border-radius: 999px;
       text-decoration: none;
       width: fit-content;
       transition: opacity 0.2s;
     }
-    .btn-gold-inline:hover { opacity: 0.88; }
-    .reading-disclaimer { margin-top: 1rem; font-size: 0.68rem; color: rgba(235,232,247,0.22); line-height: 1.5; }
-    .reading-right {
-      background: rgba(255,255,255,0.04);
-      border-left: 1px solid rgba(196,162,78,0.12);
+    .hp-btn-gold:hover { opacity: 0.88; }
+    .hp-reading-disclaimer {
+      margin-top: 1rem;
+      font-size: 0.68rem;
+      color: rgba(241,236,223,0.22);
+      line-height: 1.5;
+      font-family: var(--hp-mono);
+      letter-spacing: 0.04em;
+    }
+    .hp-reading-right {
+      border-left: 1px solid rgba(241,236,223,0.12);
       padding: 3rem 2.5rem;
       display: flex;
       flex-direction: column;
       justify-content: center;
       gap: 1.5rem;
     }
-    .reading-point { display: flex; gap: 1rem; align-items: flex-start; }
-    .reading-dot { width: 5px; height: 5px; border-radius: 50%; background: var(--color-soft-gold); margin-top: 0.45rem; flex-shrink: 0; }
-    .reading-point-head { font-size: 0.875rem; font-weight: 600; color: var(--color-starlight); margin-bottom: 0.2rem; }
-    .reading-point-body { font-size: 0.8rem; color: rgba(235,232,247,0.5); line-height: 1.6; }
-
-    /* ── FAQ ────────────────────────────────── */
-    .faq-section { background: white; padding: 5.5rem 1.5rem; border-top: 1px solid var(--color-border); }
-    .faq-inner { max-width: 680px; margin: 0 auto; }
-    .faq-inner .section-head h2 {
-      font-family: var(--font-family-heading);
-      font-size: clamp(1.5rem, 3.5vw, 2.25rem);
-      font-weight: 700;
-      color: var(--color-body-text);
-      margin-bottom: 0.5rem;
+    .hp-reading-point { display: flex; gap: 1rem; align-items: flex-start; }
+    .hp-reading-dot {
+      width: 5px; height: 5px;
+      border-radius: 50%;
+      background: var(--hp-gold-soft);
+      margin-top: 0.45rem;
+      flex-shrink: 0;
     }
-    .faq-list details { border-top: 1px solid var(--color-border); }
-    .faq-list details:last-child { border-bottom: 1px solid var(--color-border); }
-    .faq-list summary {
+    .hp-reading-point-head { font-size: 0.875rem; font-weight: 600; color: var(--hp-paper); margin-bottom: 0.2rem; }
+    .hp-reading-point-body { font-size: 0.8rem; color: rgba(241,236,223,0.5); line-height: 1.6; }
+
+
+    /* ══════════════════════════════════════════════════════
+       FAQ
+    ══════════════════════════════════════════════════════ */
+    .hp-faq {
+      background: var(--hp-paper);
+      border-bottom: 1px solid var(--hp-rule);
+      padding: 80px 40px;
+    }
+    .hp-faq-inner { max-width: 720px; margin: 0 auto; }
+    .hp-faq-head { text-align: center; margin-bottom: 40px; }
+    .hp-faq-head .hp-eyebrow { justify-content: center; margin-bottom: 20px; }
+    .hp-faq-head h2 {
+      font-family: var(--hp-display);
+      font-weight: 400;
+      font-size: clamp(1.75rem, 3.5vw, 2.5rem);
+      color: var(--hp-ink);
+      margin: 0;
+    }
+    .hp-faq details { border-top: 1px solid var(--hp-rule); }
+    .hp-faq details:last-child { border-bottom: 1px solid var(--hp-rule); }
+    .hp-faq summary {
       padding: 1.3rem 0;
       cursor: pointer;
       display: flex;
@@ -528,324 +1108,984 @@ const faqs = [
       gap: 1rem;
       font-weight: 600;
       font-size: 1rem;
-      color: var(--color-body-text);
+      color: var(--hp-ink);
       list-style: none;
+      font-family: var(--hp-body);
       transition: color 0.2s;
     }
-    .faq-list summary::-webkit-details-marker { display: none; }
-    .faq-list details[open] summary { color: var(--color-violet); }
-    .faq-chevron { flex-shrink: 0; transition: transform 0.25s; }
-    .faq-list details[open] .faq-chevron { transform: rotate(180deg); }
-    .faq-answer { padding-bottom: 1.3rem; font-size: 0.9rem; color: var(--color-muted-text); line-height: 1.8; }
+    .hp-faq summary::-webkit-details-marker { display: none; }
+    .hp-faq details[open] summary { color: var(--hp-gold); }
+    .hp-faq-chevron { flex-shrink: 0; transition: transform 0.25s; }
+    .hp-faq details[open] .hp-faq-chevron { transform: rotate(180deg); }
+    .hp-faq-answer {
+      padding-bottom: 1.3rem;
+      font-size: 0.95rem;
+      color: var(--hp-ink-soft);
+      line-height: 1.8;
+    }
 
-    /* ── Bottom CTA ─────────────────────────── */
-    .bottom-cta {
-      background: var(--color-midnight);
-      padding: 5.5rem 1.5rem;
+
+    /* ══════════════════════════════════════════════════════
+       BOTTOM CTA
+    ══════════════════════════════════════════════════════ */
+    .hp-cta {
+      background: var(--hp-ink);
+      color: var(--hp-paper);
+      padding: 100px 40px;
+      text-align: center;
       position: relative;
       overflow: hidden;
-      text-align: center;
     }
-    .bottom-cta-glow {
+    .hp-cta::before {
+      content: '';
       position: absolute;
       inset: 0;
-      background: radial-gradient(ellipse at 50% 120%, rgba(124,92,191,0.18) 0%, transparent 70%);
+      background: radial-gradient(ellipse at 50% 120%, rgba(176,141,62,0.2) 0%, transparent 70%);
       pointer-events: none;
     }
-    .bottom-cta-inner { position: relative; z-index: 1; max-width: 560px; margin: 0 auto; }
-    .bottom-cta h2 {
-      font-family: var(--font-family-heading);
-      font-size: clamp(1.85rem, 4vw, 2.9rem);
-      font-weight: 700;
-      color: var(--color-starlight);
-      margin: 1rem 0;
-      line-height: 1.2;
+    .hp-cta-inner { position: relative; z-index: 1; max-width: 580px; margin: 0 auto; }
+    .hp-cta .hp-eyebrow { justify-content: center; color: var(--hp-paper-3); margin-bottom: 20px; }
+    .hp-cta h2 {
+      font-family: var(--hp-display);
+      font-weight: 400;
+      font-size: clamp(2rem, 4vw, 3.25rem);
+      color: var(--hp-paper);
+      line-height: 1.1;
+      margin: 0 0 1rem;
     }
-    .bottom-cta p { color: rgba(235,232,247,0.5); font-size: 0.95rem; line-height: 1.8; margin-bottom: 2.5rem; }
+    .hp-cta h2 em { color: var(--hp-gold-soft); font-style: italic; }
+    .hp-cta > .hp-cta-inner > p {
+      color: rgba(241,236,223,0.55);
+      font-size: 1rem;
+      line-height: 1.8;
+      margin-bottom: 2.5rem;
+    }
 
-    /* ── Responsive ─────────────────────────── */
+
+    /* ══════════════════════════════════════════════════════
+       RESPONSIVE
+    ══════════════════════════════════════════════════════ */
+    @media (max-width: 1100px) {
+      .hp-hero-grid    { grid-template-columns: 1fr; }
+      .hp-hero-right   { display: none; }
+      .hp-finder-inner { grid-template-columns: 1fr; gap: 40px; }
+      .hp-reading-block { grid-template-columns: 1fr; }
+      .hp-reading-right { border-left: none; border-top: 1px solid rgba(241,236,223,0.12); }
+    }
     @media (max-width: 900px) {
-      .numbers-grid { grid-template-columns: repeat(3, 1fr); }
-      .feat-grid { grid-template-columns: 1fr 1fr; }
-      .mini-grid { grid-template-columns: repeat(2, 1fr); }
-      .reading-block { grid-template-columns: 1fr; }
-      .reading-right { border-left: none; border-top: 1px solid rgba(196,162,78,0.12); }
+      .hp-hero, .hp-numbers, .hp-method, .hp-articles,
+      .hp-reading, .hp-faq, .hp-cta { padding-left: 24px; padding-right: 24px; }
+      .hp-numbers-grid  { grid-template-columns: repeat(3, 1fr); }
+      .hp-method-steps  { grid-template-columns: 1fr; }
+      .hp-method-step   { border-right: none; border-bottom: 1px solid rgba(241,236,223,0.18); }
+      .hp-method-step:last-child { border-bottom: none; }
+      .hp-article-grid  { grid-template-columns: 1fr 1fr; }
+      .hp-article:nth-child(3n) { border-right: 1px solid var(--hp-rule); }
+      .hp-article:nth-child(2n) { border-right: none; }
+      .hp-article:nth-last-child(-n+3) { border-bottom: 1px solid var(--hp-rule); }
+      .hp-article:nth-last-child(-n+2) { border-bottom: none; }
     }
     @media (max-width: 600px) {
-      .numbers-grid { grid-template-columns: repeat(3, 1fr); gap: 0.625rem; }
-      .feat-grid { grid-template-columns: 1fr; }
-      .mini-grid { grid-template-columns: repeat(2, 1fr); }
-      .hero-numeral-l, .hero-numeral-r { display: none; }
+      .hp-hero, .hp-numbers, .hp-method, .hp-articles,
+      .hp-reading, .hp-faq, .hp-cta { padding-left: 16px; padding-right: 16px; }
+      .hp-numbers-grid { grid-template-columns: repeat(3, 1fr); }
+      .hp-article-grid { grid-template-columns: 1fr; }
+      .hp-article { border-right: none !important; }
+      .hp-article:nth-last-child(-n+1) { border-bottom: none; }
+      .hp-article:nth-last-child(-n+2) { border-bottom: 1px solid var(--hp-rule); }
+      .hp-hero-stats { flex-wrap: wrap; gap: 16px; }
+    }
+  </style>
+
+  <style is:global>
+    .hp-dp-value { font-family: 'Bodoni Moda','Cormorant Garamond',Georgia,serif; font-style:italic; color:#2c2f48; transition:all 0.5s; font-size:1.75rem; opacity:0; }
+    .hp-dp-value.raw   { font-size:2.25rem; color:#14172b; opacity:1; }
+    .hp-dp-value.gold  { color:#b08d3e; font-size:2.75rem; opacity:1; }
+    .hp-dp-value.shown { opacity:1; }
+    .hp-dp-value.faded { opacity:0.1 !important; transition:opacity 0.8s; }
+    .hp-op { font-family:'Bodoni Moda','Cormorant Garamond',Georgia,serif; font-style:italic; font-size:2.25rem; color:#6b6c80; align-self:center; }
+    .hp-op.equals { color:#b08d3e; }
+    .hp-op-sum { display:none; } .hp-op-sum.shown { display:flex; align-items:center; }
+    .hp-sum-block { text-align:center; display:none; } .hp-sum-block.shown { display:block; }
+    .hp-sum-label { font-family:ui-monospace,monospace; font-size:10px; letter-spacing:0.2em; text-transform:uppercase; color:#6b6c80; margin-bottom:6px; }
+    .hp-sum-value { font-family:'Bodoni Moda','Cormorant Garamond',Georgia,serif; font-style:italic; font-size:3.5rem; color:#b08d3e; line-height:1; }
+    .hp-sum-row { display:flex; align-items:baseline; gap:10px; justify-content:center; }
+    .hp-sum-inline-trail { display:flex; align-items:baseline; gap:8px; }
+    .hp-sum-arrow-inline { font-family:'Bodoni Moda','Cormorant Garamond',Georgia,serif; font-style:italic; font-size:2rem; color:#6b6c80; }
+    .hp-sum-final { font-family:'Bodoni Moda','Cormorant Garamond',Georgia,serif; font-style:italic; font-size:3.5rem; color:#b08d3e; line-height:1; }
+    .hp-revelation { display:grid; grid-template-columns:1fr 1.4fr; gap:48px; opacity:0; transform:translateY(20px); transition:opacity 0.7s,transform 0.7s; }
+    .hp-revelation.shown { opacity:1; transform:translateY(0); }
+    .hp-rev-left { text-align:center; border-right:1px solid rgba(20,23,43,0.18); padding-right:48px; }
+    .hp-rev-tag { font-family:ui-monospace,monospace; font-size:10px; letter-spacing:0.2em; text-transform:uppercase; color:#6b6c80; display:flex; gap:8px; justify-content:center; align-items:center; margin-bottom:16px; }
+    .hp-master-tag { background:#b08d3e; color:#f1ecdf; padding:3px 8px; letter-spacing:0.16em; margin-left:6px; }
+    .hp-rev-number { font-family:'Bodoni Moda','Cormorant Garamond',Georgia,serif; font-style:italic; font-size:11.25rem; line-height:0.9; color:#14172b; display:block; }
+    .hp-rev-glyph { color:#b08d3e; opacity:0.6; display:flex; justify-content:center; margin:8px 0 12px; }
+    .hp-rev-title { font-family:'Bodoni Moda','Cormorant Garamond',Georgia,serif; font-style:italic; font-size:2.1rem; line-height:1; margin-bottom:8px; color:#14172b; }
+    .hp-rev-archetype { font-family:ui-monospace,monospace; font-size:11px; letter-spacing:0.18em; text-transform:uppercase; color:#b08d3e; }
+    .hp-rev-right { display:flex; flex-direction:column; gap:20px; }
+    .hp-rev-body { font-size:1.15rem; line-height:1.55; color:#2c2f48; margin:0; }
+    .hp-rev-traits { display:flex; flex-direction:column; gap:14px; padding-top:16px; border-top:1px solid rgba(20,23,43,0.18); }
+    .hp-trait { display:grid; grid-template-columns:160px 1fr; gap:18px; }
+    .hp-trait-label { font-family:ui-monospace,monospace; font-size:10px; letter-spacing:0.18em; text-transform:uppercase; color:#6b6c80; padding-top:4px; }
+    .hp-trait-text { font-size:1.05rem; color:#14172b; }
+    .hp-rev-actions { display:flex; gap:14px; padding-top:18px; border-top:1px solid rgba(20,23,43,0.18); align-items:center; flex-wrap:wrap; }
+    .hp-link-btn { display:inline-flex; align-items:center; gap:8px; padding:13px 24px; border-radius:999px; background:#14172b; color:#f1ecdf; font-family:'Inter',system-ui,sans-serif; font-size:12px; font-weight:600; letter-spacing:0.08em; text-transform:uppercase; text-decoration:none; border:none; cursor:pointer; transition:background 0.2s; white-space:nowrap; }
+    .hp-link-btn:hover { background:#b08d3e !important; color:#f1ecdf !important; }
+    .hp-calc-reset-btn { display:inline-flex; align-items:center; gap:8px; padding:13px 24px; border-radius:999px; border:1px solid rgba(20,23,43,0.42); background:transparent; color:#2c2f48; font-family:'Inter',system-ui,sans-serif; font-size:12px; font-weight:600; letter-spacing:0.08em; text-transform:uppercase; cursor:pointer; transition:all 0.2s; white-space:nowrap; }
+    .hp-calc-reset-btn:hover { border-color:#b08d3e; color:#b08d3e; }
+    .hp-day-cell { background:transparent; border:none; border-right:1px solid rgba(20,23,43,0.18); border-bottom:1px solid rgba(20,23,43,0.18); padding:14px 8px; font-family:'Bodoni Moda','Cormorant Garamond',Georgia,serif; font-style:italic; font-size:1.375rem; color:#14172b; cursor:pointer; transition:all 0.2s; text-align:center; }
+    .hp-day-cell:hover { background:#e9e2cf; color:#b08d3e; }
+    .hp-day-cell.selected { background:#14172b; color:#f1ecdf; }
+    @media (max-width:900px) {
+      .hp-revelation { grid-template-columns:1fr; }
+      .hp-rev-left { border-right:none; padding-right:0; border-bottom:1px solid rgba(20,23,43,0.18); padding-bottom:24px; }
+      .hp-rev-number { font-size:8rem; }
+      .hp-trait { grid-template-columns:1fr; gap:4px; }
     }
   </style>
 
 
-  <!-- ═══ HERO ═══════════════════════════════════════ -->
-  <section class="hero">
-    <div class="hero-dots"></div>
-    <div class="hero-numeral hero-numeral-l" aria-hidden="true">3</div>
-    <div class="hero-numeral hero-numeral-r" aria-hidden="true">7</div>
+  <div class="hp-page">
 
-    <div class="hero-inner">
-      <p class="p-label" style="margin-bottom:1.25rem;">Free Numerology Education</p>
-      <div class="p-divider" style="margin-bottom:1.75rem;"></div>
+    <!-- ═══ HERO ═════════════════════════════════════════════ -->
+    <section class="hp-hero">
+      <div class="hp-hero-inner">
+      <div class="hp-hero-grid">
 
-      <h1>
-        Your birth date<br>
-        <em>is trying to tell you something.</em>
-      </h1>
+        <!-- Left column -->
+        <div class="hp-hero-left">
+          <h1 class="hp-hero-title">
+            Every life arrives<br>
+            with a <em>number</em>.<br>
+            <span class="hp-hero-sub">Learn to read yours.</span>
+          </h1>
 
-      <p class="hero-sub">
-        The numbers in your name and birth date describe patterns, personality tendencies, the way you relate to people, how you work. Most people recognise them immediately once they see them. These guides explain how the system works, for free.
-      </p>
+          <p class="hp-hero-dek">
+            A modern field guide to numerology — the calculators, the cycles,
+            the master numbers, and the long quiet practice of paying attention
+            to what the digits keep telling you.
+          </p>
 
-      <div class="hero-actions">
-        <a href="/learn/" class="btn-primary">
-          Start learning free
-          <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="9 18 15 12 9 6"/></svg>
-        </a>
-        <a href="https://8904b5z1168aar3k8annz7y61n.hop.clickbank.net" target="_blank" rel="noopener sponsored" class="btn-ghost">
-          Get a free reading
-        </a>
-      </div>
-
-      <p class="hero-trust">Pythagorean system &nbsp;·&nbsp; No sign-up required &nbsp;·&nbsp; Free to use</p>
-    </div>
-  </section>
-
-
-  <!-- ═══ LIFE PATH FINDER ════════════════════════════ -->
-  <section class="finder">
-    <div class="finder-inner">
-      <p class="p-label">Discover yours</p>
-      <h2>Find your Life Path Number</h2>
-      <p class="finder-sub">
-        It comes from your birth date and it's the anchor for everything else in your chart. Takes about five seconds.
-      </p>
-
-      <div class="finder-card">
-        <label for="finder-dob" class="finder-label">Your date of birth</label>
-        <input type="date" id="finder-dob" class="finder-input" />
-        <div id="finder-error" class="finder-error"></div>
-        <button id="finder-btn" class="btn-gold">Find My Number</button>
-
-        <div id="finder-result" class="finder-result">
-          <p class="result-subtitle">Your Life Path Number</p>
-          <div id="result-num" class="result-number"></div>
-          <div id="result-title" class="result-title"></div>
-          <div class="result-actions">
-            <a id="result-link" href="#" class="btn-violet-block">Read your guide →</a>
-            <a href="https://8904b5z1168aar3k8annz7y61n.hop.clickbank.net" target="_blank" rel="noopener sponsored" class="btn-ghost-dark">
-              Get a personalized reading at Numerologist.com →
+          <div class="hp-hero-actions">
+            <a href="https://8904b5z1168aar3k8annz7y61n.hop.clickbank.net"
+               target="_blank" rel="noopener sponsored" class="hp-btn-affiliate">
+              Get Your FULL Reading
+              <svg xmlns="http://www.w3.org/2000/svg" width="16" height="10" viewBox="0 0 16 10" fill="none" aria-hidden="true">
+                <path d="M1 5h13M11 1l3 4-3 4" stroke="currentColor" stroke-width="1.2"/>
+              </svg>
             </a>
           </div>
-          <button id="finder-restart" class="restart-btn">Start over</button>
-        </div>
-      </div>
 
-      <p class="finder-note">We don't store your date. The calculation happens in your browser.</p>
-    </div>
-  </section>
-
-
-  <!-- ═══ ALL NUMBERS ══════════════════════════════════ -->
-  <section class="numbers-section">
-    <div class="section-head">
-      <p class="p-label">The system</p>
-      <h2>Every Life Path Number</h2>
-      <div class="p-divider"></div>
-    </div>
-
-    <div class="numbers-grid">
-      {numbers.map(n => (
-        <a href={`/learn/life-path-number-${n.n}/`} class="num-tile">
-          <img src={n.img} alt={`Life Path ${n.n}, ${n.title}`} loading="lazy" decoding="async" />
-          <div class="num-overlay"></div>
-          <div class="num-content">
-            <div class:list={["num-n", { master: n.master }]}>{n.n}</div>
-            <div class="num-label">{n.title}</div>
-            {n.master && <span class="master-badge">Master Number</span>}
+          <div class="hp-hero-stats">
+            <div class="hp-stat">
+              <div class="hp-stat-num">12</div>
+              <div class="hp-stat-lbl">Core numbers, decoded</div>
+            </div>
+            <div class="hp-stat-divider"></div>
+            <div class="hp-stat">
+              <div class="hp-stat-num">04</div>
+              <div class="hp-stat-lbl">Free calculators</div>
+            </div>
+            <div class="hp-stat-divider"></div>
+            <div class="hp-stat">
+              <div class="hp-stat-num">30+</div>
+              <div class="hp-stat-lbl">In-depth guides</div>
+            </div>
           </div>
-        </a>
-      ))}
-    </div>
-
-    <p class="numbers-footer" style="margin-top:2rem;">
-      Not sure which is yours?
-      <a href="#finder-dob" onclick="document.getElementById('finder-dob').focus();return false;">Calculate it above →</a>
-    </p>
-  </section>
-
-
-  <!-- ═══ FEATURED GUIDES ═════════════════════════════ -->
-  <section class="guides-section">
-    <div class="guides-inner">
-
-      <div class="guides-header">
-        <div>
-          <p class="p-label">Where to start</p>
-          <h2>The essential guides</h2>
-        </div>
-        <a href="/learn/" class="link-underline">Browse all guides →</a>
-      </div>
-
-      <div class="feat-grid">
-        {features.map(f => (
-          <a href={f.href} class="feat-card">
-            <div class="feat-img-wrap">
-              <img src={f.img} alt={f.title} loading="lazy" decoding="async" />
-            </div>
-            <div class="feat-body">
-              <p class="p-label">{f.label}</p>
-              <h3>{f.title}</h3>
-              <p>{f.desc}</p>
-              <span class="feat-link">Read guide →</span>
-            </div>
-          </a>
-        ))}
-      </div>
-
-      <div class="mini-grid">
-        <a href="/learn/expression-number/" class="mini-card">Expression Number <span>Free guide →</span></a>
-        <a href="/learn/soul-urge-number/" class="mini-card">Soul Urge Number <span>Free guide →</span></a>
-        <a href="/learn/personal-year-number/" class="mini-card">Personal Year <span>Free guide →</span></a>
-        <a href="/calculator/" class="mini-card">Numerology Calculator <span>Try it free →</span></a>
-      </div>
-    </div>
-  </section>
-
-
-  <!-- ═══ FREE READING ════════════════════════════════ -->
-  <section class="reading-section">
-    <div class="reading-inner">
-      <div class="reading-block">
-
-        <div class="reading-left">
-          <p class="p-label">Recommended</p>
-          <h2>
-            Once you know your numbers, see what they say about <em>you</em>
-          </h2>
-          <p>
-            The guides here teach you the system. Numerologist.com makes it personal. Enter your name and birthdate and get a free video built around your specific numbers. Running since 1999. Over 2.3 million readings delivered.
-          </p>
-          <a href="https://8904b5z1168aar3k8annz7y61n.hop.clickbank.net" target="_blank" rel="noopener sponsored" class="btn-gold-inline">
-            Get your free reading
-            <svg xmlns="http://www.w3.org/2000/svg" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="9 18 15 12 9 6"/></svg>
-          </a>
-          <p class="reading-disclaimer">Free to use. Affiliate link. We may earn a commission if you purchase a paid report.</p>
         </div>
 
-        <div class="reading-right">
-          {readingPoints.map(item => (
-            <div class="reading-point">
-              <div class="reading-dot"></div>
-              <div>
-                <p class="reading-point-head">{item.heading}</p>
-                <p class="reading-point-body">{item.body}</p>
+        <!-- Right column: animated ornament + Today card -->
+        <div class="hp-hero-right" aria-hidden="true">
+          <div class="hp-ornament">
+            <svg class="hp-ornament-svg" viewBox="0 0 500 500" xmlns="http://www.w3.org/2000/svg">
+              <defs>
+                <radialGradient id="hp-glow" cx="50%" cy="50%" r="50%">
+                  <stop offset="0%"  stop-color="#b08d3e" stop-opacity="0.12"/>
+                  <stop offset="60%" stop-color="#b08d3e" stop-opacity="0"/>
+                </radialGradient>
+              </defs>
+
+              <circle cx="250" cy="250" r="240" fill="url(#hp-glow)"/>
+              <circle cx="250" cy="250" r="220" fill="none" stroke="currentColor" stroke-opacity="0.12" stroke-width="0.5"/>
+              <circle cx="250" cy="250" r="218" fill="none" stroke="currentColor" stroke-opacity="0.25" stroke-width="0.5"/>
+
+              <!-- Outer ring — rotated by JS -->
+              <g class="hp-orn-outer">
+                <circle cx="250" cy="250" r="180" fill="none" stroke="currentColor" stroke-opacity="0.1" stroke-width="0.5" stroke-dasharray="1 3"/>
+                {outerNums.map((n, i) => {
+                  const angle = (i / outerNums.length) * Math.PI * 2 - Math.PI / 2;
+                  const x = +(250 + 180 * Math.cos(angle)).toFixed(2);
+                  const y = +(250 + 180 * Math.sin(angle)).toFixed(2);
+                  return (
+                    <g class="hp-orn-num" data-x={x} data-y={y}>
+                      <text x={x} y={y} text-anchor="middle" dominant-baseline="central"
+                            font-family="Bodoni Moda, Cormorant Garamond, Georgia, serif"
+                            font-style="italic" font-size="22" fill="currentColor" opacity="0.85">{n}</text>
+                    </g>
+                  );
+                })}
+              </g>
+
+              <!-- Inner ring — counter-rotated by JS -->
+              <g class="hp-orn-inner">
+                <circle cx="250" cy="250" r="130" fill="none" stroke="currentColor" stroke-opacity="0.15" stroke-width="0.5"/>
+                {innerGlyphs.map((g, i) => {
+                  const angle = (i / innerGlyphs.length) * Math.PI * 2 - Math.PI / 2;
+                  const x = +(250 + 130 * Math.cos(angle)).toFixed(2);
+                  const y = +(250 + 130 * Math.sin(angle)).toFixed(2);
+                  return (
+                    <g class="hp-orn-glyph" data-x={x} data-y={y}>
+                      <text x={x} y={y} text-anchor="middle" dominant-baseline="central"
+                            font-family="Bodoni Moda, serif" font-size="14"
+                            fill="#b08d3e" opacity="0.7">{g}</text>
+                    </g>
+                  );
+                })}
+              </g>
+
+              <!-- Centre: master number triangle -->
+              <polygon points="250,170 320,290 180,290" fill="none" stroke="#b08d3e" stroke-width="0.7" opacity="0.5"/>
+              <text x="250" y="202" text-anchor="middle" dominant-baseline="central"
+                    font-family="Bodoni Moda, Cormorant Garamond, serif"
+                    font-style="italic" font-size="36" fill="#b08d3e">11</text>
+              <text x="294" y="278" text-anchor="middle" dominant-baseline="central"
+                    font-family="Bodoni Moda, Cormorant Garamond, serif"
+                    font-style="italic" font-size="36" fill="#b08d3e">22</text>
+              <text x="206" y="278" text-anchor="middle" dominant-baseline="central"
+                    font-family="Bodoni Moda, Cormorant Garamond, serif"
+                    font-style="italic" font-size="36" fill="#b08d3e">33</text>
+              <circle cx="250" cy="250" r="6"  fill="#b08d3e" opacity="0.9"/>
+              <circle cx="250" cy="250" r="14" fill="none" stroke="#b08d3e" stroke-width="0.5" opacity="0.6"/>
+
+              <!-- Tick marks -->
+              {Array.from({ length: tickCount }).map((_, i) => {
+                const angle = (i / tickCount) * Math.PI * 2;
+                const r1 = 222;
+                const r2 = i % 5 === 0 ? 232 : 228;
+                return (
+                  <line
+                    x1={+(250 + r1 * Math.cos(angle)).toFixed(2)}
+                    y1={+(250 + r1 * Math.sin(angle)).toFixed(2)}
+                    x2={+(250 + r2 * Math.cos(angle)).toFixed(2)}
+                    y2={+(250 + r2 * Math.sin(angle)).toFixed(2)}
+                    stroke="currentColor" stroke-opacity="0.28" stroke-width="0.5"
+                  />
+                );
+              })}
+            </svg>
+          </div>
+
+          <!-- Today's Universal Day card -->
+          <div class="hp-today-card">
+            <div class="hp-today-eyebrow">Today's Universal Day</div>
+            <div class="hp-today-body">
+              <div class="hp-today-num" id="hp-today-num">—</div>
+              <div class="hp-today-text">
+                <div class="hp-today-title" id="hp-today-title">Calculating…</div>
+                <div class="hp-today-keywords" id="hp-today-kw"></div>
               </div>
             </div>
-          ))}
+            <div class="hp-today-footer">
+              <span id="hp-today-date">—</span>
+              <a href="/learn/personal-year-number/">This year's cycle →</a>
+            </div>
+          </div>
         </div>
 
+      </div><!-- /.hp-hero-grid -->
+      </div><!-- /.hp-hero-inner -->
+    </section>
+
+
+    <!-- ═══ LIFE PATH CALCULATOR ═══════════════════════════ -->
+    <section id="hp-calc" class="hp-calc-section">
+      <div class="hp-calc">
+        <div class="hp-calc-frame">
+          <div class="hp-calc-corners">
+            <span></span><span></span><span></span><span></span>
+          </div>
+
+          <header class="hp-calc-head">
+            <h2 class="hp-calc-title"><em>Reveal</em> the number you were born under.</h2>
+            <p class="hp-calc-lede">
+              Your Life Path is the single most important number in your chart — the
+              theme of the lifetime, the lesson you were given a body to learn.
+              Enter the day you arrived.
+            </p>
+          </header>
+
+          <div class="hp-stepper">
+            <button class="hp-step active" data-step="0">
+              <span class="hp-step-num">01</span>
+              <span class="hp-step-label">Month</span>
+            </button>
+            <button class="hp-step" data-step="1" disabled>
+              <span class="hp-step-num">02</span>
+              <span class="hp-step-label">Day</span>
+            </button>
+            <button class="hp-step" data-step="2" disabled>
+              <span class="hp-step-num">03</span>
+              <span class="hp-step-label">Year</span>
+            </button>
+            <button class="hp-step" data-step="3" disabled>
+              <span class="hp-step-num">04</span>
+              <span class="hp-step-label">Reveal</span>
+            </button>
+          </div>
+
+          <div class="hp-calc-stage">
+
+            <!-- Step 0: Month -->
+            <div id="hpc-stage-month" class="hp-calc-fade-in">
+              <p class="hp-stage-prompt">Which month?</p>
+              <div class="hp-month-grid">
+                {[
+                  [1,"January"],[2,"February"],[3,"March"],[4,"April"],
+                  [5,"May"],[6,"June"],[7,"July"],[8,"August"],
+                  [9,"September"],[10,"October"],[11,"November"],[12,"December"]
+                ].map(([n, name]) => (
+                  <button class="hp-month-cell" data-month={n}>
+                    <span class="hp-month-num">{String(n).padStart(2,'0')}</span>
+                    <span class="hp-month-name">{(name as string).slice(0,3).toUpperCase()}</span>
+                  </button>
+                ))}
+              </div>
+            </div>
+
+            <!-- Step 1: Day (populated by JS) -->
+            <div id="hpc-stage-day" style="display:none;" class="hp-calc-fade-in">
+              <p class="hp-stage-prompt" id="hpc-day-prompt">Which day?</p>
+              <div id="hpc-day-grid" class="hp-day-grid"></div>
+            </div>
+
+            <!-- Step 2: Year -->
+            <div id="hpc-stage-year" style="display:none;" class="hp-stage-year hp-calc-fade-in">
+              <p class="hp-stage-prompt">And the year?</p>
+              <div class="hp-year-input-wrap">
+                <input id="hpc-year" class="hp-year-input" type="text"
+                       inputmode="numeric" maxlength="4" placeholder="1990" autocomplete="off" />
+                <div class="hp-year-hint">YYYY · between 1900 and 2099</div>
+              </div>
+              <button id="hpc-reveal-btn" class="hp-reveal-btn" disabled>
+                <span>Reveal my number</span>
+                <svg width="18" height="10" viewBox="0 0 18 10" fill="none" aria-hidden="true">
+                  <path d="M1 5h16M13 1l4 4-4 4" stroke="currentColor" stroke-width="1.2"/>
+                </svg>
+              </button>
+            </div>
+
+            <!-- Step 3: Reveal (populated by JS) -->
+            <div id="hpc-stage-reveal" style="display:none;" class="hp-calc-fade-in">
+              <div class="hp-math-line" id="hpc-math-line"></div>
+              <div class="hp-revelation" id="hpc-revelation"></div>
+            </div>
+
+          </div>
+        </div>
       </div>
-    </div>
-  </section>
+    </section>
 
 
-  <!-- ═══ FAQ ═════════════════════════════════════════ -->
-  <section class="faq-section">
-    <div class="faq-inner">
-      <div class="section-head">
-        <h2>Common questions</h2>
-        <div class="p-divider" style="margin-top:0.5rem;"></div>
+    <!-- ═══ ALL LIFE PATH NUMBERS ════════════════════════════ -->
+    <section class="hp-numbers">
+      <div class="hp-numbers-head">
+        <h2 class="hp-section-title">Every Life Path Number</h2>
       </div>
 
-      <div class="faq-list">
-        {faqs.map(item => (
-          <details>
-            <summary>
-              {item.q}
-              <svg class="faq-chevron" xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="6 9 12 15 18 9"/></svg>
-            </summary>
-            <div class="faq-answer">{item.a}</div>
-          </details>
+      <div class="hp-numbers-grid">
+        {numbers.map(n => (
+          <a href={`/learn/life-path-number-${n.n}/`} class="hp-num-tile">
+            <img src={n.img} alt={`Life Path ${n.n} — ${n.title}`} loading="lazy" decoding="async" />
+            <div class="hp-num-overlay"></div>
+            <div class="hp-num-content">
+              <div class:list={["hp-num-n", { master: n.master }]}>{n.n}</div>
+              <div class="hp-num-label">{n.title}</div>
+              {n.master && <span class="hp-master-badge">Master Number</span>}
+            </div>
+          </a>
         ))}
       </div>
-    </div>
-  </section>
+
+      <p class="hp-numbers-note" style="margin-top:2rem;">
+        Not sure which is yours?&nbsp;
+        <a href="#hp-finder">Calculate it above →</a>
+      </p>
+    </section>
 
 
-  <!-- ═══ BOTTOM CTA ══════════════════════════════════ -->
-  <section class="bottom-cta">
-    <div class="bottom-cta-glow"></div>
-    <div class="bottom-cta-inner">
-      <p class="p-label">Numerologist.com</p>
-      <div class="p-divider" style="margin:1rem auto;"></div>
-      <h2>Ready to see what your numbers actually say?</h2>
-      <p>Enter your name and birthdate. Get a free video reading built around you, not a generic overview with your name dropped in.</p>
-      <a href="https://8904b5z1168aar3k8annz7y61n.hop.clickbank.net" target="_blank" rel="noopener sponsored" class="btn-gold-inline" style="margin:0 auto;">
-        Get your free reading at Numerologist.com
-        <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="9 18 15 12 9 6"/></svg>
-      </a>
-    </div>
-  </section>
+    <!-- ═══ METHOD ═══════════════════════════════════════════ -->
+    <section class="hp-method">
+      <div class="hp-method-inner">
+        <div class="hp-eyebrow">
+          <span class="hp-dot"></span>
+          <span>How it works</span>
+          <span class="hp-rule-line" style="background:rgba(241,236,223,0.18);max-width:48px;"></span>
+          <span class="hp-dot"></span>
+        </div>
+        <h2 class="hp-section-title">
+          The math is <em>plain</em>.<br>
+          The reading is the work.
+        </h2>
+
+        <div class="hp-method-steps">
+          <div class="hp-method-step">
+            <div class="hp-method-num">I</div>
+            <div class="hp-method-title">Reduce each piece of the date</div>
+            <div class="hp-method-body">
+              Month, day, and year are each summed and reduced to a single digit —
+              unless they land on 11, 22, or 33.
+            </div>
+          </div>
+          <div class="hp-method-step">
+            <div class="hp-method-num">II</div>
+            <div class="hp-method-title">Add the three reductions</div>
+            <div class="hp-method-body">
+              Sum the three results. This number is the bridge between
+              your birth date and your chart.
+            </div>
+          </div>
+          <div class="hp-method-step">
+            <div class="hp-method-num">III</div>
+            <div class="hp-method-title">Reduce a final time</div>
+            <div class="hp-method-body">
+              Reduce again to a single digit. The exception: if the sum is a master number,
+              leave it alone. That is your Life Path.
+            </div>
+          </div>
+        </div>
+
+        <div class="hp-method-example">
+          <div class="hp-ex-label">Worked example · October 22, 1980</div>
+          <div class="hp-ex-math">
+            <span><em>10</em> → 1+0 = <strong>1</strong></span>
+            <span class="hp-ex-op">+</span>
+            <span><em>22</em> stays <strong>22</strong></span>
+            <span class="hp-ex-op">+</span>
+            <span><em>1980</em> → 1+9+8+0 = 18 → 1+8 = <strong>9</strong></span>
+            <span class="hp-ex-op">=</span>
+            <span>32 → 3+2 = <strong class="hp-ex-final">5</strong></span>
+          </div>
+          <p class="hp-ex-note">
+            A Life Path 5 — the Adventurer. Restlessness, change, and freedom are the lifetime's theme.
+          </p>
+        </div>
+      </div>
+    </section>
+
+
+    <!-- ═══ ARTICLES / JOURNAL ═══════════════════════════════ -->
+    <section class="hp-articles">
+      <div class="hp-articles-head">
+        <div>
+          <div class="hp-eyebrow" style="margin-bottom:20px;">
+            <span class="hp-dot"></span>
+            <span>From the guides</span>
+          </div>
+          <h2 class="hp-section-title" style="margin:0;">
+            Letters from the <em>practice</em>.
+          </h2>
+        </div>
+        <a href="/learn/" class="hp-link-underline">Browse all guides →</a>
+      </div>
+
+      <div class="hp-article-grid">
+        {articles.map(a => (
+          <a href={a.href} class="hp-article">
+            <div class="hp-article-meta">
+              <span class={`kicker-${a.tone}`}>{a.kicker}</span>
+              <span>{a.date}</span>
+            </div>
+            <h3 class="hp-article-title">{a.title}</h3>
+            <p class="hp-article-dek">{a.dek}</p>
+            <div class="hp-article-foot">
+              <span>{a.read}</span>
+              <span class="hp-article-arrow">
+                <svg width="22" height="10" viewBox="0 0 22 10" fill="none" aria-hidden="true">
+                  <path d="M0 5h20M17 1l4 4-4 4" stroke="currentColor" stroke-width="1"/>
+                </svg>
+              </span>
+            </div>
+          </a>
+        ))}
+      </div>
+    </section>
+
+
+    <!-- ═══ FREE READING ═════════════════════════════════════ -->
+    <section class="hp-reading">
+      <div class="hp-reading-inner">
+        <div class="hp-reading-block">
+
+          <div class="hp-reading-left">
+            <div class="hp-eyebrow">
+              <span class="hp-dot" style="background:var(--hp-gold-soft);"></span>
+              <span>Recommended</span>
+            </div>
+            <h2>
+              Once you know your numbers, see what they say about <em>you</em>
+            </h2>
+            <p>
+              The guides here teach you the system. Numerologist.com makes it personal.
+              Enter your name and birthdate and get a free video built around your specific numbers.
+              Running since 1999. Over 2.3 million readings delivered.
+            </p>
+            <a href="https://8904b5z1168aar3k8annz7y61n.hop.clickbank.net"
+               target="_blank" rel="noopener sponsored" class="hp-btn-gold">
+              Get your free reading
+              <svg xmlns="http://www.w3.org/2000/svg" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <polyline points="9 18 15 12 9 6"/>
+              </svg>
+            </a>
+            <p class="hp-reading-disclaimer">
+              Free to use. Affiliate link. We may earn a commission if you purchase a paid report.
+            </p>
+          </div>
+
+          <div class="hp-reading-right">
+            {readingPoints.map(item => (
+              <div class="hp-reading-point">
+                <div class="hp-reading-dot"></div>
+                <div>
+                  <p class="hp-reading-point-head">{item.heading}</p>
+                  <p class="hp-reading-point-body">{item.body}</p>
+                </div>
+              </div>
+            ))}
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+
+    <!-- ═══ FAQ ══════════════════════════════════════════════ -->
+    <section class="hp-faq">
+      <div class="hp-faq-inner">
+        <div class="hp-faq-head">
+          <div class="hp-eyebrow">
+            <span class="hp-dot"></span>
+            <span>Common questions</span>
+          </div>
+          <h2>Things people ask</h2>
+        </div>
+
+        <div>
+          {faqs.map(item => (
+            <details>
+              <summary>
+                {item.q}
+                <svg class="hp-faq-chevron" xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                  <polyline points="6 9 12 15 18 9"/>
+                </svg>
+              </summary>
+              <div class="hp-faq-answer">{item.a}</div>
+            </details>
+          ))}
+        </div>
+      </div>
+    </section>
+
+
+    <!-- ═══ BOTTOM CTA ════════════════════════════════════════ -->
+    <section class="hp-cta">
+      <div class="hp-cta-inner">
+        <div class="hp-eyebrow">
+          <span class="hp-dot" style="background:var(--hp-gold-soft);"></span>
+          <span>Numerologist.com</span>
+          <span class="hp-rule-line" style="background:rgba(241,236,223,0.18);"></span>
+          <span class="hp-dot" style="background:var(--hp-gold-soft);"></span>
+        </div>
+        <h2>Ready to see what your numbers <em>actually say</em>?</h2>
+        <p>
+          Enter your name and birthdate. Get a free video reading built around you,
+          not a generic overview with your name dropped in.
+        </p>
+        <a href="https://8904b5z1168aar3k8annz7y61n.hop.clickbank.net"
+           target="_blank" rel="noopener sponsored" class="hp-btn-gold" style="margin:0 auto;">
+          Get your free reading at Numerologist.com
+          <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <polyline points="9 18 15 12 9 6"/>
+          </svg>
+        </a>
+      </div>
+    </section>
+
+  </div><!-- /.hp-page -->
 
 
   <script>
   (function () {
-    const lpTitles: Record<number, string> = {
-      1:"The Leader", 2:"The Peacemaker", 3:"The Communicator",
-      4:"The Builder", 5:"The Adventurer", 6:"The Nurturer",
-      7:"The Seeker", 8:"The Powerhouse", 9:"The Humanitarian",
-      11:"The Intuitive Master", 22:"The Master Builder", 33:"The Master Teacher"
+
+    /* ── Today's Universal Day Number ────────────────────── */
+    const TITLES: Record<number, string> = {
+      1:"The Initiator", 2:"The Diplomat", 3:"The Voice",
+      4:"The Builder", 5:"The Traveler", 6:"The Keeper",
+      7:"The Mystic", 8:"The Sovereign", 9:"The Humanitarian",
+      11:"The Illuminator", 22:"The Master Builder", 33:"The Master Teacher"
+    };
+    const KEYWORDS: Record<number, string> = {
+      1:"independence · leadership · initiative",
+      2:"partnership · intuition · balance",
+      3:"expression · creativity · joy",
+      4:"structure · discipline · loyalty",
+      5:"freedom · curiosity · change",
+      6:"nurture · responsibility · harmony",
+      7:"inquiry · depth · solitude",
+      8:"power · ambition · abundance",
+      9:"compassion · completion · wisdom",
+      11:"intuition · inspiration · sensitivity",
+      22:"vision · execution · legacy",
+      33:"devotion · compassion · guidance"
     };
 
     function reduce(n: number): number {
       if (n < 10 || n === 11 || n === 22 || n === 33) return n;
-      let s = 0;
-      while (n > 0) { s += n % 10; n = Math.floor(n / 10); }
+      let s = 0; let m = n;
+      while (m > 0) { s += m % 10; m = Math.floor(m / 10); }
       return reduce(s);
     }
 
-    function calcLP(str: string): number {
-      const [y, m, d] = str.split('-').map(Number);
-      const rm = reduce(m);
-      const rd = reduce(d);
-      const ry = reduce(String(y).split('').map(Number).reduce((a: number, b: number) => a + b, 0));
-      return reduce(rm + rd + ry);
+    const now = new Date();
+    const m = now.getMonth() + 1;
+    const d = now.getDate();
+    const y = now.getFullYear();
+    const digits = [...String(m), ...String(d), ...String(y)].map(Number);
+    let sum = digits.reduce((a, b) => a + b, 0);
+    while (sum > 9 && sum !== 11 && sum !== 22 && sum !== 33) {
+      sum = String(sum).split('').map(Number).reduce((a, b) => a + b, 0);
+    }
+    const todayNum = sum;
+
+    const dateStr = now.toLocaleDateString('en-US', {
+      weekday: 'long', month: 'long', day: 'numeric', year: 'numeric'
+    });
+
+    // Populate today card
+    const numEl  = document.getElementById('hp-today-num');
+    const titleEl = document.getElementById('hp-today-title');
+    const kwEl   = document.getElementById('hp-today-kw');
+    const dateEl = document.getElementById('hp-today-date');
+    const hpDate = document.getElementById('hp-date');
+    if (numEl)   numEl.textContent  = String(todayNum);
+    if (titleEl) titleEl.textContent = `A ${TITLES[todayNum]}'s day.`;
+    if (kwEl)    kwEl.textContent    = KEYWORDS[todayNum] ?? '';
+    if (dateEl)  dateEl.textContent  = dateStr.toUpperCase();
+    if (hpDate)  hpDate.textContent  = dateStr;
+
+    /* ── Animated SVG ornament ───────────────────────────── */
+    const outer = document.querySelector('.hp-orn-outer') as SVGElement | null;
+    const inner = document.querySelector('.hp-orn-inner') as SVGElement | null;
+    let tick = 0;
+
+    const outerNums  = document.querySelectorAll<SVGElement>('.hp-orn-num');
+    const innerGlyphs = document.querySelectorAll<SVGElement>('.hp-orn-glyph');
+
+    function animateOrnament() {
+      tick++;
+      const r1 =  tick * 0.3;
+      const r2 = -tick * 0.2;
+      if (outer) outer.setAttribute('transform', `rotate(${r1} 250 250)`);
+      if (inner) inner.setAttribute('transform', `rotate(${r2} 250 250)`);
+      // Counter-rotate each number so it stays upright
+      outerNums.forEach(el => {
+        const x = el.getAttribute('data-x')!;
+        const y = el.getAttribute('data-y')!;
+        el.setAttribute('transform', `rotate(${-r1} ${x} ${y})`);
+      });
+      // Counter-rotate each glyph so it stays upright
+      innerGlyphs.forEach(el => {
+        const x = el.getAttribute('data-x')!;
+        const y = el.getAttribute('data-y')!;
+        el.setAttribute('transform', `rotate(${-r2} ${x} ${y})`);
+      });
+      requestAnimationFrame(animateOrnament);
+    }
+    requestAnimationFrame(animateOrnament);
+
+    /* ── Life Path Calculator ────────────────────────────── */
+    const MEANINGS: Record<number, {title:string;archetype:string;body:string;light:string;shadow:string;famous:string;master?:boolean}> = {
+      1:{title:"The Initiator",archetype:"Pioneer · Sovereign · Spark",body:"The 1 walks alone at the front of the line — first idea, first step, first to fall and first to stand back up. They carry a current of ambition that resists committee. Their lesson is to lead without ruling, to begin without forcing.",light:"Decisive, original, courageous under pressure.",shadow:"Domineering, impatient with collaboration, lonely at the top.",famous:"Lady Gaga · Tom Hanks · Walt Disney"},
+      2:{title:"The Diplomat",archetype:"Mediator · Mirror · Companion",body:"Where the 1 declares, the 2 listens. This is the energy of pairs, of unseen harmonies, of the quiet hand that keeps a room from tipping over. Their gift is the ability to feel what hasn't been said.",light:"Empathic, peacemaking, deeply intuitive.",shadow:"Self-erasing, indecisive, wounded by friction.",famous:"Barack Obama · Madonna · Wolfgang Mozart"},
+      3:{title:"The Voice",archetype:"Communicator · Performer · Muse",body:"The 3 lives where language meets play. They turn observation into story and grief into a song you can dance to. Beneath the brightness is a serious craft: making other people feel less alone.",light:"Charismatic, expressive, generous with imagination.",shadow:"Scattered, performative, allergic to depth.",famous:"Jackie Chan · David Bowie · J.K. Rowling"},
+      4:{title:"The Builder",archetype:"Architect · Steward · Foundation",body:"The 4 is what survives the weather. They believe in the dignity of the small good repeated daily — the swept floor, the kept word, the load-bearing wall. Their life is a slow act of construction.",light:"Reliable, methodical, quietly powerful.",shadow:"Rigid, joyless, suspicious of change.",famous:"Bill Gates · Frida Kahlo · Clint Eastwood"},
+      5:{title:"The Traveler",archetype:"Adventurer · Messenger · Wind",body:"The 5 was born mid-sentence and has been moving ever since. They are the friend who knew the city before it was famous. Restlessness is their compass — and their pitfall.",light:"Adaptable, magnetic, irresistible storyteller.",shadow:"Reckless, commitment-shy, easily addicted to novelty.",famous:"Angelina Jolie · Steven Spielberg · Abraham Lincoln"},
+      6:{title:"The Keeper",archetype:"Caretaker · Healer · Hearth",body:"The 6 is the home you didn't know you were homesick for. They build the table where others eat, hold the field where others heal. Their gift is care — but they must learn that love is not earned through self-sacrifice.",light:"Devoted, beauty-loving, profoundly responsible.",shadow:"Martyr complex, meddlesome, perfectionistic.",famous:"Meryl Streep · John Lennon · Albert Einstein"},
+      7:{title:"The Mystic",archetype:"Seeker · Scholar · Solitary",body:"The 7 needs the room to be quiet. They are the long walk, the unfinished thesis, the question that does not flinch. Their work is to translate the invisible into something the rest of us can read.",light:"Analytical, spiritual, fluent in nuance.",shadow:"Withdrawn, cynical, paralyzed by the unknown.",famous:"Marilyn Monroe · Stephen Hawking · Princess Diana"},
+      8:{title:"The Sovereign",archetype:"Executive · Magnate · Karma",body:"The 8 moves where consequence lives. They build empires, restructure systems, count the cost. Their lesson is to hold power without becoming it — to wield without being wielded by it.",light:"Strategic, abundant, fair-handed in authority.",shadow:"Cold, money-obsessed, drunk on control.",famous:"Pablo Picasso · Nelson Mandela · Sandra Bullock"},
+      9:{title:"The Humanitarian",archetype:"Sage · Artist · Letting-Go",body:"The 9 has lived all the other numbers and walked back to tell us. They are the closing of a cycle, the artist whose work belongs to the world. Their work is to give without expecting return.",light:"Generous, wise, world-conscious.",shadow:"Resentful, self-pitying, unable to let go.",famous:"Mahatma Gandhi · Jim Carrey · Mother Teresa"},
+      11:{title:"The Illuminator",archetype:"Visionary · Channel · Lightning Rod",body:"The 11 is a 2 with a lightning bolt running through it. It receives signals others can't hear and pays for the privilege in nervous-system overhead. Their work is to translate the transmission into something useable.",light:"Inspired, electric, profoundly perceptive.",shadow:"Anxious, ungrounded, burnt by their own current.",famous:"Michelle Obama · Tim Burton · Katy Perry",master:true},
+      22:{title:"The Master Builder",archetype:"Manifestor · Engineer · World-Shaper",body:"The 22 is the rarest combination of dreamer and bricklayer. It sees what could exist and possesses the practical patience to build it, brick by brick, over decades.",light:"Visionary, capable, structurally world-changing.",shadow:"Crushed by the weight of their own potential.",famous:"The Dalai Lama · Paul McCartney · Oprah Winfrey",master:true},
+      33:{title:"The Master Teacher",archetype:"Bodhisattva · Healer · Selfless Voice",body:"The 33 is the rarest of all — a 6 raised to its highest octave. It exists to teach through love and to elevate everyone in its orbit. The shadow is martyrdom; the gift is grace.",light:"Healing, devotional, lifts entire communities.",shadow:"Self-erasing, savior-coded, easily exhausted.",famous:"Albert Einstein · John Lennon · Francis of Assisi",master:true},
+    };
+
+    const MONTHS_SHORT = ["JAN","FEB","MAR","APR","MAY","JUN","JUL","AUG","SEP","OCT","NOV","DEC"];
+    const MONTHS_FULL  = ["January","February","March","April","May","June","July","August","September","October","November","December"];
+
+    const GLYPHS: Record<number, string> = {
+      1:'<path d="M20 4 L20 36 M14 10 L20 4 L26 10"/>',
+      2:'<path d="M8 14 Q8 4 20 4 Q32 4 32 14 Q32 22 8 36 L32 36"/>',
+      3:'<path d="M8 8 Q20 -2 28 8 Q22 18 18 20 Q28 22 28 30 Q20 42 8 32"/>',
+      4:'<path d="M24 4 L8 24 L30 24 M24 4 L24 36"/>',
+      5:'<path d="M30 4 L12 4 L10 18 Q22 14 28 22 Q28 36 14 36 Q8 36 6 30"/>',
+      6:'<circle cx="20" cy="26" r="10"/><path d="M30 14 Q20 -2 12 14"/>',
+      7:'<path d="M6 6 L34 6 L18 36"/>',
+      8:'<circle cx="20" cy="12" r="8"/><circle cx="20" cy="28" r="8"/>',
+      9:'<circle cx="20" cy="14" r="10"/><path d="M30 14 Q26 36 14 36"/>',
+      11:'<path d="M14 4 L14 36"/><path d="M26 4 L26 36"/><circle cx="20" cy="20" r="2"/>',
+      22:'<path d="M6 12 Q6 4 14 4 Q22 4 20 14 L6 36 L22 36"/><path d="M22 12 Q22 4 30 4 Q38 4 36 14 L22 36 L38 36"/>',
+      33:'<path d="M6 8 Q14 0 20 8 Q14 16 12 18 Q22 18 22 26 Q14 38 6 30 M20 8 Q28 0 34 8 Q28 16 26 18 Q36 18 36 26 Q28 38 20 30"/>',
+    };
+
+    function dSum(n: number): number {
+      return String(n).split('').reduce((s,d) => s + Number(d), 0);
+    }
+    function reducePart(n: number): {value:number; steps:number[]} {
+      const steps = [n]; let v = n;
+      while (v > 9 && v !== 11 && v !== 22 && v !== 33) { v = dSum(v); steps.push(v); }
+      return { value: v, steps };
     }
 
-    const dobEl    = document.getElementById('finder-dob') as HTMLInputElement;
-    const btnEl    = document.getElementById('finder-btn') as HTMLButtonElement;
-    const errEl    = document.getElementById('finder-error') as HTMLElement;
-    const resEl    = document.getElementById('finder-result') as HTMLElement;
-    const numEl    = document.getElementById('result-num') as HTMLElement;
-    const titleEl  = document.getElementById('result-title') as HTMLElement;
-    const linkEl   = document.getElementById('result-link') as HTMLAnchorElement;
-    const restart  = document.getElementById('finder-restart') as HTMLButtonElement;
+    let calcMonth = 0, calcDay = 0, calcYear = '';
+    let calcStep  = 0;
 
-    btnEl.addEventListener('click', () => {
-      errEl.style.display = 'none';
-      if (!dobEl.value) {
-        errEl.textContent = "Pop your birthday in above and we'll do the rest.";
-        errEl.style.display = 'block';
-        return;
+    const stageMonth  = document.getElementById('hpc-stage-month')!;
+    const stageDay    = document.getElementById('hpc-stage-day')!;
+    const stageYear   = document.getElementById('hpc-stage-year')!;
+    const stageReveal = document.getElementById('hpc-stage-reveal')!;
+    const dayGrid     = document.getElementById('hpc-day-grid')!;
+    const dayPrompt   = document.getElementById('hpc-day-prompt')!;
+    const yearInput   = document.getElementById('hpc-year') as HTMLInputElement;
+    const revealBtn   = document.getElementById('hpc-reveal-btn') as HTMLButtonElement;
+    const mathLine    = document.getElementById('hpc-math-line')!;
+    const revelation  = document.getElementById('hpc-revelation')!;
+    const steps       = document.querySelectorAll<HTMLButtonElement>('.hp-step');
+
+    function showStage(n: number) {
+      [stageMonth, stageDay, stageYear, stageReveal].forEach((el, i) => {
+        el.style.display = i === n ? '' : 'none';
+      });
+      steps.forEach((btn, i) => {
+        btn.classList.toggle('active', i === n);
+        btn.classList.toggle('done', i < n);
+        btn.disabled = i > n && !(i === 3 && calcMonth && calcDay && isYearValid());
+      });
+      calcStep = n;
+    }
+
+    function isYearValid(): boolean {
+      const y = parseInt(calcYear);
+      return calcYear.length === 4 && y >= 1900 && y <= 2099;
+    }
+
+    function buildDayGrid() {
+      const yr  = parseInt(calcYear) || 2000;
+      const days = new Date(yr, calcMonth, 0).getDate();
+      dayGrid.innerHTML = '';
+      for (let d = 1; d <= days; d++) {
+        const btn = document.createElement('button');
+        btn.className = 'hp-day-cell' + (d === calcDay ? ' selected' : '');
+        btn.textContent = String(d);
+        btn.addEventListener('click', () => {
+          calcDay = d;
+          dayGrid.querySelectorAll('.hp-day-cell').forEach(b => b.classList.remove('selected'));
+          btn.classList.add('selected');
+          setTimeout(() => showStage(2), 280);
+        });
+        // border rules: last in each row, last rows
+        const col = (d - 1) % 8;
+        if (col === 7) btn.style.borderRight = 'none';
+        dayGrid.appendChild(btn);
       }
-      const lp = calcLP(dobEl.value);
-      numEl.textContent   = String(lp);
-      titleEl.textContent = lpTitles[lp] ?? 'Unknown';
-      linkEl.href         = `/learn/life-path-number-${lp}/`;
-      linkEl.textContent  = `Read your Life Path ${lp} guide →`;
-      resEl.style.display = 'block';
-      resEl.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+      // remove border-bottom from last row
+      const lastRowStart = days - (days % 8 || 8);
+      dayGrid.querySelectorAll<HTMLButtonElement>('.hp-day-cell').forEach((b, i) => {
+        if (i >= lastRowStart) b.style.borderBottom = 'none';
+      });
+    }
+
+    // Month clicks
+    document.querySelectorAll<HTMLButtonElement>('.hp-month-cell').forEach(btn => {
+      btn.addEventListener('click', () => {
+        calcMonth = Number(btn.dataset.month);
+        document.querySelectorAll('.hp-month-cell').forEach(b => b.classList.remove('selected'));
+        btn.classList.add('selected');
+        dayPrompt.textContent = `Which day of ${MONTHS_FULL[calcMonth - 1]}?`;
+        buildDayGrid();
+        setTimeout(() => showStage(1), 280);
+      });
     });
 
-    dobEl.addEventListener('keypress', (e: KeyboardEvent) => { if (e.key === 'Enter') btnEl.click(); });
-
-    restart.addEventListener('click', () => {
-      dobEl.value = '';
-      resEl.style.display = 'none';
+    // Stepper back-nav
+    steps.forEach((btn, i) => {
+      btn.addEventListener('click', () => {
+        if (i < calcStep) showStage(i);
+        if (i === 3 && calcMonth && calcDay && isYearValid()) doReveal();
+      });
     });
+
+    // Year input
+    yearInput.addEventListener('input', () => {
+      calcYear = yearInput.value.replace(/\D/g, '');
+      yearInput.value = calcYear;
+      revealBtn.disabled = !isYearValid();
+    });
+    yearInput.addEventListener('keydown', (e: KeyboardEvent) => {
+      if (e.key === 'Enter' && isYearValid()) doReveal();
+    });
+    revealBtn.addEventListener('click', doReveal);
+
+    function doReveal() {
+      showStage(3);
+      buildReveal();
+    }
+
+    function buildReveal() {
+      const m = reducePart(calcMonth);
+      const d = reducePart(calcDay);
+      const y = reducePart(parseInt(calcYear));
+      const sum = m.value + d.value + y.value;
+      const fin = reducePart(sum);
+
+      // Build math line — initially show raw values only
+      mathLine.innerHTML = `
+        <div class="hp-date-part">
+          <div class="hp-dp-label">${MONTHS_SHORT[calcMonth - 1]}</div>
+          <div class="hp-dp-stack" id="hpc-m-stack"></div>
+        </div>
+        <span class="hp-op">+</span>
+        <div class="hp-date-part">
+          <div class="hp-dp-label">DAY</div>
+          <div class="hp-dp-stack" id="hpc-d-stack"></div>
+        </div>
+        <span class="hp-op">+</span>
+        <div class="hp-date-part">
+          <div class="hp-dp-label">YEAR</div>
+          <div class="hp-dp-stack" id="hpc-y-stack"></div>
+        </div>
+        <span class="hp-op equals hp-op-sum" id="hpc-op-eq">=</span>
+        <div class="hp-sum-block" id="hpc-sum">
+          <div class="hp-sum-label">SUM</div>
+          <div class="hp-sum-row">
+            <div class="hp-sum-value">${sum}</div>
+            <div class="hp-sum-inline-trail" id="hpc-trail" style="display:none;"></div>
+          </div>
+        </div>
+      `;
+
+      function buildStack(id: string, part: {steps: number[]}, isGold: boolean) {
+        const el = document.getElementById(id)!;
+        part.steps.forEach((v, i) => {
+          const d = document.createElement('div');
+          d.className = 'hp-dp-value' + (i === 0 ? ' raw' : '');
+          d.textContent = String(v);
+          el.appendChild(d);
+        });
+      }
+
+      buildStack('hpc-m-stack', m, false);
+      buildStack('hpc-d-stack', d, false);
+      buildStack('hpc-y-stack', y, false);
+
+      // Animate phases
+      setTimeout(() => {
+        // Phase 1: show reduced values + highlight finals
+        document.querySelectorAll<HTMLElement>('.hp-dp-value:not(.raw)').forEach(el => {
+          el.classList.add('shown');
+        });
+        // Gold the last value in each stack
+        ['hpc-m-stack','hpc-d-stack','hpc-y-stack'].forEach(id => {
+          const stack = document.getElementById(id);
+          const last = stack?.querySelector<HTMLElement>('.hp-dp-value:last-child');
+          if (last) last.classList.add('gold');
+        });
+      }, 600);
+
+      setTimeout(() => {
+        // Phase 2: show sum
+        const opEl = document.getElementById('hpc-op-eq');
+        const sumEl = document.getElementById('hpc-sum');
+        if (opEl) opEl.classList.add('shown');
+        if (sumEl) sumEl.classList.add('shown');
+        if (fin.steps.length > 1) {
+          const trail = document.getElementById('hpc-trail');
+          if (trail) {
+            const finalNum = fin.steps[fin.steps.length - 1];
+            trail.innerHTML = `<span class="hp-sum-arrow-inline">→</span><span class="hp-sum-final">${finalNum}</span>`;
+            trail.style.display = 'flex';
+          }
+        }
+      }, 1800);
+
+      setTimeout(() => {
+        // Phase 3: full reveal panel
+        const meaning = MEANINGS[fin.value];
+        revelation.innerHTML = `
+          <div class="hp-rev-left">
+            <div class="hp-rev-tag">
+              <span class="hp-dot"></span> You are a
+              ${meaning?.master ? '<span class="hp-master-tag">Master Number</span>' : ''}
+            </div>
+            <span class="hp-rev-number">${fin.value}</span>
+            <div class="hp-rev-title">${meaning?.title ?? ''}</div>
+            <div class="hp-rev-archetype">${meaning?.archetype ?? ''}</div>
+          </div>
+          <div class="hp-rev-right">
+            <p class="hp-rev-body">${meaning?.body ?? ''}</p>
+            <div class="hp-rev-traits">
+              <div class="hp-trait">
+                <div class="hp-trait-label">In the light</div>
+                <div class="hp-trait-text">${meaning?.light ?? ''}</div>
+              </div>
+              <div class="hp-trait">
+                <div class="hp-trait-label">In the shadow</div>
+                <div class="hp-trait-text">${meaning?.shadow ?? ''}</div>
+              </div>
+              <div class="hp-trait">
+                <div class="hp-trait-label">You share this with</div>
+                <div class="hp-trait-text">${meaning?.famous ?? ''}</div>
+              </div>
+            </div>
+            <div class="hp-rev-actions">
+              <a href="/learn/life-path-number-${fin.value}/" class="hp-link-btn">Read the full ${fin.value} guide &rarr;</a>
+              <button id="hpc-reset" class="hp-calc-reset-btn">↩ Calculate another</button>
+            </div>
+          </div>
+        `;
+        revelation.classList.add('shown');
+        document.getElementById('hpc-reset')?.addEventListener('click', resetCalc);
+      }, 3000);
+
+      // Phase 4: fade out intermediate reduction steps, leave only finals
+      setTimeout(() => {
+        document.querySelectorAll<HTMLElement>('.hp-dp-value:not(.raw):not(.gold)').forEach(el => {
+          el.classList.add('faded');
+        });
+        // also fade the raw values that have been superseded (multi-step reductions)
+        ['hpc-m-stack','hpc-d-stack','hpc-y-stack'].forEach(id => {
+          const stack = document.getElementById(id);
+          if (!stack) return;
+          const all = stack.querySelectorAll<HTMLElement>('.hp-dp-value');
+          if (all.length > 1) {
+            // fade the raw original, keep only the gold final
+            all.forEach((el, i) => {
+              if (i < all.length - 1) el.classList.add('faded');
+            });
+          }
+        });
+      }, 4200);
+    }
+
+    function resetCalc() {
+      calcMonth = 0; calcDay = 0; calcYear = '';
+      yearInput.value = '';
+      revealBtn.disabled = true;
+      mathLine.innerHTML = '';
+      revelation.innerHTML = '';
+      revelation.classList.remove('shown');
+      document.querySelectorAll('.hp-month-cell').forEach(b => b.classList.remove('selected'));
+      showStage(0);
+    }
+
   })();
   </script>
 

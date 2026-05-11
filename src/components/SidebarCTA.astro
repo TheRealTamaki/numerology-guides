@@ -1,4 +1,10 @@
-﻿<!-- Sticky sidebar CTA - desktop only -->
+---
+const outerNums  = [1,2,3,4,5,6,7,8,9];
+const innerGlyphs = ["☉","☽","✦","☿","♀","♂","♃","♄","✧","✶","✷","❉"];
+const tickCount  = 60;
+---
+
+<!-- Sticky sidebar CTA - desktop only -->
 <aside
   class="hidden xl:block xl:w-72 xl:shrink-0"
   aria-label="Free numerology reading"
@@ -7,11 +13,89 @@
     <div class="w-72 rounded-xl overflow-hidden shadow-lg border border-violet/20" style="background: linear-gradient(170deg, #1a103d 0%, #2d1b69 50%, #1a103d 100%);">
       <div class="p-6">
         <div class="text-center mb-5">
-          <img
-            src="/images/Numerology Sidebar Icon.webp"
-            alt="Numbers 1 through 9 in a golden circle with sacred geometry"
-            class="w-28 h-28 mx-auto mb-3 rounded-full object-cover border-2 border-soft-gold/30 shadow-md"
-          />
+
+          <!-- Animated numerology wheel (same as homepage hero) -->
+          <div class="w-36 h-36 mx-auto mb-3 rounded-full overflow-hidden border-2 border-soft-gold/30 shadow-md"
+               style="background: linear-gradient(135deg, #07071a 0%, #130a2e 60%, #0d0a25 100%);">
+            <svg class="sb-ornament-svg w-full h-full" viewBox="0 0 500 500" xmlns="http://www.w3.org/2000/svg">
+              <defs>
+                <radialGradient id="sb-glow" cx="50%" cy="50%" r="50%">
+                  <stop offset="0%"  stop-color="#b08d3e" stop-opacity="0.15"/>
+                  <stop offset="60%" stop-color="#b08d3e" stop-opacity="0"/>
+                </radialGradient>
+              </defs>
+
+              <circle cx="250" cy="250" r="240" fill="url(#sb-glow)"/>
+              <circle cx="250" cy="250" r="220" fill="none" stroke="rgba(235,232,247,0.1)" stroke-width="0.5"/>
+              <circle cx="250" cy="250" r="218" fill="none" stroke="rgba(235,232,247,0.22)" stroke-width="0.5"/>
+
+              <!-- Outer numbers ring (rotated by JS) -->
+              <g class="sb-orn-outer">
+                <circle cx="250" cy="250" r="180" fill="none" stroke="rgba(235,232,247,0.08)" stroke-width="0.5" stroke-dasharray="1 3"/>
+                {outerNums.map((n, i) => {
+                  const angle = (i / outerNums.length) * Math.PI * 2 - Math.PI / 2;
+                  const x = +(250 + 180 * Math.cos(angle)).toFixed(2);
+                  const y = +(250 + 180 * Math.sin(angle)).toFixed(2);
+                  return (
+                    <g class="sb-orn-num" data-x={x} data-y={y}>
+                      <text x={x} y={y} text-anchor="middle" dominant-baseline="central"
+                            font-family="Bodoni Moda, Cormorant Garamond, Georgia, serif"
+                            font-style="italic" font-size="24"
+                            fill="rgba(235,232,247,0.9)">{n}</text>
+                    </g>
+                  );
+                })}
+              </g>
+
+              <!-- Inner glyphs ring (counter-rotated by JS) -->
+              <g class="sb-orn-inner">
+                <circle cx="250" cy="250" r="130" fill="none" stroke="rgba(235,232,247,0.12)" stroke-width="0.5"/>
+                {innerGlyphs.map((g, i) => {
+                  const angle = (i / innerGlyphs.length) * Math.PI * 2 - Math.PI / 2;
+                  const x = +(250 + 130 * Math.cos(angle)).toFixed(2);
+                  const y = +(250 + 130 * Math.sin(angle)).toFixed(2);
+                  return (
+                    <g class="sb-orn-glyph" data-x={x} data-y={y}>
+                      <text x={x} y={y} text-anchor="middle" dominant-baseline="central"
+                            font-family="Bodoni Moda, serif" font-size="13"
+                            fill="#b08d3e" opacity="0.75">{g}</text>
+                    </g>
+                  );
+                })}
+              </g>
+
+              <!-- Centre triangle + master numbers -->
+              <polygon points="250,170 320,290 180,290" fill="none" stroke="#b08d3e" stroke-width="0.8" opacity="0.55"/>
+              <text x="250" y="204" text-anchor="middle" dominant-baseline="central"
+                    font-family="Bodoni Moda, Cormorant Garamond, serif"
+                    font-style="italic" font-size="36" fill="#b08d3e">11</text>
+              <text x="294" y="280" text-anchor="middle" dominant-baseline="central"
+                    font-family="Bodoni Moda, Cormorant Garamond, serif"
+                    font-style="italic" font-size="36" fill="#b08d3e">22</text>
+              <text x="206" y="280" text-anchor="middle" dominant-baseline="central"
+                    font-family="Bodoni Moda, Cormorant Garamond, serif"
+                    font-style="italic" font-size="36" fill="#b08d3e">33</text>
+              <circle cx="250" cy="250" r="7"  fill="#b08d3e" opacity="0.9"/>
+              <circle cx="250" cy="250" r="16" fill="none" stroke="#b08d3e" stroke-width="0.5" opacity="0.55"/>
+
+              <!-- Tick marks -->
+              {Array.from({ length: tickCount }).map((_, i) => {
+                const angle = (i / tickCount) * Math.PI * 2;
+                const r1 = 222;
+                const r2 = i % 5 === 0 ? 232 : 228;
+                return (
+                  <line
+                    x1={+(250 + r1 * Math.cos(angle)).toFixed(2)}
+                    y1={+(250 + r1 * Math.sin(angle)).toFixed(2)}
+                    x2={+(250 + r2 * Math.cos(angle)).toFixed(2)}
+                    y2={+(250 + r2 * Math.sin(angle)).toFixed(2)}
+                    stroke="rgba(235,232,247,0.25)" stroke-width="0.5"
+                  />
+                );
+              })}
+            </svg>
+          </div>
+
           <p class="text-soft-gold font-bold font-[family-name:var(--font-family-heading)] text-2xl leading-tight">What Do Your<br/>Numbers Say?</p>
           <p class="text-starlight/50 text-xs mt-1.5">Free personalized video reading</p>
         </div>
@@ -52,10 +136,9 @@
             0%, 100% { box-shadow: 0 0 8px rgba(196,162,78,0.4), 0 0 20px rgba(139,92,246,0.15); }
             50% { box-shadow: 0 0 16px rgba(196,162,78,0.6), 0 0 35px rgba(139,92,246,0.3); }
           }
-          .sidebar-cta-glow {
-            animation: cta-pulse 2.5s ease-in-out infinite;
-          }
+          .sidebar-cta-glow { animation: cta-pulse 2.5s ease-in-out infinite; }
         </style>
+
         <a
           href="https://8904b5z1168aar3k8annz7y61n.hop.clickbank.net"
           target="_blank"
@@ -71,3 +154,33 @@
     </div>
   </div>
 </aside>
+
+<script>
+  (function () {
+    const sbOuter  = document.querySelector('.sb-orn-outer') as SVGElement | null;
+    const sbInner  = document.querySelector('.sb-orn-inner') as SVGElement | null;
+    const sbNums   = document.querySelectorAll<SVGElement>('.sb-orn-num');
+    const sbGlyphs = document.querySelectorAll<SVGElement>('.sb-orn-glyph');
+    let tick = 0;
+
+    function animate() {
+      tick++;
+      const r1 =  tick * 0.25;
+      const r2 = -tick * 0.18;
+      if (sbOuter) sbOuter.setAttribute('transform', `rotate(${r1} 250 250)`);
+      if (sbInner) sbInner.setAttribute('transform', `rotate(${r2} 250 250)`);
+      sbNums.forEach(el => {
+        const x = el.getAttribute('data-x')!;
+        const y = el.getAttribute('data-y')!;
+        el.setAttribute('transform', `rotate(${-r1} ${x} ${y})`);
+      });
+      sbGlyphs.forEach(el => {
+        const x = el.getAttribute('data-x')!;
+        const y = el.getAttribute('data-y')!;
+        el.setAttribute('transform', `rotate(${-r2} ${x} ${y})`);
+      });
+      requestAnimationFrame(animate);
+    }
+    requestAnimationFrame(animate);
+  })();
+</script>
